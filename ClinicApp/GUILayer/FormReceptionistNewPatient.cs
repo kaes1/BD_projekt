@@ -17,13 +17,29 @@ namespace GUILayer
             InitializeComponent();
         }
 
-        private bool correctPESEL()
+        private bool correctInformation()
         {
+            //Check if any field is empty.
+            if (string.IsNullOrWhiteSpace(textBoxFirstName.Text) ||
+                string.IsNullOrWhiteSpace(textBoxLastName.Text) ||
+                string.IsNullOrWhiteSpace(textBoxPESEL.Text))
+            {
+                MessageBox.Show("FirstName, LastName and PESEL must be filled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            //Check if length is correct.
+            if (textBoxPESEL.Text.Length != 11)
+            {
+                MessageBox.Show("PESEL number must be 11 digits long.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             //Check if all characters are numbers.
             foreach (char c in textBoxPESEL.Text)
                 if (c < '0' || c > '9')
+                {
+                    MessageBox.Show("PESEL number must be made up of digits.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
-
+                }
             //Parse for all digits.
             int[] digits = new int[11];
             for (int i = 0; i < 11; i++)
@@ -34,30 +50,26 @@ namespace GUILayer
                               + 9 * digits[8] + 7 * digits[9]) % 10;
             //Check control digit.
             if (controlDigit != digits[10])
+            {
+                MessageBox.Show("PESEL number is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
-            else
-                return true;
+            }  
+            
+            //Check if 5th and 6th digits are a correct day.
+            if (digits[4] * 10 + digits[5] > 31)
+            {
+                MessageBox.Show("PESEL number is incorrect. Digits 5-6 are not a correct day.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
 
         private void buttonAddPatient_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxFirstName.Text) ||
-                string.IsNullOrWhiteSpace(textBoxLastName.Text) ||
-                string.IsNullOrWhiteSpace(textBoxPESEL.Text))
-            {
-                MessageBox.Show("FirstName, LastName and PESEL must be filled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (textBoxPESEL.Text.Length != 11)
-            {
-                MessageBox.Show("PESEL must be 11 digits long.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (!correctPESEL())
-            {
-                MessageBox.Show("PESEL number is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //Check if patient information is correct.
+            if (!correctInformation())
+                 return;
 
             var newPatientInfo = new BusinessLayer.PatientInformation();
             newPatientInfo.PESEL = textBoxPESEL.Text;

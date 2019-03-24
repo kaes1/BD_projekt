@@ -22,7 +22,6 @@ namespace GUILayer
             String username = textBoxUsername.Text;
             String password = textBoxPassword.Text;
 
-            //bool loginSuccess = BusinessLayer.LoginFacade.ExistsUser(username, password);
             DataLayer.User user = BusinessLayer.LoginFacade.GetUser(username, password);
             if (user != null)
             {

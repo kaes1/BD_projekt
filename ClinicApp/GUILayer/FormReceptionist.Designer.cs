@@ -52,7 +52,7 @@
             // 
             // buttonNewPatient
             // 
-            this.buttonNewPatient.Location = new System.Drawing.Point(576, 220);
+            this.buttonNewPatient.Location = new System.Drawing.Point(489, 237);
             this.buttonNewPatient.Name = "buttonNewPatient";
             this.buttonNewPatient.Size = new System.Drawing.Size(105, 23);
             this.buttonNewPatient.TabIndex = 0;
@@ -69,10 +69,10 @@
             this.FirstName,
             this.LastName,
             this.PESEL});
-            this.dataGridViewPatients.Location = new System.Drawing.Point(34, 194);
+            this.dataGridViewPatients.Location = new System.Drawing.Point(29, 194);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(344, 230);
+            this.dataGridViewPatients.Size = new System.Drawing.Size(415, 230);
             this.dataGridViewPatients.TabIndex = 1;
             // 
             // FirstName
@@ -80,22 +80,25 @@
             this.FirstName.HeaderText = "FirstName";
             this.FirstName.Name = "FirstName";
             this.FirstName.ReadOnly = true;
+            this.FirstName.Width = 124;
             // 
             // LastName
             // 
             this.LastName.HeaderText = "LastName";
             this.LastName.Name = "LastName";
             this.LastName.ReadOnly = true;
+            this.LastName.Width = 124;
             // 
             // PESEL
             // 
             this.PESEL.HeaderText = "PESEL";
             this.PESEL.Name = "PESEL";
             this.PESEL.ReadOnly = true;
+            this.PESEL.Width = 124;
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(564, 56);
+            this.buttonSearch.Location = new System.Drawing.Point(477, 56);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(105, 23);
             this.buttonSearch.TabIndex = 2;
@@ -114,7 +117,7 @@
             this.groupBoxSearch.Controls.Add(this.buttonSearch);
             this.groupBoxSearch.Location = new System.Drawing.Point(12, 60);
             this.groupBoxSearch.Name = "groupBoxSearch";
-            this.groupBoxSearch.Size = new System.Drawing.Size(776, 114);
+            this.groupBoxSearch.Size = new System.Drawing.Size(630, 114);
             this.groupBoxSearch.TabIndex = 3;
             this.groupBoxSearch.TabStop = false;
             this.groupBoxSearch.Text = "Search";
@@ -122,7 +125,7 @@
             // labelPESEL
             // 
             this.labelPESEL.AutoSize = true;
-            this.labelPESEL.Location = new System.Drawing.Point(367, 40);
+            this.labelPESEL.Location = new System.Drawing.Point(311, 40);
             this.labelPESEL.Name = "labelPESEL";
             this.labelPESEL.Size = new System.Drawing.Size(41, 13);
             this.labelPESEL.TabIndex = 8;
@@ -131,7 +134,7 @@
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(205, 40);
+            this.labelLastName.Location = new System.Drawing.Point(177, 40);
             this.labelLastName.Name = "labelLastName";
             this.labelLastName.Size = new System.Drawing.Size(58, 13);
             this.labelLastName.TabIndex = 7;
@@ -148,14 +151,14 @@
             // 
             // textBoxPESEL
             // 
-            this.textBoxPESEL.Location = new System.Drawing.Point(370, 56);
+            this.textBoxPESEL.Location = new System.Drawing.Point(314, 56);
             this.textBoxPESEL.Name = "textBoxPESEL";
             this.textBoxPESEL.Size = new System.Drawing.Size(100, 20);
             this.textBoxPESEL.TabIndex = 5;
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(208, 56);
+            this.textBoxLastName.Location = new System.Drawing.Point(180, 56);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 4;
@@ -169,7 +172,7 @@
             // 
             // buttonViewAllPatients
             // 
-            this.buttonViewAllPatients.Location = new System.Drawing.Point(576, 260);
+            this.buttonViewAllPatients.Location = new System.Drawing.Point(489, 277);
             this.buttonViewAllPatients.Name = "buttonViewAllPatients";
             this.buttonViewAllPatients.Size = new System.Drawing.Size(105, 23);
             this.buttonViewAllPatients.TabIndex = 4;
@@ -180,7 +183,7 @@
             // labelLoggedInAs
             // 
             this.labelLoggedInAs.AutoSize = true;
-            this.labelLoggedInAs.Location = new System.Drawing.Point(608, 388);
+            this.labelLoggedInAs.Location = new System.Drawing.Point(506, 377);
             this.labelLoggedInAs.Name = "labelLoggedInAs";
             this.labelLoggedInAs.Size = new System.Drawing.Size(73, 13);
             this.labelLoggedInAs.TabIndex = 5;
@@ -189,28 +192,29 @@
             // labelReceptionistName
             // 
             this.labelReceptionistName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelReceptionistName.Location = new System.Drawing.Point(506, 411);
+            this.labelReceptionistName.Location = new System.Drawing.Point(445, 411);
             this.labelReceptionistName.Name = "labelReceptionistName";
-            this.labelReceptionistName.Size = new System.Drawing.Size(282, 13);
+            this.labelReceptionistName.Size = new System.Drawing.Size(195, 13);
             this.labelReceptionistName.TabIndex = 6;
             this.labelReceptionistName.Text = "Name Surname";
             this.labelReceptionistName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonRegisterVisit
             // 
-            this.buttonRegisterVisit.Location = new System.Drawing.Point(576, 303);
+            this.buttonRegisterVisit.Location = new System.Drawing.Point(489, 320);
             this.buttonRegisterVisit.Name = "buttonRegisterVisit";
             this.buttonRegisterVisit.Size = new System.Drawing.Size(105, 23);
             this.buttonRegisterVisit.TabIndex = 7;
             this.buttonRegisterVisit.Text = "Register Visit";
             this.buttonRegisterVisit.UseVisualStyleBackColor = true;
+            this.buttonRegisterVisit.Click += new System.EventHandler(this.buttonRegisterVisit_Click);
             // 
             // labelPanelName
             // 
             this.labelPanelName.AutoSize = true;
             this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(212, 9);
+            this.labelPanelName.Location = new System.Drawing.Point(143, 9);
             this.labelPanelName.Name = "labelPanelName";
             this.labelPanelName.Size = new System.Drawing.Size(363, 48);
             this.labelPanelName.TabIndex = 8;
@@ -220,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(654, 450);
             this.Controls.Add(this.labelPanelName);
             this.Controls.Add(this.buttonRegisterVisit);
             this.Controls.Add(this.labelReceptionistName);
@@ -245,9 +249,6 @@
         private System.Windows.Forms.Button buttonNewPatient;
         private System.Windows.Forms.DataGridView dataGridViewPatients;
         private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PESEL;
         private System.Windows.Forms.GroupBox groupBoxSearch;
         private System.Windows.Forms.TextBox textBoxPESEL;
         private System.Windows.Forms.TextBox textBoxLastName;
@@ -260,5 +261,8 @@
         private System.Windows.Forms.Label labelReceptionistName;
         private System.Windows.Forms.Button buttonRegisterVisit;
         private System.Windows.Forms.Label labelPanelName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PESEL;
     }
 }

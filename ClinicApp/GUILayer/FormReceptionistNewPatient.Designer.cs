@@ -100,11 +100,11 @@
             // labelPanelName
             // 
             this.labelPanelName.AutoSize = true;
-            this.labelPanelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(28, 22);
+            this.labelPanelName.Location = new System.Drawing.Point(41, 27);
             this.labelPanelName.Name = "labelPanelName";
-            this.labelPanelName.Size = new System.Drawing.Size(296, 42);
+            this.labelPanelName.Size = new System.Drawing.Size(268, 37);
             this.labelPanelName.TabIndex = 8;
             this.labelPanelName.Text = "Add New Patient";
             // 

@@ -78,16 +78,6 @@ namespace BusinessLayer
             return result;
         }
 
-        public static List<PatientInformation> GetAllPatients()
-        {
-            DataClassesDataContext dc = new DataClassesDataContext();
-            var result = (from el in dc.Patients
-                          select new PatientInformation
-                          { FirstName = el.FirstName, LastName = el.LastName, PESEL = el.PESEL }
-                          ).ToList();
-            return result;
-        }
-
         public static List<PatientInformation> GetPatients(PatientInformation patientSearchCriteria)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -100,7 +90,7 @@ namespace BusinessLayer
                           (patientSearchCriteria.PESEL == null || el.PESEL.StartsWith(patientSearchCriteria.PESEL))
                           select new PatientInformation
                           { FirstName = el.FirstName, LastName = el.LastName, PESEL = el.PESEL }
-                          ).ToList();
+                          ).OrderBy(x => x.LastName).ToList();
             return result;
         }
 
