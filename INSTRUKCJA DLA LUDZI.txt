@@ -5,6 +5,9 @@ Otwieramy ten Clinic.sql w SSMS (SQL Server Management Studio), robimy Execute i
 Solucja w VS 2017, zawiera 3 projekty, jak na przyk³adzie od Dr Augustyna.
 Na razie zrobionych jest formatka do logowania i pocz¹tek formatek od rejestratorki. 
 
+WA¯NE - ¿eby LINQ to SQL porz¹dnie dzia³a³o (i móc je porzadnie edytowaæ) trzeba to œci¹gn¹æ:
+Tools -> Get Tools and Features -> Poszczególne sk³adniki (mam po polsku, sry) -> Narzêdzia do kodowania -> LINQ to SQL Tools.
+Dziêki temu po dwukliku w DataClasses.dbml otwiera siê taki fajny edytor.
 
 
 Mo¿e siê pojawiæ problem z po³¹czeniem z baz¹ danych, bo connection string jakiego u¿ywa³em to:
