@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.textBoxUsername = new System.Windows.Forms.TextBox();
-            this.labelClinicApp = new System.Windows.Forms.Label();
+            this.labelPanelName = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
             this.labelPassword = new System.Windows.Forms.Label();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
@@ -48,16 +48,16 @@
             this.textBoxUsername.TabIndex = 0;
             this.textBoxUsername.Text = "receptionist";
             // 
-            // labelClinicApp
+            // labelPanelName
             // 
-            this.labelClinicApp.AutoSize = true;
-            this.labelClinicApp.Font = new System.Drawing.Font("OpenSymbol", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelClinicApp.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelClinicApp.Location = new System.Drawing.Point(81, 22);
-            this.labelClinicApp.Name = "labelClinicApp";
-            this.labelClinicApp.Size = new System.Drawing.Size(187, 48);
-            this.labelClinicApp.TabIndex = 1;
-            this.labelClinicApp.Text = "ClinicApp";
+            this.labelPanelName.AutoSize = true;
+            this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelPanelName.Location = new System.Drawing.Point(81, 22);
+            this.labelPanelName.Name = "labelPanelName";
+            this.labelPanelName.Size = new System.Drawing.Size(187, 48);
+            this.labelPanelName.TabIndex = 1;
+            this.labelPanelName.Text = "ClinicApp";
             // 
             // labelUsername
             // 
@@ -142,7 +142,7 @@
             this.Controls.Add(this.labelIncorrectLogin);
             this.Controls.Add(this.labelPleaseLogin);
             this.Controls.Add(this.groupBoxLoginForm);
-            this.Controls.Add(this.labelClinicApp);
+            this.Controls.Add(this.labelPanelName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormLogin";
             this.Text = "ClinicApp";
@@ -156,7 +156,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBoxUsername;
-        private System.Windows.Forms.Label labelClinicApp;
+        private System.Windows.Forms.Label labelPanelName;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.TextBox textBoxPassword;

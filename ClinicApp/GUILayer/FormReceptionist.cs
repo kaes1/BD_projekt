@@ -15,9 +15,6 @@ namespace GUILayer
 
         DataLayer.Receptionist activeReceptionist;
 
-        
-
-
         public FormReceptionist()
         {
             InitializeComponent();

@@ -35,26 +35,27 @@
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelPESEL = new System.Windows.Forms.Label();
             this.buttonAddPatient = new System.Windows.Forms.Button();
+            this.labelPanelName = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(41, 59);
+            this.textBoxFirstName.Location = new System.Drawing.Point(8, 119);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
             this.textBoxFirstName.TabIndex = 0;
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(41, 110);
+            this.textBoxLastName.Location = new System.Drawing.Point(124, 119);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 1;
             // 
             // textBoxPESEL
             // 
-            this.textBoxPESEL.Location = new System.Drawing.Point(41, 162);
+            this.textBoxPESEL.Location = new System.Drawing.Point(240, 119);
             this.textBoxPESEL.Name = "textBoxPESEL";
             this.textBoxPESEL.Size = new System.Drawing.Size(100, 20);
             this.textBoxPESEL.TabIndex = 2;
@@ -62,7 +63,7 @@
             // labelFirstName
             // 
             this.labelFirstName.AutoSize = true;
-            this.labelFirstName.Location = new System.Drawing.Point(38, 43);
+            this.labelFirstName.Location = new System.Drawing.Point(5, 103);
             this.labelFirstName.Name = "labelFirstName";
             this.labelFirstName.Size = new System.Drawing.Size(54, 13);
             this.labelFirstName.TabIndex = 3;
@@ -71,7 +72,7 @@
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(38, 94);
+            this.labelLastName.Location = new System.Drawing.Point(121, 103);
             this.labelLastName.Name = "labelLastName";
             this.labelLastName.Size = new System.Drawing.Size(55, 13);
             this.labelLastName.TabIndex = 4;
@@ -80,7 +81,7 @@
             // labelPESEL
             // 
             this.labelPESEL.AutoSize = true;
-            this.labelPESEL.Location = new System.Drawing.Point(38, 146);
+            this.labelPESEL.Location = new System.Drawing.Point(237, 103);
             this.labelPESEL.Name = "labelPESEL";
             this.labelPESEL.Size = new System.Drawing.Size(41, 13);
             this.labelPESEL.TabIndex = 5;
@@ -88,19 +89,31 @@
             // 
             // buttonAddPatient
             // 
-            this.buttonAddPatient.Location = new System.Drawing.Point(41, 218);
+            this.buttonAddPatient.Location = new System.Drawing.Point(48, 166);
             this.buttonAddPatient.Name = "buttonAddPatient";
-            this.buttonAddPatient.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddPatient.Size = new System.Drawing.Size(95, 23);
             this.buttonAddPatient.TabIndex = 6;
             this.buttonAddPatient.Text = "Add Patient";
             this.buttonAddPatient.UseVisualStyleBackColor = true;
             this.buttonAddPatient.Click += new System.EventHandler(this.buttonAddPatient_Click);
             // 
+            // labelPanelName
+            // 
+            this.labelPanelName.AutoSize = true;
+            this.labelPanelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelPanelName.Location = new System.Drawing.Point(28, 22);
+            this.labelPanelName.Name = "labelPanelName";
+            this.labelPanelName.Size = new System.Drawing.Size(296, 42);
+            this.labelPanelName.TabIndex = 8;
+            this.labelPanelName.Text = "Add New Patient";
+            // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(208, 218);
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Location = new System.Drawing.Point(214, 166);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(95, 23);
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -108,9 +121,12 @@
             // 
             // FormReceptionistNewPatient
             // 
+            this.AcceptButton = this.buttonAddPatient;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 272);
+            this.CancelButton = this.buttonCancel;
+            this.ClientSize = new System.Drawing.Size(350, 209);
+            this.Controls.Add(this.labelPanelName);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAddPatient);
             this.Controls.Add(this.labelPESEL);
@@ -119,6 +135,7 @@
             this.Controls.Add(this.textBoxPESEL);
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.textBoxFirstName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormReceptionistNewPatient";
             this.Text = "FormReceptionistNewPatient";
             this.ResumeLayout(false);
@@ -135,6 +152,7 @@
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelPESEL;
         private System.Windows.Forms.Button buttonAddPatient;
+        private System.Windows.Forms.Label labelPanelName;
         private System.Windows.Forms.Button buttonCancel;
     }
 }

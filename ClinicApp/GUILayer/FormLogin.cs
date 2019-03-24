@@ -47,19 +47,19 @@ namespace GUILayer
                         break;
                     case "TEC":
                         this.Hide();
-                        var technicianForm = new MainForm();
+                        var technicianForm = new FormLabTechnician(user);
                         technicianForm.FormClosed += (s, args) => this.Close();
                         technicianForm.Show();
                         break;
                     case "MAN":
                         this.Hide();
-                        var managerForm = new MainForm();
+                        var managerForm = new FormLabManager(user);
                         managerForm.FormClosed += (s, args) => this.Close();
                         managerForm.Show();
                         break;
                     case "ADM":
                         this.Hide();
-                        var adminForm = new MainForm();
+                        var adminForm = new FormAdmin();
                         adminForm.FormClosed += (s, args) => this.Close();
                         adminForm.Show();
                         break;

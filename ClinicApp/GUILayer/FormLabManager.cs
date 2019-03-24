@@ -12,9 +12,18 @@ namespace GUILayer
 {
     public partial class FormLabManager : Form
     {
+
+        DataLayer.LabManager activeLabManager;
+
         public FormLabManager()
         {
             InitializeComponent();
+        }
+
+        public FormLabManager(DataLayer.User user)
+        {
+            InitializeComponent();
+            activeLabManager = BusinessLayer.LabManagerFacade.GetLabManager(user.UserID);
         }
     }
 }

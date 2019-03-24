@@ -14,12 +14,10 @@ namespace BusinessLayer
         public static IQueryable<Patient> GetPatients()
         {
             DataClassesDataContext dc = new DataClassesDataContext();
-
             var res = from el in dc.Patients
                       select el;
-
             return res;
-        }
+        }  
 
     }
 
@@ -104,6 +102,28 @@ namespace BusinessLayer
                           { FirstName = el.FirstName, LastName = el.LastName, PESEL = el.PESEL }
                           ).ToList();
             return result;
+        }
+
+        public static void AddNewPatient(PatientInformation pInfo)
+        {
+            Patient newPatient = new Patient()
+            { FirstName = pInfo.FirstName, LastName = pInfo.LastName, PESEL = pInfo.PESEL };
+            DataClassesDataContext dc = new DataClassesDataContext();
+            dc.Patients.InsertOnSubmit(newPatient);
+            dc.SubmitChanges();
+        }
+
+        public static bool ExistsPatient(PatientInformation pInfo)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            //Check if patient already exists.
+            var res = (from el in dc.Patients
+                       where el.PESEL.Equals(pInfo.PESEL)
+                       select el).SingleOrDefault();
+            if (res != null)
+                return true;
+            else
+                return false;
         }
     }
 
