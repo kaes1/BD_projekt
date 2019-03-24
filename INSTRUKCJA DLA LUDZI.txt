@@ -1,0 +1,17 @@
+Clinic.sql to skrypt stawiaj¹cy ca³¹ bazê danych "Clinic", ze wszystkimi tabelami oraz drobn¹ iloœci¹ danych ¿eby by³o na czym testowaæ.
+Otwieramy ten Clinic.sql w SSMS (SQL Server Management Studio), robimy Execute i powinno zadzia³aæ.
+
+
+Solucja w VS 2017, zawiera 3 projekty, jak na przyk³adzie od Dr Augustyna.
+Na razie zrobionych jest formatka do logowania i pocz¹tek formatek od rejestratorki. 
+
+
+
+Mo¿e siê pojawiæ problem z po³¹czeniem z baz¹ danych, bo connection string jakiego u¿ywa³em to:
+Data Source=DESKTOP-UQ88JRE\MSSQLSERVER01;Initial Catalog=master;Integrated Security=True
+
+Jeœli zbudujecie bazê danych na swoim PC to myœlê ¿e trzeba zmieniæ ten connection string (bo pod³¹czamy siê w inne miejsce ni¿ u mnie).
+Dlatego po zbudowaniu bazy danych, w Visual Studio odpalamy Server Explorer (u góry w Quick Launch mo¿na wpisaæ), z paska u góry tego Explorera click na Connect to Database. Wybieramy Microsoft SQL Server, w Server name wpisujemy adres servera (w SSMS powinien byæ po lewej wypisany), po wpisaniu wybierany bazê danych (Clinic) i OK. Powinna ta baza danych siê pojawiæ w Explorerze i mo¿na j¹ przegl¹daæ.
+Jak otworzycie w DataLayer sobie DataClasses.dbml to powinny siê pojawiæ po³¹czone tabelki - schemat BD. Proponujê ¿ebyœcie na swoim PC usunêli te Tabelki (prawy -> delete) i z Server Explorera przeci¹gneli je ponownie - connection string powinien siê automatycznie w³aœciwy zrobiæ.
+
+Nie testowa³em uruchamiania tego na innym PC wiêc piszê co BYÆ MO¯E trzeba zrobiæ - najwy¿ej siê dopracuje problemy jeœli bêd¹.
