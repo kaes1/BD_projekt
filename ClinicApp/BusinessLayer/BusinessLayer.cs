@@ -8,73 +8,90 @@ using DataLayer;
 namespace BusinessLayer
 {
 
-    static public class RegistrationFacade
+    public class UserInformation
     {
-
-        public static IQueryable<Patient> GetPatients()
-        {
-            DataClassesDataContext dc = new DataClassesDataContext();
-            var res = from el in dc.Patients
-                      select el;
-            return res;
-        }  
-
+        public int UserID { get; set; }
+        public string Username { get; set; }
+        public string Hashcode { get; set; }
+        public string Role { get; set; }
+        public DateTime? DateRetired { get; set; }
     }
+
+    public class ReceptionistInformation
+    {
+        public int ReceptionistID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    public class PatientInformation
+    {
+        public int PatientID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PESEL { get; set; }
+    }
+
+    public class DoctorInformation
+    {
+        public int DoctorID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int PWZ { get; set; }
+    }
+
 
     static public class LoginFacade
     {
-
-        public static bool ExistsUser(String username, String password)
-        {
-            //Powinna być zamiana password na hash przez funkcje hashujaca - w bazie danych powinien byc hashcode.
-            //Do zrobienia.
-            DataClassesDataContext dc = new DataClassesDataContext();
-            bool existsUser = (from el in dc.Users
-                          where el.Username == username && el.Hashcode == password
-                          select el).Count() == 1;
-            return existsUser;
-        }
-
-        public static User GetUser(String username, String password)
+        public static UserInformation GetUser(String username, String password)
         {
             //Powinna być zamiana password na hash przez funkcje hashujaca - w bazie danych powinien byc hashcode.
             //Do zrobienia.
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from el in dc.Users
                           where el.Username == username && el.Hashcode == password
-                          select el).SingleOrDefault();
+                          select new UserInformation
+                          { UserID = el.UserID ,Username = el.Username, Hashcode = el.Hashcode, Role = el.Role, DateRetired = el.DateRetired}
+                          ).SingleOrDefault();
             return result;   
         }
     }
 
     static public class DoctorFacade
     {
-        public static Doctor GetDoctor(int userID)
+        public static DoctorInformation GetDoctor(int userID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from el in dc.Doctors
                           where el.UserID == userID
-                          select el).SingleOrDefault();
+                          select new DoctorInformation
+                          {DoctorID = el.DoctorID, FirstName = el.FirstName, LastName = el.LastName, PWZ = el.PWZNumber }
+                          ).SingleOrDefault();
             return result;
         }
     }
 
-    //Klasa Patient na potrzeby wyświetlania informacji w aplikacji (nie do bazy danych).
-    public class PatientInformation
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string PESEL { get; set; }
-    }
 
     static public class ReceptionistFacade
     {
-        public static Receptionist GetReceptionist(int userID)
+        public static ReceptionistInformation GetReceptionist(int userID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from el in dc.Receptionists
                           where el.UserID == userID
-                          select el).SingleOrDefault();
+                          select new ReceptionistInformation
+                          { ReceptionistID = el.ReceptionistID, FirstName = el.FirstName, LastName = el.LastName }
+                          ).SingleOrDefault();
+            return result;
+        }
+
+        public static List<DoctorInformation> GetAllDoctors()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from el in dc.Doctors
+                          select new DoctorInformation
+                          {DoctorID = el.DoctorID, FirstName = el.FirstName, LastName = el.LastName, PWZ = el.PWZNumber}
+                          ).OrderBy(x => x.LastName).ToList();
             return result;
         }
 
@@ -89,9 +106,22 @@ namespace BusinessLayer
                           &&
                           (patientSearchCriteria.PESEL == null || el.PESEL.StartsWith(patientSearchCriteria.PESEL))
                           select new PatientInformation
-                          { FirstName = el.FirstName, LastName = el.LastName, PESEL = el.PESEL }
+                          {PatientID = el.PatientID, FirstName = el.FirstName, LastName = el.LastName, PESEL = el.PESEL }
                           ).OrderBy(x => x.LastName).ToList();
             return result;
+        }
+
+
+        public static bool ExistsPatient(PatientInformation pInfo)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var res = (from el in dc.Patients
+                       where el.PESEL.Equals(pInfo.PESEL)
+                       select el).SingleOrDefault();
+            if (res != null)
+                return true;
+            else
+                return false;
         }
 
         public static void AddNewPatient(PatientInformation pInfo)
@@ -103,17 +133,14 @@ namespace BusinessLayer
             dc.SubmitChanges();
         }
 
-        public static bool ExistsPatient(PatientInformation pInfo)
+        public static void AddNewAppointment(ReceptionistInformation rInfo, PatientInformation pInfo, DoctorInformation dInfo)
         {
+            Appointment newAppointment = new Appointment()
+            {DoctorID = dInfo.DoctorID, PatientID = pInfo.PatientID, ReceptionistID = rInfo.ReceptionistID,
+                DateRegistered = DateTime.Now , Description = "Standard Appointment.", Status = "REG"};
             DataClassesDataContext dc = new DataClassesDataContext();
-            //Check if patient already exists.
-            var res = (from el in dc.Patients
-                       where el.PESEL.Equals(pInfo.PESEL)
-                       select el).SingleOrDefault();
-            if (res != null)
-                return true;
-            else
-                return false;
+            dc.Appointments.InsertOnSubmit(newAppointment);
+            dc.SubmitChanges();
         }
     }
 

@@ -12,18 +12,17 @@ namespace GUILayer
 {
     public partial class FormDoctor : Form
     {
-
-        DataLayer.Doctor activeDoctor;
+        BusinessLayer.DoctorInformation activeDoctorInformation;
 
         public FormDoctor()
         {
             InitializeComponent();
         }
 
-        public FormDoctor(DataLayer.User user)
+        public FormDoctor(int userID)
         {
             InitializeComponent();
-            activeDoctor = BusinessLayer.DoctorFacade.GetDoctor(user.UserID);
+            activeDoctorInformation = BusinessLayer.DoctorFacade.GetDoctor(userID);
         }
     }
 }

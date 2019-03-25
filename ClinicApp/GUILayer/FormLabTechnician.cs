@@ -13,17 +13,14 @@ namespace GUILayer
     public partial class FormLabTechnician : Form
     {
 
-        DataLayer.LabTechnician activeLabTechnician;
-
         public FormLabTechnician()
         {
             InitializeComponent();
         }
 
-        public FormLabTechnician(DataLayer.User user)
+        public FormLabTechnician(int userID)
         {
             InitializeComponent();
-            activeLabTechnician = BusinessLayer.LabTechnicianFacade.GetLabTechnician(user.UserID);
         }
     }
 }

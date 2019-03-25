@@ -22,15 +22,16 @@ namespace GUILayer
             String username = textBoxUsername.Text;
             String password = textBoxPassword.Text;
 
-            DataLayer.User user = BusinessLayer.LoginFacade.GetUser(username, password);
-            if (user != null)
+            BusinessLayer.UserInformation userInfo = BusinessLayer.LoginFacade.GetUser(username, password);
+
+            if (userInfo != null)
             {
                 labelIncorrectLogin.Visible = false;
-                switch (user.Role)
+                switch (userInfo.Role)
                 {
                     case "DOC":
                         this.Hide();
-                        var doctorForm = new FormDoctor(user);
+                        var doctorForm = new FormDoctor(userInfo.UserID);
                         doctorForm.FormClosed += (s, args) => this.Close();
                         doctorForm.Show();
                         break;
@@ -38,7 +39,7 @@ namespace GUILayer
                         //Hide this form.
                         this.Hide();
                         //Create a new receptionistForm. MainForm ONLY TEMP.
-                        var receptionistForm = new FormReceptionist(user);
+                        var receptionistForm = new FormReceptionist(userInfo.UserID);
                         //Add closing loginForm to the closing event of receptionistForm.
                         receptionistForm.FormClosed += (s, args) => this.Close();
                         //Show the new receptionistForm.
@@ -46,13 +47,13 @@ namespace GUILayer
                         break;
                     case "TEC":
                         this.Hide();
-                        var technicianForm = new FormLabTechnician(user);
+                        var technicianForm = new FormLabTechnician();
                         technicianForm.FormClosed += (s, args) => this.Close();
                         technicianForm.Show();
                         break;
                     case "MAN":
                         this.Hide();
-                        var managerForm = new FormLabManager(user);
+                        var managerForm = new FormLabManager();
                         managerForm.FormClosed += (s, args) => this.Close();
                         managerForm.Show();
                         break;
