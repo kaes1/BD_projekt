@@ -10,19 +10,20 @@ using System.Windows.Forms;
 
 namespace GUILayer
 {
-    public partial class FormDoctor : Form
+    public partial class FormDoctorVisit : Form
     {
-        BusinessLayer.DoctorInformation activeDoctorInformation;
-
-        public FormDoctor()
+        public FormDoctor prevPageRef { get; set; }
+        public FormDoctorVisit()
         {
             InitializeComponent();
         }
 
-        public FormDoctor(int userID)
+        private void buttonBack_Click(object sender, EventArgs e)
         {
-            InitializeComponent();
-            activeDoctorInformation = BusinessLayer.DoctorFacade.GetDoctor(userID);
+            //Close this form.
+            this.Close();
+            //Show the previous form.
+            prevPageRef.Show();
         }
     }
 }
