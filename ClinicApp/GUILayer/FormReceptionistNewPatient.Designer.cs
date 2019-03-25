@@ -41,21 +41,21 @@
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(8, 119);
+            this.textBoxFirstName.Location = new System.Drawing.Point(9, 107);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
             this.textBoxFirstName.TabIndex = 0;
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(124, 119);
+            this.textBoxLastName.Location = new System.Drawing.Point(125, 107);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 1;
             // 
             // textBoxPESEL
             // 
-            this.textBoxPESEL.Location = new System.Drawing.Point(240, 119);
+            this.textBoxPESEL.Location = new System.Drawing.Point(241, 107);
             this.textBoxPESEL.Name = "textBoxPESEL";
             this.textBoxPESEL.Size = new System.Drawing.Size(100, 20);
             this.textBoxPESEL.TabIndex = 2;
@@ -63,7 +63,7 @@
             // labelFirstName
             // 
             this.labelFirstName.AutoSize = true;
-            this.labelFirstName.Location = new System.Drawing.Point(5, 103);
+            this.labelFirstName.Location = new System.Drawing.Point(6, 91);
             this.labelFirstName.Name = "labelFirstName";
             this.labelFirstName.Size = new System.Drawing.Size(54, 13);
             this.labelFirstName.TabIndex = 3;
@@ -72,7 +72,7 @@
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(121, 103);
+            this.labelLastName.Location = new System.Drawing.Point(122, 91);
             this.labelLastName.Name = "labelLastName";
             this.labelLastName.Size = new System.Drawing.Size(55, 13);
             this.labelLastName.TabIndex = 4;
@@ -81,7 +81,7 @@
             // labelPESEL
             // 
             this.labelPESEL.AutoSize = true;
-            this.labelPESEL.Location = new System.Drawing.Point(237, 103);
+            this.labelPESEL.Location = new System.Drawing.Point(238, 91);
             this.labelPESEL.Name = "labelPESEL";
             this.labelPESEL.Size = new System.Drawing.Size(41, 13);
             this.labelPESEL.TabIndex = 5;
@@ -89,7 +89,7 @@
             // 
             // buttonAddPatient
             // 
-            this.buttonAddPatient.Location = new System.Drawing.Point(48, 166);
+            this.buttonAddPatient.Location = new System.Drawing.Point(49, 154);
             this.buttonAddPatient.Name = "buttonAddPatient";
             this.buttonAddPatient.Size = new System.Drawing.Size(95, 23);
             this.buttonAddPatient.TabIndex = 6;
@@ -102,7 +102,7 @@
             this.labelPanelName.AutoSize = true;
             this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(41, 27);
+            this.labelPanelName.Location = new System.Drawing.Point(43, 21);
             this.labelPanelName.Name = "labelPanelName";
             this.labelPanelName.Size = new System.Drawing.Size(268, 37);
             this.labelPanelName.TabIndex = 8;
@@ -111,7 +111,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(214, 166);
+            this.buttonCancel.Location = new System.Drawing.Point(215, 154);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(95, 23);
             this.buttonCancel.TabIndex = 7;
@@ -125,7 +125,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(350, 209);
+            this.ClientSize = new System.Drawing.Size(350, 199);
             this.Controls.Add(this.labelPanelName);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAddPatient);

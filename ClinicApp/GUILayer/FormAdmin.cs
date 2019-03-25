@@ -16,7 +16,19 @@ namespace GUILayer
         public FormAdmin()
         {
             InitializeComponent();
+            dataGridViewUsers.Columns.Clear();
+            dataGridViewUsers.DataSource = BusinessLayer.AdminFacade.GetUsers(new BusinessLayer.UserInformation());
+            dataGridViewUsers.Columns[0].Width = 60;
         }
 
+        private void buttonNewUser_Click(object sender, EventArgs e)
+        {
+            FormAdminNewUser formAdminNewUser = new FormAdminNewUser();
+            DialogResult res = formAdminNewUser.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }

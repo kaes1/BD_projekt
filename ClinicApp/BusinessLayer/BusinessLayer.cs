@@ -71,7 +71,6 @@ namespace BusinessLayer
         }
     }
 
-
     static public class ReceptionistFacade
     {
         public static ReceptionistInformation GetReceptionist(int userID)
@@ -167,4 +166,26 @@ namespace BusinessLayer
             return result;
         }
     }
+
+    static public class AdminFacade
+    {
+        public static List<UserInformation> GetUsers(UserInformation userSearchCriteria)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from el in dc.Users
+                          where
+                          (userSearchCriteria.UserID == 0 || el.UserID == userSearchCriteria.UserID)
+                          &&
+                          (userSearchCriteria.Username == null || el.Username.StartsWith(userSearchCriteria.Username))
+                          &&
+                          (userSearchCriteria.Hashcode == null || el.Hashcode.StartsWith(userSearchCriteria.Hashcode))
+                          &&
+                          (userSearchCriteria.Role == null || el.Role.StartsWith(userSearchCriteria.Role))
+                          select new UserInformation
+                          { UserID = el.UserID, Username = el.Username, Hashcode = el.Hashcode, Role = el.Role, DateRetired = el.DateRetired }
+                          ).OrderBy(x => x.UserID).ToList();
+            return result;
+        }
+    }
+
 }

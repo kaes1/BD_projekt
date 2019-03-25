@@ -14,11 +14,6 @@ namespace GUILayer
     {
         BusinessLayer.ReceptionistInformation activeReceptionistInformation;
 
-        public FormReceptionist()
-        {
-            InitializeComponent();
-        }
-
         public FormReceptionist(int userID)
         {
             InitializeComponent();
@@ -70,7 +65,7 @@ namespace GUILayer
             }
         }
 
-        private void buttonRegisterVisit_Click(object sender, EventArgs e)
+        private void buttonNewAppointment_Click(object sender, EventArgs e)
         {
             //Check if any patient is selected.
             if (dataGridViewPatients.SelectedCells.Count > 0)
