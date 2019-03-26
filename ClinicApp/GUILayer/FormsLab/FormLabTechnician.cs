@@ -22,5 +22,17 @@ namespace GUILayer
         {
             InitializeComponent();
         }
+
+        private void buttonBeginExamination_Click(object sender, EventArgs e)
+        {
+            //Hide this form.
+            this.Hide();
+            //Create a new LabTechExamForm.
+            var labExamForm = new FormsLab.FormLabTechExamV2();
+            //Set reference to this form.
+            labExamForm.prevPageRef = this;
+            //Show the new doctorVisitForm.
+            labExamForm.Show();
+        }
     }
 }

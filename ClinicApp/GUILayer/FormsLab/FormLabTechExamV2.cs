@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GUILayer
+namespace GUILayer.FormsLab
 {
-    public partial class FormDoctorVisit : Form
+    public partial class FormLabTechExamV2 : Form
     {
         public Form prevPageRef { get; set; }
-        public FormDoctorVisit()
+        public FormLabTechExamV2()
         {
             InitializeComponent();
         }

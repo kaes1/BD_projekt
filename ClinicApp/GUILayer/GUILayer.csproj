@@ -77,6 +77,18 @@
     <Compile Include="FormsLab\FormLabManager.Designer.cs">
       <DependentUpon>FormLabManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsLab\FormLabTechExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLab\FormLabTechExam.Designer.cs">
+      <DependentUpon>FormLabTechExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsLab\FormLabTechExamV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLab\FormLabTechExamV2.Designer.cs">
+      <DependentUpon>FormLabTechExamV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsLab\FormLabTechnician.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLab\FormLabManager.resx">
       <DependentUpon>FormLabManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsLab\FormLabTechExam.resx">
+      <DependentUpon>FormLabTechExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsLab\FormLabTechExamV2.resx">
+      <DependentUpon>FormLabTechExamV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLab\FormLabTechnician.resx">
       <DependentUpon>FormLabTechnician.cs</DependentUpon>
