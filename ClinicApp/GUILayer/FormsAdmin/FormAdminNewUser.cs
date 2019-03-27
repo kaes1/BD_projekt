@@ -28,5 +28,35 @@ namespace GUILayer
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void comboBoxRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedRole = (string) comboBoxRole.SelectedItem;
+            if (selectedRole == "DOC")
+            {
+                textBoxPWZNumber.Visible = true;
+                labelPWZNumber.Visible = true;
+            }
+            else
+            {
+                textBoxPWZNumber.Visible = false;
+                labelPWZNumber.Visible = false;
+            }
+
+            if (selectedRole == "ADM")
+            {
+                textBoxFirstName.Visible = false;
+                labelFirstName.Visible = false;
+                textBoxLastName.Visible = false;
+                labelLastName.Visible = false;
+            }
+            else
+            {
+                textBoxFirstName.Visible = true;
+                labelFirstName.Visible = true;
+                textBoxLastName.Visible = true;
+                labelLastName.Visible = true;
+            }
+        }
     }
 }

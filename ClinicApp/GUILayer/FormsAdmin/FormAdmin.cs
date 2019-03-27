@@ -30,5 +30,25 @@ namespace GUILayer
 
             }
         }
+
+        private void buttonChangePassword_Click(object sender, EventArgs e)
+        {
+            FormAdminChangePassword formAdminChangePassword = new FormAdminChangePassword();
+            DialogResult res = formAdminChangePassword.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void buttonRetireUser_Click(object sender, EventArgs e)
+        {
+            FormAdminRetireUser formAdminRetireUser = new FormAdminRetireUser();
+            DialogResult res = formAdminRetireUser.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }
