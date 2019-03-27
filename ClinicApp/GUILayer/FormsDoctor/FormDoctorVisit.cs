@@ -25,5 +25,17 @@ namespace GUILayer
             //Show the previous form.
             prevPageRef.Show();
         }
+
+        private void buttonAddPhysExamination_Click(object sender, EventArgs e)
+        {
+            var PhysExamForm = new FormDoctorPhysExam();
+            PhysExamForm.Show();
+        }
+
+        private void buttonAddLabTest_Click(object sender, EventArgs e)
+        {
+            var LabTestForm = new FormsDoctor.FormDoctorLabTest();
+            LabTestForm.Show();
+        }
     }
 }

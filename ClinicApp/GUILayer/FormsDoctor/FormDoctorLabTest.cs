@@ -8,19 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GUILayer.FormsLab
+namespace GUILayer.FormsDoctor
 {
-    public partial class FormLabTechExam : Form
+    public partial class FormDoctorLabTest : Form
     {
-        public Form prevPageRef { get; set; }
-        public FormLabTechExam()
+        public FormDoctorLabTest()
         {
             InitializeComponent();
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
+        private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            prevPageRef.Show();
+            this.Close();
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

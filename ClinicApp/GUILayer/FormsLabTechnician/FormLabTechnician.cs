@@ -28,7 +28,7 @@ namespace GUILayer
             //Hide this form.
             this.Hide();
             //Create a new LabTechExamForm.
-            var labExamForm = new FormsLab.FormLabTechExamV2();
+            var labExamForm = new FormsLab.FormLabTechExam();
             //Set reference to this form.
             labExamForm.prevPageRef = this;
             //Show the new doctorVisitForm.
