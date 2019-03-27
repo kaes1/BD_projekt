@@ -22,5 +22,20 @@ namespace GUILayer
         {
             InitializeComponent();
         }
+
+        private void buttonApproveLabTest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCancelLabTest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAddComments_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

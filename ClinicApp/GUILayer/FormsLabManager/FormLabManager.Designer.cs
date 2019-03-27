@@ -30,6 +30,12 @@
         {
             this.labelPanelName = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.LabTestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateRegistered = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateCompleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxManagerComments = new System.Windows.Forms.TextBox();
             this.labelManagerComments = new System.Windows.Forms.Label();
             this.textBoxDoctorComments = new System.Windows.Forms.TextBox();
@@ -37,12 +43,6 @@
             this.buttonApproveLabTest = new System.Windows.Forms.Button();
             this.textBoxLabTestResult = new System.Windows.Forms.TextBox();
             this.labelLabTestResult = new System.Windows.Forms.Label();
-            this.LabTestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateRegistered = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateCompleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PatientFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PatientLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonAddComments = new System.Windows.Forms.Button();
             this.buttonCancelLabTest = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -53,7 +53,7 @@
             this.labelPanelName.AutoSize = true;
             this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(206, 8);
+            this.labelPanelName.Location = new System.Drawing.Point(181, 8);
             this.labelPanelName.Name = "labelPanelName";
             this.labelPanelName.Size = new System.Drawing.Size(390, 48);
             this.labelPanelName.TabIndex = 1;
@@ -76,6 +76,46 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(563, 191);
             this.dataGridView1.TabIndex = 2;
+            // 
+            // LabTestID
+            // 
+            this.LabTestID.HeaderText = "LabTestID";
+            this.LabTestID.Name = "LabTestID";
+            this.LabTestID.ReadOnly = true;
+            this.LabTestID.Width = 70;
+            // 
+            // DateRegistered
+            // 
+            this.DateRegistered.HeaderText = "DateRegistered";
+            this.DateRegistered.Name = "DateRegistered";
+            this.DateRegistered.ReadOnly = true;
+            this.DateRegistered.Width = 90;
+            // 
+            // DateCompleted
+            // 
+            this.DateCompleted.HeaderText = "DateCompleted";
+            this.DateCompleted.Name = "DateCompleted";
+            this.DateCompleted.ReadOnly = true;
+            this.DateCompleted.Width = 90;
+            // 
+            // PatientFirstName
+            // 
+            this.PatientFirstName.HeaderText = "PatientFirstName";
+            this.PatientFirstName.Name = "PatientFirstName";
+            this.PatientFirstName.ReadOnly = true;
+            // 
+            // PatientLastName
+            // 
+            this.PatientLastName.HeaderText = "PatientLastName";
+            this.PatientLastName.Name = "PatientLastName";
+            this.PatientLastName.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Width = 70;
             // 
             // textBoxManagerComments
             // 
@@ -120,6 +160,7 @@
             this.buttonApproveLabTest.TabIndex = 7;
             this.buttonApproveLabTest.Text = "Approve Lab Test";
             this.buttonApproveLabTest.UseVisualStyleBackColor = true;
+            this.buttonApproveLabTest.Click += new System.EventHandler(this.buttonApproveLabTest_Click);
             // 
             // textBoxLabTestResult
             // 
@@ -139,46 +180,6 @@
             this.labelLabTestResult.TabIndex = 9;
             this.labelLabTestResult.Text = "Lab Test Result";
             // 
-            // LabTestID
-            // 
-            this.LabTestID.HeaderText = "LabTestID";
-            this.LabTestID.Name = "LabTestID";
-            this.LabTestID.ReadOnly = true;
-            this.LabTestID.Width = 70;
-            // 
-            // DateRegistered
-            // 
-            this.DateRegistered.HeaderText = "DateRegistered";
-            this.DateRegistered.Name = "DateRegistered";
-            this.DateRegistered.ReadOnly = true;
-            this.DateRegistered.Width = 90;
-            // 
-            // DateCompleted
-            // 
-            this.DateCompleted.HeaderText = "DateCompleted";
-            this.DateCompleted.Name = "DateCompleted";
-            this.DateCompleted.ReadOnly = true;
-            this.DateCompleted.Width = 90;
-            // 
-            // PatientFirstName
-            // 
-            this.PatientFirstName.HeaderText = "PatientFirstName";
-            this.PatientFirstName.Name = "PatientFirstName";
-            this.PatientFirstName.ReadOnly = true;
-            // 
-            // PatientLastName
-            // 
-            this.PatientLastName.HeaderText = "PatientLastName";
-            this.PatientLastName.Name = "PatientLastName";
-            this.PatientLastName.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Width = 70;
-            // 
             // buttonAddComments
             // 
             this.buttonAddComments.Location = new System.Drawing.Point(608, 227);
@@ -187,6 +188,7 @@
             this.buttonAddComments.TabIndex = 10;
             this.buttonAddComments.Text = "Add Comments";
             this.buttonAddComments.UseVisualStyleBackColor = true;
+            this.buttonAddComments.Click += new System.EventHandler(this.buttonAddComments_Click);
             // 
             // buttonCancelLabTest
             // 
@@ -196,6 +198,7 @@
             this.buttonCancelLabTest.TabIndex = 11;
             this.buttonCancelLabTest.Text = "Cancel Lab Test";
             this.buttonCancelLabTest.UseVisualStyleBackColor = true;
+            this.buttonCancelLabTest.Click += new System.EventHandler(this.buttonCancelLabTest_Click);
             // 
             // FormLabManager
             // 
