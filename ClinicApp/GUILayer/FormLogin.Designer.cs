@@ -46,7 +46,7 @@
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(165, 20);
             this.textBoxUsername.TabIndex = 0;
-            this.textBoxUsername.Text = "labmanager";
+            this.textBoxUsername.Text = "receptionist";
             // 
             // labelPanelName
             // 

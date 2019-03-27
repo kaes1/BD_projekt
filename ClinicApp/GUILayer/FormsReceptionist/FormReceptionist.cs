@@ -35,6 +35,27 @@ namespace GUILayer
             dataGridViewPatients.Columns[3].Width = 124;
         }
 
+        private void showAppointments()
+        {
+            //Check if any patient is selected.
+            if (dataGridViewPatients.SelectedCells.Count > 0)
+            {
+                BusinessLayer.PatientInformation patientInfo = new BusinessLayer.PatientInformation();
+                patientInfo.PatientID = (int)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[0].Value);
+                patientInfo.FirstName = (string)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[1].Value);
+                patientInfo.LastName = (string)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[2].Value);
+                patientInfo.PESEL = (string)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[3].Value);
+
+                var appointments = BusinessLayer.ReceptionistFacade.GetAppointments(patientInfo);
+                dataGridViewAppointments.Columns.Clear();
+                dataGridViewAppointments.DataSource = appointments;
+                dataGridViewAppointments.Columns[0].Visible = false;
+                dataGridViewAppointments.Columns[1].Width = 92;
+                dataGridViewAppointments.Columns[2].Width = 92;
+                dataGridViewAppointments.Columns[3].Width = 60;
+            }
+        }
+
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             BusinessLayer.PatientInformation patientSearchCriteria = new BusinessLayer.PatientInformation();
@@ -77,12 +98,16 @@ namespace GUILayer
             {
                 MessageBox.Show("Please select a patient to add an appointment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
         private void buttonCancelAppointment_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridViewPatients_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            showAppointments();
         }
     }
 }

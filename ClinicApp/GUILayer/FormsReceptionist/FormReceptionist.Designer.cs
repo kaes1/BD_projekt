@@ -45,7 +45,7 @@
             this.labelLoggedInAs = new System.Windows.Forms.Label();
             this.labelReceptionistName = new System.Windows.Forms.Label();
             this.labelPanelName = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewAppointments = new System.Windows.Forms.DataGridView();
             this.DateRegistered = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateFinalized = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,10 +53,9 @@
             this.DoctorLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonNewAppointment = new System.Windows.Forms.Button();
             this.buttonCancelAppointment = new System.Windows.Forms.Button();
-            this.buttonShowAppointments = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
             this.groupBoxSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAppointments)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonNewPatient
@@ -84,6 +83,7 @@
             this.dataGridViewPatients.ReadOnly = true;
             this.dataGridViewPatients.Size = new System.Drawing.Size(487, 201);
             this.dataGridViewPatients.TabIndex = 1;
+            this.dataGridViewPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatients_CellClick);
             // 
             // PatientID
             // 
@@ -115,7 +115,7 @@
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(544, 42);
+            this.buttonSearch.Location = new System.Drawing.Point(544, 40);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(120, 23);
             this.buttonSearch.TabIndex = 2;
@@ -217,22 +217,22 @@
             this.labelPanelName.TabIndex = 8;
             this.labelPanelName.Text = "Receptionist Panel";
             // 
-            // dataGridView1
+            // dataGridViewAppointments
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewAppointments.AllowUserToAddRows = false;
+            this.dataGridViewAppointments.AllowUserToDeleteRows = false;
+            this.dataGridViewAppointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAppointments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DateRegistered,
             this.DateFinalized,
             this.Status,
             this.DoctorFirstName,
             this.DoctorLastName});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 418);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(487, 150);
-            this.dataGridView1.TabIndex = 11;
+            this.dataGridViewAppointments.Location = new System.Drawing.Point(12, 388);
+            this.dataGridViewAppointments.Name = "dataGridViewAppointments";
+            this.dataGridViewAppointments.ReadOnly = true;
+            this.dataGridViewAppointments.Size = new System.Drawing.Size(487, 180);
+            this.dataGridViewAppointments.TabIndex = 11;
             // 
             // DateRegistered
             // 
@@ -269,7 +269,7 @@
             // 
             // buttonNewAppointment
             // 
-            this.buttonNewAppointment.Location = new System.Drawing.Point(556, 257);
+            this.buttonNewAppointment.Location = new System.Drawing.Point(556, 258);
             this.buttonNewAppointment.Name = "buttonNewAppointment";
             this.buttonNewAppointment.Size = new System.Drawing.Size(116, 23);
             this.buttonNewAppointment.TabIndex = 12;
@@ -287,24 +287,14 @@
             this.buttonCancelAppointment.UseVisualStyleBackColor = true;
             this.buttonCancelAppointment.Click += new System.EventHandler(this.buttonCancelAppointment_Click);
             // 
-            // buttonShowAppointments
-            // 
-            this.buttonShowAppointments.Location = new System.Drawing.Point(201, 382);
-            this.buttonShowAppointments.Name = "buttonShowAppointments";
-            this.buttonShowAppointments.Size = new System.Drawing.Size(133, 23);
-            this.buttonShowAppointments.TabIndex = 14;
-            this.buttonShowAppointments.Text = "Show Appointments";
-            this.buttonShowAppointments.UseVisualStyleBackColor = true;
-            // 
             // FormReceptionist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 583);
-            this.Controls.Add(this.buttonShowAppointments);
             this.Controls.Add(this.buttonCancelAppointment);
             this.Controls.Add(this.buttonNewAppointment);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewAppointments);
             this.Controls.Add(this.labelPanelName);
             this.Controls.Add(this.labelReceptionistName);
             this.Controls.Add(this.labelLoggedInAs);
@@ -317,7 +307,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).EndInit();
             this.groupBoxSearch.ResumeLayout(false);
             this.groupBoxSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAppointments)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,7 +328,7 @@
         private System.Windows.Forms.Label labelLoggedInAs;
         private System.Windows.Forms.Label labelReceptionistName;
         private System.Windows.Forms.Label labelPanelName;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewAppointments;
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
@@ -350,6 +340,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DoctorLastName;
         private System.Windows.Forms.Button buttonNewAppointment;
         private System.Windows.Forms.Button buttonCancelAppointment;
-        private System.Windows.Forms.Button buttonShowAppointments;
     }
 }

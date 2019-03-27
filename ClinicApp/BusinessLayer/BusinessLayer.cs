@@ -84,6 +84,8 @@ namespace BusinessLayer
         public string Name { get; set; }
     }
 
+
+    //Facade classes
     static public class LoginFacade
     {
         public static UserInformation GetUser(String username, String password)
@@ -153,6 +155,36 @@ namespace BusinessLayer
             return result;
         }
 
+        public class CustomAppointment
+        {
+            public int AppointmentID { get; set; }
+            public DateTime DateRegistered { get; set; }
+            public DateTime? DateFinalized { get; set; }
+            public string Status { get; set; }
+            public string DoctorFirstName { get; set; }
+            public string DoctorLastName { get; set; }
+        }
+
+        public static List<CustomAppointment> GetAppointments(PatientInformation patientInfo)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            List<Tuple<AppointmentInformation, DoctorInformation>> list;
+            var result = (from app in dc.Appointments
+                          join doc in dc.Doctors on app.DoctorID equals doc.DoctorID
+                          where
+                          app.PatientID == patientInfo.PatientID
+                          select new CustomAppointment
+                          {
+                              AppointmentID = app.AppointmentID,
+                              DateRegistered = app.DateRegistered,
+                              DateFinalized = app.DateCompletedOrCanceled,
+                              Status = app.Status,
+                              DoctorFirstName = doc.FirstName,
+                              DoctorLastName = doc.LastName,                                                       
+                          }
+                          ).OrderBy(x => x.DateRegistered).ToList();
+            return result;
+        }
 
         public static bool ExistsPatient(PatientInformation pInfo)
         {
