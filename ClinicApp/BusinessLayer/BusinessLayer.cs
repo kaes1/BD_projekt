@@ -40,6 +40,49 @@ namespace BusinessLayer
         public int PWZ { get; set; }
     }
 
+    public class LabManagerInformation
+    {
+        public int LabManagerID { get; set; }
+        public int UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    public class LabTechnicianInformation
+    {
+        public int LabTechnicianID { get; set; }
+        public int UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    public class AppointmentInformation
+    {
+        public int AppointmentID { get; set; }
+        public int DoctorID { get; set; }
+        public int PatientID { get; set; }
+        public int ReceptionistID { get; set; }
+        public string Description { get; set; }
+        public string Diagnosis { get; set; }
+        public string Status { get; set; }
+        public DateTime DateRegistered { get; set; }
+        public DateTime? DateCompletedOrCanceled { get; set; }
+    }
+
+    public class PhysicalExaminationInformation
+    {
+        public int PhysicalExaminationID { get; set; }
+        public int AppointmentID { get; set; }
+        public int ProcedureID { get; set; }
+        public string Result { get; set; }
+    }
+
+    public class ProcedureInformation
+    {
+        public int ProcedureID { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
+    }
 
     static public class LoginFacade
     {
