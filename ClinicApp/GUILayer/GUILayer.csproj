@@ -47,11 +47,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormsAdmin\FormAdminRetireUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminRetireUser.Designer.cs">
+      <DependentUpon>FormAdminRetireUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsAdmin\FormAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormsAdmin\FormAdmin.Designer.cs">
       <DependentUpon>FormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminChangePassword.Designer.cs">
+      <DependentUpon>FormAdminChangePassword.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsAdmin\FormAdminNewUser.cs">
       <SubType>Form</SubType>
@@ -71,28 +83,28 @@
     <Compile Include="FormsDoctor\FormDoctorVisit.Designer.cs">
       <DependentUpon>FormDoctorVisit.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsLab\FormLabManager.cs">
+    <Compile Include="FormsLabManager\FormLabManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsLab\FormLabManager.Designer.cs">
+    <Compile Include="FormsLabManager\FormLabManager.Designer.cs">
       <DependentUpon>FormLabManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsLab\FormLabTechExam.cs">
+    <Compile Include="FormsLabTechnician\FormLabTechnicianExam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsLab\FormLabTechExam.Designer.cs">
-      <DependentUpon>FormLabTechExam.cs</DependentUpon>
+    <Compile Include="FormsLabTechnician\FormLabTechnicianExam.Designer.cs">
+      <DependentUpon>FormLabTechnicianExam.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsLab\FormLabTechExamV2.cs">
+    <Compile Include="FormsLabTechnician\FormLabTechnicianExamV2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsLab\FormLabTechExamV2.Designer.cs">
-      <DependentUpon>FormLabTechExamV2.cs</DependentUpon>
+    <Compile Include="FormsLabTechnician\FormLabTechnicianExamV2.Designer.cs">
+      <DependentUpon>FormLabTechnicianExamV2.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsLab\FormLabTechnician.cs">
+    <Compile Include="FormsLabTechnician\FormLabTechnician.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsLab\FormLabTechnician.Designer.cs">
+    <Compile Include="FormsLabTechnician\FormLabTechnician.Designer.cs">
       <DependentUpon>FormLabTechnician.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
@@ -121,8 +133,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormsAdmin\FormAdminRetireUser.resx">
+      <DependentUpon>FormAdminRetireUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsAdmin\FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsAdmin\FormAdminChangePassword.resx">
+      <DependentUpon>FormAdminChangePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsAdmin\FormAdminNewUser.resx">
       <DependentUpon>FormAdminNewUser.cs</DependentUpon>
@@ -133,16 +151,16 @@
     <EmbeddedResource Include="FormsDoctor\FormDoctorVisit.resx">
       <DependentUpon>FormDoctorVisit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsLab\FormLabManager.resx">
+    <EmbeddedResource Include="FormsLabManager\FormLabManager.resx">
       <DependentUpon>FormLabManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsLab\FormLabTechExam.resx">
-      <DependentUpon>FormLabTechExam.cs</DependentUpon>
+    <EmbeddedResource Include="FormsLabTechnician\FormLabTechnicianExam.resx">
+      <DependentUpon>FormLabTechnicianExam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsLab\FormLabTechExamV2.resx">
-      <DependentUpon>FormLabTechExamV2.cs</DependentUpon>
+    <EmbeddedResource Include="FormsLabTechnician\FormLabTechnicianExamV2.resx">
+      <DependentUpon>FormLabTechnicianExamV2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsLab\FormLabTechnician.resx">
+    <EmbeddedResource Include="FormsLabTechnician\FormLabTechnician.resx">
       <DependentUpon>FormLabTechnician.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">

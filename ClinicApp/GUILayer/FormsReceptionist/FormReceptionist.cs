@@ -29,7 +29,7 @@ namespace GUILayer
         {
             dataGridViewPatients.Columns.Clear();
             dataGridViewPatients.DataSource = BusinessLayer.ReceptionistFacade.GetPatients(patientSearchCriteria);
-            dataGridViewPatients.Columns[0].Width = 60;
+            dataGridViewPatients.Columns[0].Width = 72;
             dataGridViewPatients.Columns[1].Width = 124;
             dataGridViewPatients.Columns[2].Width = 124;
             dataGridViewPatients.Columns[3].Width = 124;
@@ -42,12 +42,6 @@ namespace GUILayer
             patientSearchCriteria.LastName = textBoxLastName.Text;
             patientSearchCriteria.PESEL = textBoxPESEL.Text;
             searchForPatients(patientSearchCriteria);
-        }
-
-        private void buttonViewAllPatients_Click(object sender, EventArgs e)
-        {
-            BusinessLayer.PatientInformation emptySearchCriteria = new BusinessLayer.PatientInformation();
-            searchForPatients(emptySearchCriteria);
         }
 
         private void buttonNewPatient_Click(object sender, EventArgs e)
@@ -81,8 +75,14 @@ namespace GUILayer
             }
             else
             {
-                MessageBox.Show("Please select a patient to register an appointment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a patient to add an appointment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+        }
+
+        private void buttonCancelAppointment_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

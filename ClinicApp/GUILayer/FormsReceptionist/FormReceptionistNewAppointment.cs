@@ -21,8 +21,8 @@ namespace GUILayer
             InitializeComponent();
 
             activeReceptionistInfo = receptionistInfo;
-
             activePatientInfo = patientInfo;
+
             textBoxFirstName.Text = activePatientInfo.FirstName;
             textBoxLastName.Text = activePatientInfo.LastName;
             textBoxPESEL.Text = activePatientInfo.PESEL;

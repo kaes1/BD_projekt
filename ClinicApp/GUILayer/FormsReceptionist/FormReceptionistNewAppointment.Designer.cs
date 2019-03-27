@@ -49,7 +49,7 @@
             // 
             // buttonAddAppointment
             // 
-            this.buttonAddAppointment.Location = new System.Drawing.Point(51, 382);
+            this.buttonAddAppointment.Location = new System.Drawing.Point(51, 387);
             this.buttonAddAppointment.Name = "buttonAddAppointment";
             this.buttonAddAppointment.Size = new System.Drawing.Size(110, 23);
             this.buttonAddAppointment.TabIndex = 0;
@@ -60,7 +60,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(291, 382);
+            this.buttonCancel.Location = new System.Drawing.Point(299, 387);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(110, 23);
             this.buttonCancel.TabIndex = 1;
@@ -82,7 +82,7 @@
             // labelFirstName
             // 
             this.labelFirstName.AutoSize = true;
-            this.labelFirstName.Location = new System.Drawing.Point(22, 21);
+            this.labelFirstName.Location = new System.Drawing.Point(27, 21);
             this.labelFirstName.Name = "labelFirstName";
             this.labelFirstName.Size = new System.Drawing.Size(57, 13);
             this.labelFirstName.TabIndex = 3;
@@ -91,7 +91,7 @@
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(150, 21);
+            this.labelLastName.Location = new System.Drawing.Point(163, 21);
             this.labelLastName.Name = "labelLastName";
             this.labelLastName.Size = new System.Drawing.Size(58, 13);
             this.labelLastName.TabIndex = 4;
@@ -100,7 +100,7 @@
             // labelPESEL
             // 
             this.labelPESEL.AutoSize = true;
-            this.labelPESEL.Location = new System.Drawing.Point(282, 21);
+            this.labelPESEL.Location = new System.Drawing.Point(296, 21);
             this.labelPESEL.Name = "labelPESEL";
             this.labelPESEL.Size = new System.Drawing.Size(41, 13);
             this.labelPESEL.TabIndex = 5;
@@ -108,7 +108,7 @@
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(25, 37);
+            this.textBoxFirstName.Location = new System.Drawing.Point(30, 37);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.ReadOnly = true;
             this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
@@ -116,7 +116,7 @@
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(153, 37);
+            this.textBoxLastName.Location = new System.Drawing.Point(166, 37);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.ReadOnly = true;
             this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
@@ -124,7 +124,7 @@
             // 
             // textBoxPESEL
             // 
-            this.textBoxPESEL.Location = new System.Drawing.Point(285, 37);
+            this.textBoxPESEL.Location = new System.Drawing.Point(299, 37);
             this.textBoxPESEL.Name = "textBoxPESEL";
             this.textBoxPESEL.ReadOnly = true;
             this.textBoxPESEL.Size = new System.Drawing.Size(100, 20);
@@ -138,9 +138,9 @@
             this.FirstName,
             this.LastName,
             this.PWZ});
-            this.dataGridViewDoctors.Location = new System.Drawing.Point(27, 182);
+            this.dataGridViewDoctors.Location = new System.Drawing.Point(14, 182);
             this.dataGridViewDoctors.Name = "dataGridViewDoctors";
-            this.dataGridViewDoctors.Size = new System.Drawing.Size(403, 185);
+            this.dataGridViewDoctors.Size = new System.Drawing.Size(429, 185);
             this.dataGridViewDoctors.TabIndex = 9;
             // 
             // groupBoxPatient
@@ -151,9 +151,9 @@
             this.groupBoxPatient.Controls.Add(this.labelPESEL);
             this.groupBoxPatient.Controls.Add(this.textBoxLastName);
             this.groupBoxPatient.Controls.Add(this.labelLastName);
-            this.groupBoxPatient.Location = new System.Drawing.Point(26, 75);
+            this.groupBoxPatient.Location = new System.Drawing.Point(12, 75);
             this.groupBoxPatient.Name = "groupBoxPatient";
-            this.groupBoxPatient.Size = new System.Drawing.Size(404, 77);
+            this.groupBoxPatient.Size = new System.Drawing.Size(432, 77);
             this.groupBoxPatient.TabIndex = 10;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient";
@@ -163,7 +163,7 @@
             this.DoctorID.HeaderText = "DoctorID";
             this.DoctorID.Name = "DoctorID";
             this.DoctorID.ReadOnly = true;
-            this.DoctorID.Width = 60;
+            this.DoctorID.Width = 86;
             // 
             // FirstName
             // 
