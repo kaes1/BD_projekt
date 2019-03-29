@@ -107,12 +107,6 @@
     <Compile Include="FormsLabTechnician\FormLabTechnicianExam.Designer.cs">
       <DependentUpon>FormLabTechnicianExam.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsLabTechnician\FormLabTechnicianExamV2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormsLabTechnician\FormLabTechnicianExamV2.Designer.cs">
-      <DependentUpon>FormLabTechnicianExamV2.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormsLabTechnician\FormLabTechnician.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,9 +168,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLabTechnician\FormLabTechnicianExam.resx">
       <DependentUpon>FormLabTechnicianExam.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormsLabTechnician\FormLabTechnicianExamV2.resx">
-      <DependentUpon>FormLabTechnicianExamV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLabTechnician\FormLabTechnician.resx">
       <DependentUpon>FormLabTechnician.cs</DependentUpon>
