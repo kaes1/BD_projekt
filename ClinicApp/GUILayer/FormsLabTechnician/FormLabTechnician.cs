@@ -34,5 +34,10 @@ namespace GUILayer
             //Show the new doctorVisitForm.
             labExamForm.Show();
         }
+
+        private void buttonEditTest_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

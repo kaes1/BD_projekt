@@ -43,25 +43,24 @@
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
-            this.TimeOfVisit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PESEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonBeginVisit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.buttonEditVisit = new System.Windows.Forms.Button();
+            this.labelPanelName = new System.Windows.Forms.Label();
+            this.TimeOfVisit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PESEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCheckPatient
             // 
-            this.buttonCheckPatient.Location = new System.Drawing.Point(837, 417);
-            this.buttonCheckPatient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCheckPatient.Location = new System.Drawing.Point(659, 371);
             this.buttonCheckPatient.Name = "buttonCheckPatient";
-            this.buttonCheckPatient.Size = new System.Drawing.Size(140, 28);
+            this.buttonCheckPatient.Size = new System.Drawing.Size(105, 23);
             this.buttonCheckPatient.TabIndex = 14;
             this.buttonCheckPatient.Text = "Check Patient";
             this.buttonCheckPatient.UseVisualStyleBackColor = true;
@@ -69,10 +68,9 @@
             // labelReceptionistName
             // 
             this.labelReceptionistName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelReceptionistName.Location = new System.Drawing.Point(781, 510);
-            this.labelReceptionistName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelReceptionistName.Location = new System.Drawing.Point(611, 478);
             this.labelReceptionistName.Name = "labelReceptionistName";
-            this.labelReceptionistName.Size = new System.Drawing.Size(260, 16);
+            this.labelReceptionistName.Size = new System.Drawing.Size(195, 13);
             this.labelReceptionistName.TabIndex = 13;
             this.labelReceptionistName.Text = "Name Surname";
             this.labelReceptionistName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -80,19 +78,17 @@
             // labelLoggedInAs
             // 
             this.labelLoggedInAs.AutoSize = true;
-            this.labelLoggedInAs.Location = new System.Drawing.Point(864, 469);
-            this.labelLoggedInAs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLoggedInAs.Location = new System.Drawing.Point(673, 440);
             this.labelLoggedInAs.Name = "labelLoggedInAs";
-            this.labelLoggedInAs.Size = new System.Drawing.Size(95, 17);
+            this.labelLoggedInAs.Size = new System.Drawing.Size(73, 13);
             this.labelLoggedInAs.TabIndex = 12;
             this.labelLoggedInAs.Text = "Logged In As:";
             // 
             // buttonViewAllForToday
             // 
-            this.buttonViewAllForToday.Location = new System.Drawing.Point(837, 242);
-            this.buttonViewAllForToday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonViewAllForToday.Location = new System.Drawing.Point(659, 229);
             this.buttonViewAllForToday.Name = "buttonViewAllForToday";
-            this.buttonViewAllForToday.Size = new System.Drawing.Size(140, 28);
+            this.buttonViewAllForToday.Size = new System.Drawing.Size(105, 23);
             this.buttonViewAllForToday.TabIndex = 11;
             this.buttonViewAllForToday.Text = "View all for today";
             this.buttonViewAllForToday.UseVisualStyleBackColor = true;
@@ -108,11 +104,9 @@
             this.groupBoxSearch.Controls.Add(this.textBoxLastName);
             this.groupBoxSearch.Controls.Add(this.textBoxFirstName);
             this.groupBoxSearch.Controls.Add(this.buttonSearch);
-            this.groupBoxSearch.Location = new System.Drawing.Point(56, 33);
-            this.groupBoxSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxSearch.Location = new System.Drawing.Point(12, 80);
             this.groupBoxSearch.Name = "groupBoxSearch";
-            this.groupBoxSearch.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxSearch.Size = new System.Drawing.Size(865, 140);
+            this.groupBoxSearch.Size = new System.Drawing.Size(789, 94);
             this.groupBoxSearch.TabIndex = 10;
             this.groupBoxSearch.TabStop = false;
             this.groupBoxSearch.Text = "Search";
@@ -120,81 +114,72 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(529, 48);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(409, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 17);
+            this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Date DD-MM-YYYY";
             // 
             // textBoxDate
             // 
-            this.textBoxDate.Location = new System.Drawing.Point(527, 69);
-            this.textBoxDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDate.Location = new System.Drawing.Point(412, 51);
             this.textBoxDate.Name = "textBoxDate";
-            this.textBoxDate.Size = new System.Drawing.Size(132, 22);
+            this.textBoxDate.Size = new System.Drawing.Size(100, 20);
             this.textBoxDate.TabIndex = 9;
             // 
             // labelPESEL
             // 
             this.labelPESEL.AutoSize = true;
-            this.labelPESEL.Location = new System.Drawing.Point(360, 49);
-            this.labelPESEL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPESEL.Location = new System.Drawing.Point(287, 35);
             this.labelPESEL.Name = "labelPESEL";
-            this.labelPESEL.Size = new System.Drawing.Size(52, 17);
+            this.labelPESEL.Size = new System.Drawing.Size(41, 13);
             this.labelPESEL.TabIndex = 8;
             this.labelPESEL.Text = "PESEL";
             // 
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(181, 49);
-            this.labelLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLastName.Location = new System.Drawing.Point(153, 35);
             this.labelLastName.Name = "labelLastName";
-            this.labelLastName.Size = new System.Drawing.Size(76, 17);
+            this.labelLastName.Size = new System.Drawing.Size(58, 13);
             this.labelLastName.TabIndex = 7;
             this.labelLastName.Text = "Last Name";
             // 
             // labelFirstName
             // 
             this.labelFirstName.AutoSize = true;
-            this.labelFirstName.Location = new System.Drawing.Point(4, 49);
-            this.labelFirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFirstName.Location = new System.Drawing.Point(20, 35);
             this.labelFirstName.Name = "labelFirstName";
-            this.labelFirstName.Size = new System.Drawing.Size(76, 17);
+            this.labelFirstName.Size = new System.Drawing.Size(57, 13);
             this.labelFirstName.TabIndex = 6;
             this.labelFirstName.Text = "First Name";
             // 
             // textBoxPESEL
             // 
-            this.textBoxPESEL.Location = new System.Drawing.Point(364, 69);
-            this.textBoxPESEL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxPESEL.Location = new System.Drawing.Point(290, 51);
             this.textBoxPESEL.Name = "textBoxPESEL";
-            this.textBoxPESEL.Size = new System.Drawing.Size(132, 22);
+            this.textBoxPESEL.Size = new System.Drawing.Size(100, 20);
             this.textBoxPESEL.TabIndex = 5;
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(185, 69);
-            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxLastName.Location = new System.Drawing.Point(156, 51);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(132, 22);
+            this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 4;
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(8, 69);
-            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxFirstName.Location = new System.Drawing.Point(23, 51);
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(132, 22);
+            this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
             this.textBoxFirstName.TabIndex = 3;
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(704, 66);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSearch.Location = new System.Drawing.Point(647, 51);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(140, 28);
+            this.buttonSearch.Size = new System.Drawing.Size(105, 23);
             this.buttonSearch.TabIndex = 2;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -208,15 +193,43 @@
             this.TimeOfVisit,
             this.FirstName,
             this.LastName,
-            this.State,
-            this.Address,
-            this.PESEL});
-            this.dataGridViewPatients.Location = new System.Drawing.Point(56, 181);
-            this.dataGridViewPatients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PESEL,
+            this.Status});
+            this.dataGridViewPatients.Location = new System.Drawing.Point(12, 205);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(689, 356);
+            this.dataGridViewPatients.Size = new System.Drawing.Size(592, 313);
             this.dataGridViewPatients.TabIndex = 9;
+            // 
+            // buttonBeginVisit
+            // 
+            this.buttonBeginVisit.Location = new System.Drawing.Point(659, 277);
+            this.buttonBeginVisit.Name = "buttonBeginVisit";
+            this.buttonBeginVisit.Size = new System.Drawing.Size(105, 23);
+            this.buttonBeginVisit.TabIndex = 8;
+            this.buttonBeginVisit.Text = "Begin visit";
+            this.buttonBeginVisit.UseVisualStyleBackColor = true;
+            this.buttonBeginVisit.Click += new System.EventHandler(this.buttonSelectPatient_Click);
+            // 
+            // buttonEditVisit
+            // 
+            this.buttonEditVisit.Location = new System.Drawing.Point(659, 325);
+            this.buttonEditVisit.Name = "buttonEditVisit";
+            this.buttonEditVisit.Size = new System.Drawing.Size(105, 23);
+            this.buttonEditVisit.TabIndex = 15;
+            this.buttonEditVisit.Text = "Edit Visit";
+            this.buttonEditVisit.UseVisualStyleBackColor = true;
+            // 
+            // labelPanelName
+            // 
+            this.labelPanelName.AutoSize = true;
+            this.labelPanelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelPanelName.Location = new System.Drawing.Point(257, 9);
+            this.labelPanelName.Name = "labelPanelName";
+            this.labelPanelName.Size = new System.Drawing.Size(302, 55);
+            this.labelPanelName.TabIndex = 16;
+            this.labelPanelName.Text = "Doctor Panel";
             // 
             // TimeOfVisit
             // 
@@ -238,50 +251,24 @@
             this.LastName.ReadOnly = true;
             this.LastName.Width = 124;
             // 
-            // State
-            // 
-            this.State.HeaderText = "State";
-            this.State.Name = "State";
-            this.State.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
             // PESEL
             // 
             this.PESEL.HeaderText = "PESEL";
             this.PESEL.Name = "PESEL";
             this.PESEL.ReadOnly = true;
             // 
-            // buttonBeginVisit
+            // Status
             // 
-            this.buttonBeginVisit.Location = new System.Drawing.Point(837, 302);
-            this.buttonBeginVisit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.buttonBeginVisit.Name = "buttonBeginVisit";
-            this.buttonBeginVisit.Size = new System.Drawing.Size(140, 28);
-            this.buttonBeginVisit.TabIndex = 8;
-            this.buttonBeginVisit.Text = "Begin visit";
-            this.buttonBeginVisit.UseVisualStyleBackColor = true;
-            this.buttonBeginVisit.Click += new System.EventHandler(this.buttonSelectPatient_Click);
-            // 
-            // buttonEditVisit
-            // 
-            this.buttonEditVisit.Location = new System.Drawing.Point(837, 361);
-            this.buttonEditVisit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.buttonEditVisit.Name = "buttonEditVisit";
-            this.buttonEditVisit.Size = new System.Drawing.Size(140, 28);
-            this.buttonEditVisit.TabIndex = 15;
-            this.buttonEditVisit.Text = "Edit Visit";
-            this.buttonEditVisit.UseVisualStyleBackColor = true;
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
             // 
             // FormDoctor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(813, 528);
+            this.Controls.Add(this.labelPanelName);
             this.Controls.Add(this.buttonEditVisit);
             this.Controls.Add(this.buttonCheckPatient);
             this.Controls.Add(this.labelReceptionistName);
@@ -291,7 +278,6 @@
             this.Controls.Add(this.dataGridViewPatients);
             this.Controls.Add(this.buttonBeginVisit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormDoctor";
             this.Text = "FormDoctor";
             this.groupBoxSearch.ResumeLayout(false);
@@ -317,15 +303,15 @@
         private System.Windows.Forms.Button buttonBeginVisit;
         private System.Windows.Forms.Label labelPESEL;
         private System.Windows.Forms.TextBox textBoxPESEL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeOfVisit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn State;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PESEL;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxDate;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button buttonEditVisit;
+        private System.Windows.Forms.Label labelPanelName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeOfVisit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PESEL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

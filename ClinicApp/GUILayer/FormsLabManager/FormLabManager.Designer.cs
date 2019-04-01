@@ -51,11 +51,11 @@
             // labelPanelName
             // 
             this.labelPanelName.AutoSize = true;
-            this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(181, 8);
+            this.labelPanelName.Location = new System.Drawing.Point(143, 8);
             this.labelPanelName.Name = "labelPanelName";
-            this.labelPanelName.Size = new System.Drawing.Size(390, 48);
+            this.labelPanelName.Size = new System.Drawing.Size(445, 55);
             this.labelPanelName.TabIndex = 1;
             this.labelPanelName.Text = "Lab Manager Panel";
             // 
