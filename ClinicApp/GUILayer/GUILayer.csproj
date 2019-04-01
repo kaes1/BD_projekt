@@ -47,6 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormDoctorPhysExamList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDoctorPhysExamList.Designer.cs">
+      <DependentUpon>FormDoctorPhysExamList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorExamList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorExamList.Designer.cs">
+      <DependentUpon>FormDoctorExamList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorPrevAppoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorPrevAppoint.Designer.cs">
+      <DependentUpon>FormDoctorPrevAppoint.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsDoctor\FormDoctorLabTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,11 +107,23 @@
     <Compile Include="FormsDoctor\FormDoctor.Designer.cs">
       <DependentUpon>FormDoctor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsDoctor\FormDoctorVisit.cs">
+    <Compile Include="FormsDoctor\FormDoctorApointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsDoctor\FormDoctorVisit.Designer.cs">
-      <DependentUpon>FormDoctorVisit.cs</DependentUpon>
+    <Compile Include="FormsDoctor\FormDoctorApointment.Designer.cs">
+      <DependentUpon>FormDoctorApointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorPrevExaminations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorPrevExaminations.Designer.cs">
+      <DependentUpon>FormDoctorPrevExaminations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorTestsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorTestsList.Designer.cs">
+      <DependentUpon>FormDoctorTestsList.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsLabManager\FormLabManager.cs">
       <SubType>Form</SubType>
@@ -139,6 +169,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormDoctorPhysExamList.resx">
+      <DependentUpon>FormDoctorPhysExamList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsAdmin\FormAdminRetireUser.resx">
       <DependentUpon>FormAdminRetireUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,14 +187,26 @@
     <EmbeddedResource Include="FormsDoctor\FormDoctor.resx">
       <DependentUpon>FormDoctor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorExamList.resx">
+      <DependentUpon>FormDoctorExamList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorPrevAppoint.resx">
+      <DependentUpon>FormDoctorPrevAppoint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsDoctor\FormDoctorLabTest.resx">
       <DependentUpon>FormDoctorLabTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsDoctor\FormDoctorPhysExam.resx">
       <DependentUpon>FormDoctorPhysExam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsDoctor\FormDoctorVisit.resx">
-      <DependentUpon>FormDoctorVisit.cs</DependentUpon>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorApointment.resx">
+      <DependentUpon>FormDoctorApointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorPrevExaminations.resx">
+      <DependentUpon>FormDoctorPrevExaminations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorTestsList.resx">
+      <DependentUpon>FormDoctorTestsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLabManager\FormLabManager.resx">
       <DependentUpon>FormLabManager.cs</DependentUpon>
