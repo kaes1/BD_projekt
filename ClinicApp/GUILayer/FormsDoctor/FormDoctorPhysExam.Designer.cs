@@ -117,7 +117,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 44);
             this.button1.TabIndex = 6;
-            this.button1.Text = "Chooose examination";
+            this.button1.Text = "Choose examination";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // FormDoctorPhysExam

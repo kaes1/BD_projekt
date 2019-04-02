@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GUILayer.FormsDoctor
 {
-    public partial class FormDoctorPrevAppoint : Form
+    public partial class FormDoctorHistory : Form
     {
-        public FormDoctorPrevAppoint()
+        public FormDoctorHistory()
         {
             InitializeComponent();
         }

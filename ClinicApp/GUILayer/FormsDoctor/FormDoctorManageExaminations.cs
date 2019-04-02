@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GUILayer.FormsDoctor
 {
-    public partial class FormDoctorPrevExaminations : Form
+    public partial class FormDoctorManageExaminations : Form
     {
-        public FormDoctorPrevExaminations()
+        public FormDoctorManageExaminations()
         {
             InitializeComponent();
         }

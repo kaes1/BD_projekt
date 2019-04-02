@@ -59,11 +59,11 @@
     <Compile Include="FormsDoctor\FormDoctorExamList.Designer.cs">
       <DependentUpon>FormDoctorExamList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsDoctor\FormDoctorPrevAppoint.cs">
+    <Compile Include="FormsDoctor\FormDoctorManageExaminations.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsDoctor\FormDoctorPrevAppoint.Designer.cs">
-      <DependentUpon>FormDoctorPrevAppoint.cs</DependentUpon>
+    <Compile Include="FormsDoctor\FormDoctorManageExaminations.Designer.cs">
+      <DependentUpon>FormDoctorManageExaminations.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsDoctor\FormDoctorLabTest.cs">
       <SubType>Form</SubType>
@@ -113,11 +113,11 @@
     <Compile Include="FormsDoctor\FormDoctorApointment.Designer.cs">
       <DependentUpon>FormDoctorApointment.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsDoctor\FormDoctorPrevExaminations.cs">
+    <Compile Include="FormsDoctor\FormDoctorHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsDoctor\FormDoctorPrevExaminations.Designer.cs">
-      <DependentUpon>FormDoctorPrevExaminations.cs</DependentUpon>
+    <Compile Include="FormsDoctor\FormDoctorHistory.Designer.cs">
+      <DependentUpon>FormDoctorHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsDoctor\FormDoctorTestsList.cs">
       <SubType>Form</SubType>
@@ -190,8 +190,8 @@
     <EmbeddedResource Include="FormsDoctor\FormDoctorExamList.resx">
       <DependentUpon>FormDoctorExamList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsDoctor\FormDoctorPrevAppoint.resx">
-      <DependentUpon>FormDoctorPrevAppoint.cs</DependentUpon>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorManageExaminations.resx">
+      <DependentUpon>FormDoctorManageExaminations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsDoctor\FormDoctorLabTest.resx">
       <DependentUpon>FormDoctorLabTest.cs</DependentUpon>
@@ -202,8 +202,8 @@
     <EmbeddedResource Include="FormsDoctor\FormDoctorApointment.resx">
       <DependentUpon>FormDoctorApointment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsDoctor\FormDoctorPrevExaminations.resx">
-      <DependentUpon>FormDoctorPrevExaminations.cs</DependentUpon>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorHistory.resx">
+      <DependentUpon>FormDoctorHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsDoctor\FormDoctorTestsList.resx">
       <DependentUpon>FormDoctorTestsList.cs</DependentUpon>

@@ -31,19 +31,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ProcedureID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProcedureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelSearchByName = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonAccept = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.ProcedureID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProcedureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(182, 9);
+            this.label1.Location = new System.Drawing.Point(159, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 17);
             this.label1.TabIndex = 29;
@@ -51,7 +52,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(182, 31);
+            this.textBox2.Location = new System.Drawing.Point(159, 31);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(133, 22);
@@ -66,43 +67,8 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 68);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(342, 414);
+            this.dataGridView1.Size = new System.Drawing.Size(427, 414);
             this.dataGridView1.TabIndex = 27;
-            // 
-            // labelSearchByName
-            // 
-            this.labelSearchByName.AutoSize = true;
-            this.labelSearchByName.Location = new System.Drawing.Point(35, 9);
-            this.labelSearchByName.Name = "labelSearchByName";
-            this.labelSearchByName.Size = new System.Drawing.Size(113, 17);
-            this.labelSearchByName.TabIndex = 26;
-            this.labelSearchByName.Text = "Search by Name";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(35, 31);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 22);
-            this.textBox1.TabIndex = 25;
-            // 
-            // buttonAccept
-            // 
-            this.buttonAccept.Location = new System.Drawing.Point(67, 488);
-            this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(109, 35);
-            this.buttonAccept.TabIndex = 30;
-            this.buttonAccept.Text = "Accept";
-            this.buttonAccept.UseVisualStyleBackColor = true;
-            // 
-            // buttonBack
-            // 
-            this.buttonBack.Location = new System.Drawing.Point(187, 488);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(109, 35);
-            this.buttonBack.TabIndex = 31;
-            this.buttonBack.Text = "Back";
-            this.buttonBack.UseVisualStyleBackColor = true;
             // 
             // ProcedureID
             // 
@@ -118,11 +84,56 @@
             this.ProcedureName.Name = "ProcedureName";
             this.ProcedureName.ReadOnly = true;
             // 
+            // labelSearchByName
+            // 
+            this.labelSearchByName.AutoSize = true;
+            this.labelSearchByName.Location = new System.Drawing.Point(12, 9);
+            this.labelSearchByName.Name = "labelSearchByName";
+            this.labelSearchByName.Size = new System.Drawing.Size(113, 17);
+            this.labelSearchByName.TabIndex = 26;
+            this.labelSearchByName.Text = "Search by Name";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 31);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(141, 22);
+            this.textBox1.TabIndex = 25;
+            // 
+            // buttonAccept
+            // 
+            this.buttonAccept.Location = new System.Drawing.Point(107, 488);
+            this.buttonAccept.Name = "buttonAccept";
+            this.buttonAccept.Size = new System.Drawing.Size(109, 35);
+            this.buttonAccept.TabIndex = 30;
+            this.buttonAccept.Text = "Accept";
+            this.buttonAccept.UseVisualStyleBackColor = true;
+            // 
+            // buttonBack
+            // 
+            this.buttonBack.Location = new System.Drawing.Point(227, 488);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(109, 35);
+            this.buttonBack.TabIndex = 31;
+            this.buttonBack.Text = "Back";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(327, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FormDoctorTestsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 531);
+            this.ClientSize = new System.Drawing.Size(451, 531);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonAccept);
             this.Controls.Add(this.label1);
@@ -149,5 +160,6 @@
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProcedureID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProcedureName;
+        private System.Windows.Forms.Button button1;
     }
 }
