@@ -130,7 +130,7 @@ namespace BusinessLayer
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public class DoctorAppointment
     {
-        public DateTime DateRegistered { get; set; }  
+        public DateTime DateOfAppointment { get; set; }  
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public string PatientPesel { get; set; }
@@ -150,7 +150,6 @@ namespace BusinessLayer
             return result;
         }
 
-        //TODO poprawic wyszukiwanie po dacie
         public static List<DoctorAppointment> GetAppointmentsForToday(int doctorID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -158,10 +157,11 @@ namespace BusinessLayer
                           join pt in dc.Patients on app.PatientID equals pt.PatientID
                           where
                           app.DoctorID == doctorID
-                         // app.DateRegistered == DateTime.Now
+                          & app.DateOfAppointment.DayOfYear == DateTime.Now.DayOfYear
+                          & app.DateOfAppointment.Year == DateTime.Now.Year
                           select new DoctorAppointment
                           {
-                              DateRegistered = app.DateRegistered,
+                              DateOfAppointment = app.DateOfAppointment,
                               PatientFirstName = pt.FirstName,
                               PatientLastName = pt.LastName,
                               PatientPesel = pt.PESEL,
@@ -171,28 +171,29 @@ namespace BusinessLayer
             return result;
         }
 
-        //TODO poprawic wyszukiwanie po dacie
-        public static List<DoctorAppointment> GetSearch(DoctorAppointment searchParams, int docID)
+        public static List<DoctorAppointment> GetSearch(DoctorAppointment searchParams, int doctorID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from app in dc.Appointments
                           join pt in dc.Patients on app.PatientID equals pt.PatientID
                           where
-                          app.DoctorID == docID
+                          app.DoctorID == doctorID
                           & pt.FirstName.StartsWith(searchParams.PatientFirstName)
                           & pt.LastName.StartsWith(searchParams.PatientLastName)
                           & pt.PESEL.StartsWith(searchParams.PatientPesel)
-                          //& app.DateRegistered == searchParams.DateRegistered
-                          & app.Status.StartsWith(searchParams.Status)   
+                          & app.Status.StartsWith(searchParams.Status)
+                          & app.DateOfAppointment.Day == DateTime.Now.Day
+                          & app.DateOfAppointment.Year == DateTime.Now.Year
+                          & app.DateOfAppointment.Month == DateTime.Now.Month
                           select new DoctorAppointment
                           {
-                              DateRegistered = app.DateRegistered,
+                              DateOfAppointment = app.DateRegistered,
                               PatientFirstName = pt.FirstName,
                               PatientLastName = pt.LastName,
                               PatientPesel = pt.PESEL,
                               Status = app.Status,
                           }
-                          ).OrderBy(x => x.DateRegistered).ToList();
+                          ).OrderBy(x => x.DateOfAppointment).ToList();
             return result;
         }
 
@@ -257,8 +258,8 @@ namespace BusinessLayer
                               Status = app.Status,
                               DateRegistered = app.DateRegistered,
                               DateCompletedOrCanceled = app.DateCompletedOrCanceled                        
-                          }).ToList();
-            return result[0];
+                          }).SingleOrDefault();
+            return result;
         }
 
        /* public static List<string> getExaminations(String type, int appID)

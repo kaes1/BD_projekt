@@ -33,6 +33,7 @@
             this.labelLoggedInAs = new System.Windows.Forms.Label();
             this.buttonViewAllForToday = new System.Windows.Forms.Button();
             this.groupBoxSearch = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.labelStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.textBoxPESEL = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
             this.TimeOfVisit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +52,7 @@
             this.buttonBeginVisit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.labelPanelName = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.groupBoxSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
             this.SuspendLayout();
@@ -101,6 +101,7 @@
             // 
             // groupBoxSearch
             // 
+            this.groupBoxSearch.Controls.Add(this.buttonSearch);
             this.groupBoxSearch.Controls.Add(this.dateTimePicker);
             this.groupBoxSearch.Controls.Add(this.textBoxStatus);
             this.groupBoxSearch.Controls.Add(this.labelStatus);
@@ -111,7 +112,6 @@
             this.groupBoxSearch.Controls.Add(this.textBoxPESEL);
             this.groupBoxSearch.Controls.Add(this.textBoxLastName);
             this.groupBoxSearch.Controls.Add(this.textBoxFirstName);
-            this.groupBoxSearch.Controls.Add(this.buttonSearch);
             this.groupBoxSearch.Location = new System.Drawing.Point(16, 98);
             this.groupBoxSearch.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxSearch.Name = "groupBoxSearch";
@@ -120,6 +120,14 @@
             this.groupBoxSearch.TabIndex = 10;
             this.groupBoxSearch.TabStop = false;
             this.groupBoxSearch.Text = "Search";
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Location = new System.Drawing.Point(465, 63);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.ShowCheckBox = true;
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.TabIndex = 13;
             // 
             // textBoxStatus
             // 
@@ -201,17 +209,6 @@
             this.textBoxFirstName.Size = new System.Drawing.Size(132, 22);
             this.textBoxFirstName.TabIndex = 3;
             // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(863, 60);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(140, 28);
-            this.buttonSearch.TabIndex = 2;
-            this.buttonSearch.Text = "Search";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
             // dataGridViewPatients
             // 
             this.dataGridViewPatients.AllowUserToAddRows = false;
@@ -286,13 +283,15 @@
             this.labelPanelName.TabIndex = 16;
             this.labelPanelName.Text = "Doctor Panel";
             // 
-            // dateTimePicker
+            // buttonSearch
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(465, 63);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.ShowCheckBox = true;
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker.TabIndex = 13;
+            this.buttonSearch.Location = new System.Drawing.Point(923, 63);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.TabIndex = 14;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // FormDoctor
             // 
@@ -329,7 +328,6 @@
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
-        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.DataGridView dataGridViewPatients;
         private System.Windows.Forms.Button buttonBeginVisit;
         private System.Windows.Forms.Label labelPESEL;
@@ -345,5 +343,6 @@
         private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Button buttonSearch;
     }
 }
