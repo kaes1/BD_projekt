@@ -347,6 +347,38 @@ namespace BusinessLayer
             result.Status = stat;
             dc.SubmitChanges();
         }
+
+        public static List<ExaminationDictionaryInformation> GetPhysExam(String exName, String exCode)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from dic in dc.ExaminationDictionaries
+                          where
+                          dic.Type == 'P'
+                          & dic.Name.StartsWith(exName)
+                          & dic.Code.StartsWith(exCode)
+                          select new ExaminationDictionaryInformation()
+                          {
+                              Code = dic.Code,
+                              Name = dic.Name
+                          }).ToList();
+            return result;
+        }
+
+        public static List<ExaminationDictionaryInformation> GetLabExam(String exName, String exCode)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from dic in dc.ExaminationDictionaries
+                          where
+                          dic.Type == 'L'
+                          & dic.Name.StartsWith(exName)
+                          & dic.Code.StartsWith(exCode)
+                          select new ExaminationDictionaryInformation()
+                          {
+                              Code = dic.Code,
+                              Name = dic.Name
+                          }).ToList();
+            return result;
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

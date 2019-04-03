@@ -66,7 +66,12 @@ namespace GUILayer.FormsDoctor
         //opens new window for respond
         private void buttonAddLabExamination_Click(object sender, EventArgs e)
         {
+            FormDoctorPhysExam formNewPhysExam = new FormDoctorPhysExam();
+            DialogResult res = formNewPhysExam.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
 
+            }
         }
     }
 }

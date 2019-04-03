@@ -30,14 +30,14 @@
         {
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonAccept = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.labelSearchByID = new System.Windows.Forms.Label();
+            this.textBoxExamID = new System.Windows.Forms.TextBox();
+            this.dataGridViewExamList = new System.Windows.Forms.DataGridView();
             this.ProcedureID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProcedureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelSearchByName = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.textBoxExamName = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExamList)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonBack
@@ -48,6 +48,7 @@
             this.buttonBack.TabIndex = 38;
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // buttonAccept
             // 
@@ -57,35 +58,37 @@
             this.buttonAccept.TabIndex = 37;
             this.buttonAccept.Text = "Accept";
             this.buttonAccept.UseVisualStyleBackColor = true;
+            this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
             // 
-            // label1
+            // labelSearchByID
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(182, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 17);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "Search by ID";
+            this.labelSearchByID.AutoSize = true;
+            this.labelSearchByID.Location = new System.Drawing.Point(182, 12);
+            this.labelSearchByID.Name = "labelSearchByID";
+            this.labelSearchByID.Size = new System.Drawing.Size(89, 17);
+            this.labelSearchByID.TabIndex = 36;
+            this.labelSearchByID.Text = "Search by ID";
             // 
-            // textBox2
+            // textBoxExamID
             // 
-            this.textBox2.Location = new System.Drawing.Point(182, 34);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(133, 22);
-            this.textBox2.TabIndex = 35;
+            this.textBoxExamID.Location = new System.Drawing.Point(182, 34);
+            this.textBoxExamID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxExamID.Name = "textBoxExamID";
+            this.textBoxExamID.Size = new System.Drawing.Size(133, 22);
+            this.textBoxExamID.TabIndex = 35;
+            this.textBoxExamID.TextChanged += new System.EventHandler(this.textBoxExamID_TextChanged);
             // 
-            // dataGridView1
+            // dataGridViewExamList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewExamList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProcedureID,
             this.ProcedureName});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 71);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(342, 414);
-            this.dataGridView1.TabIndex = 34;
+            this.dataGridViewExamList.Location = new System.Drawing.Point(12, 71);
+            this.dataGridViewExamList.Name = "dataGridViewExamList";
+            this.dataGridViewExamList.RowTemplate.Height = 24;
+            this.dataGridViewExamList.Size = new System.Drawing.Size(342, 414);
+            this.dataGridViewExamList.TabIndex = 34;
             // 
             // ProcedureID
             // 
@@ -110,13 +113,14 @@
             this.labelSearchByName.TabIndex = 33;
             this.labelSearchByName.Text = "Search by Name";
             // 
-            // textBox1
+            // textBoxExamName
             // 
-            this.textBox1.Location = new System.Drawing.Point(35, 34);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 22);
-            this.textBox1.TabIndex = 32;
+            this.textBoxExamName.Location = new System.Drawing.Point(35, 34);
+            this.textBoxExamName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxExamName.Name = "textBoxExamName";
+            this.textBoxExamName.Size = new System.Drawing.Size(141, 22);
+            this.textBoxExamName.TabIndex = 32;
+            this.textBoxExamName.TextChanged += new System.EventHandler(this.textBoxExamName_TextChanged);
             // 
             // FormDoctorExamList
             // 
@@ -125,14 +129,14 @@
             this.ClientSize = new System.Drawing.Size(371, 533);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonAccept);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.labelSearchByID);
+            this.Controls.Add(this.textBoxExamID);
+            this.Controls.Add(this.dataGridViewExamList);
             this.Controls.Add(this.labelSearchByName);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxExamName);
             this.Name = "FormDoctorExamList";
             this.Text = "FormDoctorExamList";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExamList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,12 +146,12 @@
 
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonAccept;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label labelSearchByID;
+        private System.Windows.Forms.TextBox textBoxExamID;
+        private System.Windows.Forms.DataGridView dataGridViewExamList;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProcedureID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProcedureName;
         private System.Windows.Forms.Label labelSearchByName;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxExamName;
     }
 }

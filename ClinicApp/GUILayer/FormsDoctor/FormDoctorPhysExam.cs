@@ -26,5 +26,15 @@ namespace GUILayer
         {
             this.Close();
         }
+
+        private void buttonChooseExam_Click(object sender, EventArgs e)
+        {
+            var examList = new FormsDoctor.FormDoctorExamList("P");
+            DialogResult res = examList.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }

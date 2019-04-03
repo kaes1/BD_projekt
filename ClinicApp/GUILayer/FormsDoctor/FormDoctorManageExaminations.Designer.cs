@@ -97,7 +97,7 @@
             this.buttonAddPhysExamination.Name = "buttonAddPhysExamination";
             this.buttonAddPhysExamination.Size = new System.Drawing.Size(177, 41);
             this.buttonAddPhysExamination.TabIndex = 17;
-            this.buttonAddPhysExamination.Text = "Add Examination";
+            this.buttonAddPhysExamination.Text = "Add Physical Examination";
             this.buttonAddPhysExamination.UseVisualStyleBackColor = true;
             this.buttonAddPhysExamination.Click += new System.EventHandler(this.buttonAddPhysExamination_Click);
             // 
@@ -164,7 +164,7 @@
             this.buttonAddLabExamination.Name = "buttonAddLabExamination";
             this.buttonAddLabExamination.Size = new System.Drawing.Size(177, 41);
             this.buttonAddLabExamination.TabIndex = 17;
-            this.buttonAddLabExamination.Text = "Add Test";
+            this.buttonAddLabExamination.Text = "Add Lab Examination";
             this.buttonAddLabExamination.UseVisualStyleBackColor = true;
             this.buttonAddLabExamination.Click += new System.EventHandler(this.buttonAddLabExamination_Click);
             // 

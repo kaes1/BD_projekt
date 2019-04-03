@@ -35,7 +35,7 @@
             this.labelChoosenExamination = new System.Windows.Forms.Label();
             this.textBoxChoosenExamination = new System.Windows.Forms.TextBox();
             this.groupBoxPhysicalExaminations = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonChooseExam = new System.Windows.Forms.Button();
             this.groupBoxPhysicalExaminations.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +96,7 @@
             // 
             // groupBoxPhysicalExaminations
             // 
-            this.groupBoxPhysicalExaminations.Controls.Add(this.button1);
+            this.groupBoxPhysicalExaminations.Controls.Add(this.buttonChooseExam);
             this.groupBoxPhysicalExaminations.Controls.Add(this.buttonCancel);
             this.groupBoxPhysicalExaminations.Controls.Add(this.buttonConfirm);
             this.groupBoxPhysicalExaminations.Controls.Add(this.labelResult);
@@ -111,14 +111,15 @@
             this.groupBoxPhysicalExaminations.TabIndex = 24;
             this.groupBoxPhysicalExaminations.TabStop = false;
             // 
-            // button1
+            // buttonChooseExam
             // 
-            this.button1.Location = new System.Drawing.Point(77, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 44);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Choose examination";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonChooseExam.Location = new System.Drawing.Point(77, 20);
+            this.buttonChooseExam.Name = "buttonChooseExam";
+            this.buttonChooseExam.Size = new System.Drawing.Size(105, 44);
+            this.buttonChooseExam.TabIndex = 6;
+            this.buttonChooseExam.Text = "Choose examination";
+            this.buttonChooseExam.UseVisualStyleBackColor = true;
+            this.buttonChooseExam.Click += new System.EventHandler(this.buttonChooseExam_Click);
             // 
             // FormDoctorPhysExam
             // 
@@ -143,6 +144,6 @@
         private System.Windows.Forms.Label labelChoosenExamination;
         private System.Windows.Forms.TextBox textBoxChoosenExamination;
         private System.Windows.Forms.GroupBox groupBoxPhysicalExaminations;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonChooseExam;
     }
 }
