@@ -102,6 +102,15 @@ namespace BusinessLayer
         }
     }
 
+    public class DoctorAppointment
+    {
+        public DateTime DateRegistered { get; set; }  
+        public string PatientFirstName { get; set; }
+        public string PatientLastName { get; set; }
+        public string PatientPesel { get; set; }
+        public string Status { get; set; }
+    }
+
     static public class DoctorFacade
     {
         public static DoctorInformation GetDoctor(int userID)
@@ -113,6 +122,58 @@ namespace BusinessLayer
                           {DoctorID = el.DoctorID, FirstName = el.FirstName, LastName = el.LastName, PWZ = el.PWZNumber }
                           ).SingleOrDefault();
             return result;
+        }
+
+        public static List<DoctorAppointment> GetAppointmentsForToday(int doctorID)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          join pt in dc.Patients on app.PatientID equals pt.PatientID
+                          where
+                          app.DoctorID == doctorID
+                         // app.DateRegistered == DateTime.Now
+                          select new DoctorAppointment
+                          {
+                              DateRegistered = app.DateRegistered,
+                              PatientFirstName = pt.FirstName,
+                              PatientLastName = pt.LastName,
+                              PatientPesel = pt.PESEL,
+                              Status = app.Status,
+                          }
+                          ).ToList();
+            return result;
+        }
+
+        public static List<DoctorAppointment> GetSearch(DoctorAppointment searchParams, int docID)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          join pt in dc.Patients on app.PatientID equals pt.PatientID
+                          where
+                          app.DoctorID == docID
+                          & pt.FirstName.StartsWith(searchParams.PatientFirstName)
+                          & pt.LastName.StartsWith(searchParams.PatientLastName)
+                          & pt.PESEL.StartsWith(searchParams.PatientPesel)
+                          //& app.DateRegistered == searchParams.DateRegistered
+                          & app.Status.StartsWith(searchParams.Status)   
+                          select new DoctorAppointment
+                          {
+                              DateRegistered = app.DateRegistered,
+                              PatientFirstName = pt.FirstName,
+                              PatientLastName = pt.LastName,
+                              PatientPesel = pt.PESEL,
+                              Status = app.Status,
+                          }
+                          ).OrderBy(x => x.DateRegistered).ToList();
+            return result;
+        }
+
+        public static void completeAppointment(AppointmentInformation appointment)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            //alter table where app == appointemnt
+            //change status, description and diagnosis
+            //its already in appointment
         }
     }
 

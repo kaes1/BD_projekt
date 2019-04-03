@@ -280,6 +280,7 @@
             this.buttonPatientHistory.TabIndex = 27;
             this.buttonPatientHistory.Text = "Patient history";
             this.buttonPatientHistory.UseVisualStyleBackColor = true;
+            this.buttonPatientHistory.Click += new System.EventHandler(this.buttonPatientHistory_Click);
             // 
             // buttonBackToAppointment
             // 
@@ -290,6 +291,7 @@
             this.buttonBackToAppointment.TabIndex = 1;
             this.buttonBackToAppointment.Text = "Back to appointment";
             this.buttonBackToAppointment.UseVisualStyleBackColor = true;
+            this.buttonBackToAppointment.Click += new System.EventHandler(this.buttonBackToAppointment_Click);
             // 
             // FormDoctorManageExaminations
             // 

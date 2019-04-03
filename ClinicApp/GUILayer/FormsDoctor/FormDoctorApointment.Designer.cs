@@ -36,16 +36,14 @@
             this.richTextBoxDescription = new System.Windows.Forms.RichTextBox();
             this.labelDescription = new System.Windows.Forms.Label();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
-            this.labelAge = new System.Windows.Forms.Label();
-            this.textBoxAge = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.groupBoxMenu = new System.Windows.Forms.GroupBox();
+            this.buttonManageExaminations = new System.Windows.Forms.Button();
+            this.buttonPatientHistory = new System.Windows.Forms.Button();
             this.buttonBeginAppointment = new System.Windows.Forms.Button();
             this.labelDiagnosis = new System.Windows.Forms.Label();
             this.richTextBoxDiagnosis = new System.Windows.Forms.RichTextBox();
-            this.buttonPatientHistory = new System.Windows.Forms.Button();
-            this.buttonManageExaminations = new System.Windows.Forms.Button();
             this.groupBoxPatient.SuspendLayout();
             this.groupBoxMenu.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +61,7 @@
             // 
             // buttonEndAppointment
             // 
+            this.buttonEndAppointment.Enabled = false;
             this.buttonEndAppointment.Location = new System.Drawing.Point(6, 70);
             this.buttonEndAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonEndAppointment.Name = "buttonEndAppointment";
@@ -70,9 +69,11 @@
             this.buttonEndAppointment.TabIndex = 2;
             this.buttonEndAppointment.Text = "End ";
             this.buttonEndAppointment.UseVisualStyleBackColor = true;
+            this.buttonEndAppointment.Click += new System.EventHandler(this.buttonEndAppointment_Click);
             // 
             // buttonCancelAppointment
             // 
+            this.buttonCancelAppointment.Enabled = false;
             this.buttonCancelAppointment.Location = new System.Drawing.Point(6, 121);
             this.buttonCancelAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCancelAppointment.Name = "buttonCancelAppointment";
@@ -80,6 +81,7 @@
             this.buttonCancelAppointment.TabIndex = 3;
             this.buttonCancelAppointment.Text = "Cancel ";
             this.buttonCancelAppointment.UseVisualStyleBackColor = true;
+            this.buttonCancelAppointment.Click += new System.EventHandler(this.buttonCancelAppointment_Click);
             // 
             // labelFisrtName
             // 
@@ -101,6 +103,7 @@
             // 
             // richTextBoxDescription
             // 
+            this.richTextBoxDescription.Enabled = false;
             this.richTextBoxDescription.Location = new System.Drawing.Point(21, 203);
             this.richTextBoxDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBoxDescription.Name = "richTextBoxDescription";
@@ -119,8 +122,6 @@
             // 
             // groupBoxPatient
             // 
-            this.groupBoxPatient.Controls.Add(this.labelAge);
-            this.groupBoxPatient.Controls.Add(this.textBoxAge);
             this.groupBoxPatient.Controls.Add(this.textBoxLastName);
             this.groupBoxPatient.Controls.Add(this.textBoxFirstName);
             this.groupBoxPatient.Controls.Add(this.labelFisrtName);
@@ -129,31 +130,14 @@
             this.groupBoxPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxPatient.Name = "groupBoxPatient";
             this.groupBoxPatient.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPatient.Size = new System.Drawing.Size(435, 81);
+            this.groupBoxPatient.Size = new System.Drawing.Size(299, 81);
             this.groupBoxPatient.TabIndex = 19;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient";
             // 
-            // labelAge
-            // 
-            this.labelAge.AutoSize = true;
-            this.labelAge.Location = new System.Drawing.Point(287, 26);
-            this.labelAge.Name = "labelAge";
-            this.labelAge.Size = new System.Drawing.Size(33, 17);
-            this.labelAge.TabIndex = 7;
-            this.labelAge.Text = "Age";
-            // 
-            // textBoxAge
-            // 
-            this.textBoxAge.Location = new System.Drawing.Point(290, 46);
-            this.textBoxAge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.ReadOnly = true;
-            this.textBoxAge.Size = new System.Drawing.Size(133, 22);
-            this.textBoxAge.TabIndex = 6;
-            // 
             // textBoxLastName
             // 
+            this.textBoxLastName.Enabled = false;
             this.textBoxLastName.Location = new System.Drawing.Point(151, 46);
             this.textBoxLastName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxLastName.Name = "textBoxLastName";
@@ -163,6 +147,7 @@
             // 
             // textBoxFirstName
             // 
+            this.textBoxFirstName.Enabled = false;
             this.textBoxFirstName.Location = new System.Drawing.Point(9, 46);
             this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxFirstName.Name = "textBoxFirstName";
@@ -178,7 +163,7 @@
             this.groupBoxMenu.Controls.Add(this.buttonBack);
             this.groupBoxMenu.Controls.Add(this.buttonEndAppointment);
             this.groupBoxMenu.Controls.Add(this.buttonCancelAppointment);
-            this.groupBoxMenu.Location = new System.Drawing.Point(458, 11);
+            this.groupBoxMenu.Location = new System.Drawing.Point(458, 175);
             this.groupBoxMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxMenu.Name = "groupBoxMenu";
             this.groupBoxMenu.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -186,6 +171,30 @@
             this.groupBoxMenu.TabIndex = 20;
             this.groupBoxMenu.TabStop = false;
             this.groupBoxMenu.Text = "Menu";
+            // 
+            // buttonManageExaminations
+            // 
+            this.buttonManageExaminations.Enabled = false;
+            this.buttonManageExaminations.Location = new System.Drawing.Point(6, 270);
+            this.buttonManageExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonManageExaminations.Name = "buttonManageExaminations";
+            this.buttonManageExaminations.Size = new System.Drawing.Size(184, 41);
+            this.buttonManageExaminations.TabIndex = 28;
+            this.buttonManageExaminations.Text = "Manage examinations";
+            this.buttonManageExaminations.UseVisualStyleBackColor = true;
+            this.buttonManageExaminations.Click += new System.EventHandler(this.buttonManageExaminations_Click);
+            // 
+            // buttonPatientHistory
+            // 
+            this.buttonPatientHistory.Enabled = false;
+            this.buttonPatientHistory.Location = new System.Drawing.Point(6, 220);
+            this.buttonPatientHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonPatientHistory.Name = "buttonPatientHistory";
+            this.buttonPatientHistory.Size = new System.Drawing.Size(184, 41);
+            this.buttonPatientHistory.TabIndex = 27;
+            this.buttonPatientHistory.Text = "Patient history";
+            this.buttonPatientHistory.UseVisualStyleBackColor = true;
+            this.buttonPatientHistory.Click += new System.EventHandler(this.buttonPatientHistory_Click);
             // 
             // buttonBeginAppointment
             // 
@@ -196,6 +205,7 @@
             this.buttonBeginAppointment.TabIndex = 26;
             this.buttonBeginAppointment.Text = "Begin appointment";
             this.buttonBeginAppointment.UseVisualStyleBackColor = true;
+            this.buttonBeginAppointment.Click += new System.EventHandler(this.buttonBeginAppointment_Click);
             // 
             // labelDiagnosis
             // 
@@ -208,32 +218,13 @@
             // 
             // richTextBoxDiagnosis
             // 
+            this.richTextBoxDiagnosis.Enabled = false;
             this.richTextBoxDiagnosis.Location = new System.Drawing.Point(21, 126);
             this.richTextBoxDiagnosis.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBoxDiagnosis.Name = "richTextBoxDiagnosis";
             this.richTextBoxDiagnosis.Size = new System.Drawing.Size(184, 41);
             this.richTextBoxDiagnosis.TabIndex = 24;
             this.richTextBoxDiagnosis.Text = "";
-            // 
-            // buttonPatientHistory
-            // 
-            this.buttonPatientHistory.Location = new System.Drawing.Point(6, 220);
-            this.buttonPatientHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonPatientHistory.Name = "buttonPatientHistory";
-            this.buttonPatientHistory.Size = new System.Drawing.Size(184, 41);
-            this.buttonPatientHistory.TabIndex = 27;
-            this.buttonPatientHistory.Text = "Patient history";
-            this.buttonPatientHistory.UseVisualStyleBackColor = true;
-            // 
-            // buttonManageExaminations
-            // 
-            this.buttonManageExaminations.Location = new System.Drawing.Point(6, 270);
-            this.buttonManageExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonManageExaminations.Name = "buttonManageExaminations";
-            this.buttonManageExaminations.Size = new System.Drawing.Size(184, 41);
-            this.buttonManageExaminations.TabIndex = 28;
-            this.buttonManageExaminations.Text = "Manage examinations";
-            this.buttonManageExaminations.UseVisualStyleBackColor = true;
             // 
             // FormDoctorVisit
             // 
@@ -269,8 +260,6 @@
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.GroupBox groupBoxMenu;
-        private System.Windows.Forms.Label labelAge;
-        private System.Windows.Forms.TextBox textBoxAge;
         private System.Windows.Forms.Button buttonBeginAppointment;
         private System.Windows.Forms.Label labelDiagnosis;
         private System.Windows.Forms.RichTextBox richTextBoxDiagnosis;

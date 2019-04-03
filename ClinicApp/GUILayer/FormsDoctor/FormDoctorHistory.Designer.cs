@@ -96,6 +96,7 @@
             this.buttonManageExaminations.TabIndex = 29;
             this.buttonManageExaminations.Text = "Manage examinations";
             this.buttonManageExaminations.UseVisualStyleBackColor = true;
+            this.buttonManageExaminations.Click += new System.EventHandler(this.buttonManageExaminations_Click);
             // 
             // buttonPreviousExaminations
             // 
@@ -116,6 +117,7 @@
             this.buttonBackToAppointment.TabIndex = 1;
             this.buttonBackToAppointment.Text = "Back to appointment";
             this.buttonBackToAppointment.UseVisualStyleBackColor = true;
+            this.buttonBackToAppointment.Click += new System.EventHandler(this.buttonBackToAppointment_Click);
             // 
             // buttonPreviousAppointments
             // 
