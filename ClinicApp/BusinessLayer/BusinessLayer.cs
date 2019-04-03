@@ -66,6 +66,7 @@ namespace BusinessLayer
         public string Diagnosis { get; set; }
         public string Status { get; set; }
         public DateTime DateRegistered { get; set; }
+        public DateTime DateOfAppointment { get; set; }
         public DateTime? DateCompletedOrCanceled { get; set; }
     }
 
@@ -73,14 +74,31 @@ namespace BusinessLayer
     {
         public int PhysicalExaminationID { get; set; }
         public int AppointmentID { get; set; }
-        public int ProcedureID { get; set; }
+        public string Code { get; set; }
         public string Result { get; set; }
     }
 
-    public class ProcedureInformation
+    public class LabExaminationInformation
     {
-        public int ProcedureID { get; set; }
-        public string Type { get; set; }
+        public int LabExaminationID { get; set; }
+        public string Code { get; set; }
+        public int AppointmentID { get; set; }
+        public int LabTechnicianID { get; set; }
+        public int LabManagerID { get; set; }
+        public DateTime DateRegistered { get; set; }
+        public string Result { get; set; }
+        public string DoctorComments { get; set; }
+        public DateTime? DateCompletedOrCanceled { get; set; }
+        public string LabManagerComments { get; set; }
+        public DateTime? DateApprovedOrCanceled { get; set; }
+        public string Status { get; set; }
+    }
+
+
+    public class ExaminationDictionaryInformation
+    {
+        public string Code { get; set; }
+        public char Type { get; set; }
         public string Name { get; set; }
     }
 
@@ -229,7 +247,6 @@ namespace BusinessLayer
         public static List<CustomAppointment> GetAppointments(PatientInformation patientInfo)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
-            List<Tuple<AppointmentInformation, DoctorInformation>> list;
             var result = (from app in dc.Appointments
                           join doc in dc.Doctors on app.DoctorID equals doc.DoctorID
                           where
