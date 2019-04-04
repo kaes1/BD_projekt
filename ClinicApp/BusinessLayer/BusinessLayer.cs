@@ -120,6 +120,7 @@ namespace BusinessLayer
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public class DoctorAppointment
     {
         public DateTime DateRegistered { get; set; }  
@@ -193,8 +194,64 @@ namespace BusinessLayer
             //change status, description and diagnosis
             //its already in appointment
         }
+        public static void appointmentCanceled(AppointmentInformation actualAppointment)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            Appointment app = new Appointment()
+            {
+                AppointmentID = actualAppointment.AppointmentID,
+                DoctorID = actualAppointment.DoctorID,
+                PatientID = actualAppointment.PatientID,
+                ReceptionistID = actualAppointment.ReceptionistID,
+                Description = actualAppointment.Description,
+                Diagnosis = actualAppointment.Diagnosis,
+                Status = "CANC",
+                DateRegistered = actualAppointment.DateRegistered,
+                DateCompletedOrCanceled = DateTime.Today
+            };
+            dc.Appointments.InsertOnSubmit(app);
+            dc.SubmitChanges();
+        }
+
+        public static PatientInformation getPatientByPesel(String pesel)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from pt in dc.Patients
+                          where pt.PESEL == pesel
+                          select new PatientInformation()
+                          {
+                              FirstName = pt.FirstName,
+                              LastName = pt.LastName,
+                              PESEL = pt.PESEL,
+                              PatientID = pt.PatientID
+                          }).ToList();
+            return result[0];
+        }
+
+        public static AppointmentInformation getAppointmentByPeselAndDate(String pesel,DateTime date)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          join pt in dc.Patients on app.PatientID equals pt.PatientID
+                          where app.DateRegistered == date 
+                          & pt.PESEL == pesel
+                          select new AppointmentInformation()
+                          {
+                              AppointmentID = app.AppointmentID,
+                              DoctorID = app.DoctorID,
+                              PatientID = app.PatientID,
+                              ReceptionistID = app.ReceptionistID,
+                              Description = app.Description,
+                              Diagnosis = app.Diagnosis,
+                              Status = app.Status,
+                              DateRegistered = app.DateRegistered,
+                              DateCompletedOrCanceled = app.DateCompletedOrCanceled                        
+                          }).ToList();
+            return result[0];
+        }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     static public class ReceptionistFacade
     {
         public static ReceptionistInformation GetReceptionist(int userID)

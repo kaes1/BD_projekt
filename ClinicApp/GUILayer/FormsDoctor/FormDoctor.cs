@@ -29,15 +29,14 @@ namespace GUILayer
         //Move to doctorVisitform.
         private void buttonSelectPatient_Click(object sender, EventArgs e)
         {
-            //Hide this form.
+           
+            String pesel = (String)dataGridViewPatients.SelectedRows[0].Cells[3].Value;
+            DateTime date = (DateTime)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[0].Value);
             this.Hide();
-            //Create a new doctorVisitForm.
-            var doctorVisitForm = new FormDoctorVisit();
-            //Set reference to this form.
+            var doctorVisitForm = new FormDoctorVisit(BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date),BusinessLayer.DoctorFacade.getPatientByPesel(pesel));
             doctorVisitForm.prevPageRef = this;
-            //Add closing loginForm to the closing event of receptionistForm.
-            //doctorVisitForm.FormClosed += (s, args) => this.Close();
-            //Show the new doctorVisitForm.
+            //doctorVisitForm.actualPatient = BusinessLayer.DoctorFacade.getPatientByPesel(pesel);
+            //doctorVisitForm.actualAppointment = BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date);
             doctorVisitForm.Show();
         }
 

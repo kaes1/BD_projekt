@@ -13,6 +13,8 @@ namespace GUILayer.FormsDoctor
     public partial class FormDoctorHistory : Form
     {
         public Form DoctorAppointmentRef { get; set; }
+        public BusinessLayer.AppointmentInformation actualAppointment { get; set; }
+        public BusinessLayer.PatientInformation actualPatient { get; set; }
 
         public FormDoctorHistory()
         {
@@ -31,6 +33,11 @@ namespace GUILayer.FormsDoctor
             doctorExaminationsForm.DoctorAppointmentRef = DoctorAppointmentRef;
             doctorExaminationsForm.Show();
             this.Close();
+        }
+
+        private void buttonPreviousExaminations_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

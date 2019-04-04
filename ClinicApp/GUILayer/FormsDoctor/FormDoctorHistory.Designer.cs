@@ -107,6 +107,7 @@
             this.buttonPreviousExaminations.TabIndex = 28;
             this.buttonPreviousExaminations.Text = "Previous examinations";
             this.buttonPreviousExaminations.UseVisualStyleBackColor = true;
+            this.buttonPreviousExaminations.Click += new System.EventHandler(this.buttonPreviousExaminations_Click);
             // 
             // buttonBackToAppointment
             // 

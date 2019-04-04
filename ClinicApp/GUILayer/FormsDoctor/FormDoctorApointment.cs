@@ -13,10 +13,22 @@ namespace GUILayer
     public partial class FormDoctorVisit : Form
     {
         public Form prevPageRef { get; set; }
-        public BusinessLayer.AppointmentInformation actualAppointment;
+        public BusinessLayer.AppointmentInformation actualAppointment { get; set; }
+        public BusinessLayer.PatientInformation actualPatient { get; set; }
+
         public FormDoctorVisit()
         {
             InitializeComponent();
+        }
+
+        public FormDoctorVisit(BusinessLayer.AppointmentInformation app, BusinessLayer.PatientInformation pat)
+        {
+            InitializeComponent();
+            actualAppointment = app;
+            actualPatient = pat;
+
+            textBoxFirstName.Text = actualPatient.FirstName;
+            textBoxLastName.Text = actualPatient.LastName;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -78,7 +90,9 @@ namespace GUILayer
 
         private void buttonCancelAppointment_Click(object sender, EventArgs e)
         {
-            //przekierowanie do okna dlaczego anulowano
+            BusinessLayer.DoctorFacade.appointmentCanceled(actualAppointment);
+            prevPageRef.Show();
+            this.Close();
         }
     }
 }
