@@ -15,13 +15,16 @@ namespace GUILayer.FormsDoctor
         public Form DoctorAppointmentRef { get; set; }
         public BusinessLayer.AppointmentInformation actualAppointment { get; set; }
         public BusinessLayer.PatientInformation actualPatient { get; set; }
+        public BusinessLayer.DoctorInformation actualDoctor{ get; set; }
 
-        public FormDoctorManageExaminations()
-        {
+        public FormDoctorManageExaminations(BusinessLayer.AppointmentInformation actApp, BusinessLayer.PatientInformation actPat, BusinessLayer.DoctorInformation actDoc)
+            {                                    
             InitializeComponent();
-            //show all added examinations
-           // dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.getExaminations(String type);
-            //dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.getExaminations(String type);
+            actualAppointment = actApp;
+            actualDoctor = actDoc;
+            actualAppointment = actualAppointment;
+            dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysLabExam(actualAppointment);
+            dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysPhysExam(actualAppointment);
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)
@@ -32,10 +35,7 @@ namespace GUILayer.FormsDoctor
 
         private void buttonPatientHistory_Click(object sender, EventArgs e)
         {
-            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory();
-            doctorHistoryForm.DoctorAppointmentRef = DoctorAppointmentRef;
-            doctorHistoryForm.actualPatient = actualPatient;
-            doctorHistoryForm.actualAppointment = actualAppointment;
+            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory(actualAppointment, actualPatient, actualDoctor);
             doctorHistoryForm.Show();
             this.Close();
         }

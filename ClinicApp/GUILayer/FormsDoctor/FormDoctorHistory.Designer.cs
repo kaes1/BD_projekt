@@ -35,16 +35,14 @@
             this.buttonBackToAppointment = new System.Windows.Forms.Button();
             this.buttonPreviousAppointments = new System.Windows.Forms.Button();
             this.labelResultDescription = new System.Windows.Forms.Label();
-            this.buttonPreviousRegistry = new System.Windows.Forms.Button();
-            this.buttonNextRegistry = new System.Windows.Forms.Button();
+            this.buttonPreviousAppointment = new System.Windows.Forms.Button();
+            this.buttonNextAppointment = new System.Windows.Forms.Button();
             this.richTextBoxResultDescription = new System.Windows.Forms.RichTextBox();
             this.dataGridViewAppoinmentsExaminations = new System.Windows.Forms.DataGridView();
             this.DateOfPreviousTest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProcedureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
-            this.labelAge = new System.Windows.Forms.Label();
-            this.textBoxAge = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.labelFisrtName = new System.Windows.Forms.Label();
@@ -59,8 +57,8 @@
             // 
             this.groupBoxPreviousComments.Controls.Add(this.groupBoxControls);
             this.groupBoxPreviousComments.Controls.Add(this.labelResultDescription);
-            this.groupBoxPreviousComments.Controls.Add(this.buttonPreviousRegistry);
-            this.groupBoxPreviousComments.Controls.Add(this.buttonNextRegistry);
+            this.groupBoxPreviousComments.Controls.Add(this.buttonPreviousAppointment);
+            this.groupBoxPreviousComments.Controls.Add(this.buttonNextAppointment);
             this.groupBoxPreviousComments.Controls.Add(this.richTextBoxResultDescription);
             this.groupBoxPreviousComments.Controls.Add(this.dataGridViewAppoinmentsExaminations);
             this.groupBoxPreviousComments.Location = new System.Drawing.Point(12, 96);
@@ -139,25 +137,27 @@
             this.labelResultDescription.TabIndex = 12;
             this.labelResultDescription.Text = "Result";
             // 
-            // buttonPreviousRegistry
+            // buttonPreviousAppointment
             // 
-            this.buttonPreviousRegistry.Location = new System.Drawing.Point(548, 508);
-            this.buttonPreviousRegistry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonPreviousRegistry.Name = "buttonPreviousRegistry";
-            this.buttonPreviousRegistry.Size = new System.Drawing.Size(139, 45);
-            this.buttonPreviousRegistry.TabIndex = 0;
-            this.buttonPreviousRegistry.Text = "Previous test";
-            this.buttonPreviousRegistry.UseVisualStyleBackColor = true;
+            this.buttonPreviousAppointment.Location = new System.Drawing.Point(548, 508);
+            this.buttonPreviousAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonPreviousAppointment.Name = "buttonPreviousAppointment";
+            this.buttonPreviousAppointment.Size = new System.Drawing.Size(139, 45);
+            this.buttonPreviousAppointment.TabIndex = 0;
+            this.buttonPreviousAppointment.Text = "Previous appointment";
+            this.buttonPreviousAppointment.UseVisualStyleBackColor = true;
+            this.buttonPreviousAppointment.Click += new System.EventHandler(this.buttonPreviousRegistry_Click);
             // 
-            // buttonNextRegistry
+            // buttonNextAppointment
             // 
-            this.buttonNextRegistry.Location = new System.Drawing.Point(712, 508);
-            this.buttonNextRegistry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonNextRegistry.Name = "buttonNextRegistry";
-            this.buttonNextRegistry.Size = new System.Drawing.Size(139, 45);
-            this.buttonNextRegistry.TabIndex = 6;
-            this.buttonNextRegistry.Text = "Next test";
-            this.buttonNextRegistry.UseVisualStyleBackColor = true;
+            this.buttonNextAppointment.Location = new System.Drawing.Point(712, 508);
+            this.buttonNextAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonNextAppointment.Name = "buttonNextAppointment";
+            this.buttonNextAppointment.Size = new System.Drawing.Size(139, 45);
+            this.buttonNextAppointment.TabIndex = 6;
+            this.buttonNextAppointment.Text = "Next appointment";
+            this.buttonNextAppointment.UseVisualStyleBackColor = true;
+            this.buttonNextAppointment.Click += new System.EventHandler(this.buttonNextRegistry_Click);
             // 
             // richTextBoxResultDescription
             // 
@@ -185,6 +185,7 @@
             this.dataGridViewAppoinmentsExaminations.ReadOnly = true;
             this.dataGridViewAppoinmentsExaminations.Size = new System.Drawing.Size(463, 520);
             this.dataGridViewAppoinmentsExaminations.TabIndex = 10;
+            this.dataGridViewAppoinmentsExaminations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAppoinmentsExaminations_CellContentClick);
             // 
             // DateOfPreviousTest
             // 
@@ -209,8 +210,6 @@
             // 
             // groupBoxPatient
             // 
-            this.groupBoxPatient.Controls.Add(this.labelAge);
-            this.groupBoxPatient.Controls.Add(this.textBoxAge);
             this.groupBoxPatient.Controls.Add(this.textBoxLastName);
             this.groupBoxPatient.Controls.Add(this.textBoxFirstName);
             this.groupBoxPatient.Controls.Add(this.labelFisrtName);
@@ -219,28 +218,10 @@
             this.groupBoxPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxPatient.Name = "groupBoxPatient";
             this.groupBoxPatient.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPatient.Size = new System.Drawing.Size(435, 81);
+            this.groupBoxPatient.Size = new System.Drawing.Size(295, 81);
             this.groupBoxPatient.TabIndex = 25;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient";
-            // 
-            // labelAge
-            // 
-            this.labelAge.AutoSize = true;
-            this.labelAge.Location = new System.Drawing.Point(287, 26);
-            this.labelAge.Name = "labelAge";
-            this.labelAge.Size = new System.Drawing.Size(33, 17);
-            this.labelAge.TabIndex = 7;
-            this.labelAge.Text = "Age";
-            // 
-            // textBoxAge
-            // 
-            this.textBoxAge.Location = new System.Drawing.Point(290, 46);
-            this.textBoxAge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.ReadOnly = true;
-            this.textBoxAge.Size = new System.Drawing.Size(133, 22);
-            this.textBoxAge.TabIndex = 6;
             // 
             // textBoxLastName
             // 
@@ -301,8 +282,8 @@
 
         private System.Windows.Forms.GroupBox groupBoxPreviousComments;
         private System.Windows.Forms.Label labelResultDescription;
-        private System.Windows.Forms.Button buttonPreviousRegistry;
-        private System.Windows.Forms.Button buttonNextRegistry;
+        private System.Windows.Forms.Button buttonPreviousAppointment;
+        private System.Windows.Forms.Button buttonNextAppointment;
         private System.Windows.Forms.RichTextBox richTextBoxResultDescription;
         private System.Windows.Forms.DataGridView dataGridViewAppoinmentsExaminations;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateOfPreviousTest;
@@ -314,8 +295,6 @@
         private System.Windows.Forms.Button buttonManageExaminations;
         private System.Windows.Forms.Button buttonPreviousExaminations;
         private System.Windows.Forms.GroupBox groupBoxPatient;
-        private System.Windows.Forms.Label labelAge;
-        private System.Windows.Forms.TextBox textBoxAge;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.Label labelFisrtName;

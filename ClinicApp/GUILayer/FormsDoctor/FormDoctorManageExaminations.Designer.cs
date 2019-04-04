@@ -41,8 +41,6 @@
             this.dataGridViewLabExamList = new System.Windows.Forms.DataGridView();
             this.LaboratoryExamination = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
-            this.labelAge = new System.Windows.Forms.Label();
-            this.textBoxAge = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.labelFisrtName = new System.Windows.Forms.Label();
@@ -194,8 +192,6 @@
             // 
             // groupBoxPatient
             // 
-            this.groupBoxPatient.Controls.Add(this.labelAge);
-            this.groupBoxPatient.Controls.Add(this.textBoxAge);
             this.groupBoxPatient.Controls.Add(this.textBoxLastName);
             this.groupBoxPatient.Controls.Add(this.textBoxFirstName);
             this.groupBoxPatient.Controls.Add(this.labelFisrtName);
@@ -204,28 +200,10 @@
             this.groupBoxPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxPatient.Name = "groupBoxPatient";
             this.groupBoxPatient.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPatient.Size = new System.Drawing.Size(435, 81);
+            this.groupBoxPatient.Size = new System.Drawing.Size(299, 81);
             this.groupBoxPatient.TabIndex = 26;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient";
-            // 
-            // labelAge
-            // 
-            this.labelAge.AutoSize = true;
-            this.labelAge.Location = new System.Drawing.Point(287, 26);
-            this.labelAge.Name = "labelAge";
-            this.labelAge.Size = new System.Drawing.Size(33, 17);
-            this.labelAge.TabIndex = 7;
-            this.labelAge.Text = "Age";
-            // 
-            // textBoxAge
-            // 
-            this.textBoxAge.Location = new System.Drawing.Point(290, 46);
-            this.textBoxAge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.ReadOnly = true;
-            this.textBoxAge.Size = new System.Drawing.Size(133, 22);
-            this.textBoxAge.TabIndex = 6;
             // 
             // textBoxLastName
             // 
@@ -337,8 +315,6 @@
         private System.Windows.Forms.DataGridView dataGridViewLabExamList;
         private System.Windows.Forms.DataGridViewTextBoxColumn LaboratoryExamination;
         private System.Windows.Forms.GroupBox groupBoxPatient;
-        private System.Windows.Forms.Label labelAge;
-        private System.Windows.Forms.TextBox textBoxAge;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.Label labelFisrtName;

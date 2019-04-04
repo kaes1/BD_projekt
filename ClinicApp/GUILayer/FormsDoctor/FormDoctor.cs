@@ -12,7 +12,7 @@ namespace GUILayer
 {
     public partial class FormDoctor : Form
     {
-        BusinessLayer.DoctorInformation activeDoctorInformation;
+        public BusinessLayer.DoctorInformation activeDoctorInformation { get; set; }
 
         public FormDoctor()
         {
@@ -26,6 +26,13 @@ namespace GUILayer
             labelDoctorName.Text = activeDoctorInformation.FirstName + " " + activeDoctorInformation.LastName;
         }
 
+        public FormDoctor(BusinessLayer.DoctorInformation doc)
+        {
+            InitializeComponent();
+            activeDoctorInformation = doc;
+            labelDoctorName.Text = activeDoctorInformation.FirstName + " " + activeDoctorInformation.LastName;
+        }
+
         //Move to doctorVisitform.
         private void buttonSelectPatient_Click(object sender, EventArgs e)
         {
@@ -33,17 +40,17 @@ namespace GUILayer
             String pesel = (String)dataGridViewPatients.SelectedRows[0].Cells[3].Value;
             DateTime date = (DateTime)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[0].Value);
             this.Hide();
-            var doctorVisitForm = new FormDoctorVisit(BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date), BusinessLayer.DoctorFacade.getPatientByPesel(pesel));
-            doctorVisitForm.prevPageRef = this;
-            //doctorVisitForm.actualPatient = BusinessLayer.DoctorFacade.getPatientByPesel(pesel);
-            //doctorVisitForm.actualAppointment = BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date);
-            doctorVisitForm.Show();
+            var doctorAppointmentForm = new FormDoctorAppointment(BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date), BusinessLayer.DoctorFacade.getPatientByPesel(pesel));
+            doctorAppointmentForm.actualDoctor = activeDoctorInformation;
+            doctorAppointmentForm.Show();
+            //this.Close();
         }
 
         private void buttonViewAllForToday_Click(object sender, EventArgs e)
         {
             dataGridViewPatients.Columns.Clear();
             dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
+            dataGridViewPatients.Columns.Remove("AppointmentID");
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -58,6 +65,7 @@ namespace GUILayer
                 Status = textBoxStatus.Text
             };
             dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetSearch(searchParams, activeDoctorInformation.DoctorID);
+            dataGridViewPatients.Columns.Remove("AppointmentID");
 
         }
     }
