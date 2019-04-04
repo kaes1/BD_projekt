@@ -12,12 +12,13 @@ namespace GUILayer
 {
     public partial class FormAdminNewUser : Form
     {
+
+        public BusinessLayer.UserInformation newUserInformation;
+
         public FormAdminNewUser()
         {
             InitializeComponent();
         }
-
-        
 
         private bool correctInformation()
         {
@@ -29,8 +30,12 @@ namespace GUILayer
                 return false;
             }
 
-            //DODAĆ MINIMALNE WYMOGI DLA HASŁA???
-            //TO BE DONE
+            //Check if password meets requirements.
+            if (!BusinessLayer.AdminFacade.ValidPassword(textBoxPassword.Text))
+            {
+                MessageBox.Show("Password must meet these requirements:\n" + BusinessLayer.AdminFacade.PasswordRequirements, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
             //Check if Role is selected
             string selectedRole = (string)comboBoxRole.SelectedItem;
@@ -42,8 +47,8 @@ namespace GUILayer
 
             //Check if FirstName or LastName is empty.
             if (selectedRole != "ADM" &&
-                string.IsNullOrWhiteSpace(textBoxFirstName.Text) ||
-                string.IsNullOrWhiteSpace(textBoxLastName.Text))
+                (string.IsNullOrWhiteSpace(textBoxFirstName.Text) ||
+                string.IsNullOrWhiteSpace(textBoxLastName.Text)))
             {
                 MessageBox.Show("First Name and Last Name must be filled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -95,6 +100,7 @@ namespace GUILayer
             //Utworzenie Usera oraz danej Roli.
             int PWZNumber = (comboBoxRole.Text == "DOC") ? int.Parse(textBoxPWZNumber.Text) : 0;
             BusinessLayer.AdminFacade.AddUser(textBoxUsername.Text, textBoxPassword.Text, comboBoxRole.Text, textBoxFirstName.Text, textBoxLastName.Text, PWZNumber);
+            newUserInformation = new BusinessLayer.UserInformation(){ Username = textBoxUsername.Text };
             DialogResult = DialogResult.OK;
         }
 

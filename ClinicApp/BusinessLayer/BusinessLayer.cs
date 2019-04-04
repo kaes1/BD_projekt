@@ -680,7 +680,7 @@ namespace BusinessLayer
 
     static public class AdminFacade
     {
-        public static List<UserInformation> GetUsers(UserInformation userSearchCriteria)
+        public static List<UserInformation> GetUsers(UserInformation userSearchCriteria, bool onlyActive = false)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from u in dc.Users
@@ -693,7 +693,9 @@ namespace BusinessLayer
                           &&
                           (userSearchCriteria.Role == null || u.Role.StartsWith(userSearchCriteria.Role))
                           &&
-                          (userSearchCriteria.DateRetired == null || u.DateRetired.GetValueOrDefault().Date == userSearchCriteria.DateRetired)
+                          (userSearchCriteria.DateRetired == null || (u.DateRetired.HasValue && u.DateRetired.Value.Date == userSearchCriteria.DateRetired))
+                          &&
+                          (onlyActive == false || u.DateRetired.HasValue == false || u.DateRetired.Value.Date > DateTime.Now)
                           select new UserInformation
                           { UserID = u.UserID, Username = u.Username, Hashcode = u.Hashcode, Role = u.Role, DateRetired = u.DateRetired }
                           ).OrderBy(x => x.UserID).ToList();
@@ -728,6 +730,18 @@ namespace BusinessLayer
 
             //Change hashcode.
             user.Hashcode = newHashcode;
+            dc.SubmitChanges();
+        }
+
+        public static void ChangeUserDateRetired(int userID, DateTime? newDateRetired)
+        {
+            //Get User from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var user = (from u in dc.Users
+                        where u.UserID == userID
+                        select u).SingleOrDefault();
+            //Change DateRetired.
+            user.DateRetired = newDateRetired;
             dc.SubmitChanges();
         }
 
@@ -795,8 +809,21 @@ namespace BusinessLayer
                     break;
             }
 
-           
             dc.SubmitChanges();
         }
+
+        public static bool ValidPassword(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+                return false;
+
+            if (password.Length < 4)
+                return false;
+
+            return true;
+        }
+
+        public static string PasswordRequirements = " - at least 4 characters long.";
+
     }
 }

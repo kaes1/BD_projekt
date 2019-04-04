@@ -41,8 +41,12 @@ namespace GUILayer
                 return;
             }
 
-            //DODAĆ MINIMALNE WYMOGI DLA HASŁA???
-            //TO BE DONE
+            //Check if password meets requirements.
+            if (!BusinessLayer.AdminFacade.ValidPassword(textBoxNewPassword.Text))
+            {
+                MessageBox.Show("Password must meet these requirements:\n" + BusinessLayer.AdminFacade.PasswordRequirements, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             //Change password of User.
             BusinessLayer.AdminFacade.ChangeUserPassword(userInformation.UserID, textBoxNewPassword.Text);

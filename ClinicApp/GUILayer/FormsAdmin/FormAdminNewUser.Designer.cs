@@ -140,6 +140,7 @@
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
             this.textBoxFirstName.TabIndex = 18;
+            this.textBoxFirstName.Visible = false;
             // 
             // textBoxLastName
             // 
@@ -147,6 +148,7 @@
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 19;
+            this.textBoxLastName.Visible = false;
             // 
             // labelFirstName
             // 
@@ -156,6 +158,7 @@
             this.labelFirstName.Size = new System.Drawing.Size(57, 13);
             this.labelFirstName.TabIndex = 20;
             this.labelFirstName.Text = "First Name";
+            this.labelFirstName.Visible = false;
             // 
             // labelLastName
             // 
@@ -165,6 +168,7 @@
             this.labelLastName.Size = new System.Drawing.Size(58, 13);
             this.labelLastName.TabIndex = 21;
             this.labelLastName.Text = "Last Name";
+            this.labelLastName.Visible = false;
             // 
             // textBoxPWZNumber
             // 
