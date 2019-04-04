@@ -56,6 +56,8 @@ namespace GUILayer
             var doctorHistoryForm = new FormsDoctor.FormDoctorHistory();
             doctorHistoryForm.DoctorAppointmentRef = this;
             //doctorHistoryForm.FormClosed += (s, args) => this.Close();
+            doctorHistoryForm.actualPatient = actualPatient;
+            doctorHistoryForm.actualAppointment = actualAppointment;
             doctorHistoryForm.Show();
         }
 
@@ -65,6 +67,8 @@ namespace GUILayer
             var doctorExaminationsForm = new FormsDoctor.FormDoctorManageExaminations();
             doctorExaminationsForm.DoctorAppointmentRef = this;
             //doctorHistoryForm.FormClosed += (s, args) => this.Close();
+            doctorExaminationsForm.actualPatient = actualPatient;
+            doctorExaminationsForm.actualAppointment = actualAppointment;
             doctorExaminationsForm.Show();
         }
 

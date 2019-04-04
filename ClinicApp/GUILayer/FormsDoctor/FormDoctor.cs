@@ -47,7 +47,7 @@ namespace GUILayer
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
-        {
+        {          
             dataGridViewPatients.Columns.Clear();
             BusinessLayer.DoctorAppointment searchParams = new BusinessLayer.DoctorAppointment()
             {

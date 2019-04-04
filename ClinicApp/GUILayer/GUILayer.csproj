@@ -47,12 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormDoctorPhysExamList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormDoctorPhysExamList.Designer.cs">
-      <DependentUpon>FormDoctorPhysExamList.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormsDoctor\FormDoctorExamList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,9 +163,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormDoctorPhysExamList.resx">
-      <DependentUpon>FormDoctorPhysExamList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormsAdmin\FormAdminRetireUser.resx">
       <DependentUpon>FormAdminRetireUser.cs</DependentUpon>
     </EmbeddedResource>

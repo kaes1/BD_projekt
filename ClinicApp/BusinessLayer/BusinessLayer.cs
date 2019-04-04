@@ -102,6 +102,13 @@ namespace BusinessLayer
         public string Name { get; set; }
     }
 
+    public class GeneralExamination
+    {
+        public DateTime orderDate { get; set; }
+        public string examName { get; set; }
+        public string state { get; set; }
+    }
+
 
     //Facade classes
     static public class LoginFacade
@@ -143,6 +150,7 @@ namespace BusinessLayer
             return result;
         }
 
+        //TODO poprawic wyszukiwanie po dacie
         public static List<DoctorAppointment> GetAppointmentsForToday(int doctorID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -163,6 +171,7 @@ namespace BusinessLayer
             return result;
         }
 
+        //TODO poprawic wyszukiwanie po dacie
         public static List<DoctorAppointment> GetSearch(DoctorAppointment searchParams, int docID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -187,6 +196,7 @@ namespace BusinessLayer
             return result;
         }
 
+        //TODO zmienic stan wizyty nad zakonczony
         public static void completeAppointment(AppointmentInformation appointment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -194,6 +204,7 @@ namespace BusinessLayer
             //change status, description and diagnosis
             //its already in appointment
         }
+        //TODO zmienic wizyte na canceled, brakuje okna do podania powodu odwolania wizyty
         public static void appointmentCanceled(AppointmentInformation actualAppointment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -249,6 +260,22 @@ namespace BusinessLayer
                           }).ToList();
             return result[0];
         }
+
+       /* public static List<string> getExaminations(String type, int appID)
+        {
+             DataClassesDataContext dc = new DataClassesDataContext();
+             if (type == "LABO")
+             {
+                 var result = (from ex in dc.LabExaminations
+                               join pro in dc.ExaminationDictionaries on ex.ExaminationDictionary equals pro.Code
+                               where ex.AppointmentID == appID
+                               & ex.DateRegistered.Day == DateTime.Now.Day
+                               & ex.DateRegistered.Month == DateTime.Now.Month
+                               & ex.DateRegistered.Year == DateTime.Now.Year
+                               & pro.Code == ex.procedure)
+                     }
+           
+        }*/
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

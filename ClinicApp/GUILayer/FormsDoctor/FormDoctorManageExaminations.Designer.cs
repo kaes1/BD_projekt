@@ -76,7 +76,7 @@
             // labelResult
             // 
             this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(204, 20);
+            this.labelResult.Location = new System.Drawing.Point(226, 23);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(48, 17);
             this.labelResult.TabIndex = 19;
@@ -84,9 +84,10 @@
             // 
             // richTextBoxResult
             // 
-            this.richTextBoxResult.Location = new System.Drawing.Point(208, 37);
+            this.richTextBoxResult.Location = new System.Drawing.Point(229, 42);
             this.richTextBoxResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBoxResult.Name = "richTextBoxResult";
+            this.richTextBoxResult.ReadOnly = true;
             this.richTextBoxResult.Size = new System.Drawing.Size(215, 216);
             this.richTextBoxResult.TabIndex = 18;
             this.richTextBoxResult.Text = "";
@@ -100,6 +101,7 @@
             this.buttonAddPhysExamination.TabIndex = 17;
             this.buttonAddPhysExamination.Text = "Add Examination";
             this.buttonAddPhysExamination.UseVisualStyleBackColor = true;
+            this.buttonAddPhysExamination.Click += new System.EventHandler(this.buttonAddPhysExamination_Click);
             // 
             // dataGridPhysExamList
             // 
@@ -114,6 +116,7 @@
             this.dataGridPhysExamList.ReadOnly = true;
             this.dataGridPhysExamList.Size = new System.Drawing.Size(194, 289);
             this.dataGridPhysExamList.TabIndex = 16;
+            this.dataGridPhysExamList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPhysExamList_CellContentClick);
             // 
             // PhysicalExamination
             // 
@@ -165,6 +168,7 @@
             this.buttonAddLabExamination.TabIndex = 17;
             this.buttonAddLabExamination.Text = "Add Test";
             this.buttonAddLabExamination.UseVisualStyleBackColor = true;
+            this.buttonAddLabExamination.Click += new System.EventHandler(this.buttonAddLabExamination_Click);
             // 
             // dataGridViewLabExamList
             // 
@@ -179,6 +183,7 @@
             this.dataGridViewLabExamList.ReadOnly = true;
             this.dataGridViewLabExamList.Size = new System.Drawing.Size(189, 289);
             this.dataGridViewLabExamList.TabIndex = 16;
+            this.dataGridViewLabExamList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLabExamList_CellContentClick);
             // 
             // LaboratoryExamination
             // 
