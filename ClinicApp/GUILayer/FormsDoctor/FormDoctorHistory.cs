@@ -12,10 +12,10 @@ namespace GUILayer.FormsDoctor
 {
     public partial class FormDoctorHistory : Form
     {
-        public Form DoctorAppointmentRef { get; set; }
-        public BusinessLayer.AppointmentInformation actualAppointment { get; set; }
-        public BusinessLayer.PatientInformation actualPatient { get; set; }
-        public BusinessLayer.DoctorInformation actualDoctor{ get; set; }
+        BusinessLayer.AppointmentInformation actualAppointment { get; set; }
+        BusinessLayer.PatientInformation actualPatient { get; set; }
+        BusinessLayer.DoctorInformation actualDoctor{ get; set; }
+        bool showAppointments = true;
 
         public FormDoctorHistory(BusinessLayer.AppointmentInformation actApp, BusinessLayer.PatientInformation actPat, BusinessLayer.DoctorInformation actDoc)
         {
@@ -23,42 +23,50 @@ namespace GUILayer.FormsDoctor
             actualAppointment = actApp;
             actualDoctor = actDoc;
             actualPatient = actPat;
-            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.ShowPatientPrevApp(actualPatient);
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
+            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)
         {
-            //TODO nie widzi formy z wizytą? why? 
-            DoctorAppointmentRef.Show();
-            this.Close();
-        }
-
-        private void buttonManageExaminations_Click(object sender, EventArgs e)
-        {
-            var doctorExaminationsForm = new FormsDoctor.FormDoctorManageExaminations(actualAppointment, actualPatient, actualDoctor);
-            doctorExaminationsForm.DoctorAppointmentRef = DoctorAppointmentRef;
-            doctorExaminationsForm.Show();
+            DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void buttonPreviousExaminations_Click(object sender, EventArgs e)
         {
-
+            //TODO show examinations
+            showAppointments = false;
         }
 
         private void dataGridViewAppoinmentsExaminations_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO on click update result box
+            if (showAppointments == true)
+            {
+                int appID = (int)dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[0].Value;
+                BusinessLayer.AppointmentInformation app = BusinessLayer.DoctorFacade.GetAppointmentByID(appID);
+                richTextBoxResultDescription.Text = app.Description;
+            }
+            else
+            {
+              //  String examResult = BusinessLayer.DoctorFacade.GetExamResultById(dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[0].Value);
+               // richTextBoxResultDescription.Text = app.Description;
+            }
         }
 
-        private void buttonPreviousRegistry_Click(object sender, EventArgs e)
+        private void buttonPreviousAppointments_Click(object sender, EventArgs e)
         {
-            //TODO check actual selected app and show previous
-        }
-
-        private void buttonNextRegistry_Click(object sender, EventArgs e)
-        {
-            //TODO check actual selected app and show next
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
+            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
+            showAppointments = true;
         }
     }
 }

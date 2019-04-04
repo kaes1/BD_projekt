@@ -33,8 +33,6 @@
             this.labelSearchByID = new System.Windows.Forms.Label();
             this.textBoxExamID = new System.Windows.Forms.TextBox();
             this.dataGridViewExamList = new System.Windows.Forms.DataGridView();
-            this.ProcedureID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProcedureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelSearchByName = new System.Windows.Forms.Label();
             this.textBoxExamName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExamList)).BeginInit();
@@ -81,28 +79,13 @@
             // dataGridViewExamList
             // 
             this.dataGridViewExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewExamList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProcedureID,
-            this.ProcedureName});
             this.dataGridViewExamList.Location = new System.Drawing.Point(12, 71);
+            this.dataGridViewExamList.MultiSelect = false;
             this.dataGridViewExamList.Name = "dataGridViewExamList";
             this.dataGridViewExamList.RowTemplate.Height = 24;
+            this.dataGridViewExamList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewExamList.Size = new System.Drawing.Size(342, 414);
             this.dataGridViewExamList.TabIndex = 34;
-            // 
-            // ProcedureID
-            // 
-            this.ProcedureID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ProcedureID.HeaderText = "Procedure ID";
-            this.ProcedureID.Name = "ProcedureID";
-            this.ProcedureID.ReadOnly = true;
-            // 
-            // ProcedureName
-            // 
-            this.ProcedureName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ProcedureName.HeaderText = "Procedure name";
-            this.ProcedureName.Name = "ProcedureName";
-            this.ProcedureName.ReadOnly = true;
             // 
             // labelSearchByName
             // 
@@ -149,8 +132,6 @@
         private System.Windows.Forms.Label labelSearchByID;
         private System.Windows.Forms.TextBox textBoxExamID;
         private System.Windows.Forms.DataGridView dataGridViewExamList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProcedureID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProcedureName;
         private System.Windows.Forms.Label labelSearchByName;
         private System.Windows.Forms.TextBox textBoxExamName;
     }

@@ -12,14 +12,32 @@ namespace GUILayer
 {
     public partial class FormDoctorPhysExam : Form
     {
-        public FormDoctorPhysExam()
+        BusinessLayer.AppointmentInformation actApp;
+        BusinessLayer.ExaminationDictionaryInformation selectedExam;
+        public FormDoctorPhysExam(BusinessLayer.AppointmentInformation app)
         {
             InitializeComponent();
+            actApp = app;
         }
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (textBoxChoosenExamination.Text != "")
+            {
+                if (richTextBoxResult.Text == "")
+                {
+                    MessageBox.Show("You need to write down the examination result.");
+                }
+                else
+                {
+                    BusinessLayer.DoctorFacade.AddPhysExamination(actApp.AppointmentID, selectedExam.Code, richTextBoxResult.Text);
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Select examination or cancel selection.");
+            }
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -33,7 +51,8 @@ namespace GUILayer
             DialogResult res = examList.ShowDialog(this);
             if (res == DialogResult.OK)
             {
-
+                selectedExam = examList.selectedExam;
+                textBoxChoosenExamination.Text = selectedExam.Name;
             }
         }
     }

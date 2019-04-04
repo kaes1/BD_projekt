@@ -178,6 +178,9 @@
     <EmbeddedResource Include="FormsDoctor\FormDoctor.resx">
       <DependentUpon>FormDoctor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorAppCancelled.resx">
+      <DependentUpon>FormDoctorAppCancelled.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsDoctor\FormDoctorExamList.resx">
       <DependentUpon>FormDoctorExamList.cs</DependentUpon>
     </EmbeddedResource>
