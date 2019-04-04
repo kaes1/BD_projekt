@@ -16,5 +16,15 @@ namespace GUILayer.FormsDoctor
         {
             InitializeComponent();
         }
+
+        private void buttonAccept_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

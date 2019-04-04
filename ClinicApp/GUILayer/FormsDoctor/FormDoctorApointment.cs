@@ -49,29 +49,38 @@ namespace GUILayer
 
         private void buttonAddPhysExamination_Click(object sender, EventArgs e)
         {
-            var PhysExamForm = new FormDoctorPhysExam();
+            var PhysExamForm = new FormDoctorPhysExam(actualAppointment);
             PhysExamForm.Show();
         }
 
         private void buttonAddLabTest_Click(object sender, EventArgs e)
         {
-            var LabTestForm = new FormsDoctor.FormDoctorLabTest();
+            var LabTestForm = new FormsDoctor.FormDoctorLabTest(actualAppointment);
             LabTestForm.Show();
         }
 
         private void buttonPatientHistory_Click(object sender, EventArgs e)
         {
-            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory(actualAppointment,actualPatient,actualDoctor);
-            doctorHistoryForm.Show();
-            this.Close();
+            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory(actualAppointment, actualPatient, actualDoctor);
+            this.Hide();
+            DialogResult res = doctorHistoryForm.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+
+            }
+            this.Show();
         }
 
         private void buttonManageExaminations_Click(object sender, EventArgs e)
         {
-            this.Hide();
             var doctorExaminationsForm = new FormsDoctor.FormDoctorManageExaminations(actualAppointment, actualPatient, actualDoctor);
-            doctorExaminationsForm.DoctorAppointmentRef = this;
-            doctorExaminationsForm.Show();
+            this.Hide();
+            DialogResult res = doctorExaminationsForm.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+
+            }
+            this.Show();
         }
 
         private void buttonBeginAppointment_Click(object sender, EventArgs e)
@@ -107,20 +116,23 @@ namespace GUILayer
 
         private void buttonCancelAppointment_Click(object sender, EventArgs e)
         {
-            BusinessLayer.DoctorFacade.appointmentCanceled(actualAppointment);
-            FormsDoctor.FormDoctorAppCancelled formCancelled = new FormsDoctor.FormDoctorAppCancelled();
-            formCancelled.Show();
-            this.Close();
+            FormsDoctor.FormDoctorAppCancelled appCancp = new FormsDoctor.FormDoctorAppCancelled();
+            DialogResult res = appCancp.ShowDialog(this);
+            if (res == DialogResult.OK)
+            {
+
+            }
+            this.Show();
         }
 
         private void richTextBoxDescription_TextChanged(object sender, EventArgs e)
         {
-            //TODO ZAPISZ ZMIANE TEKSTU DO BD
+            BusinessLayer.DoctorFacade.updateDescription(actualAppointment, richTextBoxDescription.Text);
         }
 
         private void richTextBoxDiagnosis_TextChanged(object sender, EventArgs e)
         {
-            //TODO ZAPISZ ZMNIANE TEKSTU DO BD
+            BusinessLayer.DoctorFacade.updateDiagnosis(actualAppointment, richTextBoxDiagnosis.Text);
         }
     }
 }

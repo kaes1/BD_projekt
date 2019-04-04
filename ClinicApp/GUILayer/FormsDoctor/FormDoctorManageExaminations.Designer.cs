@@ -46,7 +46,6 @@
             this.labelFisrtName = new System.Windows.Forms.Label();
             this.labelLastName = new System.Windows.Forms.Label();
             this.groupBoxControls = new System.Windows.Forms.GroupBox();
-            this.buttonPatientHistory = new System.Windows.Forms.Button();
             this.buttonBackToAppointment = new System.Windows.Forms.Button();
             this.groupBoxPhysicalExaminations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPhysExamList)).BeginInit();
@@ -243,27 +242,15 @@
             // 
             // groupBoxControls
             // 
-            this.groupBoxControls.Controls.Add(this.buttonPatientHistory);
             this.groupBoxControls.Controls.Add(this.buttonBackToAppointment);
             this.groupBoxControls.Location = new System.Drawing.Point(900, 96);
             this.groupBoxControls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxControls.Name = "groupBoxControls";
             this.groupBoxControls.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxControls.Size = new System.Drawing.Size(196, 123);
+            this.groupBoxControls.Size = new System.Drawing.Size(196, 75);
             this.groupBoxControls.TabIndex = 27;
             this.groupBoxControls.TabStop = false;
             this.groupBoxControls.Text = "Menu";
-            // 
-            // buttonPatientHistory
-            // 
-            this.buttonPatientHistory.Location = new System.Drawing.Point(6, 70);
-            this.buttonPatientHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonPatientHistory.Name = "buttonPatientHistory";
-            this.buttonPatientHistory.Size = new System.Drawing.Size(184, 41);
-            this.buttonPatientHistory.TabIndex = 27;
-            this.buttonPatientHistory.Text = "Patient history";
-            this.buttonPatientHistory.UseVisualStyleBackColor = true;
-            this.buttonPatientHistory.Click += new System.EventHandler(this.buttonPatientHistory_Click);
             // 
             // buttonBackToAppointment
             // 
@@ -320,7 +307,6 @@
         private System.Windows.Forms.Label labelFisrtName;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.GroupBox groupBoxControls;
-        private System.Windows.Forms.Button buttonPatientHistory;
         private System.Windows.Forms.Button buttonBackToAppointment;
     }
 }

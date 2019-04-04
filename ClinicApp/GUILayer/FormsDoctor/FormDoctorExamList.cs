@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace GUILayer.FormsDoctor
 {
+    
     public partial class FormDoctorExamList : Form
     {
+        public BusinessLayer.ExaminationDictionaryInformation selectedExam = new BusinessLayer.ExaminationDictionaryInformation();
         String type;
         public FormDoctorExamList(String tp)
         {
@@ -25,26 +27,59 @@ namespace GUILayer.FormsDoctor
             {
                 dataGridViewExamList.DataSource = BusinessLayer.DoctorFacade.GetLabExam(textBoxExamName.Text, textBoxExamID.Text);
             }
+            dataGridViewExamList.AutoGenerateColumns = false;
+            dataGridViewExamList.Columns.Remove("Type");
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
-            //TODO
+            selectedExam.Code = dataGridViewExamList.SelectedRows[0].Cells[0].Value.ToString();
+            selectedExam.Name = dataGridViewExamList.SelectedRows[0].Cells[1].Value.ToString();
+            selectedExam.Type = type[0];
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void textBoxExamName_TextChanged(object sender, EventArgs e)
         {
-            //TODO
+            dataGridViewExamList.AutoGenerateColumns = true;
+            var pattern = new BusinessLayer.ExaminationDictionaryInformation();
+            pattern.Code = textBoxExamID.Text;
+            pattern.Name = textBoxExamName.Text;
+            if(type == "P")
+            {
+                dataGridViewExamList.DataSource = BusinessLayer.DoctorFacade.GetDictPhysExams(pattern);
+            }
+            else if(type == "L")
+            {
+                dataGridViewExamList.DataSource = BusinessLayer.DoctorFacade.GetDictLabExams(pattern);
+            }
+            dataGridViewExamList.AutoGenerateColumns = false;
+            dataGridViewExamList.Columns.Remove("Type");
         }
 
         private void textBoxExamID_TextChanged(object sender, EventArgs e)
         {
-            //TODO
+            dataGridViewExamList.AutoGenerateColumns = true;
+            var pattern = new BusinessLayer.ExaminationDictionaryInformation();
+            pattern.Code = textBoxExamID.Text;
+            pattern.Name = textBoxExamName.Text;
+            if (type == "P")
+            {
+                dataGridViewExamList.DataSource = BusinessLayer.DoctorFacade.GetDictPhysExams(pattern);
+            }
+            else if (type == "L")
+            {
+                dataGridViewExamList.DataSource = BusinessLayer.DoctorFacade.GetDictLabExams(pattern);
+            }
+            dataGridViewExamList.AutoGenerateColumns = false;
+            dataGridViewExamList.Columns.Remove("Type");
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            //TODO
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

@@ -22,9 +22,11 @@ namespace GUILayer.FormsDoctor
             InitializeComponent();
             actualAppointment = actApp;
             actualDoctor = actDoc;
-            actualAppointment = actualAppointment;
-            dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysLabExam(actualAppointment);
-            dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysPhysExam(actualAppointment);
+            actualPatient = actPat;
+            textBoxFirstName.Text = actualPatient.FirstName;
+            textBoxLastName.Text = actualPatient.LastName;
+            dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysPhysExam(actualAppointment);
+            dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysLabExam(actualAppointment);
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)
@@ -55,22 +57,22 @@ namespace GUILayer.FormsDoctor
         //open news window for respond
         private void buttonAddPhysExamination_Click(object sender, EventArgs e)
         {
-            FormDoctorPhysExam formNewPhysExam = new FormDoctorPhysExam();
+            FormDoctorPhysExam formNewPhysExam = new FormDoctorPhysExam(actualAppointment);
             DialogResult res = formNewPhysExam.ShowDialog(this);
             if (res == DialogResult.OK)
             {
-                
+                dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysPhysExam(actualAppointment);
             }
         }
 
         //opens new window for respond
         private void buttonAddLabExamination_Click(object sender, EventArgs e)
         {
-            FormDoctorPhysExam formNewPhysExam = new FormDoctorPhysExam();
-            DialogResult res = formNewPhysExam.ShowDialog(this);
+            FormDoctorLabTest formNewLabExam = new FormDoctorLabTest(actualAppointment);
+            DialogResult res = formNewLabExam.ShowDialog(this);
             if (res == DialogResult.OK)
             {
-
+                dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysLabExam(actualAppointment);
             }
         }
     }

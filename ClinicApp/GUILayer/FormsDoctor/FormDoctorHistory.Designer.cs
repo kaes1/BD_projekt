@@ -30,7 +30,6 @@
         {
             this.groupBoxPreviousComments = new System.Windows.Forms.GroupBox();
             this.groupBoxControls = new System.Windows.Forms.GroupBox();
-            this.buttonManageExaminations = new System.Windows.Forms.Button();
             this.buttonPreviousExaminations = new System.Windows.Forms.Button();
             this.buttonBackToAppointment = new System.Windows.Forms.Button();
             this.buttonPreviousAppointments = new System.Windows.Forms.Button();
@@ -72,61 +71,50 @@
             // 
             // groupBoxControls
             // 
-            this.groupBoxControls.Controls.Add(this.buttonManageExaminations);
             this.groupBoxControls.Controls.Add(this.buttonPreviousExaminations);
             this.groupBoxControls.Controls.Add(this.buttonBackToAppointment);
             this.groupBoxControls.Controls.Add(this.buttonPreviousAppointments);
-            this.groupBoxControls.Location = new System.Drawing.Point(610, 21);
+            this.groupBoxControls.Location = new System.Drawing.Point(610, 46);
             this.groupBoxControls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxControls.Name = "groupBoxControls";
             this.groupBoxControls.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxControls.Size = new System.Drawing.Size(196, 226);
+            this.groupBoxControls.Size = new System.Drawing.Size(196, 174);
             this.groupBoxControls.TabIndex = 28;
             this.groupBoxControls.TabStop = false;
             this.groupBoxControls.Text = "Menu";
             // 
-            // buttonManageExaminations
-            // 
-            this.buttonManageExaminations.Location = new System.Drawing.Point(6, 70);
-            this.buttonManageExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonManageExaminations.Name = "buttonManageExaminations";
-            this.buttonManageExaminations.Size = new System.Drawing.Size(184, 41);
-            this.buttonManageExaminations.TabIndex = 29;
-            this.buttonManageExaminations.Text = "Manage examinations";
-            this.buttonManageExaminations.UseVisualStyleBackColor = true;
-            this.buttonManageExaminations.Click += new System.EventHandler(this.buttonManageExaminations_Click);
-            // 
             // buttonPreviousExaminations
             // 
-            this.buttonPreviousExaminations.Location = new System.Drawing.Point(6, 170);
+            this.buttonPreviousExaminations.Location = new System.Drawing.Point(6, 71);
             this.buttonPreviousExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonPreviousExaminations.Name = "buttonPreviousExaminations";
             this.buttonPreviousExaminations.Size = new System.Drawing.Size(184, 41);
             this.buttonPreviousExaminations.TabIndex = 28;
-            this.buttonPreviousExaminations.Text = "Previous examinations";
+            this.buttonPreviousExaminations.Text = "Examinations";
             this.buttonPreviousExaminations.UseVisualStyleBackColor = true;
             this.buttonPreviousExaminations.Click += new System.EventHandler(this.buttonPreviousExaminations_Click);
             // 
             // buttonBackToAppointment
             // 
-            this.buttonBackToAppointment.Location = new System.Drawing.Point(6, 20);
+            this.buttonBackToAppointment.Location = new System.Drawing.Point(6, 121);
             this.buttonBackToAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBackToAppointment.Name = "buttonBackToAppointment";
             this.buttonBackToAppointment.Size = new System.Drawing.Size(184, 41);
             this.buttonBackToAppointment.TabIndex = 1;
-            this.buttonBackToAppointment.Text = "Back to appointment";
+            this.buttonBackToAppointment.Text = "Back";
             this.buttonBackToAppointment.UseVisualStyleBackColor = true;
             this.buttonBackToAppointment.Click += new System.EventHandler(this.buttonBackToAppointment_Click);
             // 
             // buttonPreviousAppointments
             // 
-            this.buttonPreviousAppointments.Location = new System.Drawing.Point(6, 120);
+            this.buttonPreviousAppointments.Location = new System.Drawing.Point(6, 21);
             this.buttonPreviousAppointments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonPreviousAppointments.Name = "buttonPreviousAppointments";
             this.buttonPreviousAppointments.Size = new System.Drawing.Size(184, 41);
             this.buttonPreviousAppointments.TabIndex = 27;
-            this.buttonPreviousAppointments.Text = "Previous appointments";
+            this.buttonPreviousAppointments.Text = "Appointments";
             this.buttonPreviousAppointments.UseVisualStyleBackColor = true;
+            this.buttonPreviousAppointments.Click += new System.EventHandler(this.buttonPreviousAppointments_Click);
             // 
             // labelResultDescription
             // 
@@ -292,7 +280,6 @@
         private System.Windows.Forms.GroupBox groupBoxControls;
         private System.Windows.Forms.Button buttonPreviousAppointments;
         private System.Windows.Forms.Button buttonBackToAppointment;
-        private System.Windows.Forms.Button buttonManageExaminations;
         private System.Windows.Forms.Button buttonPreviousExaminations;
         private System.Windows.Forms.GroupBox groupBoxPatient;
         private System.Windows.Forms.TextBox textBoxLastName;
