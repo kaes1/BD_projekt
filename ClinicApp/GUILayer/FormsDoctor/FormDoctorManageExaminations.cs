@@ -41,13 +41,17 @@ namespace GUILayer.FormsDoctor
         //display selected PHISICAL examination's description
         private void dataGridPhysExamList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            int examID = (int)dataGridPhysExamList.SelectedRows[0].Cells["ExaminationID"].Value;
+            BusinessLayer.PhysicalExaminationInformation exam = BusinessLayer.DoctorFacade.GetPhysicalExamination(examID);
+            richTextBoxResult.Text = exam.Result;
         }
 
         //display selected LABORATORY examination's description
         private void dataGridViewLabExamList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            int examID = (int)dataGridViewLabExamList.SelectedRows[0].Cells["ExaminationID"].Value;
+            BusinessLayer.LabExaminationInformation exam = BusinessLayer.DoctorFacade.GetLaboratoryExamination(examID);
+            richTextBoxCommentToLaborant.Text = exam.Result;
         }
 
         //open news window for respond

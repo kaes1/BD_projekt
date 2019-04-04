@@ -85,7 +85,6 @@ namespace GUILayer
             if (buttonBeginAppointment.Text != "End")
             {
                 //unlock buttons and change beginButton to endButton
-                buttonBeginAppointment.Enabled = false;
                 buttonBack.Enabled = false;
                 buttonCancelAppointment.Enabled = true;
                 richTextBoxDescription.Enabled = true;
@@ -99,16 +98,9 @@ namespace GUILayer
             }
             else
             {
-                //TODO ZAKONCZ WIZYTE
+                BusinessLayer.DoctorFacade.CompleteAppointment(actualAppointment);
+                this.Close();
             }
-        }
-
-        private void buttonEndAppointment_Click(object sender, EventArgs e)
-        {
-
-            actualAppointment.Diagnosis = richTextBoxDiagnosis.Text;
-            actualAppointment.Description = richTextBoxDescription.Text;
-            BusinessLayer.DoctorFacade.completeAppointment(actualAppointment);
         }
 
         private void buttonCancelAppointment_Click(object sender, EventArgs e)

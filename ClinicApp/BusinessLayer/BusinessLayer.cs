@@ -222,14 +222,18 @@ namespace BusinessLayer
         }
 
         //TODO zmienic stan wizyty nad zakonczony
-        public static void completeAppointment(AppointmentInformation appointment)
+        public static void CompleteAppointment(AppointmentInformation appointment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
-            //alter table where app == appointemnt
-            //change status, description and diagnosis
-            //its already in appointment
+            var result = (from app in dc.Appointments
+                          where
+                          app.AppointmentID == appointment.AppointmentID
+                          select app).Single();
+            result.Status = "COMP";
+            result.DateCompletedOrCanceled = DateTime.Now;
+            dc.SubmitChanges();
         }
-        //TODO zmienic wizyte na canceled, brakuje okna do podania powodu odwolania wizyty
+
         public static void appointmentCanceled(AppointmentInformation actualAppointment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -500,6 +504,42 @@ namespace BusinessLayer
                           select new AppointmentInformation
                           {
                               Description = app.Description
+                          }).Single();
+            return result;
+        }
+        public static PhysicalExaminationInformation GetPhysicalExamination(int examID)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from phys in dc.PhysicalExaminations
+                          where
+                          phys.PhysicalExaminationID == examID
+                          select new PhysicalExaminationInformation()
+                          {
+                              AppointmentID = phys.AppointmentID,
+                              Code = phys.Code,
+                              PhysicalExaminationID = phys.PhysicalExaminationID,
+                              Result = phys.Result
+                          }).Single();
+            return result;
+        }
+        public static LabExaminationInformation GetLaboratoryExamination(int examID)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from lab in dc.LabExaminations
+                          where
+                          lab.LabExaminationID == examID
+                          select new LabExaminationInformation()
+                          {
+                              AppointmentID = lab.AppointmentID,
+                              Code = lab.Code,
+                              DateApprovedOrCanceled = lab.DateApprovedOrCanceled,
+                              DateCompletedOrCanceled = lab.DateCompletedOrCanceled,
+                              DateRegistered = lab.DateRegistered,
+                              DoctorComments = lab.DoctorComments,
+                              LabExaminationID = lab.LabExaminationID,
+                              LabManagerComments = lab.LabManagerComments,
+                              Result = lab.Result,
+                              Status = lab.Status
                           }).Single();
             return result;
         }

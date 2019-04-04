@@ -225,7 +225,7 @@
             // groupBoxControls
             // 
             this.groupBoxControls.Controls.Add(this.buttonBackToAppointment);
-            this.groupBoxControls.Location = new System.Drawing.Point(323, 17);
+            this.groupBoxControls.Location = new System.Drawing.Point(563, 17);
             this.groupBoxControls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxControls.Name = "groupBoxControls";
             this.groupBoxControls.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
