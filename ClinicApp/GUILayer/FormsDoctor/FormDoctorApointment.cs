@@ -36,14 +36,11 @@ namespace GUILayer
             actualAppointment = BusinessLayer.DoctorFacade.GetActAppInfo(app);
             richTextBoxDescription.Text = actualAppointment.Description;
             richTextBoxDiagnosis.Text = actualAppointment.Diagnosis;
-                
+
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            //Show the previous form.
-            FormDoctor formDoctor = new FormDoctor(actualDoctor);
-            formDoctor.Show();
             this.Close();
         }
 
@@ -116,13 +113,18 @@ namespace GUILayer
 
         private void buttonCancelAppointment_Click(object sender, EventArgs e)
         {
-            FormsDoctor.FormDoctorAppCancelled appCancp = new FormsDoctor.FormDoctorAppCancelled();
-            DialogResult res = appCancp.ShowDialog(this);
+            FormsDoctor.FormDoctorAppCancelled appCanc = new FormsDoctor.FormDoctorAppCancelled();
+            DialogResult res = appCanc.ShowDialog(this);
             if (res == DialogResult.OK)
             {
-
+                actualAppointment.Description = appCanc.reason;
+                BusinessLayer.DoctorFacade.appointmentCanceled(actualAppointment);
+                this.Close();
             }
-            this.Show();
+            else
+            {
+                this.Show();
+            }
         }
 
         private void richTextBoxDescription_TextChanged(object sender, EventArgs e)

@@ -33,13 +33,11 @@
             this.richTextBoxResult = new System.Windows.Forms.RichTextBox();
             this.buttonAddPhysExamination = new System.Windows.Forms.Button();
             this.dataGridPhysExamList = new System.Windows.Forms.DataGridView();
-            this.PhysicalExamination = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxLabTestsList = new System.Windows.Forms.GroupBox();
             this.labelCommentToLaborant = new System.Windows.Forms.Label();
             this.richTextBoxCommentToLaborant = new System.Windows.Forms.RichTextBox();
             this.buttonAddLabExamination = new System.Windows.Forms.Button();
             this.dataGridViewLabExamList = new System.Windows.Forms.DataGridView();
-            this.LaboratoryExamination = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
@@ -65,7 +63,7 @@
             this.groupBoxPhysicalExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxPhysicalExaminations.Name = "groupBoxPhysicalExaminations";
             this.groupBoxPhysicalExaminations.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPhysicalExaminations.Size = new System.Drawing.Size(435, 323);
+            this.groupBoxPhysicalExaminations.Size = new System.Drawing.Size(747, 323);
             this.groupBoxPhysicalExaminations.TabIndex = 25;
             this.groupBoxPhysicalExaminations.TabStop = false;
             this.groupBoxPhysicalExaminations.Text = "Physical examinations";
@@ -73,7 +71,7 @@
             // labelResult
             // 
             this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(226, 23);
+            this.labelResult.Location = new System.Drawing.Point(516, 25);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(48, 17);
             this.labelResult.TabIndex = 19;
@@ -81,7 +79,7 @@
             // 
             // richTextBoxResult
             // 
-            this.richTextBoxResult.Location = new System.Drawing.Point(229, 42);
+            this.richTextBoxResult.Location = new System.Drawing.Point(519, 44);
             this.richTextBoxResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBoxResult.Name = "richTextBoxResult";
             this.richTextBoxResult.ReadOnly = true;
@@ -91,7 +89,7 @@
             // 
             // buttonAddPhysExamination
             // 
-            this.buttonAddPhysExamination.Location = new System.Drawing.Point(229, 262);
+            this.buttonAddPhysExamination.Location = new System.Drawing.Point(519, 264);
             this.buttonAddPhysExamination.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAddPhysExamination.Name = "buttonAddPhysExamination";
             this.buttonAddPhysExamination.Size = new System.Drawing.Size(177, 41);
@@ -105,22 +103,14 @@
             this.dataGridPhysExamList.AllowUserToAddRows = false;
             this.dataGridPhysExamList.AllowUserToDeleteRows = false;
             this.dataGridPhysExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPhysExamList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PhysicalExamination});
             this.dataGridPhysExamList.Location = new System.Drawing.Point(7, 22);
             this.dataGridPhysExamList.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridPhysExamList.Name = "dataGridPhysExamList";
             this.dataGridPhysExamList.ReadOnly = true;
-            this.dataGridPhysExamList.Size = new System.Drawing.Size(194, 289);
+            this.dataGridPhysExamList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridPhysExamList.Size = new System.Drawing.Size(500, 289);
             this.dataGridPhysExamList.TabIndex = 16;
             this.dataGridPhysExamList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPhysExamList_CellContentClick);
-            // 
-            // PhysicalExamination
-            // 
-            this.PhysicalExamination.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PhysicalExamination.HeaderText = "Physical examination";
-            this.PhysicalExamination.Name = "PhysicalExamination";
-            this.PhysicalExamination.ReadOnly = true;
             // 
             // groupBoxLabTestsList
             // 
@@ -128,11 +118,11 @@
             this.groupBoxLabTestsList.Controls.Add(this.richTextBoxCommentToLaborant);
             this.groupBoxLabTestsList.Controls.Add(this.buttonAddLabExamination);
             this.groupBoxLabTestsList.Controls.Add(this.dataGridViewLabExamList);
-            this.groupBoxLabTestsList.Location = new System.Drawing.Point(458, 96);
+            this.groupBoxLabTestsList.Location = new System.Drawing.Point(20, 423);
             this.groupBoxLabTestsList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxLabTestsList.Name = "groupBoxLabTestsList";
             this.groupBoxLabTestsList.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxLabTestsList.Size = new System.Drawing.Size(430, 323);
+            this.groupBoxLabTestsList.Size = new System.Drawing.Size(739, 323);
             this.groupBoxLabTestsList.TabIndex = 24;
             this.groupBoxLabTestsList.TabStop = false;
             this.groupBoxLabTestsList.Text = "Laboratory examinations";
@@ -140,7 +130,7 @@
             // labelCommentToLaborant
             // 
             this.labelCommentToLaborant.AutoSize = true;
-            this.labelCommentToLaborant.Location = new System.Drawing.Point(199, 22);
+            this.labelCommentToLaborant.Location = new System.Drawing.Point(506, 22);
             this.labelCommentToLaborant.Name = "labelCommentToLaborant";
             this.labelCommentToLaborant.Size = new System.Drawing.Size(151, 17);
             this.labelCommentToLaborant.TabIndex = 22;
@@ -148,7 +138,7 @@
             // 
             // richTextBoxCommentToLaborant
             // 
-            this.richTextBoxCommentToLaborant.Location = new System.Drawing.Point(203, 41);
+            this.richTextBoxCommentToLaborant.Location = new System.Drawing.Point(510, 41);
             this.richTextBoxCommentToLaborant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBoxCommentToLaborant.Name = "richTextBoxCommentToLaborant";
             this.richTextBoxCommentToLaborant.ReadOnly = true;
@@ -158,7 +148,7 @@
             // 
             // buttonAddLabExamination
             // 
-            this.buttonAddLabExamination.Location = new System.Drawing.Point(224, 265);
+            this.buttonAddLabExamination.Location = new System.Drawing.Point(531, 265);
             this.buttonAddLabExamination.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAddLabExamination.Name = "buttonAddLabExamination";
             this.buttonAddLabExamination.Size = new System.Drawing.Size(177, 41);
@@ -172,22 +162,14 @@
             this.dataGridViewLabExamList.AllowUserToAddRows = false;
             this.dataGridViewLabExamList.AllowUserToDeleteRows = false;
             this.dataGridViewLabExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLabExamList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.LaboratoryExamination});
             this.dataGridViewLabExamList.Location = new System.Drawing.Point(7, 22);
             this.dataGridViewLabExamList.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewLabExamList.Name = "dataGridViewLabExamList";
             this.dataGridViewLabExamList.ReadOnly = true;
-            this.dataGridViewLabExamList.Size = new System.Drawing.Size(189, 289);
+            this.dataGridViewLabExamList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewLabExamList.Size = new System.Drawing.Size(492, 289);
             this.dataGridViewLabExamList.TabIndex = 16;
             this.dataGridViewLabExamList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLabExamList_CellContentClick);
-            // 
-            // LaboratoryExamination
-            // 
-            this.LaboratoryExamination.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LaboratoryExamination.HeaderText = "Laboratory examination";
-            this.LaboratoryExamination.Name = "LaboratoryExamination";
-            this.LaboratoryExamination.ReadOnly = true;
             // 
             // groupBoxPatient
             // 
@@ -243,7 +225,7 @@
             // groupBoxControls
             // 
             this.groupBoxControls.Controls.Add(this.buttonBackToAppointment);
-            this.groupBoxControls.Location = new System.Drawing.Point(900, 96);
+            this.groupBoxControls.Location = new System.Drawing.Point(323, 17);
             this.groupBoxControls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxControls.Name = "groupBoxControls";
             this.groupBoxControls.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -267,7 +249,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1108, 443);
+            this.ClientSize = new System.Drawing.Size(782, 759);
             this.Controls.Add(this.groupBoxControls);
             this.Controls.Add(this.groupBoxPatient);
             this.Controls.Add(this.groupBoxPhysicalExaminations);
@@ -294,13 +276,11 @@
         private System.Windows.Forms.RichTextBox richTextBoxResult;
         private System.Windows.Forms.Button buttonAddPhysExamination;
         private System.Windows.Forms.DataGridView dataGridPhysExamList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhysicalExamination;
         private System.Windows.Forms.GroupBox groupBoxLabTestsList;
         private System.Windows.Forms.Label labelCommentToLaborant;
         private System.Windows.Forms.RichTextBox richTextBoxCommentToLaborant;
         private System.Windows.Forms.Button buttonAddLabExamination;
         private System.Windows.Forms.DataGridView dataGridViewLabExamList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LaboratoryExamination;
         private System.Windows.Forms.GroupBox groupBoxPatient;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;

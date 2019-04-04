@@ -12,7 +12,6 @@ namespace GUILayer.FormsDoctor
 {
     public partial class FormDoctorManageExaminations : Form
     {
-        public Form DoctorAppointmentRef { get; set; }
         public BusinessLayer.AppointmentInformation actualAppointment { get; set; }
         public BusinessLayer.PatientInformation actualPatient { get; set; }
         public BusinessLayer.DoctorInformation actualDoctor{ get; set; }
@@ -27,20 +26,17 @@ namespace GUILayer.FormsDoctor
             textBoxLastName.Text = actualPatient.LastName;
             dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysPhysExam(actualAppointment);
             dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysLabExam(actualAppointment);
+            dataGridPhysExamList.Columns["ExaminationID"].Visible = false;
+            dataGridPhysExamList.Columns["Comment"].Visible = false;
+            dataGridViewLabExamList.Columns["ExaminationID"].Visible = false;
+            dataGridViewLabExamList.Columns["Comment"].Visible = false;
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)
         {
-            DoctorAppointmentRef.Show();
             this.Close();
         }
 
-        private void buttonPatientHistory_Click(object sender, EventArgs e)
-        {
-            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory(actualAppointment, actualPatient, actualDoctor);
-            doctorHistoryForm.Show();
-            this.Close();
-        }
 
         //display selected PHISICAL examination's description
         private void dataGridPhysExamList_CellContentClick(object sender, DataGridViewCellEventArgs e)

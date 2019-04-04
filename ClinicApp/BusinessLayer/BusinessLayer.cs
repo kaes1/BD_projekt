@@ -195,7 +195,29 @@ namespace BusinessLayer
                               PatientPesel = pt.PESEL,
                               Status = app.Status,
                           }
-                          ).OrderBy(x => x.DateOfAppointment).ToList();
+                          ).OrderByDescending(x => x.DateOfAppointment).ToList();
+            return result;
+        }
+        public static List<DoctorAppointment> GetSearchWithoutDate(DoctorAppointment searchParams, int doctorID)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          join pt in dc.Patients on app.PatientID equals pt.PatientID
+                          where
+                          app.DoctorID == doctorID
+                          & pt.FirstName.StartsWith(searchParams.PatientFirstName)
+                          & pt.LastName.StartsWith(searchParams.PatientLastName)
+                          & pt.PESEL.StartsWith(searchParams.PatientPesel)
+                          & app.Status.StartsWith(searchParams.Status)
+                          select new DoctorAppointment
+                          {
+                              DateOfAppointment = app.DateRegistered,
+                              PatientFirstName = pt.FirstName,
+                              PatientLastName = pt.LastName,
+                              PatientPesel = pt.PESEL,
+                              Status = app.Status,
+                          }
+                          ).OrderByDescending(x => x.DateOfAppointment).ToList();
             return result;
         }
 
@@ -211,19 +233,12 @@ namespace BusinessLayer
         public static void appointmentCanceled(AppointmentInformation actualAppointment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
-            Appointment app = new Appointment()
-            {
-                AppointmentID = actualAppointment.AppointmentID,
-                DoctorID = actualAppointment.DoctorID,
-                PatientID = actualAppointment.PatientID,
-                ReceptionistID = actualAppointment.ReceptionistID,
-                Description = actualAppointment.Description,
-                Diagnosis = actualAppointment.Diagnosis,
-                Status = "CANC",
-                DateRegistered = actualAppointment.DateRegistered,
-                DateCompletedOrCanceled = DateTime.Today
-            };
-            dc.Appointments.InsertOnSubmit(app);
+            var result = (from app in dc.Appointments
+                          where app.AppointmentID == actualAppointment.AppointmentID
+                          select app).Single();
+            result.DateCompletedOrCanceled = DateTime.Now;
+            result.Description = actualAppointment.Description;
+            result.Status = "CANC";
             dc.SubmitChanges();
         }
 
@@ -476,6 +491,17 @@ namespace BusinessLayer
             };
             dc.LabExaminations.InsertOnSubmit(lab);
             dc.SubmitChanges();
+        }
+        public static AppointmentInformation GetAppointmentByID(int appID)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          where app.AppointmentID == appID
+                          select new AppointmentInformation
+                          {
+                              Description = app.Description
+                          }).Single();
+            return result;
         }
     }
 

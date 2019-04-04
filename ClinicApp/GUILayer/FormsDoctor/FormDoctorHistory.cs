@@ -23,7 +23,12 @@ namespace GUILayer.FormsDoctor
             actualAppointment = actApp;
             actualDoctor = actDoc;
             actualPatient = actPat;
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
             dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)
@@ -40,22 +45,27 @@ namespace GUILayer.FormsDoctor
 
         private void dataGridViewAppoinmentsExaminations_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO on click update result box
-        }
-
-        private void buttonPreviousRegistry_Click(object sender, EventArgs e)
-        {
-            //TODO check actual selected app and show previous
-        }
-
-        private void buttonNextRegistry_Click(object sender, EventArgs e)
-        {
-            //TODO check actual selected app and show next
+            if (showAppointments == true)
+            {
+                int appID = (int)dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[0].Value;
+                BusinessLayer.AppointmentInformation app = BusinessLayer.DoctorFacade.GetAppointmentByID(appID);
+                richTextBoxResultDescription.Text = app.Description;
+            }
+            else
+            {
+              //  String examResult = BusinessLayer.DoctorFacade.GetExamResultById(dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[0].Value);
+               // richTextBoxResultDescription.Text = app.Description;
+            }
         }
 
         private void buttonPreviousAppointments_Click(object sender, EventArgs e)
         {
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
             dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
             showAppointments = true;
         }
     }
