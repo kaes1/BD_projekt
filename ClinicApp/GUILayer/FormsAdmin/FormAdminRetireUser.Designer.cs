@@ -183,7 +183,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonRetireUser);
             this.Controls.Add(this.labelPanelName);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormAdminRetireUser";
             this.Text = "FormAdminRetireUser";
             this.groupBoxUser.ResumeLayout(false);

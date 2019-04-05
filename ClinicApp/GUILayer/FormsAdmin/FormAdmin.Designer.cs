@@ -37,6 +37,8 @@
             this.DateRetired = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonNewUser = new System.Windows.Forms.Button();
             this.groupBoxSearch = new System.Windows.Forms.GroupBox();
+            this.labelDateRetired = new System.Windows.Forms.Label();
+            this.dateTimePickerDateRetired = new System.Windows.Forms.DateTimePicker();
             this.comboBoxRole = new System.Windows.Forms.ComboBox();
             this.labelRole = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
@@ -75,6 +77,7 @@
             this.dataGridViewUsers.Location = new System.Drawing.Point(12, 168);
             this.dataGridViewUsers.Name = "dataGridViewUsers";
             this.dataGridViewUsers.ReadOnly = true;
+            this.dataGridViewUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewUsers.Size = new System.Drawing.Size(503, 213);
             this.dataGridViewUsers.TabIndex = 1;
             // 
@@ -83,37 +86,41 @@
             this.UserID.HeaderText = "UserID";
             this.UserID.Name = "UserID";
             this.UserID.ReadOnly = true;
-            this.UserID.Width = 60;
+            this.UserID.Width = 55;
             // 
             // Username
             // 
             this.Username.HeaderText = "Username";
             this.Username.Name = "Username";
             this.Username.ReadOnly = true;
+            this.Username.Width = 120;
             // 
             // Hashcode
             // 
             this.Hashcode.HeaderText = "Hashcode";
             this.Hashcode.Name = "Hashcode";
             this.Hashcode.ReadOnly = true;
+            this.Hashcode.Width = 125;
             // 
             // Role
             // 
             this.Role.HeaderText = "Role";
             this.Role.Name = "Role";
             this.Role.ReadOnly = true;
+            this.Role.Width = 50;
             // 
             // DateRetired
             // 
             this.DateRetired.HeaderText = "DateRetired";
             this.DateRetired.Name = "DateRetired";
             this.DateRetired.ReadOnly = true;
+            this.DateRetired.Width = 110;
             // 
             // buttonNewUser
             // 
             this.buttonNewUser.Location = new System.Drawing.Point(560, 194);
             this.buttonNewUser.Name = "buttonNewUser";
-            this.buttonNewUser.Size = new System.Drawing.Size(116, 23);
+            this.buttonNewUser.Size = new System.Drawing.Size(120, 23);
             this.buttonNewUser.TabIndex = 2;
             this.buttonNewUser.Text = "New User";
             this.buttonNewUser.UseVisualStyleBackColor = true;
@@ -121,6 +128,8 @@
             // 
             // groupBoxSearch
             // 
+            this.groupBoxSearch.Controls.Add(this.labelDateRetired);
+            this.groupBoxSearch.Controls.Add(this.dateTimePickerDateRetired);
             this.groupBoxSearch.Controls.Add(this.comboBoxRole);
             this.groupBoxSearch.Controls.Add(this.labelRole);
             this.groupBoxSearch.Controls.Add(this.labelUsername);
@@ -130,10 +139,30 @@
             this.groupBoxSearch.Controls.Add(this.buttonSearch);
             this.groupBoxSearch.Location = new System.Drawing.Point(12, 61);
             this.groupBoxSearch.Name = "groupBoxSearch";
-            this.groupBoxSearch.Size = new System.Drawing.Size(705, 89);
+            this.groupBoxSearch.Size = new System.Drawing.Size(698, 89);
             this.groupBoxSearch.TabIndex = 4;
             this.groupBoxSearch.TabStop = false;
             this.groupBoxSearch.Text = "Search";
+            // 
+            // labelDateRetired
+            // 
+            this.labelDateRetired.AutoSize = true;
+            this.labelDateRetired.Location = new System.Drawing.Point(400, 27);
+            this.labelDateRetired.Name = "labelDateRetired";
+            this.labelDateRetired.Size = new System.Drawing.Size(64, 13);
+            this.labelDateRetired.TabIndex = 19;
+            this.labelDateRetired.Text = "DateRetired";
+            // 
+            // dateTimePickerDateRetired
+            // 
+            this.dateTimePickerDateRetired.Checked = false;
+            this.dateTimePickerDateRetired.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDateRetired.Location = new System.Drawing.Point(403, 43);
+            this.dateTimePickerDateRetired.Name = "dateTimePickerDateRetired";
+            this.dateTimePickerDateRetired.ShowCheckBox = true;
+            this.dateTimePickerDateRetired.Size = new System.Drawing.Size(100, 20);
+            this.dateTimePickerDateRetired.TabIndex = 18;
+            this.dateTimePickerDateRetired.Value = new System.DateTime(2019, 4, 5, 19, 12, 43, 0);
             // 
             // comboBoxRole
             // 
@@ -145,7 +174,7 @@
             "TEC",
             "MAN",
             "ADM"});
-            this.comboBoxRole.Location = new System.Drawing.Point(353, 41);
+            this.comboBoxRole.Location = new System.Drawing.Point(274, 42);
             this.comboBoxRole.Name = "comboBoxRole";
             this.comboBoxRole.Size = new System.Drawing.Size(100, 21);
             this.comboBoxRole.TabIndex = 17;
@@ -153,7 +182,7 @@
             // labelRole
             // 
             this.labelRole.AutoSize = true;
-            this.labelRole.Location = new System.Drawing.Point(350, 26);
+            this.labelRole.Location = new System.Drawing.Point(271, 27);
             this.labelRole.Name = "labelRole";
             this.labelRole.Size = new System.Drawing.Size(29, 13);
             this.labelRole.TabIndex = 8;
@@ -162,7 +191,7 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(194, 26);
+            this.labelUsername.Location = new System.Drawing.Point(142, 27);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(55, 13);
             this.labelUsername.TabIndex = 7;
@@ -171,7 +200,7 @@
             // labelUserID
             // 
             this.labelUserID.AutoSize = true;
-            this.labelUserID.Location = new System.Drawing.Point(41, 26);
+            this.labelUserID.Location = new System.Drawing.Point(13, 27);
             this.labelUserID.Name = "labelUserID";
             this.labelUserID.Size = new System.Drawing.Size(40, 13);
             this.labelUserID.TabIndex = 6;
@@ -179,21 +208,21 @@
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(197, 42);
+            this.textBoxUsername.Location = new System.Drawing.Point(145, 43);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(100, 20);
             this.textBoxUsername.TabIndex = 4;
             // 
             // textBoxUserID
             // 
-            this.textBoxUserID.Location = new System.Drawing.Point(44, 42);
+            this.textBoxUserID.Location = new System.Drawing.Point(16, 43);
             this.textBoxUserID.Name = "textBoxUserID";
             this.textBoxUserID.Size = new System.Drawing.Size(100, 20);
             this.textBoxUserID.TabIndex = 3;
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(544, 39);
+            this.buttonSearch.Location = new System.Drawing.Point(548, 40);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(120, 23);
             this.buttonSearch.TabIndex = 2;
@@ -205,7 +234,7 @@
             // 
             this.buttonChangePassword.Location = new System.Drawing.Point(560, 246);
             this.buttonChangePassword.Name = "buttonChangePassword";
-            this.buttonChangePassword.Size = new System.Drawing.Size(116, 23);
+            this.buttonChangePassword.Size = new System.Drawing.Size(120, 23);
             this.buttonChangePassword.TabIndex = 5;
             this.buttonChangePassword.Text = "Change Password";
             this.buttonChangePassword.UseVisualStyleBackColor = true;
@@ -215,7 +244,7 @@
             // 
             this.buttonRetireUser.Location = new System.Drawing.Point(560, 297);
             this.buttonRetireUser.Name = "buttonRetireUser";
-            this.buttonRetireUser.Size = new System.Drawing.Size(116, 23);
+            this.buttonRetireUser.Size = new System.Drawing.Size(120, 23);
             this.buttonRetireUser.TabIndex = 6;
             this.buttonRetireUser.Text = "Retire User";
             this.buttonRetireUser.UseVisualStyleBackColor = true;
@@ -225,7 +254,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 393);
+            this.ClientSize = new System.Drawing.Size(722, 393);
             this.Controls.Add(this.buttonRetireUser);
             this.Controls.Add(this.buttonChangePassword);
             this.Controls.Add(this.groupBoxSearch);
@@ -247,11 +276,6 @@
 
         private System.Windows.Forms.Label labelPanelName;
         private System.Windows.Forms.DataGridView dataGridViewUsers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Hashcode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Role;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateRetired;
         private System.Windows.Forms.Button buttonNewUser;
         private System.Windows.Forms.GroupBox groupBoxSearch;
         private System.Windows.Forms.Label labelRole;
@@ -263,5 +287,12 @@
         private System.Windows.Forms.ComboBox comboBoxRole;
         private System.Windows.Forms.Button buttonChangePassword;
         private System.Windows.Forms.Button buttonRetireUser;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDateRetired;
+        private System.Windows.Forms.Label labelDateRetired;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Hashcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Role;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateRetired;
     }
 }

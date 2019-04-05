@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
@@ -13,6 +14,7 @@ namespace BusinessLayer
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Hashcode { get; set; }
+        //Should Role be an enum?
         public string Role { get; set; }
         public DateTime? DateRetired { get; set; }
     }
@@ -64,6 +66,7 @@ namespace BusinessLayer
         public int ReceptionistID { get; set; }
         public string Description { get; set; }
         public string Diagnosis { get; set; }
+        //Should Status be an enum?
         public string Status { get; set; }
         public DateTime DateRegistered { get; set; }
         public DateTime DateOfAppointment { get; set; }
@@ -91,6 +94,7 @@ namespace BusinessLayer
         public DateTime? DateCompletedOrCanceled { get; set; }
         public string LabManagerComments { get; set; }
         public DateTime? DateApprovedOrCanceled { get; set; }
+        //Should Status be an enum?
         public string Status { get; set; }
     }
 
@@ -116,11 +120,14 @@ namespace BusinessLayer
     {
         public static UserInformation GetUser(String username, String password)
         {
-            //Powinna być zamiana password na hash przez funkcje hashujaca - w bazie danych powinien byc hashcode.
-            //Do zrobienia.
+            //Generate hashcode of password.
+            var sha256 = new SHA256Managed();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            string hashcode = string.Join(string.Empty, bytes.Select(x => x.ToString("x2")));
+            //Get the user.
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from el in dc.Users
-                          where el.Username == username && el.Hashcode == password
+                          where el.Username == username && el.Hashcode == hashcode
                           select new UserInformation
                           { UserID = el.UserID ,Username = el.Username, Hashcode = el.Hashcode, Role = el.Role, DateRetired = el.DateRetired}
                           ).SingleOrDefault();
@@ -418,7 +425,7 @@ namespace BusinessLayer
                           select new PatientInformation
                           {PatientID = el.PatientID, FirstName = el.FirstName, LastName = el.LastName, PESEL = el.PESEL }
                           ).OrderBy(x => x.LastName).ToList();
-            return result;
+            return result;  
         }
 
         public class CustomAppointment
@@ -512,20 +519,120 @@ namespace BusinessLayer
         public static List<UserInformation> GetUsers(UserInformation userSearchCriteria)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
-            var result = (from el in dc.Users
+            var result = (from u in dc.Users
                           where
-                          (userSearchCriteria.UserID == 0 || el.UserID == userSearchCriteria.UserID)
+                          (userSearchCriteria.UserID == 0 || u.UserID == userSearchCriteria.UserID)
                           &&
-                          (userSearchCriteria.Username == null || el.Username.StartsWith(userSearchCriteria.Username))
+                          (userSearchCriteria.Username == null || u.Username.StartsWith(userSearchCriteria.Username))
                           &&
-                          (userSearchCriteria.Hashcode == null || el.Hashcode.StartsWith(userSearchCriteria.Hashcode))
+                          (userSearchCriteria.Hashcode == null || u.Hashcode.StartsWith(userSearchCriteria.Hashcode))
                           &&
-                          (userSearchCriteria.Role == null || el.Role.StartsWith(userSearchCriteria.Role))
+                          (userSearchCriteria.Role == null || u.Role.StartsWith(userSearchCriteria.Role))
+                          &&
+                          (userSearchCriteria.DateRetired == null || u.DateRetired.GetValueOrDefault().Date == userSearchCriteria.DateRetired)
                           select new UserInformation
-                          { UserID = el.UserID, Username = el.Username, Hashcode = el.Hashcode, Role = el.Role, DateRetired = el.DateRetired }
+                          { UserID = u.UserID, Username = u.Username, Hashcode = u.Hashcode, Role = u.Role, DateRetired = u.DateRetired }
                           ).OrderBy(x => x.UserID).ToList();
             return result;
         }
-    }
 
+        public static bool ExistsUser(string username)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from u in dc.Users
+                          where
+                          u.Username == username
+                          select u).SingleOrDefault();
+            if (result != null)
+                return true;
+            else
+                return false;
+        }
+
+        public static void ChangeUserPassword(int userID, string newPassword)
+        {
+            //Generate hashcode of password.
+            var sha256 = new SHA256Managed();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(newPassword));
+            string newHashcode = string.Join(string.Empty, bytes.Select(x => x.ToString("x2")));
+
+            //Get User from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var user = (from u in dc.Users
+                         where u.UserID == userID
+                         select u).SingleOrDefault();
+
+            //Change hashcode.
+            user.Hashcode = newHashcode;
+            dc.SubmitChanges();
+        }
+
+        public static void AddUser(string username, string password, string role, string firstName, string lastName, int PWZNumber)
+        {
+            
+            //Generate hashcode of password.
+            var sha256 = new SHA256Managed();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            string hashcode = string.Join(string.Empty, bytes.Select(x => x.ToString("x2")));
+
+            //Create new User
+            User newUser = new User()
+            {
+                Username = username.ToLower(),
+                Hashcode = hashcode,
+                Role = role,
+                DateRetired = null
+            };
+
+            DataClassesDataContext dc = new DataClassesDataContext();
+            dc.Users.InsertOnSubmit(newUser);
+
+            //Create new class based on role.
+            switch (role)
+            {
+                case "REC":
+                    Receptionist newReceptionist = new Receptionist()
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        User = newUser
+                    };
+                    dc.Receptionists.InsertOnSubmit(newReceptionist);
+                    break;
+                case "DOC":
+                    Doctor newDoctor = new Doctor()
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        User = newUser,
+                        PWZNumber = PWZNumber
+                    };
+                    dc.Doctors.InsertOnSubmit(newDoctor);
+                    break;
+                case "TEC":
+                    LabTechnician newLabTechnician = new LabTechnician()
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        User = newUser
+                    };
+                    dc.LabTechnicians.InsertOnSubmit(newLabTechnician);
+                    break;
+                case "MAN":
+                    LabManager newLabManager = new LabManager()
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        User = newUser
+                    };
+                    dc.LabManagers.InsertOnSubmit(newLabManager);
+                    break;
+                case "ADM":
+                    break;
+            }
+
+           
+            dc.SubmitChanges();
+        }
+    }
 }
