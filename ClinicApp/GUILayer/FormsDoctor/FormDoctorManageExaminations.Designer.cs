@@ -41,8 +41,6 @@
             this.dataGridViewLabExamList = new System.Windows.Forms.DataGridView();
             this.LaboratoryExamination = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
-            this.labelAge = new System.Windows.Forms.Label();
-            this.textBoxAge = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.labelFisrtName = new System.Windows.Forms.Label();
@@ -76,7 +74,7 @@
             // labelResult
             // 
             this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(204, 20);
+            this.labelResult.Location = new System.Drawing.Point(226, 23);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(48, 17);
             this.labelResult.TabIndex = 19;
@@ -84,9 +82,10 @@
             // 
             // richTextBoxResult
             // 
-            this.richTextBoxResult.Location = new System.Drawing.Point(208, 37);
+            this.richTextBoxResult.Location = new System.Drawing.Point(229, 42);
             this.richTextBoxResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBoxResult.Name = "richTextBoxResult";
+            this.richTextBoxResult.ReadOnly = true;
             this.richTextBoxResult.Size = new System.Drawing.Size(215, 216);
             this.richTextBoxResult.TabIndex = 18;
             this.richTextBoxResult.Text = "";
@@ -98,8 +97,9 @@
             this.buttonAddPhysExamination.Name = "buttonAddPhysExamination";
             this.buttonAddPhysExamination.Size = new System.Drawing.Size(177, 41);
             this.buttonAddPhysExamination.TabIndex = 17;
-            this.buttonAddPhysExamination.Text = "Add Examination";
+            this.buttonAddPhysExamination.Text = "Add Physical Examination";
             this.buttonAddPhysExamination.UseVisualStyleBackColor = true;
+            this.buttonAddPhysExamination.Click += new System.EventHandler(this.buttonAddPhysExamination_Click);
             // 
             // dataGridPhysExamList
             // 
@@ -114,6 +114,7 @@
             this.dataGridPhysExamList.ReadOnly = true;
             this.dataGridPhysExamList.Size = new System.Drawing.Size(194, 289);
             this.dataGridPhysExamList.TabIndex = 16;
+            this.dataGridPhysExamList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPhysExamList_CellContentClick);
             // 
             // PhysicalExamination
             // 
@@ -163,8 +164,9 @@
             this.buttonAddLabExamination.Name = "buttonAddLabExamination";
             this.buttonAddLabExamination.Size = new System.Drawing.Size(177, 41);
             this.buttonAddLabExamination.TabIndex = 17;
-            this.buttonAddLabExamination.Text = "Add Test";
+            this.buttonAddLabExamination.Text = "Add Lab Examination";
             this.buttonAddLabExamination.UseVisualStyleBackColor = true;
+            this.buttonAddLabExamination.Click += new System.EventHandler(this.buttonAddLabExamination_Click);
             // 
             // dataGridViewLabExamList
             // 
@@ -179,6 +181,7 @@
             this.dataGridViewLabExamList.ReadOnly = true;
             this.dataGridViewLabExamList.Size = new System.Drawing.Size(189, 289);
             this.dataGridViewLabExamList.TabIndex = 16;
+            this.dataGridViewLabExamList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLabExamList_CellContentClick);
             // 
             // LaboratoryExamination
             // 
@@ -189,8 +192,6 @@
             // 
             // groupBoxPatient
             // 
-            this.groupBoxPatient.Controls.Add(this.labelAge);
-            this.groupBoxPatient.Controls.Add(this.textBoxAge);
             this.groupBoxPatient.Controls.Add(this.textBoxLastName);
             this.groupBoxPatient.Controls.Add(this.textBoxFirstName);
             this.groupBoxPatient.Controls.Add(this.labelFisrtName);
@@ -199,28 +200,10 @@
             this.groupBoxPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxPatient.Name = "groupBoxPatient";
             this.groupBoxPatient.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPatient.Size = new System.Drawing.Size(435, 81);
+            this.groupBoxPatient.Size = new System.Drawing.Size(299, 81);
             this.groupBoxPatient.TabIndex = 26;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient";
-            // 
-            // labelAge
-            // 
-            this.labelAge.AutoSize = true;
-            this.labelAge.Location = new System.Drawing.Point(287, 26);
-            this.labelAge.Name = "labelAge";
-            this.labelAge.Size = new System.Drawing.Size(33, 17);
-            this.labelAge.TabIndex = 7;
-            this.labelAge.Text = "Age";
-            // 
-            // textBoxAge
-            // 
-            this.textBoxAge.Location = new System.Drawing.Point(290, 46);
-            this.textBoxAge.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.ReadOnly = true;
-            this.textBoxAge.Size = new System.Drawing.Size(133, 22);
-            this.textBoxAge.TabIndex = 6;
             // 
             // textBoxLastName
             // 
@@ -332,8 +315,6 @@
         private System.Windows.Forms.DataGridView dataGridViewLabExamList;
         private System.Windows.Forms.DataGridViewTextBoxColumn LaboratoryExamination;
         private System.Windows.Forms.GroupBox groupBoxPatient;
-        private System.Windows.Forms.Label labelAge;
-        private System.Windows.Forms.TextBox textBoxAge;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.Label labelFisrtName;

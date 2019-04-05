@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormDoctorPhysExamList.cs">
+    <Compile Include="FormsDoctor\FormDoctorAppCancelled.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormDoctorPhysExamList.Designer.cs">
-      <DependentUpon>FormDoctorPhysExamList.cs</DependentUpon>
+    <Compile Include="FormsDoctor\FormDoctorAppCancelled.Designer.cs">
+      <DependentUpon>FormDoctorAppCancelled.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsDoctor\FormDoctorExamList.cs">
       <SubType>Form</SubType>
@@ -119,12 +119,6 @@
     <Compile Include="FormsDoctor\FormDoctorHistory.Designer.cs">
       <DependentUpon>FormDoctorHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsDoctor\FormDoctorTestsList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormsDoctor\FormDoctorTestsList.Designer.cs">
-      <DependentUpon>FormDoctorTestsList.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormsLabManager\FormLabManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,9 +163,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormDoctorPhysExamList.resx">
-      <DependentUpon>FormDoctorPhysExamList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormsAdmin\FormAdminRetireUser.resx">
       <DependentUpon>FormAdminRetireUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,9 +195,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsDoctor\FormDoctorHistory.resx">
       <DependentUpon>FormDoctorHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormsDoctor\FormDoctorTestsList.resx">
-      <DependentUpon>FormDoctorTestsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLabManager\FormLabManager.resx">
       <DependentUpon>FormLabManager.cs</DependentUpon>

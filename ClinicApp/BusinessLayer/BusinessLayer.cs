@@ -66,6 +66,7 @@ namespace BusinessLayer
         public string Diagnosis { get; set; }
         public string Status { get; set; }
         public DateTime DateRegistered { get; set; }
+        public DateTime DateOfAppointment { get; set; }
         public DateTime? DateCompletedOrCanceled { get; set; }
     }
 
@@ -73,15 +74,40 @@ namespace BusinessLayer
     {
         public int PhysicalExaminationID { get; set; }
         public int AppointmentID { get; set; }
-        public int ProcedureID { get; set; }
+        public string Code { get; set; }
         public string Result { get; set; }
     }
 
-    public class ProcedureInformation
+    public class LabExaminationInformation
     {
-        public int ProcedureID { get; set; }
-        public string Type { get; set; }
+        public int LabExaminationID { get; set; }
+        public string Code { get; set; }
+        public int AppointmentID { get; set; }
+        public int LabTechnicianID { get; set; }
+        public int LabManagerID { get; set; }
+        public DateTime DateRegistered { get; set; }
+        public string Result { get; set; }
+        public string DoctorComments { get; set; }
+        public DateTime? DateCompletedOrCanceled { get; set; }
+        public string LabManagerComments { get; set; }
+        public DateTime? DateApprovedOrCanceled { get; set; }
+        public string Status { get; set; }
+    }
+
+
+    public class ExaminationDictionaryInformation
+    {
+        public string Code { get; set; }
+        public char Type { get; set; }
         public string Name { get; set; }
+    }
+
+    public class OrderedExamination
+    {
+        public int ExaminationID { get; set; }
+        public string Code { get; set; }
+        public string ExamName { get; set; }
+        public string Comment { get; set; }
     }
 
 
@@ -102,9 +128,11 @@ namespace BusinessLayer
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public class DoctorAppointment
     {
-        public DateTime DateRegistered { get; set; }  
+        public int AppointmentID { get; set; }
+        public DateTime DateOfAppointment { get; set; }  
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public string PatientPesel { get; set; }
@@ -131,10 +159,11 @@ namespace BusinessLayer
                           join pt in dc.Patients on app.PatientID equals pt.PatientID
                           where
                           app.DoctorID == doctorID
-                         // app.DateRegistered == DateTime.Now
+                          & app.DateOfAppointment.DayOfYear == DateTime.Now.DayOfYear
+                          & app.DateOfAppointment.Year == DateTime.Now.Year
                           select new DoctorAppointment
                           {
-                              DateRegistered = app.DateRegistered,
+                              DateOfAppointment = app.DateOfAppointment,
                               PatientFirstName = pt.FirstName,
                               PatientLastName = pt.LastName,
                               PatientPesel = pt.PESEL,
@@ -144,30 +173,33 @@ namespace BusinessLayer
             return result;
         }
 
-        public static List<DoctorAppointment> GetSearch(DoctorAppointment searchParams, int docID)
+        public static List<DoctorAppointment> GetSearch(DoctorAppointment searchParams, int doctorID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from app in dc.Appointments
                           join pt in dc.Patients on app.PatientID equals pt.PatientID
                           where
-                          app.DoctorID == docID
+                          app.DoctorID == doctorID
                           & pt.FirstName.StartsWith(searchParams.PatientFirstName)
                           & pt.LastName.StartsWith(searchParams.PatientLastName)
                           & pt.PESEL.StartsWith(searchParams.PatientPesel)
-                          //& app.DateRegistered == searchParams.DateRegistered
-                          & app.Status.StartsWith(searchParams.Status)   
+                          & app.Status.StartsWith(searchParams.Status)
+                          & app.DateOfAppointment.Day == DateTime.Now.Day
+                          & app.DateOfAppointment.Year == DateTime.Now.Year
+                          & app.DateOfAppointment.Month == DateTime.Now.Month
                           select new DoctorAppointment
                           {
-                              DateRegistered = app.DateRegistered,
+                              DateOfAppointment = app.DateRegistered,
                               PatientFirstName = pt.FirstName,
                               PatientLastName = pt.LastName,
                               PatientPesel = pt.PESEL,
                               Status = app.Status,
                           }
-                          ).OrderBy(x => x.DateRegistered).ToList();
+                          ).OrderBy(x => x.DateOfAppointment).ToList();
             return result;
         }
 
+        //TODO zmienic stan wizyty nad zakonczony
         public static void completeAppointment(AppointmentInformation appointment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -175,8 +207,181 @@ namespace BusinessLayer
             //change status, description and diagnosis
             //its already in appointment
         }
+        //TODO zmienic wizyte na canceled, brakuje okna do podania powodu odwolania wizyty
+        public static void appointmentCanceled(AppointmentInformation actualAppointment)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            Appointment app = new Appointment()
+            {
+                AppointmentID = actualAppointment.AppointmentID,
+                DoctorID = actualAppointment.DoctorID,
+                PatientID = actualAppointment.PatientID,
+                ReceptionistID = actualAppointment.ReceptionistID,
+                Description = actualAppointment.Description,
+                Diagnosis = actualAppointment.Diagnosis,
+                Status = "CANC",
+                DateRegistered = actualAppointment.DateRegistered,
+                DateCompletedOrCanceled = DateTime.Today
+            };
+            dc.Appointments.InsertOnSubmit(app);
+            dc.SubmitChanges();
+        }
+
+        public static PatientInformation getPatientByPesel(String pesel)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from pt in dc.Patients
+                          where pt.PESEL == pesel
+                          select new PatientInformation()
+                          {
+                              FirstName = pt.FirstName,
+                              LastName = pt.LastName,
+                              PESEL = pt.PESEL,
+                              PatientID = pt.PatientID
+                          }).SingleOrDefault();
+            return result;
+        }
+
+        public static AppointmentInformation getAppointmentByPeselAndDate(String pesel, DateTime date)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          join pt in dc.Patients on app.PatientID equals pt.PatientID
+                          where app.DateOfAppointment == date
+                          & pt.PESEL == pesel
+                          select new AppointmentInformation()
+                          {
+                              AppointmentID = app.AppointmentID,
+                              DoctorID = app.DoctorID,
+                              PatientID = app.PatientID,
+                              ReceptionistID = app.ReceptionistID,
+                              Description = app.Description,
+                              Diagnosis = app.Diagnosis,
+                              Status = app.Status,
+                              DateRegistered = app.DateRegistered,
+                              DateCompletedOrCanceled = app.DateCompletedOrCanceled,
+                              DateOfAppointment = app.DateOfAppointment
+                          }).SingleOrDefault();
+            return result;
+        }
+        public static List<OrderedExamination> GetTodaysLabExam(AppointmentInformation actApp)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          join lab in dc.LabExaminations on app.AppointmentID equals lab.AppointmentID
+                          join dic in dc.ExaminationDictionaries on lab.Code equals dic.Code
+                          where
+                          app.AppointmentID == actApp.AppointmentID
+                          select new OrderedExamination()
+                          {
+                              ExaminationID = lab.LabExaminationID,
+                              Code = lab.Code,
+                              ExamName = dic.Name,
+                              Comment = lab.DoctorComments
+                          }).ToList();
+            return result;
+        }
+
+        public static List<OrderedExamination> GetTodaysPhysExam(AppointmentInformation actApp)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          join phys in dc.PhysicalExaminations on app.AppointmentID equals phys.AppointmentID
+                          join dic in dc.ExaminationDictionaries on phys.Code equals dic.Code
+                          where
+                          app.AppointmentID == actApp.AppointmentID
+                          select new OrderedExamination()
+                          {
+                              ExaminationID = phys.PhysicalExaminationID,
+                              Code = phys.Code,
+                              ExamName = dic.Name,
+                          }).ToList();
+            return result;
+        }
+
+        public static List< DoctorAppointment> ShowPatientPrevApp(PatientInformation actPat)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          join pt in dc.Patients on app.PatientID equals pt.PatientID
+                          where
+                          app.DateOfAppointment < DateTime.Now
+                          & pt.PatientID == actPat.PatientID
+                          & app.Status != "REG"
+                          select new DoctorAppointment()
+                          {
+                              AppointmentID = app.AppointmentID,
+                              DateOfAppointment = app.DateOfAppointment,
+                              Status = app.Status
+                          }).OrderByDescending(x => x.DateOfAppointment).ToList();
+            return result;
+        }
+
+        public static AppointmentInformation GetActAppInfo(AppointmentInformation actApp)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          where app.AppointmentID == actApp.AppointmentID
+                          select new AppointmentInformation()
+                          {
+                              AppointmentID = app.AppointmentID,
+                              DoctorID = app.DoctorID,
+                              PatientID = app.PatientID,
+                              ReceptionistID = app.ReceptionistID,
+                              Description = app.Description,
+                              Diagnosis = app.Diagnosis,
+                              Status = app.Status,
+                              DateRegistered = app.DateRegistered,
+                              DateCompletedOrCanceled = app.DateCompletedOrCanceled,
+                              DateOfAppointment = app.DateOfAppointment
+                          }).SingleOrDefault();
+            return result;
+        }
+
+        public static void SetAppStatus(AppointmentInformation actApp, String stat)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from app in dc.Appointments
+                          where app.AppointmentID == actApp.AppointmentID
+                          select app).Single();
+            result.Status = stat;
+            dc.SubmitChanges();
+        }
+
+        public static List<ExaminationDictionaryInformation> GetPhysExam(String exName, String exCode)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from dic in dc.ExaminationDictionaries
+                          where
+                          dic.Type == 'P'
+                          & dic.Name.StartsWith(exName)
+                          & dic.Code.StartsWith(exCode)
+                          select new ExaminationDictionaryInformation()
+                          {
+                              Code = dic.Code,
+                              Name = dic.Name
+                          }).ToList();
+            return result;
+        }
+
+        public static List<ExaminationDictionaryInformation> GetLabExam(String exName, String exCode)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from dic in dc.ExaminationDictionaries
+                          where
+                          dic.Type == 'L'
+                          & dic.Name.StartsWith(exName)
+                          & dic.Code.StartsWith(exCode)
+                          select new ExaminationDictionaryInformation()
+                          {
+                              Code = dic.Code,
+                              Name = dic.Name
+                          }).ToList();
+            return result;
+        }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     static public class ReceptionistFacade
     {
         public static ReceptionistInformation GetReceptionist(int userID)
@@ -229,7 +434,6 @@ namespace BusinessLayer
         public static List<CustomAppointment> GetAppointments(PatientInformation patientInfo)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
-            List<Tuple<AppointmentInformation, DoctorInformation>> list;
             var result = (from app in dc.Appointments
                           join doc in dc.Doctors on app.DoctorID equals doc.DoctorID
                           where

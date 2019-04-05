@@ -10,19 +10,40 @@ using System.Windows.Forms;
 
 namespace GUILayer
 {
-    public partial class FormDoctorVisit : Form
+    public partial class FormDoctorAppointment : Form
     {
-        public Form prevPageRef { get; set; }
-        public BusinessLayer.AppointmentInformation actualAppointment;
-        public FormDoctorVisit()
+        public BusinessLayer.AppointmentInformation actualAppointment { get; set; }
+        public BusinessLayer.PatientInformation actualPatient { get; set; }
+        public BusinessLayer.DoctorInformation actualDoctor { get; set; }
+
+        public FormDoctorAppointment()
         {
             InitializeComponent();
+        }
+
+        public FormDoctorAppointment(BusinessLayer.AppointmentInformation app, BusinessLayer.PatientInformation pat)
+        {
+            InitializeComponent();
+            //set act app and patient
+            actualAppointment = app;
+            actualPatient = pat;
+
+            //set patient name i lastname
+            textBoxFirstName.Text = actualPatient.FirstName;
+            textBoxLastName.Text = actualPatient.LastName;
+
+            //get new decsription if there was a change
+            actualAppointment = BusinessLayer.DoctorFacade.GetActAppInfo(app);
+            richTextBoxDescription.Text = actualAppointment.Description;
+            richTextBoxDiagnosis.Text = actualAppointment.Diagnosis;
+                
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
             //Show the previous form.
-            prevPageRef.Show();
+            FormDoctor formDoctor = new FormDoctor(actualDoctor);
+            formDoctor.Show();
             this.Close();
         }
 
@@ -40,32 +61,40 @@ namespace GUILayer
 
         private void buttonPatientHistory_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory();
-            doctorHistoryForm.DoctorAppointmentRef = this;
-            //doctorHistoryForm.FormClosed += (s, args) => this.Close();
+            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory(actualAppointment,actualPatient,actualDoctor);
             doctorHistoryForm.Show();
+            this.Close();
         }
 
         private void buttonManageExaminations_Click(object sender, EventArgs e)
         {
             this.Hide();
-            var doctorExaminationsForm = new FormsDoctor.FormDoctorManageExaminations();
+            var doctorExaminationsForm = new FormsDoctor.FormDoctorManageExaminations(actualAppointment, actualPatient, actualDoctor);
             doctorExaminationsForm.DoctorAppointmentRef = this;
-            //doctorHistoryForm.FormClosed += (s, args) => this.Close();
             doctorExaminationsForm.Show();
         }
 
         private void buttonBeginAppointment_Click(object sender, EventArgs e)
         {
-            buttonBeginAppointment.Enabled = false;
-            buttonEndAppointment.Enabled = true;
-            buttonBack.Enabled = false;
-            buttonCancelAppointment.Enabled = true;
-            richTextBoxDescription.Enabled = true;
-            richTextBoxDiagnosis.Enabled = true;
-            buttonPatientHistory.Enabled = true;
-            buttonManageExaminations.Enabled = true;
+            if (buttonBeginAppointment.Text != "End")
+            {
+                //unlock buttons and change beginButton to endButton
+                buttonBeginAppointment.Enabled = false;
+                buttonBack.Enabled = false;
+                buttonCancelAppointment.Enabled = true;
+                richTextBoxDescription.Enabled = true;
+                richTextBoxDiagnosis.Enabled = true;
+                buttonPatientHistory.Enabled = true;
+                buttonManageExaminations.Enabled = true;
+                buttonBeginAppointment.Text = "End";
+
+                //set app status as BEG
+                BusinessLayer.DoctorFacade.SetAppStatus(actualAppointment, "BEG");
+            }
+            else
+            {
+                //TODO ZAKONCZ WIZYTE
+            }
         }
 
         private void buttonEndAppointment_Click(object sender, EventArgs e)
@@ -78,7 +107,20 @@ namespace GUILayer
 
         private void buttonCancelAppointment_Click(object sender, EventArgs e)
         {
-            //przekierowanie do okna dlaczego anulowano
+            BusinessLayer.DoctorFacade.appointmentCanceled(actualAppointment);
+            FormsDoctor.FormDoctorAppCancelled formCancelled = new FormsDoctor.FormDoctorAppCancelled();
+            formCancelled.Show();
+            this.Close();
+        }
+
+        private void richTextBoxDescription_TextChanged(object sender, EventArgs e)
+        {
+            //TODO ZAPISZ ZMIANE TEKSTU DO BD
+        }
+
+        private void richTextBoxDiagnosis_TextChanged(object sender, EventArgs e)
+        {
+            //TODO ZAPISZ ZMNIANE TEKSTU DO BD
         }
     }
 }

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GUILayer
+namespace GUILayer.FormsDoctor
 {
-    public partial class FormDoctorPhysExamList : Form
+    public partial class FormDoctorAppCancelled : Form
     {
-        public FormDoctorPhysExamList()
+        public FormDoctorAppCancelled()
         {
             InitializeComponent();
         }
