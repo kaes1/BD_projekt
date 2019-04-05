@@ -17,7 +17,7 @@ namespace GUILayer
             InitializeComponent();
         }
 
-        public BusinessLayer.UserInformation newUserInformation;
+        
 
         private bool correctInformation()
         {
@@ -81,12 +81,20 @@ namespace GUILayer
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
+            //Check if information is correct.
             if (!correctInformation())
                 return;
 
-            //Utworzenie Usera oraz danej Roli.
-            //TO BE DONE
+            //Check if user already exists in database.
+            if (BusinessLayer.AdminFacade.ExistsUser(textBoxUsername.Text))
+            {
+                MessageBox.Show("User with Username '" + textBoxUsername.Text + "' already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            //Utworzenie Usera oraz danej Roli.
+            int PWZNumber = (comboBoxRole.Text == "DOC") ? int.Parse(textBoxPWZNumber.Text) : 0;
+            BusinessLayer.AdminFacade.AddUser(textBoxUsername.Text, textBoxPassword.Text, comboBoxRole.Text, textBoxFirstName.Text, textBoxLastName.Text, PWZNumber);
             DialogResult = DialogResult.OK;
         }
 

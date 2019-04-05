@@ -349,6 +349,19 @@ namespace BusinessLayer
             return result;
         }
 
+        public static bool ExistsUser(string username)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from u in dc.Users
+                          where
+                          u.Username == username
+                          select u).SingleOrDefault();
+            if (result != null)
+                return true;
+            else
+                return false;
+        }
+
         public static void ChangeUserPassword(int userID, string newPassword)
         {
             //Generate hashcode of password.
@@ -364,6 +377,74 @@ namespace BusinessLayer
 
             //Change hashcode.
             user.Hashcode = newHashcode;
+            dc.SubmitChanges();
+        }
+
+        public static void AddUser(string username, string password, string role, string firstName, string lastName, int PWZNumber)
+        {
+            
+            //Generate hashcode of password.
+            var sha256 = new SHA256Managed();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            string hashcode = string.Join(string.Empty, bytes.Select(x => x.ToString("x2")));
+
+            //Create new User
+            User newUser = new User()
+            {
+                Username = username.ToLower(),
+                Hashcode = hashcode,
+                Role = role,
+                DateRetired = null
+            };
+
+            DataClassesDataContext dc = new DataClassesDataContext();
+            dc.Users.InsertOnSubmit(newUser);
+
+            //Create new class based on role.
+            switch (role)
+            {
+                case "REC":
+                    Receptionist newReceptionist = new Receptionist()
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        User = newUser
+                    };
+                    dc.Receptionists.InsertOnSubmit(newReceptionist);
+                    break;
+                case "DOC":
+                    Doctor newDoctor = new Doctor()
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        User = newUser,
+                        PWZNumber = PWZNumber
+                    };
+                    dc.Doctors.InsertOnSubmit(newDoctor);
+                    break;
+                case "TEC":
+                    LabTechnician newLabTechnician = new LabTechnician()
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        User = newUser
+                    };
+                    dc.LabTechnicians.InsertOnSubmit(newLabTechnician);
+                    break;
+                case "MAN":
+                    LabManager newLabManager = new LabManager()
+                    {
+                        FirstName = firstName,
+                        LastName = lastName,
+                        User = newUser
+                    };
+                    dc.LabManagers.InsertOnSubmit(newLabManager);
+                    break;
+                case "ADM":
+                    break;
+            }
+
+           
             dc.SubmitChanges();
         }
     }

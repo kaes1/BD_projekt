@@ -50,7 +50,7 @@
             this.labelPanelName.AutoSize = true;
             this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(74, 9);
+            this.labelPanelName.Location = new System.Drawing.Point(70, 9);
             this.labelPanelName.Name = "labelPanelName";
             this.labelPanelName.Size = new System.Drawing.Size(236, 37);
             this.labelPanelName.TabIndex = 9;

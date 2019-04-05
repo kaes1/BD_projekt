@@ -31,17 +31,18 @@ namespace GUILayer
                 userSearchCriteria.DateRetired = dateTimePickerDateRetired.Value;
             dataGridViewUsers.Columns.Clear();
             dataGridViewUsers.DataSource = BusinessLayer.AdminFacade.GetUsers(userSearchCriteria);
-
+            dataGridViewUsers.Columns[0].Width = 55;
+            dataGridViewUsers.Columns[1].Width = 120;
+            dataGridViewUsers.Columns[2].Width = 125;
+            dataGridViewUsers.Columns[3].Width = 50;
+            dataGridViewUsers.Columns[4].Width = 110;
         }
 
         private void buttonNewUser_Click(object sender, EventArgs e)
         {
+            //Create and display the form for creating new users.
             FormAdminNewUser formAdminNewUser = new FormAdminNewUser();
             DialogResult res = formAdminNewUser.ShowDialog(this);
-            if (res == DialogResult.OK)
-            {
-
-            }
             formAdminNewUser.Dispose();
             //Refresh displayed Users.
             searchForUsers();
