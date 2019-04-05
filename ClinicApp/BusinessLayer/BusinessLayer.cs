@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
@@ -13,6 +14,7 @@ namespace BusinessLayer
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Hashcode { get; set; }
+        //Should Role be an enum?
         public string Role { get; set; }
         public DateTime? DateRetired { get; set; }
     }
@@ -64,6 +66,7 @@ namespace BusinessLayer
         public int ReceptionistID { get; set; }
         public string Description { get; set; }
         public string Diagnosis { get; set; }
+        //Should Status be an enum?
         public string Status { get; set; }
         public DateTime DateRegistered { get; set; }
         public DateTime DateOfAppointment { get; set; }
@@ -91,6 +94,7 @@ namespace BusinessLayer
         public DateTime? DateCompletedOrCanceled { get; set; }
         public string LabManagerComments { get; set; }
         public DateTime? DateApprovedOrCanceled { get; set; }
+        //Should Status be an enum?
         public string Status { get; set; }
     }
 
@@ -108,11 +112,14 @@ namespace BusinessLayer
     {
         public static UserInformation GetUser(String username, String password)
         {
-            //Powinna być zamiana password na hash przez funkcje hashujaca - w bazie danych powinien byc hashcode.
-            //Do zrobienia.
+            //Generate hashcode of password.
+            var sha256 = new SHA256Managed();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            string hashcode = string.Join(string.Empty, bytes.Select(x => x.ToString("x2")));
+            //Get the user.
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from el in dc.Users
-                          where el.Username == username && el.Hashcode == password
+                          where el.Username == username && el.Hashcode == hashcode
                           select new UserInformation
                           { UserID = el.UserID ,Username = el.Username, Hashcode = el.Hashcode, Role = el.Role, DateRetired = el.DateRetired}
                           ).SingleOrDefault();
@@ -231,7 +238,7 @@ namespace BusinessLayer
                           select new PatientInformation
                           {PatientID = el.PatientID, FirstName = el.FirstName, LastName = el.LastName, PESEL = el.PESEL }
                           ).OrderBy(x => x.LastName).ToList();
-            return result;
+            return result;  
         }
 
         public class CustomAppointment
