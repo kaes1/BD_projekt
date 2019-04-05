@@ -34,12 +34,18 @@ namespace GUILayer
                 return;
             }
 
+            //Check if both password fields have same password.
+            if (textBoxNewPassword.Text != textBoxConfirmPassword.Text)
+            {
+                MessageBox.Show("Confirm Password field must be filled correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             //DODAĆ MINIMALNE WYMOGI DLA HASŁA???
             //TO BE DONE
 
             //Change password of User.
             BusinessLayer.AdminFacade.ChangeUserPassword(userInformation.UserID, textBoxNewPassword.Text);
-
             DialogResult = DialogResult.OK;
         }
 
