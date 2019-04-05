@@ -332,20 +332,39 @@ namespace BusinessLayer
         public static List<UserInformation> GetUsers(UserInformation userSearchCriteria)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
-            var result = (from el in dc.Users
+            var result = (from u in dc.Users
                           where
-                          (userSearchCriteria.UserID == 0 || el.UserID == userSearchCriteria.UserID)
+                          (userSearchCriteria.UserID == 0 || u.UserID == userSearchCriteria.UserID)
                           &&
-                          (userSearchCriteria.Username == null || el.Username.StartsWith(userSearchCriteria.Username))
+                          (userSearchCriteria.Username == null || u.Username.StartsWith(userSearchCriteria.Username))
                           &&
-                          (userSearchCriteria.Hashcode == null || el.Hashcode.StartsWith(userSearchCriteria.Hashcode))
+                          (userSearchCriteria.Hashcode == null || u.Hashcode.StartsWith(userSearchCriteria.Hashcode))
                           &&
-                          (userSearchCriteria.Role == null || el.Role.StartsWith(userSearchCriteria.Role))
+                          (userSearchCriteria.Role == null || u.Role.StartsWith(userSearchCriteria.Role))
+                          &&
+                          (userSearchCriteria.DateRetired == null || u.DateRetired.GetValueOrDefault().Date == userSearchCriteria.DateRetired)
                           select new UserInformation
-                          { UserID = el.UserID, Username = el.Username, Hashcode = el.Hashcode, Role = el.Role, DateRetired = el.DateRetired }
+                          { UserID = u.UserID, Username = u.Username, Hashcode = u.Hashcode, Role = u.Role, DateRetired = u.DateRetired }
                           ).OrderBy(x => x.UserID).ToList();
             return result;
         }
-    }
 
+        public static void ChangeUserPassword(int userID, string newPassword)
+        {
+            //Generate hashcode of password.
+            var sha256 = new SHA256Managed();
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(newPassword));
+            string newHashcode = string.Join(string.Empty, bytes.Select(x => x.ToString("x2")));
+
+            //Get User from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var user = (from u in dc.Users
+                         where u.UserID == userID
+                         select u).SingleOrDefault();
+
+            //Change hashcode.
+            user.Hashcode = newHashcode;
+            dc.SubmitChanges();
+        }
+    }
 }

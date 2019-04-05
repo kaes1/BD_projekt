@@ -190,6 +190,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonChangePassword);
             this.Controls.Add(this.labelPanelName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormAdminChangePassword";
             this.Text = "FormAdminChangePassword";
             this.groupBoxUser.ResumeLayout(false);
