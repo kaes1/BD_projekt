@@ -50,7 +50,7 @@
             this.labelPanelName.AutoSize = true;
             this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(59, 9);
+            this.labelPanelName.Location = new System.Drawing.Point(72, 9);
             this.labelPanelName.Name = "labelPanelName";
             this.labelPanelName.Size = new System.Drawing.Size(279, 37);
             this.labelPanelName.TabIndex = 11;
@@ -58,11 +58,11 @@
             // 
             // buttonChangePassword
             // 
-            this.buttonChangePassword.Location = new System.Drawing.Point(29, 215);
+            this.buttonChangePassword.Location = new System.Drawing.Point(27, 215);
             this.buttonChangePassword.Name = "buttonChangePassword";
             this.buttonChangePassword.Size = new System.Drawing.Size(100, 23);
             this.buttonChangePassword.TabIndex = 26;
-            this.buttonChangePassword.Text = "Change Password";
+            this.buttonChangePassword.Text = "Change";
             this.buttonChangePassword.UseVisualStyleBackColor = true;
             this.buttonChangePassword.Click += new System.EventHandler(this.buttonChangePassword_Click);
             // 
@@ -73,13 +73,13 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(100, 23);
             this.buttonCancel.TabIndex = 27;
-            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.Text = "Back";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // textBoxNewPassword
             // 
-            this.textBoxNewPassword.Location = new System.Drawing.Point(29, 167);
+            this.textBoxNewPassword.Location = new System.Drawing.Point(27, 167);
             this.textBoxNewPassword.Name = "textBoxNewPassword";
             this.textBoxNewPassword.Size = new System.Drawing.Size(160, 20);
             this.textBoxNewPassword.TabIndex = 28;
@@ -87,7 +87,7 @@
             // labelNewPassword
             // 
             this.labelNewPassword.AutoSize = true;
-            this.labelNewPassword.Location = new System.Drawing.Point(26, 151);
+            this.labelNewPassword.Location = new System.Drawing.Point(24, 151);
             this.labelNewPassword.Name = "labelNewPassword";
             this.labelNewPassword.Size = new System.Drawing.Size(78, 13);
             this.labelNewPassword.TabIndex = 29;
@@ -110,7 +110,7 @@
             // 
             // textBoxUserID
             // 
-            this.textBoxUserID.Location = new System.Drawing.Point(17, 37);
+            this.textBoxUserID.Location = new System.Drawing.Point(15, 37);
             this.textBoxUserID.Name = "textBoxUserID";
             this.textBoxUserID.ReadOnly = true;
             this.textBoxUserID.Size = new System.Drawing.Size(100, 20);
@@ -119,7 +119,7 @@
             // labelUserID
             // 
             this.labelUserID.AutoSize = true;
-            this.labelUserID.Location = new System.Drawing.Point(14, 21);
+            this.labelUserID.Location = new System.Drawing.Point(12, 21);
             this.labelUserID.Name = "labelUserID";
             this.labelUserID.Size = new System.Drawing.Size(40, 13);
             this.labelUserID.TabIndex = 3;
@@ -144,7 +144,7 @@
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(144, 37);
+            this.textBoxUsername.Location = new System.Drawing.Point(143, 37);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.ReadOnly = true;
             this.textBoxUsername.Size = new System.Drawing.Size(100, 20);
@@ -153,7 +153,7 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(141, 21);
+            this.labelUsername.Location = new System.Drawing.Point(140, 21);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(55, 13);
             this.labelUsername.TabIndex = 4;
