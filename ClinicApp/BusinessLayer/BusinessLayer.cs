@@ -458,8 +458,21 @@ namespace BusinessLayer
                     break;
             }
 
-           
             dc.SubmitChanges();
         }
+
+        public static bool ValidPassword(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password))
+                return false;
+
+            if (password.Length < 4)
+                return false;
+
+            return true;
+        }
+
+        public static string PasswordRequirements = " - at least 4 characters long.";
+
     }
 }

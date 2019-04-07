@@ -30,8 +30,12 @@ namespace GUILayer
                 return false;
             }
 
-            //DODAĆ MINIMALNE WYMOGI DLA HASŁA???
-            //TO BE DONE
+            //Check if password meets requirements.
+            if (!BusinessLayer.AdminFacade.ValidPassword(textBoxPassword.Text))
+            {
+                MessageBox.Show("Password must meet these requirements:\n" + BusinessLayer.AdminFacade.PasswordRequirements, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
             //Check if Role is selected
             string selectedRole = (string)comboBoxRole.SelectedItem;
