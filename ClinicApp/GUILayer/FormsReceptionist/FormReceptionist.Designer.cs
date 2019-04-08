@@ -144,7 +144,7 @@
             // labelLoggedInAs
             // 
             this.labelLoggedInAs.AutoSize = true;
-            this.labelLoggedInAs.Location = new System.Drawing.Point(588, 595);
+            this.labelLoggedInAs.Location = new System.Drawing.Point(588, 585);
             this.labelLoggedInAs.Name = "labelLoggedInAs";
             this.labelLoggedInAs.Size = new System.Drawing.Size(73, 13);
             this.labelLoggedInAs.TabIndex = 5;
@@ -152,7 +152,7 @@
             // 
             // labelReceptionistName
             // 
-            this.labelReceptionistName.Location = new System.Drawing.Point(527, 616);
+            this.labelReceptionistName.Location = new System.Drawing.Point(527, 606);
             this.labelReceptionistName.Name = "labelReceptionistName";
             this.labelReceptionistName.Size = new System.Drawing.Size(195, 13);
             this.labelReceptionistName.TabIndex = 6;
@@ -181,13 +181,13 @@
             this.Status,
             this.DoctorFirstName,
             this.DoctorLastName});
-            this.dataGridViewAppointments.Location = new System.Drawing.Point(12, 447);
+            this.dataGridViewAppointments.Location = new System.Drawing.Point(12, 439);
             this.dataGridViewAppointments.MultiSelect = false;
             this.dataGridViewAppointments.Name = "dataGridViewAppointments";
             this.dataGridViewAppointments.ReadOnly = true;
             this.dataGridViewAppointments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewAppointments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAppointments.Size = new System.Drawing.Size(505, 180);
+            this.dataGridViewAppointments.Size = new System.Drawing.Size(505, 177);
             this.dataGridViewAppointments.TabIndex = 11;
             // 
             // Date
@@ -240,7 +240,7 @@
             // 
             // buttonNewAppointment
             // 
-            this.buttonNewAppointment.Location = new System.Drawing.Point(564, 487);
+            this.buttonNewAppointment.Location = new System.Drawing.Point(564, 479);
             this.buttonNewAppointment.Name = "buttonNewAppointment";
             this.buttonNewAppointment.Size = new System.Drawing.Size(120, 23);
             this.buttonNewAppointment.TabIndex = 12;
@@ -299,7 +299,7 @@
             // 
             // buttonCancelAppointment
             // 
-            this.buttonCancelAppointment.Location = new System.Drawing.Point(564, 544);
+            this.buttonCancelAppointment.Location = new System.Drawing.Point(564, 536);
             this.buttonCancelAppointment.Name = "buttonCancelAppointment";
             this.buttonCancelAppointment.Size = new System.Drawing.Size(120, 23);
             this.buttonCancelAppointment.TabIndex = 13;
@@ -316,7 +316,7 @@
             this.groupBoxSearchAppointments.Controls.Add(this.labelStatus);
             this.groupBoxSearchAppointments.Controls.Add(this.comboBoxStatus);
             this.groupBoxSearchAppointments.Controls.Add(this.buttonSearchAppointments);
-            this.groupBoxSearchAppointments.Location = new System.Drawing.Point(12, 352);
+            this.groupBoxSearchAppointments.Location = new System.Drawing.Point(12, 344);
             this.groupBoxSearchAppointments.Name = "groupBoxSearchAppointments";
             this.groupBoxSearchAppointments.Size = new System.Drawing.Size(705, 89);
             this.groupBoxSearchAppointments.TabIndex = 15;
@@ -397,7 +397,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 639);
+            this.ClientSize = new System.Drawing.Size(729, 627);
             this.Controls.Add(this.groupBoxSearchAppointments);
             this.Controls.Add(this.dataGridViewPatients);
             this.Controls.Add(this.buttonCancelAppointment);
