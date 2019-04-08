@@ -37,6 +37,9 @@ namespace GUILayer
             dataGridViewUsers.Columns[2].Width = 143;
             dataGridViewUsers.Columns[3].Width = 60;
             dataGridViewUsers.Columns[4].Width = 110;
+            //Select first user if not empty.
+            if (dataGridViewUsers.Rows.Count > 0)
+                dataGridViewUsers.CurrentCell = dataGridViewUsers[0, 0];
         }
 
         private void buttonNewUser_Click(object sender, EventArgs e)
@@ -44,11 +47,11 @@ namespace GUILayer
             //Create and display the form for creating new users.
             FormAdminNewUser formAdminNewUser = new FormAdminNewUser();
             DialogResult res = formAdminNewUser.ShowDialog(this);    
-            //Refresh displayed Users.
-            searchForUsers();
             //Select the new user if added.
             if (res == DialogResult.OK)
             {
+                //Refresh displayed Users.
+                searchForUsers();
                 foreach (DataGridViewRow row in dataGridViewUsers.Rows)
                     if (row.Cells[1].Value.ToString().Equals(formAdminNewUser.newUserInformation.Username))
                     {
@@ -56,6 +59,7 @@ namespace GUILayer
                         break;
                     }
             }
+            //Dispose of form.
             formAdminNewUser.Dispose();
         }
 
@@ -117,7 +121,6 @@ namespace GUILayer
             {
                 MessageBox.Show("Please select a User to manage retirement.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
