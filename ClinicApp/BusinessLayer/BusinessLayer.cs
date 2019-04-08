@@ -215,7 +215,7 @@ namespace BusinessLayer
             return result;
         }
 
-        public static List<DoctorInformation> GetAllDoctors()
+        public static List<DoctorInformation> GetDoctors()
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from el in dc.Doctors
@@ -275,11 +275,11 @@ namespace BusinessLayer
             return result;
         }
 
-        public static bool ExistsPatient(PatientInformation pInfo)
+        public static bool ExistsPatient(PatientInformation patientInformation)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var res = (from el in dc.Patients
-                       where el.PESEL.Equals(pInfo.PESEL)
+                       where el.PESEL.Equals(patientInformation.PESEL)
                        select el).SingleOrDefault();
             if (res != null)
                 return true;
@@ -287,12 +287,38 @@ namespace BusinessLayer
                 return false;
         }
 
-        public static void AddPatient(PatientInformation pInfo)
+        public static void AddPatient(PatientInformation patientInformation)
         {
             Patient newPatient = new Patient()
-            { FirstName = pInfo.FirstName, LastName = pInfo.LastName, PESEL = pInfo.PESEL };
+            { FirstName = patientInformation.FirstName, LastName = patientInformation.LastName, PESEL = patientInformation.PESEL };
             DataClassesDataContext dc = new DataClassesDataContext();
             dc.Patients.InsertOnSubmit(newPatient);
+            dc.SubmitChanges();
+        }
+
+        public static void ChangePatientInfo(PatientInformation patientInformation, string newFirstName, string newLastName)
+        {
+            //Get Patient from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var patient = (from p in dc.Patients
+                        where p.PatientID == patientInformation.PatientID
+                        select p).SingleOrDefault();
+
+            //Change hashcode.
+            patient.FirstName = newFirstName;
+            patient.LastName = newLastName;
+            dc.SubmitChanges();
+        }
+
+        public static void CancelAppointment(int appointmentID)
+        {
+            //Get Appointment from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var appointment = (from app in dc.Appointments
+                           where app.AppointmentID == appointmentID
+                           select app).SingleOrDefault();
+            //Change status.
+            appointment.Status = "CANC";
             dc.SubmitChanges();
         }
 

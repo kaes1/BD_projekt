@@ -28,7 +28,7 @@ namespace GUILayer
             textBoxPESEL.Text = activePatientInfo.PESEL;
 
             dataGridViewDoctors.Columns.Clear();
-            dataGridViewDoctors.DataSource = BusinessLayer.ReceptionistFacade.GetAllDoctors();
+            dataGridViewDoctors.DataSource = BusinessLayer.ReceptionistFacade.GetDoctors();
             dataGridViewDoctors.Columns[0].Width = 60;
         }
 
