@@ -37,6 +37,7 @@ namespace GUILayer
             //Check if any doctor is selected.
             if (dataGridViewDoctors.SelectedCells.Count > 0)
             {
+                //Get Doctor information
                 BusinessLayer.DoctorInformation doctorInfo = new BusinessLayer.DoctorInformation();
                 doctorInfo.DoctorID = (int)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[0].Value);
                 doctorInfo.FirstName = (string)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[1].Value);
@@ -44,7 +45,7 @@ namespace GUILayer
                 doctorInfo.PWZ = (int)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[3].Value);
 
                 //Add appointment
-                BusinessLayer.ReceptionistFacade.AddNewAppointment(activeReceptionistInfo, activePatientInfo, doctorInfo);
+                BusinessLayer.ReceptionistFacade.AddAppointment(activeReceptionistInfo, activePatientInfo, doctorInfo, dateTimePickerAppointmentDate.Value.Date + dateTimePickerAppointmentTime.Value.TimeOfDay);
 
                 DialogResult = DialogResult.OK;
                 this.Close();

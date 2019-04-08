@@ -135,7 +135,7 @@
             this.Controls.Add(this.textBoxPESEL);
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.textBoxFirstName);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormReceptionistNewPatient";
             this.Text = "FormReceptionistNewPatient";
             this.ResumeLayout(false);

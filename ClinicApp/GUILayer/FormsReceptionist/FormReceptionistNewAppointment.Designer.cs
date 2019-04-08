@@ -38,20 +38,22 @@
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxPESEL = new System.Windows.Forms.TextBox();
             this.dataGridViewDoctors = new System.Windows.Forms.DataGridView();
-            this.groupBoxPatient = new System.Windows.Forms.GroupBox();
             this.DoctorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PWZ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBoxPatient = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerAppointmentDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerAppointmentTime = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDoctors)).BeginInit();
             this.groupBoxPatient.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonAddAppointment
             // 
-            this.buttonAddAppointment.Location = new System.Drawing.Point(51, 387);
+            this.buttonAddAppointment.Location = new System.Drawing.Point(42, 441);
             this.buttonAddAppointment.Name = "buttonAddAppointment";
-            this.buttonAddAppointment.Size = new System.Drawing.Size(110, 23);
+            this.buttonAddAppointment.Size = new System.Drawing.Size(100, 23);
             this.buttonAddAppointment.TabIndex = 0;
             this.buttonAddAppointment.Text = "Add Appointment";
             this.buttonAddAppointment.UseVisualStyleBackColor = true;
@@ -60,11 +62,11 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(299, 387);
+            this.buttonCancel.Location = new System.Drawing.Point(311, 441);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(110, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(100, 23);
             this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.Text = "Back";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
@@ -138,25 +140,10 @@
             this.FirstName,
             this.LastName,
             this.PWZ});
-            this.dataGridViewDoctors.Location = new System.Drawing.Point(14, 182);
+            this.dataGridViewDoctors.Location = new System.Drawing.Point(14, 169);
             this.dataGridViewDoctors.Name = "dataGridViewDoctors";
             this.dataGridViewDoctors.Size = new System.Drawing.Size(429, 185);
             this.dataGridViewDoctors.TabIndex = 9;
-            // 
-            // groupBoxPatient
-            // 
-            this.groupBoxPatient.Controls.Add(this.textBoxFirstName);
-            this.groupBoxPatient.Controls.Add(this.labelFirstName);
-            this.groupBoxPatient.Controls.Add(this.textBoxPESEL);
-            this.groupBoxPatient.Controls.Add(this.labelPESEL);
-            this.groupBoxPatient.Controls.Add(this.textBoxLastName);
-            this.groupBoxPatient.Controls.Add(this.labelLastName);
-            this.groupBoxPatient.Location = new System.Drawing.Point(12, 75);
-            this.groupBoxPatient.Name = "groupBoxPatient";
-            this.groupBoxPatient.Size = new System.Drawing.Size(432, 77);
-            this.groupBoxPatient.TabIndex = 10;
-            this.groupBoxPatient.TabStop = false;
-            this.groupBoxPatient.Text = "Patient";
             // 
             // DoctorID
             // 
@@ -183,19 +170,55 @@
             this.PWZ.Name = "PWZ";
             this.PWZ.ReadOnly = true;
             // 
+            // groupBoxPatient
+            // 
+            this.groupBoxPatient.Controls.Add(this.textBoxFirstName);
+            this.groupBoxPatient.Controls.Add(this.labelFirstName);
+            this.groupBoxPatient.Controls.Add(this.textBoxPESEL);
+            this.groupBoxPatient.Controls.Add(this.labelPESEL);
+            this.groupBoxPatient.Controls.Add(this.textBoxLastName);
+            this.groupBoxPatient.Controls.Add(this.labelLastName);
+            this.groupBoxPatient.Location = new System.Drawing.Point(12, 75);
+            this.groupBoxPatient.Name = "groupBoxPatient";
+            this.groupBoxPatient.Size = new System.Drawing.Size(432, 77);
+            this.groupBoxPatient.TabIndex = 10;
+            this.groupBoxPatient.TabStop = false;
+            this.groupBoxPatient.Text = "Patient";
+            // 
+            // dateTimePickerAppointmentDate
+            // 
+            this.dateTimePickerAppointmentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerAppointmentDate.Location = new System.Drawing.Point(104, 378);
+            this.dateTimePickerAppointmentDate.Name = "dateTimePickerAppointmentDate";
+            this.dateTimePickerAppointmentDate.Size = new System.Drawing.Size(100, 20);
+            this.dateTimePickerAppointmentDate.TabIndex = 20;
+            this.dateTimePickerAppointmentDate.Value = new System.DateTime(2019, 5, 1, 0, 0, 0, 0);
+            // 
+            // dateTimePickerAppointmentTime
+            // 
+            this.dateTimePickerAppointmentTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerAppointmentTime.Location = new System.Drawing.Point(235, 378);
+            this.dateTimePickerAppointmentTime.Name = "dateTimePickerAppointmentTime";
+            this.dateTimePickerAppointmentTime.ShowUpDown = true;
+            this.dateTimePickerAppointmentTime.Size = new System.Drawing.Size(100, 20);
+            this.dateTimePickerAppointmentTime.TabIndex = 21;
+            this.dateTimePickerAppointmentTime.Value = new System.DateTime(2019, 4, 19, 12, 30, 0, 0);
+            // 
             // FormReceptionistNewAppointment
             // 
             this.AcceptButton = this.buttonAddAppointment;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(456, 434);
+            this.ClientSize = new System.Drawing.Size(456, 493);
+            this.Controls.Add(this.dateTimePickerAppointmentTime);
+            this.Controls.Add(this.dateTimePickerAppointmentDate);
             this.Controls.Add(this.groupBoxPatient);
             this.Controls.Add(this.dataGridViewDoctors);
             this.Controls.Add(this.labelPanelName);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAddAppointment);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormReceptionistNewAppointment";
             this.Text = "FormReceptionistNewAppointment";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDoctors)).EndInit();
@@ -223,5 +246,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PWZ;
+        private System.Windows.Forms.DateTimePicker dateTimePickerAppointmentDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerAppointmentTime;
     }
 }
