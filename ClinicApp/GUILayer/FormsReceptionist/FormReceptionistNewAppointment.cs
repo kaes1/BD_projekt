@@ -74,25 +74,21 @@ namespace GUILayer
                 element.Item1.Enabled = true;
                 element.Item1.Checked = false;
             }
-            //Check if any doctor is selected.
-            if (dataGridViewDoctors.SelectedCells.Count > 0)
+            //Get Doctor information.
+            BusinessLayer.DoctorInformation doctorInfo = new BusinessLayer.DoctorInformation();
+            doctorInfo.DoctorID = (int)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[0].Value);
+            doctorInfo.FirstName = (string)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[1].Value);
+            doctorInfo.LastName = (string)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[2].Value);
+            doctorInfo.PWZ = (int)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[3].Value);
+            //Get selected date.
+            DateTime date = dateTimePickerAppointmentDate.Value.Date;
+            //Get inavailable times.
+            var inavailableTimes = BusinessLayer.ReceptionistFacade.GetAppointmentTimes(doctorInfo, date);
+            //Disable buttons for inavailable times.
+            foreach (TimeSpan t in inavailableTimes)
             {
-                //Get Doctor information.
-                BusinessLayer.DoctorInformation doctorInfo = new BusinessLayer.DoctorInformation();
-                doctorInfo.DoctorID = (int)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[0].Value);
-                doctorInfo.FirstName = (string)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[1].Value);
-                doctorInfo.LastName = (string)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[2].Value);
-                doctorInfo.PWZ = (int)(dataGridViewDoctors.Rows[dataGridViewDoctors.CurrentCell.RowIndex].Cells[3].Value);
-                //Get selected date.
-                DateTime date = dateTimePickerAppointmentDate.Value.Date;
-                //Get inavailable times.
-                var inavailableTimes = BusinessLayer.ReceptionistFacade.GetAppointmentTimes(doctorInfo, date);
-                //Disable buttons for inavailable times.
-                foreach (TimeSpan t in inavailableTimes)
-                {
-                    int buttonIndex = (t.Hours - 6) * 2 + t.Minutes / 30;
-                    timeButtons[buttonIndex].Item1.Enabled = false;
-                }
+                int buttonIndex = (t.Hours-6)*2 + t.Minutes/30;
+                timeButtons[buttonIndex].Item1.Enabled = false;
             }
         }
 
@@ -112,7 +108,6 @@ namespace GUILayer
             //Select first doctor.
             if (dataGridViewDoctors.Rows.Count > 0)
                 dataGridViewDoctors.CurrentCell = dataGridViewDoctors[1,0];
-            enableValidTimeButtons();
         }
 
         private bool validAppointmentDateTime()
@@ -191,8 +186,12 @@ namespace GUILayer
 
         private void dateTimePickerAppointmentDate_ValueChanged(object sender, EventArgs e)
         {
-            //Find available hours.
-            enableValidTimeButtons();
+            //Check if any doctor is selected.
+            if (dataGridViewDoctors.SelectedCells.Count > 0)
+            {
+                //Find available hours.
+                enableValidTimeButtons();
+            }
         }
     }
 }
