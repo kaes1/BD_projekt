@@ -30,6 +30,11 @@
         {
             this.labelPanelName = new System.Windows.Forms.Label();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
+            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hashcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateRetired = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonNewUser = new System.Windows.Forms.Button();
             this.groupBoxSearch = new System.Windows.Forms.GroupBox();
             this.labelOnlyActive = new System.Windows.Forms.Label();
@@ -45,11 +50,6 @@
             this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonChangePassword = new System.Windows.Forms.Button();
             this.buttonRetireUser = new System.Windows.Forms.Button();
-            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hashcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateRetired = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.groupBoxSearch.SuspendLayout();
             this.SuspendLayout();
@@ -83,8 +83,43 @@
             this.dataGridViewUsers.ReadOnly = true;
             this.dataGridViewUsers.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewUsers.Size = new System.Drawing.Size(563, 287);
+            this.dataGridViewUsers.Size = new System.Drawing.Size(564, 287);
             this.dataGridViewUsers.TabIndex = 1;
+            // 
+            // UserID
+            // 
+            this.UserID.HeaderText = "UserID";
+            this.UserID.Name = "UserID";
+            this.UserID.ReadOnly = true;
+            this.UserID.Width = 60;
+            // 
+            // Username
+            // 
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            this.Username.Width = 130;
+            // 
+            // Hashcode
+            // 
+            this.Hashcode.HeaderText = "Hashcode";
+            this.Hashcode.Name = "Hashcode";
+            this.Hashcode.ReadOnly = true;
+            this.Hashcode.Width = 143;
+            // 
+            // Role
+            // 
+            this.Role.HeaderText = "Role";
+            this.Role.Name = "Role";
+            this.Role.ReadOnly = true;
+            this.Role.Width = 60;
+            // 
+            // DateRetired
+            // 
+            this.DateRetired.HeaderText = "DateRetired";
+            this.DateRetired.Name = "DateRetired";
+            this.DateRetired.ReadOnly = true;
+            this.DateRetired.Width = 110;
             // 
             // buttonNewUser
             // 
@@ -242,41 +277,6 @@
             this.buttonRetireUser.Text = "Retirement";
             this.buttonRetireUser.UseVisualStyleBackColor = true;
             this.buttonRetireUser.Click += new System.EventHandler(this.buttonRetireUser_Click);
-            // 
-            // UserID
-            // 
-            this.UserID.HeaderText = "UserID";
-            this.UserID.Name = "UserID";
-            this.UserID.ReadOnly = true;
-            this.UserID.Width = 60;
-            // 
-            // Username
-            // 
-            this.Username.HeaderText = "Username";
-            this.Username.Name = "Username";
-            this.Username.ReadOnly = true;
-            this.Username.Width = 130;
-            // 
-            // Hashcode
-            // 
-            this.Hashcode.HeaderText = "Hashcode";
-            this.Hashcode.Name = "Hashcode";
-            this.Hashcode.ReadOnly = true;
-            this.Hashcode.Width = 143;
-            // 
-            // Role
-            // 
-            this.Role.HeaderText = "Role";
-            this.Role.Name = "Role";
-            this.Role.ReadOnly = true;
-            this.Role.Width = 60;
-            // 
-            // DateRetired
-            // 
-            this.DateRetired.HeaderText = "DateRetired";
-            this.DateRetired.Name = "DateRetired";
-            this.DateRetired.ReadOnly = true;
-            this.DateRetired.Width = 110;
             // 
             // FormAdmin
             // 

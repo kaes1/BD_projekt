@@ -12,6 +12,9 @@ namespace GUILayer
 {
     public partial class FormReceptionistNewPatient : Form
     {
+
+        public BusinessLayer.PatientInformation newPatientInformation;
+
         public FormReceptionistNewPatient()
         {
             InitializeComponent();
@@ -71,17 +74,17 @@ namespace GUILayer
             if (!correctInformation())
                  return;
 
-            var newPatientInfo = new BusinessLayer.PatientInformation();
-            newPatientInfo.PESEL = textBoxPESEL.Text;
-            newPatientInfo.FirstName = textBoxFirstName.Text;
-            newPatientInfo.LastName = textBoxLastName.Text;
+            newPatientInformation = new BusinessLayer.PatientInformation();
+            newPatientInformation.PESEL = textBoxPESEL.Text;
+            newPatientInformation.FirstName = textBoxFirstName.Text.Trim();
+            newPatientInformation.LastName = textBoxLastName.Text.Trim();
             //Check if patient with that PESEL already exists.
-            if (BusinessLayer.ReceptionistFacade.ExistsPatient(newPatientInfo))
+            if (BusinessLayer.ReceptionistFacade.ExistsPatient(newPatientInformation))
             {
                 MessageBox.Show("Patient with that PESEL already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            BusinessLayer.ReceptionistFacade.AddNewPatient(newPatientInfo);
+            BusinessLayer.ReceptionistFacade.AddPatient(newPatientInformation);
             DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -50,7 +50,7 @@
             this.labelPanelName.AutoSize = true;
             this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(70, 9);
+            this.labelPanelName.Location = new System.Drawing.Point(68, 9);
             this.labelPanelName.Name = "labelPanelName";
             this.labelPanelName.Size = new System.Drawing.Size(236, 37);
             this.labelPanelName.TabIndex = 9;
@@ -172,7 +172,7 @@
             // 
             // textBoxPWZNumber
             // 
-            this.textBoxPWZNumber.Location = new System.Drawing.Point(248, 145);
+            this.textBoxPWZNumber.Location = new System.Drawing.Point(249, 145);
             this.textBoxPWZNumber.Name = "textBoxPWZNumber";
             this.textBoxPWZNumber.Size = new System.Drawing.Size(100, 20);
             this.textBoxPWZNumber.TabIndex = 22;
@@ -194,7 +194,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(361, 236);
+            this.ClientSize = new System.Drawing.Size(360, 234);
             this.Controls.Add(this.labelPWZNumber);
             this.Controls.Add(this.textBoxPWZNumber);
             this.Controls.Add(this.labelLastName);

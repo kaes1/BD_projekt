@@ -91,7 +91,7 @@ namespace GUILayer
                 return;
 
             //Check if user already exists in database.
-            if (BusinessLayer.AdminFacade.ExistsUser(textBoxUsername.Text))
+            if (BusinessLayer.AdminFacade.ExistsUser(textBoxUsername.Text.Trim()))
             {
                 MessageBox.Show("User with Username '" + textBoxUsername.Text + "' already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -99,7 +99,7 @@ namespace GUILayer
 
             //Utworzenie Usera oraz danej Roli.
             int PWZNumber = (comboBoxRole.Text == "DOC") ? int.Parse(textBoxPWZNumber.Text) : 0;
-            BusinessLayer.AdminFacade.AddUser(textBoxUsername.Text, textBoxPassword.Text, comboBoxRole.Text, textBoxFirstName.Text, textBoxLastName.Text, PWZNumber);
+            BusinessLayer.AdminFacade.AddUser(textBoxUsername.Text.Trim(), textBoxPassword.Text, comboBoxRole.Text, textBoxFirstName.Text.Trim(), textBoxLastName.Text.Trim(), PWZNumber);
             newUserInformation = new BusinessLayer.UserInformation(){ Username = textBoxUsername.Text };
             DialogResult = DialogResult.OK;
         }

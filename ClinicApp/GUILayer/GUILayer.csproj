@@ -149,6 +149,18 @@
     <Compile Include="FormsReceptionist\FormReceptionist.Designer.cs">
       <DependentUpon>FormReceptionist.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistCancelAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistCancelAppointment.Designer.cs">
+      <DependentUpon>FormReceptionistCancelAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistEditPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistEditPatient.Designer.cs">
+      <DependentUpon>FormReceptionistEditPatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsReceptionist\FormReceptionistNewAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +225,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormsReceptionist\FormReceptionist.resx">
       <DependentUpon>FormReceptionist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsReceptionist\FormReceptionistCancelAppointment.resx">
+      <DependentUpon>FormReceptionistCancelAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsReceptionist\FormReceptionistEditPatient.resx">
+      <DependentUpon>FormReceptionistEditPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsReceptionist\FormReceptionistNewAppointment.resx">
       <DependentUpon>FormReceptionistNewAppointment.cs</DependentUpon>
