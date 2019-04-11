@@ -212,6 +212,8 @@
             // 
             this.dataGridViewPatients.AllowUserToAddRows = false;
             this.dataGridViewPatients.AllowUserToDeleteRows = false;
+            this.dataGridViewPatients.AllowUserToResizeColumns = false;
+            this.dataGridViewPatients.AllowUserToResizeRows = false;
             this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPatients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TimeOfVisit,

@@ -29,6 +29,9 @@ namespace GUILayer.FormsDoctor
             dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
             dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
             dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
+
+            textBoxFirstName.Text = actPat.FirstName;
+            textBoxLastName.Text = actPat.LastName;
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)

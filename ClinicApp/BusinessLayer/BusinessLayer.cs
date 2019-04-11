@@ -489,16 +489,17 @@ namespace BusinessLayer
             dc.SubmitChanges();
         }
 
-        public static void AddLabExamination(int appID, String examCode, String examResult)
+        public static void AddLabExamination(int appID, String examCode, String examComment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             LabExamination lab = new LabExamination()
             {
                 AppointmentID = appID,
                 Code = examCode,
-                Result = examResult,
+                DoctorComments = examComment,
                 DateRegistered = DateTime.Now,
                 Status = "REG"
+
             };
             dc.LabExaminations.InsertOnSubmit(lab);
             dc.SubmitChanges();
@@ -646,8 +647,15 @@ namespace BusinessLayer
         public static void AddNewAppointment(ReceptionistInformation rInfo, PatientInformation pInfo, DoctorInformation dInfo)
         {
             Appointment newAppointment = new Appointment()
-            {DoctorID = dInfo.DoctorID, PatientID = pInfo.PatientID, ReceptionistID = rInfo.ReceptionistID,
-                DateRegistered = DateTime.Now , Description = "Standard Appointment.", Status = "REG"};
+            {
+                DoctorID = dInfo.DoctorID,
+                PatientID = pInfo.PatientID,
+                ReceptionistID = rInfo.ReceptionistID,
+                DateRegistered = DateTime.Now ,
+                DateOfAppointment = DateTime.Now,
+                Description = "Standard Appointment.",
+                Status = "REG"
+            };
             DataClassesDataContext dc = new DataClassesDataContext();
             dc.Appointments.InsertOnSubmit(newAppointment);
             dc.SubmitChanges();
