@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxResult = new System.Windows.Forms.RichTextBox();
             this.labelResult = new System.Windows.Forms.Label();
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.labelChoosenExamination = new System.Windows.Forms.Label();
             this.textBoxChoosenExamination = new System.Windows.Forms.TextBox();
             this.groupBoxPhysicalExaminations = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonChooseExam = new System.Windows.Forms.Button();
             this.groupBoxPhysicalExaminations.SuspendLayout();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // richTextBoxResult
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(5, 154);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(243, 207);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBoxResult.Location = new System.Drawing.Point(5, 154);
+            this.richTextBoxResult.Name = "richTextBoxResult";
+            this.richTextBoxResult.Size = new System.Drawing.Size(243, 207);
+            this.richTextBoxResult.TabIndex = 0;
+            this.richTextBoxResult.Text = "";
             // 
             // labelResult
             // 
@@ -92,16 +92,15 @@
             this.textBoxChoosenExamination.ReadOnly = true;
             this.textBoxChoosenExamination.Size = new System.Drawing.Size(141, 22);
             this.textBoxChoosenExamination.TabIndex = 5;
-            this.textBoxChoosenExamination.Text = "Pomiar ciśnienia";
             // 
             // groupBoxPhysicalExaminations
             // 
-            this.groupBoxPhysicalExaminations.Controls.Add(this.button1);
+            this.groupBoxPhysicalExaminations.Controls.Add(this.buttonChooseExam);
             this.groupBoxPhysicalExaminations.Controls.Add(this.buttonCancel);
             this.groupBoxPhysicalExaminations.Controls.Add(this.buttonConfirm);
             this.groupBoxPhysicalExaminations.Controls.Add(this.labelResult);
             this.groupBoxPhysicalExaminations.Controls.Add(this.textBoxChoosenExamination);
-            this.groupBoxPhysicalExaminations.Controls.Add(this.richTextBox1);
+            this.groupBoxPhysicalExaminations.Controls.Add(this.richTextBoxResult);
             this.groupBoxPhysicalExaminations.Controls.Add(this.labelChoosenExamination);
             this.groupBoxPhysicalExaminations.Location = new System.Drawing.Point(12, 15);
             this.groupBoxPhysicalExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -111,14 +110,15 @@
             this.groupBoxPhysicalExaminations.TabIndex = 24;
             this.groupBoxPhysicalExaminations.TabStop = false;
             // 
-            // button1
+            // buttonChooseExam
             // 
-            this.button1.Location = new System.Drawing.Point(77, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 44);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Choose examination";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonChooseExam.Location = new System.Drawing.Point(77, 20);
+            this.buttonChooseExam.Name = "buttonChooseExam";
+            this.buttonChooseExam.Size = new System.Drawing.Size(105, 44);
+            this.buttonChooseExam.TabIndex = 6;
+            this.buttonChooseExam.Text = "Choose examination";
+            this.buttonChooseExam.UseVisualStyleBackColor = true;
+            this.buttonChooseExam.Click += new System.EventHandler(this.buttonChooseExam_Click);
             // 
             // FormDoctorPhysExam
             // 
@@ -136,13 +136,13 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxResult;
         private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label labelChoosenExamination;
         private System.Windows.Forms.TextBox textBoxChoosenExamination;
         private System.Windows.Forms.GroupBox groupBoxPhysicalExaminations;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonChooseExam;
     }
 }

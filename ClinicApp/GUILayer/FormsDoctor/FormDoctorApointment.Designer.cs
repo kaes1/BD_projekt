@@ -1,6 +1,6 @@
 ﻿namespace GUILayer
 {
-    partial class FormDoctorVisit
+    partial class FormDoctorAppointment
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.buttonBack = new System.Windows.Forms.Button();
-            this.buttonEndAppointment = new System.Windows.Forms.Button();
             this.buttonCancelAppointment = new System.Windows.Forms.Button();
             this.labelFisrtName = new System.Windows.Forms.Label();
             this.labelLastName = new System.Windows.Forms.Label();
@@ -50,7 +49,7 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(6, 170);
+            this.buttonBack.Location = new System.Drawing.Point(6, 119);
             this.buttonBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(184, 41);
@@ -59,22 +58,10 @@
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
-            // buttonEndAppointment
-            // 
-            this.buttonEndAppointment.Enabled = false;
-            this.buttonEndAppointment.Location = new System.Drawing.Point(6, 70);
-            this.buttonEndAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonEndAppointment.Name = "buttonEndAppointment";
-            this.buttonEndAppointment.Size = new System.Drawing.Size(184, 42);
-            this.buttonEndAppointment.TabIndex = 2;
-            this.buttonEndAppointment.Text = "End ";
-            this.buttonEndAppointment.UseVisualStyleBackColor = true;
-            this.buttonEndAppointment.Click += new System.EventHandler(this.buttonEndAppointment_Click);
-            // 
             // buttonCancelAppointment
             // 
             this.buttonCancelAppointment.Enabled = false;
-            this.buttonCancelAppointment.Location = new System.Drawing.Point(6, 121);
+            this.buttonCancelAppointment.Location = new System.Drawing.Point(6, 70);
             this.buttonCancelAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCancelAppointment.Name = "buttonCancelAppointment";
             this.buttonCancelAppointment.Size = new System.Drawing.Size(184, 41);
@@ -110,6 +97,7 @@
             this.richTextBoxDescription.Size = new System.Drawing.Size(377, 298);
             this.richTextBoxDescription.TabIndex = 14;
             this.richTextBoxDescription.Text = "";
+            this.richTextBoxDescription.TextChanged += new System.EventHandler(this.richTextBoxDescription_TextChanged);
             // 
             // labelDescription
             // 
@@ -161,13 +149,12 @@
             this.groupBoxMenu.Controls.Add(this.buttonPatientHistory);
             this.groupBoxMenu.Controls.Add(this.buttonBeginAppointment);
             this.groupBoxMenu.Controls.Add(this.buttonBack);
-            this.groupBoxMenu.Controls.Add(this.buttonEndAppointment);
             this.groupBoxMenu.Controls.Add(this.buttonCancelAppointment);
             this.groupBoxMenu.Location = new System.Drawing.Point(458, 175);
             this.groupBoxMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxMenu.Name = "groupBoxMenu";
             this.groupBoxMenu.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxMenu.Size = new System.Drawing.Size(196, 326);
+            this.groupBoxMenu.Size = new System.Drawing.Size(196, 274);
             this.groupBoxMenu.TabIndex = 20;
             this.groupBoxMenu.TabStop = false;
             this.groupBoxMenu.Text = "Menu";
@@ -175,7 +162,7 @@
             // buttonManageExaminations
             // 
             this.buttonManageExaminations.Enabled = false;
-            this.buttonManageExaminations.Location = new System.Drawing.Point(6, 270);
+            this.buttonManageExaminations.Location = new System.Drawing.Point(6, 219);
             this.buttonManageExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonManageExaminations.Name = "buttonManageExaminations";
             this.buttonManageExaminations.Size = new System.Drawing.Size(184, 41);
@@ -187,7 +174,7 @@
             // buttonPatientHistory
             // 
             this.buttonPatientHistory.Enabled = false;
-            this.buttonPatientHistory.Location = new System.Drawing.Point(6, 220);
+            this.buttonPatientHistory.Location = new System.Drawing.Point(6, 169);
             this.buttonPatientHistory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonPatientHistory.Name = "buttonPatientHistory";
             this.buttonPatientHistory.Size = new System.Drawing.Size(184, 41);
@@ -225,6 +212,7 @@
             this.richTextBoxDiagnosis.Size = new System.Drawing.Size(184, 41);
             this.richTextBoxDiagnosis.TabIndex = 24;
             this.richTextBoxDiagnosis.Text = "";
+            this.richTextBoxDiagnosis.TextChanged += new System.EventHandler(this.richTextBoxDiagnosis_TextChanged);
             // 
             // FormDoctorVisit
             // 
@@ -250,7 +238,6 @@
 
         #endregion
         private System.Windows.Forms.Button buttonBack;
-        private System.Windows.Forms.Button buttonEndAppointment;
         private System.Windows.Forms.Button buttonCancelAppointment;
         private System.Windows.Forms.Label labelFisrtName;
         private System.Windows.Forms.Label labelLastName;

@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonCheckPatient = new System.Windows.Forms.Button();
             this.labelDoctorName = new System.Windows.Forms.Label();
             this.labelLoggedInAs = new System.Windows.Forms.Label();
             this.buttonViewAllForToday = new System.Windows.Forms.Button();
             this.groupBoxSearch = new System.Windows.Forms.GroupBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.labelStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.textBoxPESEL = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
             this.TimeOfVisit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,20 +52,9 @@
             this.buttonBeginVisit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.labelPanelName = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBoxSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
             this.SuspendLayout();
-            // 
-            // buttonCheckPatient
-            // 
-            this.buttonCheckPatient.Location = new System.Drawing.Point(879, 405);
-            this.buttonCheckPatient.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonCheckPatient.Name = "buttonCheckPatient";
-            this.buttonCheckPatient.Size = new System.Drawing.Size(140, 28);
-            this.buttonCheckPatient.TabIndex = 14;
-            this.buttonCheckPatient.Text = "Check Patient";
-            this.buttonCheckPatient.UseVisualStyleBackColor = true;
             // 
             // labelDoctorName
             // 
@@ -93,7 +82,7 @@
             this.buttonViewAllForToday.Location = new System.Drawing.Point(879, 282);
             this.buttonViewAllForToday.Margin = new System.Windows.Forms.Padding(4);
             this.buttonViewAllForToday.Name = "buttonViewAllForToday";
-            this.buttonViewAllForToday.Size = new System.Drawing.Size(140, 28);
+            this.buttonViewAllForToday.Size = new System.Drawing.Size(147, 28);
             this.buttonViewAllForToday.TabIndex = 11;
             this.buttonViewAllForToday.Text = "View all for today";
             this.buttonViewAllForToday.UseVisualStyleBackColor = true;
@@ -101,6 +90,7 @@
             // 
             // groupBoxSearch
             // 
+            this.groupBoxSearch.Controls.Add(this.buttonSearch);
             this.groupBoxSearch.Controls.Add(this.dateTimePicker);
             this.groupBoxSearch.Controls.Add(this.textBoxStatus);
             this.groupBoxSearch.Controls.Add(this.labelStatus);
@@ -111,7 +101,6 @@
             this.groupBoxSearch.Controls.Add(this.textBoxPESEL);
             this.groupBoxSearch.Controls.Add(this.textBoxLastName);
             this.groupBoxSearch.Controls.Add(this.textBoxFirstName);
-            this.groupBoxSearch.Controls.Add(this.buttonSearch);
             this.groupBoxSearch.Location = new System.Drawing.Point(16, 98);
             this.groupBoxSearch.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxSearch.Name = "groupBoxSearch";
@@ -120,6 +109,24 @@
             this.groupBoxSearch.TabIndex = 10;
             this.groupBoxSearch.TabStop = false;
             this.groupBoxSearch.Text = "Search";
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(923, 63);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.TabIndex = 14;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Location = new System.Drawing.Point(465, 63);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.ShowCheckBox = true;
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.TabIndex = 13;
             // 
             // textBoxStatus
             // 
@@ -201,17 +208,6 @@
             this.textBoxFirstName.Size = new System.Drawing.Size(132, 22);
             this.textBoxFirstName.TabIndex = 3;
             // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(863, 60);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(140, 28);
-            this.buttonSearch.TabIndex = 2;
-            this.buttonSearch.Text = "Search";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
             // dataGridViewPatients
             // 
             this.dataGridViewPatients.AllowUserToAddRows = false;
@@ -268,9 +264,9 @@
             this.buttonBeginVisit.Location = new System.Drawing.Point(879, 341);
             this.buttonBeginVisit.Margin = new System.Windows.Forms.Padding(4);
             this.buttonBeginVisit.Name = "buttonBeginVisit";
-            this.buttonBeginVisit.Size = new System.Drawing.Size(140, 28);
+            this.buttonBeginVisit.Size = new System.Drawing.Size(147, 28);
             this.buttonBeginVisit.TabIndex = 8;
-            this.buttonBeginVisit.Text = "Begin examination";
+            this.buttonBeginVisit.Text = "Begin appointment";
             this.buttonBeginVisit.UseVisualStyleBackColor = true;
             this.buttonBeginVisit.Click += new System.EventHandler(this.buttonSelectPatient_Click);
             // 
@@ -286,21 +282,12 @@
             this.labelPanelName.TabIndex = 16;
             this.labelPanelName.Text = "Doctor Panel";
             // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.Location = new System.Drawing.Point(465, 63);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.ShowCheckBox = true;
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker.TabIndex = 13;
-            // 
             // FormDoctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 650);
             this.Controls.Add(this.labelPanelName);
-            this.Controls.Add(this.buttonCheckPatient);
             this.Controls.Add(this.labelDoctorName);
             this.Controls.Add(this.labelLoggedInAs);
             this.Controls.Add(this.buttonViewAllForToday);
@@ -320,7 +307,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button buttonCheckPatient;
         private System.Windows.Forms.Label labelDoctorName;
         private System.Windows.Forms.Label labelLoggedInAs;
         private System.Windows.Forms.Button buttonViewAllForToday;
@@ -329,7 +315,6 @@
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
-        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.DataGridView dataGridViewPatients;
         private System.Windows.Forms.Button buttonBeginVisit;
         private System.Windows.Forms.Label labelPESEL;
@@ -345,5 +330,6 @@
         private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Button buttonSearch;
     }
 }

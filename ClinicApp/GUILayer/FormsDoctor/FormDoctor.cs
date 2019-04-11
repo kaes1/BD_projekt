@@ -12,7 +12,7 @@ namespace GUILayer
 {
     public partial class FormDoctor : Form
     {
-        BusinessLayer.DoctorInformation activeDoctorInformation;
+        public BusinessLayer.DoctorInformation activeDoctorInformation { get; set; }
 
         public FormDoctor()
         {
@@ -24,27 +24,53 @@ namespace GUILayer
             InitializeComponent();
             activeDoctorInformation = BusinessLayer.DoctorFacade.GetDoctor(userID);
             labelDoctorName.Text = activeDoctorInformation.FirstName + " " + activeDoctorInformation.LastName;
+            dataGridViewPatients.AutoGenerateColumns = true;
+            dataGridViewPatients.Columns.Clear();
+            dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
+            dataGridViewPatients.AutoGenerateColumns = false;
+            dataGridViewPatients.Columns.Remove("AppointmentID");
+        }
+
+        public FormDoctor(BusinessLayer.DoctorInformation doc)
+        {
+            InitializeComponent();
+            activeDoctorInformation = doc;
+            labelDoctorName.Text = activeDoctorInformation.FirstName + " " + activeDoctorInformation.LastName;
+            dataGridViewPatients.AutoGenerateColumns = true;
+            dataGridViewPatients.Columns.Clear();
+            dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
+            dataGridViewPatients.AutoGenerateColumns = false;
+            dataGridViewPatients.Columns.Remove("AppointmentID");
         }
 
         //Move to doctorVisitform.
         private void buttonSelectPatient_Click(object sender, EventArgs e)
         {
-            //Hide this form.
-            this.Hide();
-            //Create a new doctorVisitForm.
-            var doctorVisitForm = new FormDoctorVisit();
-            //Set reference to this form.
-            doctorVisitForm.prevPageRef = this;
-            //Add closing loginForm to the closing event of receptionistForm.
-            //doctorVisitForm.FormClosed += (s, args) => this.Close();
-            //Show the new doctorVisitForm.
-            doctorVisitForm.Show();
+
+            string st = (string)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[4].Value);
+            if (st == "COMP" || st == "CANC")
+            {
+                MessageBox.Show("You can't begin appointment that was already ended.");
+            }
+            else
+            {
+                String pesel = (String)dataGridViewPatients.SelectedRows[0].Cells[3].Value;
+                DateTime date = (DateTime)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[0].Value);
+                this.Hide();
+                var doctorAppointmentForm = new FormDoctorAppointment(BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date), BusinessLayer.DoctorFacade.getPatientByPesel(pesel));
+                doctorAppointmentForm.actualDoctor = activeDoctorInformation;
+                DialogResult res = doctorAppointmentForm.ShowDialog();
+                this.Show();
+            }
         }
 
         private void buttonViewAllForToday_Click(object sender, EventArgs e)
         {
+            dataGridViewPatients.AutoGenerateColumns = true;
             dataGridViewPatients.Columns.Clear();
-            dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(1);
+            dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
+            dataGridViewPatients.AutoGenerateColumns = false;
+            dataGridViewPatients.Columns.Remove("AppointmentID");
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -52,13 +78,26 @@ namespace GUILayer
             dataGridViewPatients.Columns.Clear();
             BusinessLayer.DoctorAppointment searchParams = new BusinessLayer.DoctorAppointment()
             {
-                DateRegistered = dateTimePicker.Value,
+                DateOfAppointment = dateTimePicker.Value,
                 PatientFirstName = textBoxFirstName.Text,
                 PatientLastName = textBoxLastName.Text,
                 PatientPesel = textBoxPESEL.Text,
-                Status = textBoxStatus.Text              
+                Status = textBoxStatus.Text
             };
-            dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetSearch(searchParams, activeDoctorInformation.DoctorID);
+            if(dateTimePicker.Checked == true)
+            {
+                dataGridViewPatients.AutoGenerateColumns = true;
+                dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetSearch(searchParams, activeDoctorInformation.DoctorID);
+                dataGridViewPatients.AutoGenerateColumns = false;
+                dataGridViewPatients.Columns.Remove("AppointmentID");
+            }
+            else
+            {
+                dataGridViewPatients.AutoGenerateColumns = true;
+                dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetSearchWithoutDate(searchParams, activeDoctorInformation.DoctorID);
+                dataGridViewPatients.AutoGenerateColumns = false;
+                dataGridViewPatients.Columns.Remove("AppointmentID");
+            }         
         }
     }
 }

@@ -12,25 +12,61 @@ namespace GUILayer.FormsDoctor
 {
     public partial class FormDoctorHistory : Form
     {
-        public Form DoctorAppointmentRef { get; set; }
+        BusinessLayer.AppointmentInformation actualAppointment { get; set; }
+        BusinessLayer.PatientInformation actualPatient { get; set; }
+        BusinessLayer.DoctorInformation actualDoctor{ get; set; }
+        bool showAppointments = true;
 
-        public FormDoctorHistory()
+        public FormDoctorHistory(BusinessLayer.AppointmentInformation actApp, BusinessLayer.PatientInformation actPat, BusinessLayer.DoctorInformation actDoc)
         {
             InitializeComponent();
+            actualAppointment = actApp;
+            actualDoctor = actDoc;
+            actualPatient = actPat;
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
+            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)
         {
-            DoctorAppointmentRef.Show();
+            DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void buttonManageExaminations_Click(object sender, EventArgs e)
+        private void buttonPreviousExaminations_Click(object sender, EventArgs e)
         {
-            var doctorExaminationsForm = new FormsDoctor.FormDoctorManageExaminations();
-            doctorExaminationsForm.DoctorAppointmentRef = DoctorAppointmentRef;
-            doctorExaminationsForm.Show();
-            this.Close();
+            //TODO show examinations
+            showAppointments = false;
+        }
+
+        private void dataGridViewAppoinmentsExaminations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (showAppointments == true)
+            {
+                int appID = (int)dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[0].Value;
+                BusinessLayer.AppointmentInformation app = BusinessLayer.DoctorFacade.GetAppointmentByID(appID);
+                richTextBoxResultDescription.Text = app.Description;
+            }
+            else
+            {
+              //  String examResult = BusinessLayer.DoctorFacade.GetExamResultById(dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[0].Value);
+               // richTextBoxResultDescription.Text = app.Description;
+            }
+        }
+
+        private void buttonPreviousAppointments_Click(object sender, EventArgs e)
+        {
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
+            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
+            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
+            showAppointments = true;
         }
     }
 }
