@@ -267,7 +267,7 @@
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPatients.Size = new System.Drawing.Size(505, 177);
             this.dataGridViewPatients.TabIndex = 1;
-            this.dataGridViewPatients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatients_CellClick);
+            this.dataGridViewPatients.SelectionChanged += new System.EventHandler(this.dataGridViewPatients_SelectionChanged);
             // 
             // FirstName
             // 

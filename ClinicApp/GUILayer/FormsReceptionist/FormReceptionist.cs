@@ -66,7 +66,7 @@ namespace GUILayer
             List<BusinessLayer.ReceptionistFacade.ReceptionistAppointment> appointments;
 
             //Check if any patient is selected.
-            if (dataGridViewPatients.SelectedCells.Count > 0)
+            if (dataGridViewPatients.SelectedCells.Count > 0 && dataGridViewPatients.CurrentRow != null)
             {
                 //Get search criteria.
                 BusinessLayer.PatientInformation patientInfo = new BusinessLayer.PatientInformation();
@@ -163,6 +163,12 @@ namespace GUILayer
         }
 
         private void dataGridViewPatients_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            resetAppointmentSearch();
+            searchForAppointments();
+        }
+
+        private void dataGridViewPatients_SelectionChanged(object sender, EventArgs e)
         {
             resetAppointmentSearch();
             searchForAppointments();

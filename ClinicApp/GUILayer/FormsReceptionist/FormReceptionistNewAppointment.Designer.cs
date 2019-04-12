@@ -134,7 +134,7 @@
             this.dataGridViewDoctors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDoctors.Size = new System.Drawing.Size(433, 176);
             this.dataGridViewDoctors.TabIndex = 9;
-            this.dataGridViewDoctors.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDoctors_CellClick);
+            this.dataGridViewDoctors.SelectionChanged += new System.EventHandler(this.dataGridViewDoctors_SelectionChanged);
             // 
             // FirstName
             // 

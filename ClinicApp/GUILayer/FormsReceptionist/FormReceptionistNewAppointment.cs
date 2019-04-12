@@ -75,7 +75,7 @@ namespace GUILayer
                 element.Item1.Checked = false;
             }
             //Check if any doctor is selected.
-            if (dataGridViewDoctors.SelectedCells.Count > 0)
+            if (dataGridViewDoctors.SelectedCells.Count > 0 && dataGridViewDoctors.CurrentRow != null)
             {
                 //Get Doctor information.
                 BusinessLayer.DoctorInformation doctorInfo = new BusinessLayer.DoctorInformation();
@@ -183,13 +183,13 @@ namespace GUILayer
             searchForDoctors();
         }
 
-        private void dataGridViewDoctors_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dateTimePickerAppointmentDate_ValueChanged(object sender, EventArgs e)
         {
             //Find available hours.
             enableValidTimeButtons();
         }
 
-        private void dateTimePickerAppointmentDate_ValueChanged(object sender, EventArgs e)
+        private void dataGridViewDoctors_SelectionChanged(object sender, EventArgs e)
         {
             //Find available hours.
             enableValidTimeButtons();
