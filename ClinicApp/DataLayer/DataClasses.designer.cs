@@ -42,9 +42,6 @@ namespace DataLayer
     partial void InsertExaminationDictionary(ExaminationDictionary instance);
     partial void UpdateExaminationDictionary(ExaminationDictionary instance);
     partial void DeleteExaminationDictionary(ExaminationDictionary instance);
-    partial void InsertLabExamination(LabExamination instance);
-    partial void UpdateLabExamination(LabExamination instance);
-    partial void DeleteLabExamination(LabExamination instance);
     partial void InsertLabManager(LabManager instance);
     partial void UpdateLabManager(LabManager instance);
     partial void DeleteLabManager(LabManager instance);
@@ -54,12 +51,15 @@ namespace DataLayer
     partial void InsertPatient(Patient instance);
     partial void UpdatePatient(Patient instance);
     partial void DeletePatient(Patient instance);
-    partial void InsertPhysicalExamination(PhysicalExamination instance);
-    partial void UpdatePhysicalExamination(PhysicalExamination instance);
-    partial void DeletePhysicalExamination(PhysicalExamination instance);
     partial void InsertReceptionist(Receptionist instance);
     partial void UpdateReceptionist(Receptionist instance);
     partial void DeleteReceptionist(Receptionist instance);
+    partial void InsertPhysicalExamination(PhysicalExamination instance);
+    partial void UpdatePhysicalExamination(PhysicalExamination instance);
+    partial void DeletePhysicalExamination(PhysicalExamination instance);
+    partial void InsertLabExamination(LabExamination instance);
+    partial void UpdateLabExamination(LabExamination instance);
+    partial void DeleteLabExamination(LabExamination instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -124,14 +124,6 @@ namespace DataLayer
 			}
 		}
 		
-		public System.Data.Linq.Table<LabExamination> LabExaminations
-		{
-			get
-			{
-				return this.GetTable<LabExamination>();
-			}
-		}
-		
 		public System.Data.Linq.Table<LabManager> LabManagers
 		{
 			get
@@ -156,6 +148,14 @@ namespace DataLayer
 			}
 		}
 		
+		public System.Data.Linq.Table<Receptionist> Receptionists
+		{
+			get
+			{
+				return this.GetTable<Receptionist>();
+			}
+		}
+		
 		public System.Data.Linq.Table<PhysicalExamination> PhysicalExaminations
 		{
 			get
@@ -164,11 +164,11 @@ namespace DataLayer
 			}
 		}
 		
-		public System.Data.Linq.Table<Receptionist> Receptionists
+		public System.Data.Linq.Table<LabExamination> LabExaminations
 		{
 			get
 			{
-				return this.GetTable<Receptionist>();
+				return this.GetTable<LabExamination>();
 			}
 		}
 	}
@@ -199,9 +199,9 @@ namespace DataLayer
 		
 		private System.Nullable<System.DateTime> _DateCompletedOrCanceled;
 		
-		private EntitySet<LabExamination> _LabExaminations;
-		
 		private EntitySet<PhysicalExamination> _PhysicalExaminations;
+		
+		private EntitySet<LabExamination> _LabExaminations;
 		
 		private EntityRef<Doctor> _Doctor;
 		
@@ -237,8 +237,8 @@ namespace DataLayer
 		
 		public Appointment()
 		{
-			this._LabExaminations = new EntitySet<LabExamination>(new Action<LabExamination>(this.attach_LabExaminations), new Action<LabExamination>(this.detach_LabExaminations));
 			this._PhysicalExaminations = new EntitySet<PhysicalExamination>(new Action<PhysicalExamination>(this.attach_PhysicalExaminations), new Action<PhysicalExamination>(this.detach_PhysicalExaminations));
+			this._LabExaminations = new EntitySet<LabExamination>(new Action<LabExamination>(this.attach_LabExaminations), new Action<LabExamination>(this.detach_LabExaminations));
 			this._Doctor = default(EntityRef<Doctor>);
 			this._Patient = default(EntityRef<Patient>);
 			this._Receptionist = default(EntityRef<Receptionist>);
@@ -457,19 +457,6 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_LabExamination", Storage="_LabExaminations", ThisKey="AppointmentID", OtherKey="AppointmentID")]
-		public EntitySet<LabExamination> LabExaminations
-		{
-			get
-			{
-				return this._LabExaminations;
-			}
-			set
-			{
-				this._LabExaminations.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_PhysicalExamination", Storage="_PhysicalExaminations", ThisKey="AppointmentID", OtherKey="AppointmentID")]
 		public EntitySet<PhysicalExamination> PhysicalExaminations
 		{
@@ -480,6 +467,19 @@ namespace DataLayer
 			set
 			{
 				this._PhysicalExaminations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_LabExamination", Storage="_LabExaminations", ThisKey="AppointmentID", OtherKey="AppointmentID")]
+		public EntitySet<LabExamination> LabExaminations
+		{
+			get
+			{
+				return this._LabExaminations;
+			}
+			set
+			{
+				this._LabExaminations.Assign(value);
 			}
 		}
 		
@@ -605,18 +605,6 @@ namespace DataLayer
 			}
 		}
 		
-		private void attach_LabExaminations(LabExamination entity)
-		{
-			this.SendPropertyChanging();
-			entity.Appointment = this;
-		}
-		
-		private void detach_LabExaminations(LabExamination entity)
-		{
-			this.SendPropertyChanging();
-			entity.Appointment = null;
-		}
-		
 		private void attach_PhysicalExaminations(PhysicalExamination entity)
 		{
 			this.SendPropertyChanging();
@@ -624,6 +612,18 @@ namespace DataLayer
 		}
 		
 		private void detach_PhysicalExaminations(PhysicalExamination entity)
+		{
+			this.SendPropertyChanging();
+			entity.Appointment = null;
+		}
+		
+		private void attach_LabExaminations(LabExamination entity)
+		{
+			this.SendPropertyChanging();
+			entity.Appointment = this;
+		}
+		
+		private void detach_LabExaminations(LabExamination entity)
 		{
 			this.SendPropertyChanging();
 			entity.Appointment = null;
@@ -1139,9 +1139,9 @@ namespace DataLayer
 		
 		private string _Name;
 		
-		private EntitySet<LabExamination> _LabExaminations;
-		
 		private EntitySet<PhysicalExamination> _PhysicalExaminations;
+		
+		private EntitySet<LabExamination> _LabExaminations;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1157,8 +1157,8 @@ namespace DataLayer
 		
 		public ExaminationDictionary()
 		{
-			this._LabExaminations = new EntitySet<LabExamination>(new Action<LabExamination>(this.attach_LabExaminations), new Action<LabExamination>(this.detach_LabExaminations));
 			this._PhysicalExaminations = new EntitySet<PhysicalExamination>(new Action<PhysicalExamination>(this.attach_PhysicalExaminations), new Action<PhysicalExamination>(this.detach_PhysicalExaminations));
+			this._LabExaminations = new EntitySet<LabExamination>(new Action<LabExamination>(this.attach_LabExaminations), new Action<LabExamination>(this.detach_LabExaminations));
 			OnCreated();
 		}
 		
@@ -1222,19 +1222,6 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExaminationDictionary_LabExamination", Storage="_LabExaminations", ThisKey="Code", OtherKey="Code")]
-		public EntitySet<LabExamination> LabExaminations
-		{
-			get
-			{
-				return this._LabExaminations;
-			}
-			set
-			{
-				this._LabExaminations.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExaminationDictionary_PhysicalExamination", Storage="_PhysicalExaminations", ThisKey="Code", OtherKey="Code")]
 		public EntitySet<PhysicalExamination> PhysicalExaminations
 		{
@@ -1248,6 +1235,19 @@ namespace DataLayer
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExaminationDictionary_LabExamination", Storage="_LabExaminations", ThisKey="Code", OtherKey="Code")]
+		public EntitySet<LabExamination> LabExaminations
+		{
+			get
+			{
+				return this._LabExaminations;
+			}
+			set
+			{
+				this._LabExaminations.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1266,18 +1266,6 @@ namespace DataLayer
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_LabExaminations(LabExamination entity)
-		{
-			this.SendPropertyChanging();
-			entity.ExaminationDictionary = this;
-		}
-		
-		private void detach_LabExaminations(LabExamination entity)
-		{
-			this.SendPropertyChanging();
-			entity.ExaminationDictionary = null;
 		}
 		
 		private void attach_PhysicalExaminations(PhysicalExamination entity)
@@ -1291,495 +1279,17 @@ namespace DataLayer
 			this.SendPropertyChanging();
 			entity.ExaminationDictionary = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LabExamination")]
-	public partial class LabExamination : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _LabExaminationID;
-		
-		private string _Code;
-		
-		private int _AppointmentID;
-		
-		private System.Nullable<int> _LabTechnicianID;
-		
-		private System.Nullable<int> _LabManagerID;
-		
-		private System.DateTime _DateRegistered;
-		
-		private string _Result;
-		
-		private string _DoctorComments;
-		
-		private System.Nullable<System.DateTime> _DateCompletedOrCanceled;
-		
-		private string _LabManagerComments;
-		
-		private System.Nullable<System.DateTime> _DateApprovedOrCanceled;
-		
-		private string _Status;
-		
-		private EntityRef<Appointment> _Appointment;
-		
-		private EntityRef<ExaminationDictionary> _ExaminationDictionary;
-		
-		private EntityRef<LabManager> _LabManager;
-		
-		private EntityRef<LabTechnician> _LabTechnician;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnLabExaminationIDChanging(int value);
-    partial void OnLabExaminationIDChanged();
-    partial void OnCodeChanging(string value);
-    partial void OnCodeChanged();
-    partial void OnAppointmentIDChanging(int value);
-    partial void OnAppointmentIDChanged();
-    partial void OnLabTechnicianIDChanging(System.Nullable<int> value);
-    partial void OnLabTechnicianIDChanged();
-    partial void OnLabManagerIDChanging(System.Nullable<int> value);
-    partial void OnLabManagerIDChanged();
-    partial void OnDateRegisteredChanging(System.DateTime value);
-    partial void OnDateRegisteredChanged();
-    partial void OnResultChanging(string value);
-    partial void OnResultChanged();
-    partial void OnDoctorCommentsChanging(string value);
-    partial void OnDoctorCommentsChanged();
-    partial void OnDateCompletedOrCanceledChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateCompletedOrCanceledChanged();
-    partial void OnLabManagerCommentsChanging(string value);
-    partial void OnLabManagerCommentsChanged();
-    partial void OnDateApprovedOrCanceledChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateApprovedOrCanceledChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    #endregion
-		
-		public LabExamination()
+		private void attach_LabExaminations(LabExamination entity)
 		{
-			this._Appointment = default(EntityRef<Appointment>);
-			this._ExaminationDictionary = default(EntityRef<ExaminationDictionary>);
-			this._LabManager = default(EntityRef<LabManager>);
-			this._LabTechnician = default(EntityRef<LabTechnician>);
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.ExaminationDictionary = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabExaminationID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int LabExaminationID
+		private void detach_LabExaminations(LabExamination entity)
 		{
-			get
-			{
-				return this._LabExaminationID;
-			}
-			set
-			{
-				if ((this._LabExaminationID != value))
-				{
-					this.OnLabExaminationIDChanging(value);
-					this.SendPropertyChanging();
-					this._LabExaminationID = value;
-					this.SendPropertyChanged("LabExaminationID");
-					this.OnLabExaminationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Code
-		{
-			get
-			{
-				return this._Code;
-			}
-			set
-			{
-				if ((this._Code != value))
-				{
-					if (this._ExaminationDictionary.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCodeChanging(value);
-					this.SendPropertyChanging();
-					this._Code = value;
-					this.SendPropertyChanged("Code");
-					this.OnCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int NOT NULL")]
-		public int AppointmentID
-		{
-			get
-			{
-				return this._AppointmentID;
-			}
-			set
-			{
-				if ((this._AppointmentID != value))
-				{
-					if (this._Appointment.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAppointmentIDChanging(value);
-					this.SendPropertyChanging();
-					this._AppointmentID = value;
-					this.SendPropertyChanged("AppointmentID");
-					this.OnAppointmentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabTechnicianID", DbType="Int")]
-		public System.Nullable<int> LabTechnicianID
-		{
-			get
-			{
-				return this._LabTechnicianID;
-			}
-			set
-			{
-				if ((this._LabTechnicianID != value))
-				{
-					if (this._LabTechnician.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLabTechnicianIDChanging(value);
-					this.SendPropertyChanging();
-					this._LabTechnicianID = value;
-					this.SendPropertyChanged("LabTechnicianID");
-					this.OnLabTechnicianIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabManagerID", DbType="Int")]
-		public System.Nullable<int> LabManagerID
-		{
-			get
-			{
-				return this._LabManagerID;
-			}
-			set
-			{
-				if ((this._LabManagerID != value))
-				{
-					if (this._LabManager.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLabManagerIDChanging(value);
-					this.SendPropertyChanging();
-					this._LabManagerID = value;
-					this.SendPropertyChanged("LabManagerID");
-					this.OnLabManagerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateRegistered", DbType="DateTime NOT NULL")]
-		public System.DateTime DateRegistered
-		{
-			get
-			{
-				return this._DateRegistered;
-			}
-			set
-			{
-				if ((this._DateRegistered != value))
-				{
-					this.OnDateRegisteredChanging(value);
-					this.SendPropertyChanging();
-					this._DateRegistered = value;
-					this.SendPropertyChanged("DateRegistered");
-					this.OnDateRegisteredChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Result", DbType="VarChar(1024)")]
-		public string Result
-		{
-			get
-			{
-				return this._Result;
-			}
-			set
-			{
-				if ((this._Result != value))
-				{
-					this.OnResultChanging(value);
-					this.SendPropertyChanging();
-					this._Result = value;
-					this.SendPropertyChanged("Result");
-					this.OnResultChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorComments", DbType="VarChar(1024)")]
-		public string DoctorComments
-		{
-			get
-			{
-				return this._DoctorComments;
-			}
-			set
-			{
-				if ((this._DoctorComments != value))
-				{
-					this.OnDoctorCommentsChanging(value);
-					this.SendPropertyChanging();
-					this._DoctorComments = value;
-					this.SendPropertyChanged("DoctorComments");
-					this.OnDoctorCommentsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCompletedOrCanceled", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateCompletedOrCanceled
-		{
-			get
-			{
-				return this._DateCompletedOrCanceled;
-			}
-			set
-			{
-				if ((this._DateCompletedOrCanceled != value))
-				{
-					this.OnDateCompletedOrCanceledChanging(value);
-					this.SendPropertyChanging();
-					this._DateCompletedOrCanceled = value;
-					this.SendPropertyChanged("DateCompletedOrCanceled");
-					this.OnDateCompletedOrCanceledChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabManagerComments", DbType="VarChar(1024)")]
-		public string LabManagerComments
-		{
-			get
-			{
-				return this._LabManagerComments;
-			}
-			set
-			{
-				if ((this._LabManagerComments != value))
-				{
-					this.OnLabManagerCommentsChanging(value);
-					this.SendPropertyChanging();
-					this._LabManagerComments = value;
-					this.SendPropertyChanged("LabManagerComments");
-					this.OnLabManagerCommentsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateApprovedOrCanceled", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateApprovedOrCanceled
-		{
-			get
-			{
-				return this._DateApprovedOrCanceled;
-			}
-			set
-			{
-				if ((this._DateApprovedOrCanceled != value))
-				{
-					this.OnDateApprovedOrCanceledChanging(value);
-					this.SendPropertyChanging();
-					this._DateApprovedOrCanceled = value;
-					this.SendPropertyChanged("DateApprovedOrCanceled");
-					this.OnDateApprovedOrCanceledChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
-		public string Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_LabExamination", Storage="_Appointment", ThisKey="AppointmentID", OtherKey="AppointmentID", IsForeignKey=true)]
-		public Appointment Appointment
-		{
-			get
-			{
-				return this._Appointment.Entity;
-			}
-			set
-			{
-				Appointment previousValue = this._Appointment.Entity;
-				if (((previousValue != value) 
-							|| (this._Appointment.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Appointment.Entity = null;
-						previousValue.LabExaminations.Remove(this);
-					}
-					this._Appointment.Entity = value;
-					if ((value != null))
-					{
-						value.LabExaminations.Add(this);
-						this._AppointmentID = value.AppointmentID;
-					}
-					else
-					{
-						this._AppointmentID = default(int);
-					}
-					this.SendPropertyChanged("Appointment");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExaminationDictionary_LabExamination", Storage="_ExaminationDictionary", ThisKey="Code", OtherKey="Code", IsForeignKey=true)]
-		public ExaminationDictionary ExaminationDictionary
-		{
-			get
-			{
-				return this._ExaminationDictionary.Entity;
-			}
-			set
-			{
-				ExaminationDictionary previousValue = this._ExaminationDictionary.Entity;
-				if (((previousValue != value) 
-							|| (this._ExaminationDictionary.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ExaminationDictionary.Entity = null;
-						previousValue.LabExaminations.Remove(this);
-					}
-					this._ExaminationDictionary.Entity = value;
-					if ((value != null))
-					{
-						value.LabExaminations.Add(this);
-						this._Code = value.Code;
-					}
-					else
-					{
-						this._Code = default(string);
-					}
-					this.SendPropertyChanged("ExaminationDictionary");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LabManager_LabExamination", Storage="_LabManager", ThisKey="LabManagerID", OtherKey="LabManagerID", IsForeignKey=true)]
-		public LabManager LabManager
-		{
-			get
-			{
-				return this._LabManager.Entity;
-			}
-			set
-			{
-				LabManager previousValue = this._LabManager.Entity;
-				if (((previousValue != value) 
-							|| (this._LabManager.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._LabManager.Entity = null;
-						previousValue.LabExaminations.Remove(this);
-					}
-					this._LabManager.Entity = value;
-					if ((value != null))
-					{
-						value.LabExaminations.Add(this);
-						this._LabManagerID = value.LabManagerID;
-					}
-					else
-					{
-						this._LabManagerID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("LabManager");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LabTechnician_LabExamination", Storage="_LabTechnician", ThisKey="LabTechnicianID", OtherKey="LabTechnicianID", IsForeignKey=true)]
-		public LabTechnician LabTechnician
-		{
-			get
-			{
-				return this._LabTechnician.Entity;
-			}
-			set
-			{
-				LabTechnician previousValue = this._LabTechnician.Entity;
-				if (((previousValue != value) 
-							|| (this._LabTechnician.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._LabTechnician.Entity = null;
-						previousValue.LabExaminations.Remove(this);
-					}
-					this._LabTechnician.Entity = value;
-					if ((value != null))
-					{
-						value.LabExaminations.Add(this);
-						this._LabTechnicianID = value.LabTechnicianID;
-					}
-					else
-					{
-						this._LabTechnicianID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("LabTechnician");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.ExaminationDictionary = null;
 		}
 	}
 	
@@ -2351,222 +1861,6 @@ namespace DataLayer
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PhysicalExamination")]
-	public partial class PhysicalExamination : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _PhysicalExaminationID;
-		
-		private int _AppointmentID;
-		
-		private string _Code;
-		
-		private string _Result;
-		
-		private EntityRef<Appointment> _Appointment;
-		
-		private EntityRef<ExaminationDictionary> _ExaminationDictionary;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPhysicalExaminationIDChanging(int value);
-    partial void OnPhysicalExaminationIDChanged();
-    partial void OnAppointmentIDChanging(int value);
-    partial void OnAppointmentIDChanged();
-    partial void OnCodeChanging(string value);
-    partial void OnCodeChanged();
-    partial void OnResultChanging(string value);
-    partial void OnResultChanged();
-    #endregion
-		
-		public PhysicalExamination()
-		{
-			this._Appointment = default(EntityRef<Appointment>);
-			this._ExaminationDictionary = default(EntityRef<ExaminationDictionary>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhysicalExaminationID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int PhysicalExaminationID
-		{
-			get
-			{
-				return this._PhysicalExaminationID;
-			}
-			set
-			{
-				if ((this._PhysicalExaminationID != value))
-				{
-					this.OnPhysicalExaminationIDChanging(value);
-					this.SendPropertyChanging();
-					this._PhysicalExaminationID = value;
-					this.SendPropertyChanged("PhysicalExaminationID");
-					this.OnPhysicalExaminationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int NOT NULL")]
-		public int AppointmentID
-		{
-			get
-			{
-				return this._AppointmentID;
-			}
-			set
-			{
-				if ((this._AppointmentID != value))
-				{
-					if (this._Appointment.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAppointmentIDChanging(value);
-					this.SendPropertyChanging();
-					this._AppointmentID = value;
-					this.SendPropertyChanged("AppointmentID");
-					this.OnAppointmentIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Code
-		{
-			get
-			{
-				return this._Code;
-			}
-			set
-			{
-				if ((this._Code != value))
-				{
-					if (this._ExaminationDictionary.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCodeChanging(value);
-					this.SendPropertyChanging();
-					this._Code = value;
-					this.SendPropertyChanged("Code");
-					this.OnCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Result", DbType="VarChar(1024) NOT NULL", CanBeNull=false)]
-		public string Result
-		{
-			get
-			{
-				return this._Result;
-			}
-			set
-			{
-				if ((this._Result != value))
-				{
-					this.OnResultChanging(value);
-					this.SendPropertyChanging();
-					this._Result = value;
-					this.SendPropertyChanged("Result");
-					this.OnResultChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_PhysicalExamination", Storage="_Appointment", ThisKey="AppointmentID", OtherKey="AppointmentID", IsForeignKey=true)]
-		public Appointment Appointment
-		{
-			get
-			{
-				return this._Appointment.Entity;
-			}
-			set
-			{
-				Appointment previousValue = this._Appointment.Entity;
-				if (((previousValue != value) 
-							|| (this._Appointment.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Appointment.Entity = null;
-						previousValue.PhysicalExaminations.Remove(this);
-					}
-					this._Appointment.Entity = value;
-					if ((value != null))
-					{
-						value.PhysicalExaminations.Add(this);
-						this._AppointmentID = value.AppointmentID;
-					}
-					else
-					{
-						this._AppointmentID = default(int);
-					}
-					this.SendPropertyChanged("Appointment");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExaminationDictionary_PhysicalExamination", Storage="_ExaminationDictionary", ThisKey="Code", OtherKey="Code", IsForeignKey=true)]
-		public ExaminationDictionary ExaminationDictionary
-		{
-			get
-			{
-				return this._ExaminationDictionary.Entity;
-			}
-			set
-			{
-				ExaminationDictionary previousValue = this._ExaminationDictionary.Entity;
-				if (((previousValue != value) 
-							|| (this._ExaminationDictionary.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ExaminationDictionary.Entity = null;
-						previousValue.PhysicalExaminations.Remove(this);
-					}
-					this._ExaminationDictionary.Entity = value;
-					if ((value != null))
-					{
-						value.PhysicalExaminations.Add(this);
-						this._Code = value.Code;
-					}
-					else
-					{
-						this._Code = default(string);
-					}
-					this.SendPropertyChanged("ExaminationDictionary");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Receptionist")]
 	public partial class Receptionist : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2767,6 +2061,712 @@ namespace DataLayer
 		{
 			this.SendPropertyChanging();
 			entity.Receptionist = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PhysicalExamination")]
+	public partial class PhysicalExamination : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PhysicalExaminationID;
+		
+		private int _AppointmentID;
+		
+		private string _Code;
+		
+		private string _Result;
+		
+		private EntityRef<Appointment> _Appointment;
+		
+		private EntityRef<ExaminationDictionary> _ExaminationDictionary;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPhysicalExaminationIDChanging(int value);
+    partial void OnPhysicalExaminationIDChanged();
+    partial void OnAppointmentIDChanging(int value);
+    partial void OnAppointmentIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnResultChanging(string value);
+    partial void OnResultChanged();
+    #endregion
+		
+		public PhysicalExamination()
+		{
+			this._Appointment = default(EntityRef<Appointment>);
+			this._ExaminationDictionary = default(EntityRef<ExaminationDictionary>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhysicalExaminationID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PhysicalExaminationID
+		{
+			get
+			{
+				return this._PhysicalExaminationID;
+			}
+			set
+			{
+				if ((this._PhysicalExaminationID != value))
+				{
+					this.OnPhysicalExaminationIDChanging(value);
+					this.SendPropertyChanging();
+					this._PhysicalExaminationID = value;
+					this.SendPropertyChanged("PhysicalExaminationID");
+					this.OnPhysicalExaminationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int NOT NULL")]
+		public int AppointmentID
+		{
+			get
+			{
+				return this._AppointmentID;
+			}
+			set
+			{
+				if ((this._AppointmentID != value))
+				{
+					if (this._Appointment.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAppointmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._AppointmentID = value;
+					this.SendPropertyChanged("AppointmentID");
+					this.OnAppointmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					if (this._ExaminationDictionary.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Result", DbType="VarChar(1024) NOT NULL", CanBeNull=false)]
+		public string Result
+		{
+			get
+			{
+				return this._Result;
+			}
+			set
+			{
+				if ((this._Result != value))
+				{
+					this.OnResultChanging(value);
+					this.SendPropertyChanging();
+					this._Result = value;
+					this.SendPropertyChanged("Result");
+					this.OnResultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_PhysicalExamination", Storage="_Appointment", ThisKey="AppointmentID", OtherKey="AppointmentID", IsForeignKey=true)]
+		public Appointment Appointment
+		{
+			get
+			{
+				return this._Appointment.Entity;
+			}
+			set
+			{
+				Appointment previousValue = this._Appointment.Entity;
+				if (((previousValue != value) 
+							|| (this._Appointment.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Appointment.Entity = null;
+						previousValue.PhysicalExaminations.Remove(this);
+					}
+					this._Appointment.Entity = value;
+					if ((value != null))
+					{
+						value.PhysicalExaminations.Add(this);
+						this._AppointmentID = value.AppointmentID;
+					}
+					else
+					{
+						this._AppointmentID = default(int);
+					}
+					this.SendPropertyChanged("Appointment");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExaminationDictionary_PhysicalExamination", Storage="_ExaminationDictionary", ThisKey="Code", OtherKey="Code", IsForeignKey=true)]
+		public ExaminationDictionary ExaminationDictionary
+		{
+			get
+			{
+				return this._ExaminationDictionary.Entity;
+			}
+			set
+			{
+				ExaminationDictionary previousValue = this._ExaminationDictionary.Entity;
+				if (((previousValue != value) 
+							|| (this._ExaminationDictionary.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ExaminationDictionary.Entity = null;
+						previousValue.PhysicalExaminations.Remove(this);
+					}
+					this._ExaminationDictionary.Entity = value;
+					if ((value != null))
+					{
+						value.PhysicalExaminations.Add(this);
+						this._Code = value.Code;
+					}
+					else
+					{
+						this._Code = default(string);
+					}
+					this.SendPropertyChanged("ExaminationDictionary");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LabExamination")]
+	public partial class LabExamination : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _LabExaminationID;
+		
+		private string _Code;
+		
+		private int _AppointmentID;
+		
+		private System.Nullable<int> _LabTechnicianID;
+		
+		private System.Nullable<int> _LabManagerID;
+		
+		private System.DateTime _DateRegistered;
+		
+		private string _Result;
+		
+		private string _DoctorComments;
+		
+		private System.Nullable<System.DateTime> _DateCompletedOrCanceled;
+		
+		private string _LabManagerComments;
+		
+		private System.Nullable<System.DateTime> _DateApprovedOrCanceled;
+		
+		private string _Status;
+		
+		private EntityRef<Appointment> _Appointment;
+		
+		private EntityRef<LabManager> _LabManager;
+		
+		private EntityRef<LabTechnician> _LabTechnician;
+		
+		private EntityRef<ExaminationDictionary> _ExaminationDictionary;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLabExaminationIDChanging(int value);
+    partial void OnLabExaminationIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnAppointmentIDChanging(int value);
+    partial void OnAppointmentIDChanged();
+    partial void OnLabTechnicianIDChanging(System.Nullable<int> value);
+    partial void OnLabTechnicianIDChanged();
+    partial void OnLabManagerIDChanging(System.Nullable<int> value);
+    partial void OnLabManagerIDChanged();
+    partial void OnDateRegisteredChanging(System.DateTime value);
+    partial void OnDateRegisteredChanged();
+    partial void OnResultChanging(string value);
+    partial void OnResultChanged();
+    partial void OnDoctorCommentsChanging(string value);
+    partial void OnDoctorCommentsChanged();
+    partial void OnDateCompletedOrCanceledChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateCompletedOrCanceledChanged();
+    partial void OnLabManagerCommentsChanging(string value);
+    partial void OnLabManagerCommentsChanged();
+    partial void OnDateApprovedOrCanceledChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateApprovedOrCanceledChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public LabExamination()
+		{
+			this._Appointment = default(EntityRef<Appointment>);
+			this._LabManager = default(EntityRef<LabManager>);
+			this._LabTechnician = default(EntityRef<LabTechnician>);
+			this._ExaminationDictionary = default(EntityRef<ExaminationDictionary>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabExaminationID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int LabExaminationID
+		{
+			get
+			{
+				return this._LabExaminationID;
+			}
+			set
+			{
+				if ((this._LabExaminationID != value))
+				{
+					this.OnLabExaminationIDChanging(value);
+					this.SendPropertyChanging();
+					this._LabExaminationID = value;
+					this.SendPropertyChanged("LabExaminationID");
+					this.OnLabExaminationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					if (this._ExaminationDictionary.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppointmentID", DbType="Int NOT NULL")]
+		public int AppointmentID
+		{
+			get
+			{
+				return this._AppointmentID;
+			}
+			set
+			{
+				if ((this._AppointmentID != value))
+				{
+					if (this._Appointment.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAppointmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._AppointmentID = value;
+					this.SendPropertyChanged("AppointmentID");
+					this.OnAppointmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabTechnicianID", DbType="Int")]
+		public System.Nullable<int> LabTechnicianID
+		{
+			get
+			{
+				return this._LabTechnicianID;
+			}
+			set
+			{
+				if ((this._LabTechnicianID != value))
+				{
+					if (this._LabTechnician.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLabTechnicianIDChanging(value);
+					this.SendPropertyChanging();
+					this._LabTechnicianID = value;
+					this.SendPropertyChanged("LabTechnicianID");
+					this.OnLabTechnicianIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabManagerID", DbType="Int")]
+		public System.Nullable<int> LabManagerID
+		{
+			get
+			{
+				return this._LabManagerID;
+			}
+			set
+			{
+				if ((this._LabManagerID != value))
+				{
+					if (this._LabManager.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLabManagerIDChanging(value);
+					this.SendPropertyChanging();
+					this._LabManagerID = value;
+					this.SendPropertyChanged("LabManagerID");
+					this.OnLabManagerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateRegistered", DbType="DateTime NOT NULL")]
+		public System.DateTime DateRegistered
+		{
+			get
+			{
+				return this._DateRegistered;
+			}
+			set
+			{
+				if ((this._DateRegistered != value))
+				{
+					this.OnDateRegisteredChanging(value);
+					this.SendPropertyChanging();
+					this._DateRegistered = value;
+					this.SendPropertyChanged("DateRegistered");
+					this.OnDateRegisteredChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Result", DbType="VarChar(1024)")]
+		public string Result
+		{
+			get
+			{
+				return this._Result;
+			}
+			set
+			{
+				if ((this._Result != value))
+				{
+					this.OnResultChanging(value);
+					this.SendPropertyChanging();
+					this._Result = value;
+					this.SendPropertyChanged("Result");
+					this.OnResultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoctorComments", DbType="VarChar(1024)")]
+		public string DoctorComments
+		{
+			get
+			{
+				return this._DoctorComments;
+			}
+			set
+			{
+				if ((this._DoctorComments != value))
+				{
+					this.OnDoctorCommentsChanging(value);
+					this.SendPropertyChanging();
+					this._DoctorComments = value;
+					this.SendPropertyChanged("DoctorComments");
+					this.OnDoctorCommentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateCompletedOrCanceled", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateCompletedOrCanceled
+		{
+			get
+			{
+				return this._DateCompletedOrCanceled;
+			}
+			set
+			{
+				if ((this._DateCompletedOrCanceled != value))
+				{
+					this.OnDateCompletedOrCanceledChanging(value);
+					this.SendPropertyChanging();
+					this._DateCompletedOrCanceled = value;
+					this.SendPropertyChanged("DateCompletedOrCanceled");
+					this.OnDateCompletedOrCanceledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabManagerComments", DbType="VarChar(1024)")]
+		public string LabManagerComments
+		{
+			get
+			{
+				return this._LabManagerComments;
+			}
+			set
+			{
+				if ((this._LabManagerComments != value))
+				{
+					this.OnLabManagerCommentsChanging(value);
+					this.SendPropertyChanging();
+					this._LabManagerComments = value;
+					this.SendPropertyChanged("LabManagerComments");
+					this.OnLabManagerCommentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateApprovedOrCanceled", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateApprovedOrCanceled
+		{
+			get
+			{
+				return this._DateApprovedOrCanceled;
+			}
+			set
+			{
+				if ((this._DateApprovedOrCanceled != value))
+				{
+					this.OnDateApprovedOrCanceledChanging(value);
+					this.SendPropertyChanging();
+					this._DateApprovedOrCanceled = value;
+					this.SendPropertyChanged("DateApprovedOrCanceled");
+					this.OnDateApprovedOrCanceledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(4) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Appointment_LabExamination", Storage="_Appointment", ThisKey="AppointmentID", OtherKey="AppointmentID", IsForeignKey=true)]
+		public Appointment Appointment
+		{
+			get
+			{
+				return this._Appointment.Entity;
+			}
+			set
+			{
+				Appointment previousValue = this._Appointment.Entity;
+				if (((previousValue != value) 
+							|| (this._Appointment.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Appointment.Entity = null;
+						previousValue.LabExaminations.Remove(this);
+					}
+					this._Appointment.Entity = value;
+					if ((value != null))
+					{
+						value.LabExaminations.Add(this);
+						this._AppointmentID = value.AppointmentID;
+					}
+					else
+					{
+						this._AppointmentID = default(int);
+					}
+					this.SendPropertyChanged("Appointment");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LabManager_LabExamination", Storage="_LabManager", ThisKey="LabManagerID", OtherKey="LabManagerID", IsForeignKey=true)]
+		public LabManager LabManager
+		{
+			get
+			{
+				return this._LabManager.Entity;
+			}
+			set
+			{
+				LabManager previousValue = this._LabManager.Entity;
+				if (((previousValue != value) 
+							|| (this._LabManager.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LabManager.Entity = null;
+						previousValue.LabExaminations.Remove(this);
+					}
+					this._LabManager.Entity = value;
+					if ((value != null))
+					{
+						value.LabExaminations.Add(this);
+						this._LabManagerID = value.LabManagerID;
+					}
+					else
+					{
+						this._LabManagerID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LabManager");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LabTechnician_LabExamination", Storage="_LabTechnician", ThisKey="LabTechnicianID", OtherKey="LabTechnicianID", IsForeignKey=true)]
+		public LabTechnician LabTechnician
+		{
+			get
+			{
+				return this._LabTechnician.Entity;
+			}
+			set
+			{
+				LabTechnician previousValue = this._LabTechnician.Entity;
+				if (((previousValue != value) 
+							|| (this._LabTechnician.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LabTechnician.Entity = null;
+						previousValue.LabExaminations.Remove(this);
+					}
+					this._LabTechnician.Entity = value;
+					if ((value != null))
+					{
+						value.LabExaminations.Add(this);
+						this._LabTechnicianID = value.LabTechnicianID;
+					}
+					else
+					{
+						this._LabTechnicianID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("LabTechnician");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ExaminationDictionary_LabExamination", Storage="_ExaminationDictionary", ThisKey="Code", OtherKey="Code", IsForeignKey=true)]
+		public ExaminationDictionary ExaminationDictionary
+		{
+			get
+			{
+				return this._ExaminationDictionary.Entity;
+			}
+			set
+			{
+				ExaminationDictionary previousValue = this._ExaminationDictionary.Entity;
+				if (((previousValue != value) 
+							|| (this._ExaminationDictionary.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ExaminationDictionary.Entity = null;
+						previousValue.LabExaminations.Remove(this);
+					}
+					this._ExaminationDictionary.Entity = value;
+					if ((value != null))
+					{
+						value.LabExaminations.Add(this);
+						this._Code = value.Code;
+					}
+					else
+					{
+						this._Code = default(string);
+					}
+					this.SendPropertyChanged("ExaminationDictionary");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

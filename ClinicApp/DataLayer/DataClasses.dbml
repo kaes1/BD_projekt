@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Clinic" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=desktop-uq88jre\mssqlserver01;Initial Catalog=Clinic;Integrated Security=True" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="ClinicConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-AI41MBIC\SQLSERVER;Initial Catalog=Clinic;Integrated Security=True" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="ClinicConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Appointment" Member="Appointments">
     <Type Name="Appointment">
       <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -12,8 +12,8 @@
       <Column Name="DateRegistered" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateOfAppointment" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateCompletedOrCanceled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Appointment_LabExamination" Member="LabExaminations" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="LabExamination" />
       <Association Name="Appointment_PhysicalExamination" Member="PhysicalExaminations" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="PhysicalExamination" />
+      <Association Name="Appointment_LabExamination" Member="LabExaminations" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="LabExamination" />
       <Association Name="Doctor_Appointment" Member="Doctor" ThisKey="DoctorID" OtherKey="DoctorID" Type="Doctor" IsForeignKey="true" />
       <Association Name="Patient_Appointment" Member="Patient" ThisKey="PatientID" OtherKey="PatientID" Type="Patient" IsForeignKey="true" />
       <Association Name="Receptionist_Appointment" Member="Receptionist" ThisKey="ReceptionistID" OtherKey="ReceptionistID" Type="Receptionist" IsForeignKey="true" />
@@ -48,28 +48,8 @@
       <Column Name="Code" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Type" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Association Name="ExaminationDictionary_LabExamination" Member="LabExaminations" ThisKey="Code" OtherKey="Code" Type="LabExamination" />
       <Association Name="ExaminationDictionary_PhysicalExamination" Member="PhysicalExaminations" ThisKey="Code" OtherKey="Code" Type="PhysicalExamination" />
-    </Type>
-  </Table>
-  <Table Name="dbo.LabExamination" Member="LabExaminations">
-    <Type Name="LabExamination">
-      <Column Name="LabExaminationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="LabTechnicianID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LabManagerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DateRegistered" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Result" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
-      <Column Name="DoctorComments" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
-      <Column Name="DateCompletedOrCanceled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="LabManagerComments" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
-      <Column Name="DateApprovedOrCanceled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
-      <Association Name="Appointment_LabExamination" Member="Appointment" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="Appointment" IsForeignKey="true" />
-      <Association Name="ExaminationDictionary_LabExamination" Member="ExaminationDictionary" ThisKey="Code" OtherKey="Code" Type="ExaminationDictionary" IsForeignKey="true" />
-      <Association Name="LabManager_LabExamination" Member="LabManager" ThisKey="LabManagerID" OtherKey="LabManagerID" Type="LabManager" IsForeignKey="true" />
-      <Association Name="LabTechnician_LabExamination" Member="LabTechnician" ThisKey="LabTechnicianID" OtherKey="LabTechnicianID" Type="LabTechnician" IsForeignKey="true" />
+      <Association Name="ExaminationDictionary_LabExamination" Member="LabExaminations" ThisKey="Code" OtherKey="Code" Type="LabExamination" />
     </Type>
   </Table>
   <Table Name="dbo.LabManager" Member="LabManagers">
@@ -101,16 +81,6 @@
       <Association Name="Patient_Appointment" Member="Appointments" ThisKey="PatientID" OtherKey="PatientID" Type="Appointment" />
     </Type>
   </Table>
-  <Table Name="dbo.PhysicalExamination" Member="PhysicalExaminations">
-    <Type Name="PhysicalExamination">
-      <Column Name="PhysicalExaminationID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="Result" Type="System.String" DbType="VarChar(1024) NOT NULL" CanBeNull="false" />
-      <Association Name="Appointment_PhysicalExamination" Member="Appointment" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="Appointment" IsForeignKey="true" />
-      <Association Name="ExaminationDictionary_PhysicalExamination" Member="ExaminationDictionary" ThisKey="Code" OtherKey="Code" Type="ExaminationDictionary" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Receptionist" Member="Receptionists">
     <Type Name="Receptionist">
       <Column Name="ReceptionistID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -119,6 +89,36 @@
       <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="Receptionist_Appointment" Member="Appointments" ThisKey="ReceptionistID" OtherKey="ReceptionistID" Type="Appointment" />
       <Association Name="User_Receptionist" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhysicalExamination" Member="PhysicalExaminations">
+    <Type Name="PhysicalExamination">
+      <Column Name="PhysicalExaminationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Result" Type="System.String" DbType="VarChar(1024) NOT NULL" CanBeNull="false" />
+      <Association Name="Appointment_PhysicalExamination" Member="Appointment" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="Appointment" IsForeignKey="true" />
+      <Association Name="ExaminationDictionary_PhysicalExamination" Member="ExaminationDictionary" ThisKey="Code" OtherKey="Code" Type="ExaminationDictionary" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LabExamination" Member="LabExaminations">
+    <Type Name="LabExamination">
+      <Column Name="LabExaminationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AppointmentID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LabTechnicianID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LabManagerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateRegistered" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Result" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+      <Column Name="DoctorComments" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+      <Column Name="DateCompletedOrCanceled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LabManagerComments" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+      <Column Name="DateApprovedOrCanceled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Association Name="Appointment_LabExamination" Member="Appointment" ThisKey="AppointmentID" OtherKey="AppointmentID" Type="Appointment" IsForeignKey="true" />
+      <Association Name="LabManager_LabExamination" Member="LabManager" ThisKey="LabManagerID" OtherKey="LabManagerID" Type="LabManager" IsForeignKey="true" />
+      <Association Name="LabTechnician_LabExamination" Member="LabTechnician" ThisKey="LabTechnicianID" OtherKey="LabTechnicianID" Type="LabTechnician" IsForeignKey="true" />
+      <Association Name="ExaminationDictionary_LabExamination" Member="ExaminationDictionary" ThisKey="Code" OtherKey="Code" Type="ExaminationDictionary" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

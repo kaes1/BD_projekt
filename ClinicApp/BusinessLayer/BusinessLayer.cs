@@ -146,6 +146,15 @@ namespace BusinessLayer
         public string Status { get; set; }
     }
 
+    public class Examination
+    {
+        public DateTime dateRegistered { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
+        public string Result { get; set; }
+        public string Status { get; set; }
+    }
+
     static public class DoctorFacade
     {
         public static DoctorInformation GetDoctor(int userID)
@@ -228,7 +237,6 @@ namespace BusinessLayer
             return result;
         }
 
-        //TODO zmienic stan wizyty nad zakonczony
         public static void CompleteAppointment(AppointmentInformation appointment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -483,7 +491,8 @@ namespace BusinessLayer
             {
                 AppointmentID = appID,
                 Code = examCode,
-                Result = examResult
+                Result = examResult,
+                
             };          
             dc.PhysicalExaminations.InsertOnSubmit(phys);
             dc.SubmitChanges();
@@ -550,6 +559,47 @@ namespace BusinessLayer
                           }).Single();
             return result;
         }
+        public static List<Examination> GetPreviousExaminations(PatientInformation actPat)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var labex = (from pat in dc.Patients
+                          join app in dc.Appointments on pat.PatientID equals app.PatientID
+                          join lx in dc.LabExaminations on app.AppointmentID equals lx.AppointmentID
+                          join dic in dc.ExaminationDictionaries on lx.Code equals dic.Code
+                          where
+                          pat.PatientID == actPat.PatientID
+                          & lx.DateRegistered.Date < DateTime.Now.Date
+                          select new Examination
+                          {
+                              dateRegistered = lx.DateRegistered,
+                              Code = lx.Code,
+                              Name = dic.Code,
+                              Result = lx.Result,
+                              Status = lx.Status
+                          }).ToList();
+            var physex = (from pat in dc.Patients
+                      join app in dc.Appointments on pat.PatientID equals app.PatientID
+                      join lx in dc.PhysicalExaminations on app.AppointmentID equals lx.AppointmentID
+                      join dic in dc.ExaminationDictionaries on lx.Code equals dic.Code
+                      where
+                      pat.PatientID == actPat.PatientID
+                      & app.DateOfAppointment.Date < DateTime.Now.Date
+                      select new Examination
+                      {
+                          dateRegistered = app.DateOfAppointment,
+                          Code = lx.Code,
+                          Name = dic.Code,
+                          Result = lx.Result,
+                          Status = "COMP"
+                      }).ToList();
+            var result = labex;
+            foreach(var res in physex)
+            {
+                result.Add(res);
+            }
+            return result;
+        }
+
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

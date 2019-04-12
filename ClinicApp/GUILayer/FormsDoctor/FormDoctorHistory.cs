@@ -39,7 +39,9 @@ namespace GUILayer.FormsDoctor
 
         private void buttonPreviousExaminations_Click(object sender, EventArgs e)
         {
-            //TODO show examinations
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
+            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPreviousExaminations(actualPatient);
+            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
             showAppointments = false;
         }
 
