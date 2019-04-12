@@ -194,7 +194,9 @@ namespace GUILayer
                            &&
                            row.Cells[3].Value.Equals(formNewAppointment.newAppointment.DoctorLastName)
                            &&
-                           row.Cells[0].Value.ToString().Equals(formNewAppointment.newAppointment.Date.ToString()))
+                           row.Cells[0].Value.ToString().Equals(formNewAppointment.newAppointment.Date.ToString())
+                           &&
+                           row.Cells[1].Value.Equals("REG"))
                         {
                             dataGridViewAppointments.CurrentCell = dataGridViewAppointments[1, row.Index];
                             break;
