@@ -61,7 +61,7 @@
             // labelSearchByID
             // 
             this.labelSearchByID.AutoSize = true;
-            this.labelSearchByID.Location = new System.Drawing.Point(182, 12);
+            this.labelSearchByID.Location = new System.Drawing.Point(33, 9);
             this.labelSearchByID.Name = "labelSearchByID";
             this.labelSearchByID.Size = new System.Drawing.Size(89, 17);
             this.labelSearchByID.TabIndex = 36;
@@ -69,7 +69,7 @@
             // 
             // textBoxExamID
             // 
-            this.textBoxExamID.Location = new System.Drawing.Point(182, 34);
+            this.textBoxExamID.Location = new System.Drawing.Point(33, 31);
             this.textBoxExamID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxExamID.Name = "textBoxExamID";
             this.textBoxExamID.Size = new System.Drawing.Size(133, 22);
@@ -90,7 +90,7 @@
             // labelSearchByName
             // 
             this.labelSearchByName.AutoSize = true;
-            this.labelSearchByName.Location = new System.Drawing.Point(35, 12);
+            this.labelSearchByName.Location = new System.Drawing.Point(180, 9);
             this.labelSearchByName.Name = "labelSearchByName";
             this.labelSearchByName.Size = new System.Drawing.Size(113, 17);
             this.labelSearchByName.TabIndex = 33;
@@ -98,7 +98,7 @@
             // 
             // textBoxExamName
             // 
-            this.textBoxExamName.Location = new System.Drawing.Point(35, 34);
+            this.textBoxExamName.Location = new System.Drawing.Point(180, 31);
             this.textBoxExamName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxExamName.Name = "textBoxExamName";
             this.textBoxExamName.Size = new System.Drawing.Size(141, 22);

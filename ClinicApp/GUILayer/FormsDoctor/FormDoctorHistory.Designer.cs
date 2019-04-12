@@ -126,8 +126,7 @@
             this.richTextBoxResultDescription.ReadOnly = true;
             this.richTextBoxResultDescription.Size = new System.Drawing.Size(377, 256);
             this.richTextBoxResultDescription.TabIndex = 11;
-            this.richTextBoxResultDescription.Text = "Pacjent skarży się na bóle głowe.\nWykonano badania fizykalne. Zlecono badanie krw" +
-    "i.";
+            this.richTextBoxResultDescription.Text = "";
             // 
             // dataGridViewAppoinmentsExaminations
             // 

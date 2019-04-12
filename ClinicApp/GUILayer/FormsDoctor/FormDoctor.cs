@@ -60,6 +60,13 @@ namespace GUILayer
                 var doctorAppointmentForm = new FormDoctorAppointment(BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date), BusinessLayer.DoctorFacade.getPatientByPesel(pesel));
                 doctorAppointmentForm.actualDoctor = activeDoctorInformation;
                 DialogResult res = doctorAppointmentForm.ShowDialog();
+
+                dataGridViewPatients.AutoGenerateColumns = true;
+                dataGridViewPatients.Columns.Clear();
+                dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
+                dataGridViewPatients.AutoGenerateColumns = false;
+                dataGridViewPatients.Columns.Remove("AppointmentID");
+
                 this.Show();
             }
         }

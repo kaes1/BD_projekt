@@ -498,16 +498,17 @@ namespace BusinessLayer
             dc.SubmitChanges();
         }
 
-        public static void AddLabExamination(int appID, String examCode, String examResult)
+        public static void AddLabExamination(int appID, String examCode, String examComment)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             LabExamination lab = new LabExamination()
             {
                 AppointmentID = appID,
                 Code = examCode,
-                Result = examResult,
+                DoctorComments = examComment,
                 DateRegistered = DateTime.Now,
                 Status = "REG"
+
             };
             dc.LabExaminations.InsertOnSubmit(lab);
             dc.SubmitChanges();
@@ -616,6 +617,16 @@ namespace BusinessLayer
             return result;
         }
 
+        public static List<DoctorInformation> GetAllDoctors()
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from el in dc.Doctors
+                          select new DoctorInformation
+                          {DoctorID = el.DoctorID, FirstName = el.FirstName, LastName = el.LastName, PWZ = el.PWZNumber}
+                          ).OrderBy(x => x.LastName).ToList();
+            return result;
+        }
+
         public static List<PatientInformation> GetPatients(PatientInformation patientSearchCriteria)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -632,76 +643,41 @@ namespace BusinessLayer
             return result;  
         }
 
-        public class ReceptionistAppointment
+        public class CustomAppointment
         {
-            public DateTime? Date { get; set; }
+            public int AppointmentID { get; set; }
+            public DateTime DateRegistered { get; set; }
+            public DateTime? DateFinalized { get; set; }
             public string Status { get; set; }
             public string DoctorFirstName { get; set; }
             public string DoctorLastName { get; set; }
-            public int AppointmentID { get; set; }
         }
 
-        public static List<ReceptionistAppointment> GetAppointments(PatientInformation patientInfo, DateTime? appointmentDate, string status, string doctorLastName)
+        public static List<CustomAppointment> GetAppointments(PatientInformation patientInfo)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from app in dc.Appointments
                           join doc in dc.Doctors on app.DoctorID equals doc.DoctorID
                           where
                           app.PatientID == patientInfo.PatientID
-                          &&
-                          (appointmentDate == null || app.DateOfAppointment.Date == appointmentDate.GetValueOrDefault().Date)
-                          &&
-                          (string.IsNullOrWhiteSpace(status) || app.Status.StartsWith(status))
-                          &&
-                          (doctorLastName == null || doc.LastName.StartsWith(doctorLastName))
-                          select new ReceptionistAppointment
+                          select new CustomAppointment
                           {
                               AppointmentID = app.AppointmentID,
-                              Date = app.DateOfAppointment,
+                              DateRegistered = app.DateRegistered,
+                              DateFinalized = app.DateCompletedOrCanceled,
                               Status = app.Status,
                               DoctorFirstName = doc.FirstName,
                               DoctorLastName = doc.LastName,                                                       
                           }
-                          ).OrderByDescending(x => x.Date).ToList();
+                          ).OrderBy(x => x.DateRegistered).ToList();
             return result;
         }
 
-        public static List<TimeSpan> GetAppointmentTimes(DoctorInformation doctorInformation, DateTime appointmentDate)
-        {
-            DataClassesDataContext dc = new DataClassesDataContext();
-            //Get
-            var result = (from app in dc.Appointments
-                          where
-                          app.DoctorID == doctorInformation.DoctorID
-                          &&
-                          app.Status != "CANC"
-                          &&
-                          app.DateOfAppointment.Date == appointmentDate.Date
-                          select app.DateOfAppointment.TimeOfDay
-                          ).OrderBy(x => x).ToList();
-                
-            return result;
-        }
-
-        public static List<DoctorInformation> GetDoctors(DoctorInformation doctorSearchCriteria)
-        {
-            DataClassesDataContext dc = new DataClassesDataContext();
-            var result = (from d in dc.Doctors
-                          where
-                          (doctorSearchCriteria.FirstName == null || d.FirstName.StartsWith(doctorSearchCriteria.FirstName))
-                          &&
-                          (doctorSearchCriteria.LastName == null || d.LastName.StartsWith(doctorSearchCriteria.LastName))
-                          select new DoctorInformation
-                          { DoctorID = d.DoctorID, FirstName = d.FirstName, LastName = d.LastName, PWZ = d.PWZNumber }
-                          ).OrderBy(x => x.LastName).ToList();
-            return result;
-        }
-
-        public static bool ExistsPatient(PatientInformation patientInformation)
+        public static bool ExistsPatient(PatientInformation pInfo)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var res = (from el in dc.Patients
-                       where el.PESEL.Equals(patientInformation.PESEL)
+                       where el.PESEL.Equals(pInfo.PESEL)
                        select el).SingleOrDefault();
             if (res != null)
                 return true;
@@ -709,46 +685,27 @@ namespace BusinessLayer
                 return false;
         }
 
-        public static void ChangePatientInfo(PatientInformation patientInformation, string newFirstName, string newLastName)
-        {
-            //Get Patient from database.
-            DataClassesDataContext dc = new DataClassesDataContext();
-            var patient = (from p in dc.Patients
-                           where p.PatientID == patientInformation.PatientID
-                           select p).SingleOrDefault();
-
-            //Change hashcode.
-            patient.FirstName = newFirstName;
-            patient.LastName = newLastName;
-            dc.SubmitChanges();
-        }
-
-        public static void CancelAppointment(int appointmentID)
-        {
-            //Get Appointment from database.
-            DataClassesDataContext dc = new DataClassesDataContext();
-            var appointment = (from app in dc.Appointments
-                               where app.AppointmentID == appointmentID
-                               select app).SingleOrDefault();
-            //Change status.
-            appointment.Status = "CANC";
-            dc.SubmitChanges();
-        }
-
-        public static void AddPatient(PatientInformation patientInformation)
+        public static void AddNewPatient(PatientInformation pInfo)
         {
             Patient newPatient = new Patient()
-            { FirstName = patientInformation.FirstName, LastName = patientInformation.LastName, PESEL = patientInformation.PESEL };
+            { FirstName = pInfo.FirstName, LastName = pInfo.LastName, PESEL = pInfo.PESEL };
             DataClassesDataContext dc = new DataClassesDataContext();
             dc.Patients.InsertOnSubmit(newPatient);
             dc.SubmitChanges();
         }
 
-        public static void AddAppointment(ReceptionistInformation receptionistInformation, PatientInformation patientInformation, DoctorInformation doctorInformation, DateTime appointmentDate)
+        public static void AddNewAppointment(ReceptionistInformation rInfo, PatientInformation pInfo, DoctorInformation dInfo)
         {
             Appointment newAppointment = new Appointment()
-            {DoctorID = doctorInformation.DoctorID, PatientID = patientInformation.PatientID, ReceptionistID = receptionistInformation.ReceptionistID,
-                DateRegistered = DateTime.Now , DateOfAppointment = appointmentDate, Description = "Standard Appointment.", Status = "REG"};
+            {
+                DoctorID = dInfo.DoctorID,
+                PatientID = pInfo.PatientID,
+                ReceptionistID = rInfo.ReceptionistID,
+                DateRegistered = DateTime.Now ,
+                DateOfAppointment = DateTime.Now,
+                Description = "Standard Appointment.",
+                Status = "REG"
+            };
             DataClassesDataContext dc = new DataClassesDataContext();
             dc.Appointments.InsertOnSubmit(newAppointment);
             dc.SubmitChanges();

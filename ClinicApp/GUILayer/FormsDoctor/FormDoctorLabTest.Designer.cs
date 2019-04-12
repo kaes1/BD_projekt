@@ -58,7 +58,7 @@
             // 
             // buttonChooseExam
             // 
-            this.buttonChooseExam.Location = new System.Drawing.Point(77, 20);
+            this.buttonChooseExam.Location = new System.Drawing.Point(74, 20);
             this.buttonChooseExam.Name = "buttonChooseExam";
             this.buttonChooseExam.Size = new System.Drawing.Size(105, 44);
             this.buttonChooseExam.TabIndex = 6;
@@ -89,7 +89,7 @@
             // labelResult
             // 
             this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(55, 134);
+            this.labelResult.Location = new System.Drawing.Point(56, 134);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(144, 17);
             this.labelResult.TabIndex = 1;
@@ -97,8 +97,9 @@
             // 
             // textBoxChoosenExamination
             // 
-            this.textBoxChoosenExamination.Location = new System.Drawing.Point(62, 100);
+            this.textBoxChoosenExamination.Location = new System.Drawing.Point(58, 100);
             this.textBoxChoosenExamination.Name = "textBoxChoosenExamination";
+            this.textBoxChoosenExamination.ReadOnly = true;
             this.textBoxChoosenExamination.Size = new System.Drawing.Size(141, 22);
             this.textBoxChoosenExamination.TabIndex = 5;
             // 
@@ -113,7 +114,7 @@
             // labelChoosenExamination
             // 
             this.labelChoosenExamination.AutoSize = true;
-            this.labelChoosenExamination.Location = new System.Drawing.Point(59, 80);
+            this.labelChoosenExamination.Location = new System.Drawing.Point(83, 80);
             this.labelChoosenExamination.Name = "labelChoosenExamination";
             this.labelChoosenExamination.Size = new System.Drawing.Size(91, 17);
             this.labelChoosenExamination.TabIndex = 4;

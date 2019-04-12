@@ -23,7 +23,7 @@ namespace GUILayer
             string password = textBoxPassword.Text;
 
             BusinessLayer.UserInformation userInfo = BusinessLayer.LoginFacade.GetUser(username, password);
-
+           
             if (userInfo != null)
             {
                 if (userInfo.DateRetired != null && userInfo.DateRetired < DateTime.Now)

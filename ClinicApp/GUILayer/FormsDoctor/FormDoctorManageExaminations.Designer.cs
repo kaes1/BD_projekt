@@ -89,7 +89,7 @@
             // 
             // buttonAddPhysExamination
             // 
-            this.buttonAddPhysExamination.Location = new System.Drawing.Point(519, 264);
+            this.buttonAddPhysExamination.Location = new System.Drawing.Point(539, 268);
             this.buttonAddPhysExamination.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAddPhysExamination.Name = "buttonAddPhysExamination";
             this.buttonAddPhysExamination.Size = new System.Drawing.Size(177, 41);
@@ -102,6 +102,8 @@
             // 
             this.dataGridPhysExamList.AllowUserToAddRows = false;
             this.dataGridPhysExamList.AllowUserToDeleteRows = false;
+            this.dataGridPhysExamList.AllowUserToResizeColumns = false;
+            this.dataGridPhysExamList.AllowUserToResizeRows = false;
             this.dataGridPhysExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPhysExamList.Location = new System.Drawing.Point(7, 22);
             this.dataGridPhysExamList.Margin = new System.Windows.Forms.Padding(4);
@@ -161,6 +163,8 @@
             // 
             this.dataGridViewLabExamList.AllowUserToAddRows = false;
             this.dataGridViewLabExamList.AllowUserToDeleteRows = false;
+            this.dataGridViewLabExamList.AllowUserToResizeColumns = false;
+            this.dataGridViewLabExamList.AllowUserToResizeRows = false;
             this.dataGridViewLabExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLabExamList.Location = new System.Drawing.Point(7, 22);
             this.dataGridViewLabExamList.Margin = new System.Windows.Forms.Padding(4);
