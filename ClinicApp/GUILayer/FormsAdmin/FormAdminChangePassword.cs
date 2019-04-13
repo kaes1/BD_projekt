@@ -18,6 +18,8 @@ namespace GUILayer
         public FormAdminChangePassword(BusinessLayer.UserInformation userInformation)
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "Change Password";
             this.userInformation = userInformation;
             textBoxUserID.Text = userInformation.UserID.ToString();
             textBoxUsername.Text = userInformation.Username;

@@ -12,11 +12,15 @@ namespace GUILayer
 {
     public partial class FormLabManagerExamination : Form
     {
+        private BusinessLayer.LabManagerInformation activeLabManager;
         public BusinessLayer.LabManagerFacade.LabManagerLabExaminationDetails labExamination;
 
-        public FormLabManagerExamination(int labExaminationID)
+        public FormLabManagerExamination(BusinessLayer.LabManagerInformation activeLabManager, int labExaminationID)
         {
             InitializeComponent();
+            this.activeLabManager = activeLabManager;
+            //Set window title.
+            this.Text = "Lab Examination Details";
             //Find lab examination.
             labExamination = BusinessLayer.LabManagerFacade.GetLabExaminationDetails(labExaminationID);
             //Fill all fields.
@@ -49,7 +53,7 @@ namespace GUILayer
                 return;
             }
             //Approve the examination
-            BusinessLayer.LabManagerFacade.ApproveLabExamination(labExamination.LabExaminationID, textBoxLabManagerComments.Text);
+            BusinessLayer.LabManagerFacade.ApproveLabExamination(activeLabManager, labExamination.LabExaminationID, textBoxLabManagerComments.Text);
             DialogResult = DialogResult.OK;
         }
 
@@ -68,7 +72,7 @@ namespace GUILayer
                 return;
             }
             //Cancel the examination
-            BusinessLayer.LabManagerFacade.CancelLabExamination(labExamination.LabExaminationID, textBoxLabManagerComments.Text);
+            BusinessLayer.LabManagerFacade.CancelLabExamination(activeLabManager, labExamination.LabExaminationID, textBoxLabManagerComments.Text);
             DialogResult = DialogResult.OK;
         }
 

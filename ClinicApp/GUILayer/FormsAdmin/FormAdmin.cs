@@ -15,6 +15,8 @@ namespace GUILayer
         public FormAdmin()
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "Admin";
             //Set the dateTimePickerDateRetired to current date when the form loads.
             dateTimePickerDateRetired.Value = DateTime.Now;
             //Initial search for users.

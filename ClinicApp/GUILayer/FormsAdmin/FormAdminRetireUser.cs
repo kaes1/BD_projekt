@@ -18,6 +18,8 @@ namespace GUILayer
         public FormAdminRetireUser(BusinessLayer.UserInformation userInformation)
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "Retire User";
             this.userInformation = userInformation;
             textBoxUserID.Text = userInformation.UserID.ToString();
             textBoxUsername.Text = userInformation.Username;

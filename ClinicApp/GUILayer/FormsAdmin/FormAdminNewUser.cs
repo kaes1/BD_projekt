@@ -18,6 +18,8 @@ namespace GUILayer
         public FormAdminNewUser()
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "New User";
         }
 
         private bool correctInformation()

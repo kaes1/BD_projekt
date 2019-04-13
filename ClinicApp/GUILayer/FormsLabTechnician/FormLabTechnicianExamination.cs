@@ -12,11 +12,15 @@ namespace GUILayer
 {
     public partial class FormLabTechnicianExamination : Form
     {
+        private BusinessLayer.LabTechnicianInformation activeLabTechnician;
         public BusinessLayer.LabTechnicianFacade.LabTechnicianLabExaminationDetails labExamination;
 
-        public FormLabTechnicianExamination(int labExaminationID)
+        public FormLabTechnicianExamination(BusinessLayer.LabTechnicianInformation activeLabTechnician, int labExaminationID)
         {
             InitializeComponent();
+            this.activeLabTechnician = activeLabTechnician;
+            //Set window title.
+            this.Text = "Lab Examination Details";
             //Find lab examination.
             labExamination = BusinessLayer.LabTechnicianFacade.GetLabExaminationDetails(labExaminationID);
             //Fill all fields.
@@ -52,7 +56,9 @@ namespace GUILayer
             //If begin was pressed, begin the examination.
             if (labExamination.Status.StartsWith("REG"))
             {
-                BusinessLayer.LabTechnicianFacade.BeginLabExamination(labExamination.LabExaminationID);
+                BusinessLayer.LabTechnicianFacade.BeginLabExamination(activeLabTechnician, labExamination.LabExaminationID);
+                //Refresh lab examination.
+                labExamination = BusinessLayer.LabTechnicianFacade.GetLabExaminationDetails(labExamination.LabExaminationID);
                 textBoxResult.ReadOnly = false;
                 textBoxStatus.Text = "BEG";
                 buttonComplete.Text = "Complete";
@@ -67,7 +73,7 @@ namespace GUILayer
                     return;
                 }
                 //Complete the examination.
-                BusinessLayer.LabTechnicianFacade.CompleteLabExamination(labExamination.LabExaminationID, textBoxResult.Text);
+                BusinessLayer.LabTechnicianFacade.CompleteLabExamination(activeLabTechnician, labExamination.LabExaminationID, textBoxResult.Text);
                 DialogResult = DialogResult.OK;
             }        
         }
@@ -81,7 +87,7 @@ namespace GUILayer
                 return;
             }
             //Cancel the examination
-            BusinessLayer.LabTechnicianFacade.CancelLabExamination(labExamination.LabExaminationID, textBoxResult.Text);
+            BusinessLayer.LabTechnicianFacade.CancelLabExamination(activeLabTechnician, labExamination.LabExaminationID, textBoxResult.Text);
             DialogResult = DialogResult.OK;
         }
 

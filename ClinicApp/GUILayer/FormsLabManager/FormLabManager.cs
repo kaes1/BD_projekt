@@ -13,9 +13,15 @@ namespace GUILayer
     public partial class FormLabManager : Form
     {
 
+        private BusinessLayer.LabManagerInformation activeLabManager;
+
         public FormLabManager(int userID)
         {
+            activeLabManager = BusinessLayer.LabManagerFacade.GetLabManager(userID);
             InitializeComponent();
+            //Set window title.
+            this.Text = "Lab Manager - " + activeLabManager.FirstName + " " + activeLabManager.LastName;
+            //Set initial search options.
             comboBoxStatus.SelectedIndex = 5;
             dateTimePickerDateRegistered.Value = DateTime.Now.Date;
             //Initial search for lab examinations.
@@ -53,8 +59,8 @@ namespace GUILayer
                 //Get lab examination information.
                 int labExaminationID = (int)(dataGridViewLabExaminations.Rows[dataGridViewLabExaminations.CurrentCell.RowIndex].Cells[6].Value);
                 //Create and display examination form.
-                FormLabManagerExamination formExaminationDetails = new FormLabManagerExamination(labExaminationID);
-                DialogResult res = formExaminationDetails.ShowDialog(this);
+                FormLabManagerExamination formExaminationDetails = new FormLabManagerExamination(activeLabManager, labExaminationID);
+                DialogResult res = formExaminationDetails.ShowDialog(this); 
                 //Select the edited examination if edited.
                 if (res == DialogResult.OK)
                 {

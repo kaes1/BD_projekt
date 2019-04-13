@@ -16,8 +16,10 @@ namespace GUILayer
 
         public FormReceptionist(int userID)
         {
-            InitializeComponent();
             activeReceptionistInformation = BusinessLayer.ReceptionistFacade.GetReceptionist(userID);
+            InitializeComponent();
+            //Set window title.
+            this.Text = "Receptionist - " + activeReceptionistInformation.FirstName + " " + activeReceptionistInformation.LastName;
             //Display active receptionist.
             labelReceptionistName.Text = activeReceptionistInformation.FirstName + " " + activeReceptionistInformation.LastName;
             //Initial search for patients.

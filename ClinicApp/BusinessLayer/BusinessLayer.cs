@@ -765,12 +765,19 @@ namespace BusinessLayer
 
     static public class LabManagerFacade
     {
-        public static LabManager GetLabManager(int userID)
+        public static LabManagerInformation GetLabManager(int userID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from el in dc.LabManagers
                           where el.UserID == userID
-                          select el).SingleOrDefault();
+                          select new LabManagerInformation
+                          {
+                              LabManagerID = el.LabManagerID,
+                              UserID = el.UserID,
+                              FirstName = el.FirstName,
+                              LastName = el.LastName
+                          }
+                          ).SingleOrDefault();
             return result;
         }
 
@@ -818,9 +825,15 @@ namespace BusinessLayer
                           &&
                           (labExaminationSearchCriteria.DateRegistered == null || (exam.DateRegistered.Date == labExaminationSearchCriteria.DateRegistered))
                           select new LabManagerLabExamination
-                          { DateRegistered = exam.DateRegistered, DateCompleted = exam.DateCompletedOrCanceled, ExaminationName = dic.Name,
-                          Status = exam.Status, PatientFirstName = pat.FirstName, PatientLastName = pat.LastName, LabExaminationID = exam.LabExaminationID}
-                          ).OrderByDescending(x => x.DateRegistered).ToList();
+                          {
+                              DateRegistered = exam.DateRegistered,
+                              DateCompleted = (exam.Status.StartsWith("APP") || exam.Status.StartsWith("CANC_M")) ? exam.DateApprovedOrCanceled : exam.DateCompletedOrCanceled,
+                              ExaminationName = dic.Name,
+                              Status = exam.Status,
+                              PatientFirstName = pat.FirstName,
+                              PatientLastName = pat.LastName,
+                              LabExaminationID = exam.LabExaminationID}
+                          ).OrderByDescending(x => x.DateCompleted).ToList();
             return result;
         }
 
@@ -851,7 +864,7 @@ namespace BusinessLayer
             return result;
         }
 
-        public static void CancelLabExamination(int labExaminationID, string labManagerComments)
+        public static void CancelLabExamination(LabManagerInformation labManager, int labExaminationID, string labManagerComments)
         {
             //Get LabExamination from database.
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -860,12 +873,13 @@ namespace BusinessLayer
                                   select exam).SingleOrDefault();
             //Change status.
             labExamination.Status = "CANC_M";
+            labExamination.LabManagerID = labManager.LabManagerID;
             labExamination.LabManagerComments = labManagerComments;
             labExamination.DateApprovedOrCanceled = DateTime.Now;
             dc.SubmitChanges();
         }
 
-        public static void ApproveLabExamination(int labExaminationID, string labManagerComments)
+        public static void ApproveLabExamination(LabManagerInformation labManager, int labExaminationID, string labManagerComments)
         {
             //Get LabExamination from database.
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -874,6 +888,7 @@ namespace BusinessLayer
                                   select exam).SingleOrDefault();
             //Change status.
             labExamination.Status = "APP";
+            labExamination.LabManagerID = labManager.LabManagerID;
             labExamination.LabManagerComments = labManagerComments;
             labExamination.DateApprovedOrCanceled = DateTime.Now;
             dc.SubmitChanges();
@@ -882,12 +897,19 @@ namespace BusinessLayer
 
     static public class LabTechnicianFacade
     {
-        public static LabTechnician GetLabTechnician(int userID)
+        public static LabTechnicianInformation GetLabTechnician(int userID)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from el in dc.LabTechnicians
                           where el.UserID == userID
-                          select el).SingleOrDefault();
+                          select new LabTechnicianInformation
+                          {
+                              LabTechnicianID = el.LabTechnicianID,
+                              UserID = el.UserID,
+                              FirstName = el.FirstName,
+                              LastName = el.LastName
+                          }
+                          ).SingleOrDefault();
             return result;
         }
 
@@ -937,7 +959,7 @@ namespace BusinessLayer
                           select new LabTechnicianLabExamination
                           {
                               DateRegistered = exam.DateRegistered,
-                              DateCompleted = exam.DateCompletedOrCanceled,
+                              DateCompleted = (exam.Status.StartsWith("APP") || exam.Status.StartsWith("CANC_M")) ? exam.DateApprovedOrCanceled : exam.DateCompletedOrCanceled,
                               ExaminationName = dic.Name,
                               Status = exam.Status,
                               PatientFirstName = pat.FirstName,
@@ -975,7 +997,7 @@ namespace BusinessLayer
             return result;
         }
 
-        public static void BeginLabExamination(int labExaminationID)
+        public static void BeginLabExamination(LabTechnicianInformation labTechnician, int labExaminationID)
         {
             //Get LabExamination from database.
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -983,11 +1005,12 @@ namespace BusinessLayer
                                   where exam.LabExaminationID == labExaminationID
                                   select exam).SingleOrDefault();
             //Change status.
+            labExamination.LabTechnicianID = labTechnician.LabTechnicianID;
             labExamination.Status = "BEG";
             dc.SubmitChanges();
         }
 
-        public static void CancelLabExamination(int labExaminationID, string result)
+        public static void CancelLabExamination(LabTechnicianInformation labTechnician, int labExaminationID, string result)
         {
             //Get LabExamination from database.
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -995,6 +1018,7 @@ namespace BusinessLayer
                                   where exam.LabExaminationID == labExaminationID
                                   select exam).SingleOrDefault();
             //Change status.
+            labExamination.LabTechnicianID = labTechnician.LabTechnicianID;
             labExamination.Status = "CANC_T";
             if (result != null)
                 labExamination.Result = result;
@@ -1002,7 +1026,7 @@ namespace BusinessLayer
             dc.SubmitChanges();
         }
 
-        public static void CompleteLabExamination(int labExaminationID, string result)
+        public static void CompleteLabExamination(LabTechnicianInformation labTechnician, int labExaminationID, string result)
         {
             //Get LabExamination from database.
             DataClassesDataContext dc = new DataClassesDataContext();
@@ -1010,6 +1034,7 @@ namespace BusinessLayer
                                   where exam.LabExaminationID == labExaminationID
                                   select exam).SingleOrDefault();
             //Change status.
+            labExamination.LabTechnicianID = labTechnician.LabTechnicianID;
             labExamination.Status = "COMP";
             labExamination.Result = result;
             labExamination.DateCompletedOrCanceled = DateTime.Now;

@@ -12,10 +12,16 @@ namespace GUILayer
 {
     public partial class FormLabTechnician : Form
     {
+
+        private BusinessLayer.LabTechnicianInformation activeLabTechnician;
    
         public FormLabTechnician(int userID)
         {
+            activeLabTechnician = BusinessLayer.LabTechnicianFacade.GetLabTechnician(userID);
             InitializeComponent();
+            //Set window title.
+            this.Text = "Lab Technician - " + activeLabTechnician.FirstName + " " + activeLabTechnician.LastName;
+            //Set initial search options.
             comboBoxStatus.SelectedIndex = 1;
             dateTimePickerDateRegistered.Value = DateTime.Now.Date;
             //Initial search for lab examinations.
@@ -53,7 +59,7 @@ namespace GUILayer
                 //Get lab examination information.
                 int labExaminationID = (int)(dataGridViewLabExaminations.Rows[dataGridViewLabExaminations.CurrentCell.RowIndex].Cells[6].Value);
                 //Create and display examination form.
-                FormLabTechnicianExamination formExaminationDetails = new FormLabTechnicianExamination(labExaminationID);
+                FormLabTechnicianExamination formExaminationDetails = new FormLabTechnicianExamination(activeLabTechnician, labExaminationID);
                 DialogResult res = formExaminationDetails.ShowDialog(this);
                 //Select the edited examination if edited.
                 if (res == DialogResult.OK)

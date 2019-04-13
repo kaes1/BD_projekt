@@ -17,6 +17,8 @@ namespace GUILayer
         public FormReceptionistEditPatient(BusinessLayer.PatientInformation patientInformation)
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "Edit Patient";
             editedPatientInformation = patientInformation;
             textBoxFirstName.Text = patientInformation.FirstName;
             textBoxLastName.Text = patientInformation.LastName;

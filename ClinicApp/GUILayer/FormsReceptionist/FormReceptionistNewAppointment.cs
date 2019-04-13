@@ -20,6 +20,8 @@ namespace GUILayer
         public FormReceptionistNewAppointment(BusinessLayer.PatientInformation patientInfo, BusinessLayer.ReceptionistInformation receptionistInfo)
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "New Appointment";
             patientInformation = patientInfo;
             receptionistInformation = receptionistInfo;
             //Create table of tuples: <radio buttons, corresponding time>.

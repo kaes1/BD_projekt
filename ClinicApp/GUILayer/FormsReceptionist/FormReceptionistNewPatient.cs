@@ -18,6 +18,8 @@ namespace GUILayer
         public FormReceptionistNewPatient()
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "New Patient";
         }
 
         private bool correctInformation()

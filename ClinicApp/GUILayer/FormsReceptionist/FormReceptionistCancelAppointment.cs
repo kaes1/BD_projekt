@@ -17,6 +17,8 @@ namespace GUILayer
         public FormReceptionistCancelAppointment(BusinessLayer.PatientInformation patient, BusinessLayer.ReceptionistFacade.ReceptionistAppointment appointment)
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "Cancel Appointment";
             canceledAppointment = appointment;
             //Fill patient textboxes.
             textBoxFirstName.Text = patient.FirstName;

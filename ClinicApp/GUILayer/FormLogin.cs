@@ -15,6 +15,8 @@ namespace GUILayer
         public FormLogin()
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "ClinicApp";
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
