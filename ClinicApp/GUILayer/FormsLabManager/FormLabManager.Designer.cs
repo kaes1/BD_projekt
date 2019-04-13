@@ -28,75 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelPanelName = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.LabTestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewLabExaminations = new System.Windows.Forms.DataGridView();
             this.DateRegistered = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateCompleted = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Examination = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PatientFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PatientLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBoxManagerComments = new System.Windows.Forms.TextBox();
-            this.labelManagerComments = new System.Windows.Forms.Label();
-            this.textBoxDoctorComments = new System.Windows.Forms.TextBox();
-            this.labelDoctorComments = new System.Windows.Forms.Label();
-            this.buttonApproveLabTest = new System.Windows.Forms.Button();
-            this.textBoxLabTestResult = new System.Windows.Forms.TextBox();
-            this.labelLabTestResult = new System.Windows.Forms.Label();
-            this.buttonAddComments = new System.Windows.Forms.Button();
-            this.buttonCancelLabTest = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.labelPanelName = new System.Windows.Forms.Label();
+            this.groupBoxSearch = new System.Windows.Forms.GroupBox();
+            this.labelLastName = new System.Windows.Forms.Label();
+            this.labelDateRegistered = new System.Windows.Forms.Label();
+            this.dateTimePickerDateRegistered = new System.Windows.Forms.DateTimePicker();
+            this.labelFirstName = new System.Windows.Forms.Label();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.labelExaminationName = new System.Windows.Forms.Label();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.textBoxFirstName = new System.Windows.Forms.TextBox();
+            this.textBoxExaminationName = new System.Windows.Forms.TextBox();
+            this.buttonExaminationDisplay = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLabExaminations)).BeginInit();
+            this.groupBoxSearch.SuspendLayout();
             this.SuspendLayout();
             // 
-            // labelPanelName
+            // dataGridViewLabExaminations
             // 
-            this.labelPanelName.AutoSize = true;
-            this.labelPanelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(143, 8);
-            this.labelPanelName.Name = "labelPanelName";
-            this.labelPanelName.Size = new System.Drawing.Size(445, 55);
-            this.labelPanelName.TabIndex = 1;
-            this.labelPanelName.Text = "Lab Manager Panel";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.LabTestID,
+            this.dataGridViewLabExaminations.AllowUserToAddRows = false;
+            this.dataGridViewLabExaminations.AllowUserToDeleteRows = false;
+            this.dataGridViewLabExaminations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLabExaminations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DateRegistered,
             this.DateCompleted,
+            this.Examination,
+            this.Status,
             this.PatientFirstName,
-            this.PatientLastName,
-            this.Status});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 81);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(563, 191);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // LabTestID
-            // 
-            this.LabTestID.HeaderText = "LabTestID";
-            this.LabTestID.Name = "LabTestID";
-            this.LabTestID.ReadOnly = true;
-            this.LabTestID.Width = 70;
+            this.PatientLastName});
+            this.dataGridViewLabExaminations.Location = new System.Drawing.Point(12, 152);
+            this.dataGridViewLabExaminations.Name = "dataGridViewLabExaminations";
+            this.dataGridViewLabExaminations.ReadOnly = true;
+            this.dataGridViewLabExaminations.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewLabExaminations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewLabExaminations.Size = new System.Drawing.Size(638, 250);
+            this.dataGridViewLabExaminations.TabIndex = 2;
             // 
             // DateRegistered
             // 
             this.DateRegistered.HeaderText = "DateRegistered";
             this.DateRegistered.Name = "DateRegistered";
             this.DateRegistered.ReadOnly = true;
-            this.DateRegistered.Width = 90;
             // 
             // DateCompleted
             // 
             this.DateCompleted.HeaderText = "DateCompleted";
             this.DateCompleted.Name = "DateCompleted";
             this.DateCompleted.ReadOnly = true;
-            this.DateCompleted.Width = 90;
+            // 
+            // Examination
+            // 
+            this.Examination.HeaderText = "Examination";
+            this.Examination.Name = "Examination";
+            this.Examination.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Width = 70;
             // 
             // PatientFirstName
             // 
@@ -110,139 +110,192 @@
             this.PatientLastName.Name = "PatientLastName";
             this.PatientLastName.ReadOnly = true;
             // 
-            // Status
+            // labelPanelName
             // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Width = 70;
+            this.labelPanelName.AutoSize = true;
+            this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelPanelName.Location = new System.Drawing.Point(241, 9);
+            this.labelPanelName.Name = "labelPanelName";
+            this.labelPanelName.Size = new System.Drawing.Size(390, 48);
+            this.labelPanelName.TabIndex = 12;
+            this.labelPanelName.Text = "Lab Manager Panel";
             // 
-            // textBoxManagerComments
+            // groupBoxSearch
             // 
-            this.textBoxManagerComments.Location = new System.Drawing.Point(512, 311);
-            this.textBoxManagerComments.Multiline = true;
-            this.textBoxManagerComments.Name = "textBoxManagerComments";
-            this.textBoxManagerComments.Size = new System.Drawing.Size(220, 98);
-            this.textBoxManagerComments.TabIndex = 3;
+            this.groupBoxSearch.Controls.Add(this.labelLastName);
+            this.groupBoxSearch.Controls.Add(this.labelDateRegistered);
+            this.groupBoxSearch.Controls.Add(this.dateTimePickerDateRegistered);
+            this.groupBoxSearch.Controls.Add(this.labelFirstName);
+            this.groupBoxSearch.Controls.Add(this.textBoxLastName);
+            this.groupBoxSearch.Controls.Add(this.comboBoxStatus);
+            this.groupBoxSearch.Controls.Add(this.labelStatus);
+            this.groupBoxSearch.Controls.Add(this.labelExaminationName);
+            this.groupBoxSearch.Controls.Add(this.buttonSearch);
+            this.groupBoxSearch.Controls.Add(this.textBoxFirstName);
+            this.groupBoxSearch.Controls.Add(this.textBoxExaminationName);
+            this.groupBoxSearch.Location = new System.Drawing.Point(12, 57);
+            this.groupBoxSearch.Name = "groupBoxSearch";
+            this.groupBoxSearch.Size = new System.Drawing.Size(838, 89);
+            this.groupBoxSearch.TabIndex = 13;
+            this.groupBoxSearch.TabStop = false;
+            this.groupBoxSearch.Text = "Search";
             // 
-            // labelManagerComments
+            // labelLastName
             // 
-            this.labelManagerComments.AutoSize = true;
-            this.labelManagerComments.Location = new System.Drawing.Point(509, 295);
-            this.labelManagerComments.Name = "labelManagerComments";
-            this.labelManagerComments.Size = new System.Drawing.Size(122, 13);
-            this.labelManagerComments.TabIndex = 4;
-            this.labelManagerComments.Text = "Lab Manager Comments";
+            this.labelLastName.AutoSize = true;
+            this.labelLastName.Location = new System.Drawing.Point(556, 28);
+            this.labelLastName.Name = "labelLastName";
+            this.labelLastName.Size = new System.Drawing.Size(58, 13);
+            this.labelLastName.TabIndex = 23;
+            this.labelLastName.Text = "Last Name";
             // 
-            // textBoxDoctorComments
+            // labelDateRegistered
             // 
-            this.textBoxDoctorComments.Location = new System.Drawing.Point(263, 311);
-            this.textBoxDoctorComments.Multiline = true;
-            this.textBoxDoctorComments.Name = "textBoxDoctorComments";
-            this.textBoxDoctorComments.ReadOnly = true;
-            this.textBoxDoctorComments.Size = new System.Drawing.Size(220, 98);
-            this.textBoxDoctorComments.TabIndex = 5;
+            this.labelDateRegistered.AutoSize = true;
+            this.labelDateRegistered.Location = new System.Drawing.Point(22, 28);
+            this.labelDateRegistered.Name = "labelDateRegistered";
+            this.labelDateRegistered.Size = new System.Drawing.Size(81, 13);
+            this.labelDateRegistered.TabIndex = 19;
+            this.labelDateRegistered.Text = "DateRegistered";
             // 
-            // labelDoctorComments
+            // dateTimePickerDateRegistered
             // 
-            this.labelDoctorComments.AutoSize = true;
-            this.labelDoctorComments.Location = new System.Drawing.Point(260, 295);
-            this.labelDoctorComments.Name = "labelDoctorComments";
-            this.labelDoctorComments.Size = new System.Drawing.Size(91, 13);
-            this.labelDoctorComments.TabIndex = 6;
-            this.labelDoctorComments.Text = "Doctor Comments";
+            this.dateTimePickerDateRegistered.Checked = false;
+            this.dateTimePickerDateRegistered.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDateRegistered.Location = new System.Drawing.Point(25, 44);
+            this.dateTimePickerDateRegistered.Name = "dateTimePickerDateRegistered";
+            this.dateTimePickerDateRegistered.ShowCheckBox = true;
+            this.dateTimePickerDateRegistered.Size = new System.Drawing.Size(100, 20);
+            this.dateTimePickerDateRegistered.TabIndex = 18;
+            this.dateTimePickerDateRegistered.Value = new System.DateTime(2019, 4, 5, 19, 12, 43, 0);
             // 
-            // buttonApproveLabTest
+            // labelFirstName
             // 
-            this.buttonApproveLabTest.Location = new System.Drawing.Point(608, 115);
-            this.buttonApproveLabTest.Name = "buttonApproveLabTest";
-            this.buttonApproveLabTest.Size = new System.Drawing.Size(110, 23);
-            this.buttonApproveLabTest.TabIndex = 7;
-            this.buttonApproveLabTest.Text = "Approve Lab Test";
-            this.buttonApproveLabTest.UseVisualStyleBackColor = true;
-            this.buttonApproveLabTest.Click += new System.EventHandler(this.buttonApproveLabTest_Click);
+            this.labelFirstName.AutoSize = true;
+            this.labelFirstName.Location = new System.Drawing.Point(421, 28);
+            this.labelFirstName.Name = "labelFirstName";
+            this.labelFirstName.Size = new System.Drawing.Size(57, 13);
+            this.labelFirstName.TabIndex = 22;
+            this.labelFirstName.Text = "First Name";
             // 
-            // textBoxLabTestResult
+            // textBoxLastName
             // 
-            this.textBoxLabTestResult.Location = new System.Drawing.Point(15, 311);
-            this.textBoxLabTestResult.Multiline = true;
-            this.textBoxLabTestResult.Name = "textBoxLabTestResult";
-            this.textBoxLabTestResult.ReadOnly = true;
-            this.textBoxLabTestResult.Size = new System.Drawing.Size(220, 98);
-            this.textBoxLabTestResult.TabIndex = 8;
+            this.textBoxLastName.Location = new System.Drawing.Point(557, 44);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxLastName.TabIndex = 21;
             // 
-            // labelLabTestResult
+            // comboBoxStatus
             // 
-            this.labelLabTestResult.AutoSize = true;
-            this.labelLabTestResult.Location = new System.Drawing.Point(12, 295);
-            this.labelLabTestResult.Name = "labelLabTestResult";
-            this.labelLabTestResult.Size = new System.Drawing.Size(82, 13);
-            this.labelLabTestResult.TabIndex = 9;
-            this.labelLabTestResult.Text = "Lab Test Result";
+            this.comboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            " ",
+            "REG",
+            "BEG",
+            "CANC_T",
+            "CANC_M",
+            "COMP",
+            "APP"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(291, 44);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxStatus.TabIndex = 17;
             // 
-            // buttonAddComments
+            // labelStatus
             // 
-            this.buttonAddComments.Location = new System.Drawing.Point(608, 227);
-            this.buttonAddComments.Name = "buttonAddComments";
-            this.buttonAddComments.Size = new System.Drawing.Size(110, 23);
-            this.buttonAddComments.TabIndex = 10;
-            this.buttonAddComments.Text = "Add Comments";
-            this.buttonAddComments.UseVisualStyleBackColor = true;
-            this.buttonAddComments.Click += new System.EventHandler(this.buttonAddComments_Click);
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(288, 28);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(37, 13);
+            this.labelStatus.TabIndex = 8;
+            this.labelStatus.Text = "Status";
             // 
-            // buttonCancelLabTest
+            // labelExaminationName
             // 
-            this.buttonCancelLabTest.Location = new System.Drawing.Point(608, 171);
-            this.buttonCancelLabTest.Name = "buttonCancelLabTest";
-            this.buttonCancelLabTest.Size = new System.Drawing.Size(110, 23);
-            this.buttonCancelLabTest.TabIndex = 11;
-            this.buttonCancelLabTest.Text = "Cancel Lab Test";
-            this.buttonCancelLabTest.UseVisualStyleBackColor = true;
-            this.buttonCancelLabTest.Click += new System.EventHandler(this.buttonCancelLabTest_Click);
+            this.labelExaminationName.AutoSize = true;
+            this.labelExaminationName.Location = new System.Drawing.Point(155, 28);
+            this.labelExaminationName.Name = "labelExaminationName";
+            this.labelExaminationName.Size = new System.Drawing.Size(95, 13);
+            this.labelExaminationName.TabIndex = 7;
+            this.labelExaminationName.Text = "Examination Name";
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(688, 42);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(120, 23);
+            this.buttonSearch.TabIndex = 2;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // textBoxFirstName
+            // 
+            this.textBoxFirstName.Location = new System.Drawing.Point(424, 44);
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxFirstName.TabIndex = 20;
+            // 
+            // textBoxExaminationName
+            // 
+            this.textBoxExaminationName.Location = new System.Drawing.Point(158, 44);
+            this.textBoxExaminationName.Name = "textBoxExaminationName";
+            this.textBoxExaminationName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxExaminationName.TabIndex = 4;
+            // 
+            // buttonExaminationDisplay
+            // 
+            this.buttonExaminationDisplay.Location = new System.Drawing.Point(700, 269);
+            this.buttonExaminationDisplay.Name = "buttonExaminationDisplay";
+            this.buttonExaminationDisplay.Size = new System.Drawing.Size(120, 23);
+            this.buttonExaminationDisplay.TabIndex = 18;
+            this.buttonExaminationDisplay.Text = "Display";
+            this.buttonExaminationDisplay.UseVisualStyleBackColor = true;
+            this.buttonExaminationDisplay.Click += new System.EventHandler(this.buttonExaminationDisplay_Click);
             // 
             // FormLabManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 424);
-            this.Controls.Add(this.buttonCancelLabTest);
-            this.Controls.Add(this.buttonAddComments);
-            this.Controls.Add(this.labelLabTestResult);
-            this.Controls.Add(this.textBoxLabTestResult);
-            this.Controls.Add(this.buttonApproveLabTest);
-            this.Controls.Add(this.labelDoctorComments);
-            this.Controls.Add(this.textBoxDoctorComments);
-            this.Controls.Add(this.labelManagerComments);
-            this.Controls.Add(this.textBoxManagerComments);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(862, 415);
+            this.Controls.Add(this.buttonExaminationDisplay);
+            this.Controls.Add(this.groupBoxSearch);
             this.Controls.Add(this.labelPanelName);
+            this.Controls.Add(this.dataGridViewLabExaminations);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormLabManager";
             this.Text = "FormLabManager";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLabExaminations)).EndInit();
+            this.groupBoxSearch.ResumeLayout(false);
+            this.groupBoxSearch.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
+        private System.Windows.Forms.DataGridView dataGridViewLabExaminations;
         private System.Windows.Forms.Label labelPanelName;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBoxManagerComments;
-        private System.Windows.Forms.Label labelManagerComments;
-        private System.Windows.Forms.TextBox textBoxDoctorComments;
-        private System.Windows.Forms.Label labelDoctorComments;
-        private System.Windows.Forms.Button buttonApproveLabTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LabTestID;
+        private System.Windows.Forms.GroupBox groupBoxSearch;
+        private System.Windows.Forms.Label labelDateRegistered;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDateRegistered;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Label labelExaminationName;
+        private System.Windows.Forms.TextBox textBoxExaminationName;
+        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateRegistered;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateCompleted;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Examination;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientFirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientLastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.TextBox textBoxLabTestResult;
-        private System.Windows.Forms.Label labelLabTestResult;
-        private System.Windows.Forms.Button buttonAddComments;
-        private System.Windows.Forms.Button buttonCancelLabTest;
+        private System.Windows.Forms.Label labelLastName;
+        private System.Windows.Forms.Label labelFirstName;
+        private System.Windows.Forms.TextBox textBoxLastName;
+        private System.Windows.Forms.TextBox textBoxFirstName;
+        private System.Windows.Forms.Button buttonExaminationDisplay;
     }
 }

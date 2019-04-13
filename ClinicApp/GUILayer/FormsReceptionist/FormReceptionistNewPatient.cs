@@ -86,13 +86,11 @@ namespace GUILayer
             }
             BusinessLayer.ReceptionistFacade.AddPatient(newPatientInformation);
             DialogResult = DialogResult.OK;
-            this.Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-            this.Close();
         }
     }
 }

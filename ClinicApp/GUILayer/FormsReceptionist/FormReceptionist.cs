@@ -117,7 +117,7 @@ namespace GUILayer
                 //Refresh patients.
                 searchForPatients();
                 foreach (DataGridViewRow row in dataGridViewPatients.Rows)
-                    if (row.Cells[2].Value.ToString().Equals(formNewPatient.newPatientInformation.LastName))
+                    if (row.Cells[3].Value.ToString().Equals(formNewPatient.newPatientInformation.PESEL))
                     {
                         dataGridViewPatients.CurrentCell = dataGridViewPatients[0, row.Index];
                         break;
@@ -147,7 +147,7 @@ namespace GUILayer
                     //Refresh displayed patients.
                     searchForPatients();
                     foreach (DataGridViewRow row in dataGridViewPatients.Rows)
-                        if (row.Cells[2].Value.ToString().Equals(formEditPatient.editedPatientInformation.LastName))
+                        if ((int)row.Cells[0].Value == formEditPatient.editedPatientInformation.PatientID)
                         {
                             dataGridViewPatients.CurrentCell = dataGridViewPatients[0, row.Index];
                             break;

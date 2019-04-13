@@ -773,6 +773,111 @@ namespace BusinessLayer
                           select el).SingleOrDefault();
             return result;
         }
+
+        public class LabManagerLabExamination
+        {
+            public DateTime? DateRegistered { get; set; }
+            public DateTime? DateCompleted{ get; set; }
+            public string ExaminationName { get; set; }
+            public string Status { get; set; }
+            public string PatientFirstName { get; set; }
+            public string PatientLastName { get; set; }
+            public int LabExaminationID { get; set; }
+        }
+
+        public class LabManagerLabExaminationDetails
+        {
+            public DateTime DateRegistered { get; set; }
+            public DateTime? DateCompleted { get; set; }
+            public string ExaminationName { get; set; }
+            public string Code { get; set; }
+            public string Status { get; set; }
+            public string PatientFirstName { get; set; }
+            public string PatientLastName { get; set; }
+            public int LabExaminationID { get; set; }
+            public string DoctorComments { get; set; }
+            public string Result { get; set; }
+            public string LabManagerComments { get; set; }
+        }
+
+        public static List<LabManagerLabExamination> GetLabExaminations(LabManagerLabExamination labExaminationSearchCriteria)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from exam in dc.LabExaminations
+                          join app in dc.Appointments on exam.AppointmentID equals app.AppointmentID
+                          join pat in dc.Patients on app.PatientID equals pat.PatientID
+                          join dic in dc.ExaminationDictionaries on exam.Code equals dic.Code
+                          where
+                          (labExaminationSearchCriteria.PatientFirstName == null || pat.FirstName.StartsWith(labExaminationSearchCriteria.PatientFirstName))
+                          &&
+                          (labExaminationSearchCriteria.PatientLastName == null || pat.LastName.StartsWith(labExaminationSearchCriteria.PatientLastName))
+                          &&
+                          (labExaminationSearchCriteria.Status == null || exam.Status.StartsWith(labExaminationSearchCriteria.Status))
+                          &&
+                          (labExaminationSearchCriteria.ExaminationName == null || dic.Name.StartsWith(labExaminationSearchCriteria.ExaminationName))
+                          &&
+                          (labExaminationSearchCriteria.DateRegistered == null || (exam.DateRegistered.Date == labExaminationSearchCriteria.DateRegistered))
+                          select new LabManagerLabExamination
+                          { DateRegistered = exam.DateRegistered, DateCompleted = exam.DateCompletedOrCanceled, ExaminationName = dic.Name,
+                          Status = exam.Status, PatientFirstName = pat.FirstName, PatientLastName = pat.LastName, LabExaminationID = exam.LabExaminationID}
+                          ).OrderByDescending(x => x.DateRegistered).ToList();
+            return result;
+        }
+
+        public static LabManagerLabExaminationDetails GetLabExaminationDetails(int labExaminationID)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from exam in dc.LabExaminations
+                          join app in dc.Appointments on exam.AppointmentID equals app.AppointmentID
+                          join pat in dc.Patients on app.PatientID equals pat.PatientID
+                          join dic in dc.ExaminationDictionaries on exam.Code equals dic.Code
+                          where
+                          exam.LabExaminationID == labExaminationID
+                          select new LabManagerLabExaminationDetails
+                          {
+                              DateRegistered = exam.DateRegistered,
+                              DateCompleted = exam.DateCompletedOrCanceled,
+                              ExaminationName = dic.Name,
+                              Code = dic.Code,
+                              Status = exam.Status,
+                              PatientFirstName = pat.FirstName,
+                              PatientLastName = pat.LastName,
+                              LabExaminationID = exam.LabExaminationID,
+                              DoctorComments = exam.DoctorComments,
+                              Result = exam.Result,
+                              LabManagerComments = exam.LabManagerComments
+                          }
+                          ).SingleOrDefault();
+            return result;
+        }
+
+        public static void CancelLabExamination(int labExaminationID, string labManagerComments)
+        {
+            //Get LabExamination from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var labExamination = (from exam in dc.LabExaminations
+                                  where exam.LabExaminationID == labExaminationID
+                                  select exam).SingleOrDefault();
+            //Change status.
+            labExamination.Status = "CANC_M";
+            labExamination.LabManagerComments = labManagerComments;
+            labExamination.DateApprovedOrCanceled = DateTime.Now;
+            dc.SubmitChanges();
+        }
+
+        public static void ApproveLabExamination(int labExaminationID, string labManagerComments)
+        {
+            //Get LabExamination from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var labExamination = (from exam in dc.LabExaminations
+                                  where exam.LabExaminationID == labExaminationID
+                                  select exam).SingleOrDefault();
+            //Change status.
+            labExamination.Status = "APP";
+            labExamination.LabManagerComments = labManagerComments;
+            labExamination.DateApprovedOrCanceled = DateTime.Now;
+            dc.SubmitChanges();
+        }
     }
 
     static public class LabTechnicianFacade
@@ -784,6 +889,131 @@ namespace BusinessLayer
                           where el.UserID == userID
                           select el).SingleOrDefault();
             return result;
+        }
+
+        public class LabTechnicianLabExamination
+        {
+            public DateTime? DateRegistered { get; set; }
+            public DateTime? DateCompleted { get; set; }
+            public string ExaminationName { get; set; }
+            public string Status { get; set; }
+            public string PatientFirstName { get; set; }
+            public string PatientLastName { get; set; }
+            public int LabExaminationID { get; set; }
+        }
+
+        public class LabTechnicianLabExaminationDetails
+        {
+            public DateTime DateRegistered { get; set; }
+            public DateTime? DateCompleted { get; set; }
+            public string ExaminationName { get; set; }
+            public string Code { get; set; }
+            public string Status { get; set; }
+            public string PatientFirstName { get; set; }
+            public string PatientLastName { get; set; }
+            public int LabExaminationID { get; set; }
+            public string DoctorComments { get; set; }
+            public string Result { get; set; }
+            public string LabManagerComments { get; set; }
+        }
+
+        public static List<LabTechnicianLabExamination> GetLabExaminations(LabTechnicianLabExamination labExaminationSearchCriteria)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from exam in dc.LabExaminations
+                          join app in dc.Appointments on exam.AppointmentID equals app.AppointmentID
+                          join pat in dc.Patients on app.PatientID equals pat.PatientID
+                          join dic in dc.ExaminationDictionaries on exam.Code equals dic.Code
+                          where
+                          (labExaminationSearchCriteria.PatientFirstName == null || pat.FirstName.StartsWith(labExaminationSearchCriteria.PatientFirstName))
+                          &&
+                          (labExaminationSearchCriteria.PatientLastName == null || pat.LastName.StartsWith(labExaminationSearchCriteria.PatientLastName))
+                          &&
+                          (labExaminationSearchCriteria.Status == null || exam.Status.StartsWith(labExaminationSearchCriteria.Status))
+                          &&
+                          (labExaminationSearchCriteria.ExaminationName == null || dic.Name.StartsWith(labExaminationSearchCriteria.ExaminationName))
+                          &&
+                          (labExaminationSearchCriteria.DateRegistered == null || (exam.DateRegistered.Date == labExaminationSearchCriteria.DateRegistered))
+                          select new LabTechnicianLabExamination
+                          {
+                              DateRegistered = exam.DateRegistered,
+                              DateCompleted = exam.DateCompletedOrCanceled,
+                              ExaminationName = dic.Name,
+                              Status = exam.Status,
+                              PatientFirstName = pat.FirstName,
+                              PatientLastName = pat.LastName,
+                              LabExaminationID = exam.LabExaminationID
+                          }
+                          ).OrderByDescending(x => x.DateRegistered).ToList();
+            return result;
+        }
+
+        public static LabTechnicianLabExaminationDetails GetLabExaminationDetails(int labExaminationID)
+        {
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var result = (from exam in dc.LabExaminations
+                          join app in dc.Appointments on exam.AppointmentID equals app.AppointmentID
+                          join pat in dc.Patients on app.PatientID equals pat.PatientID
+                          join dic in dc.ExaminationDictionaries on exam.Code equals dic.Code
+                          where
+                          exam.LabExaminationID == labExaminationID
+                          select new LabTechnicianLabExaminationDetails
+                          {
+                              DateRegistered = exam.DateRegistered,
+                              DateCompleted = exam.DateCompletedOrCanceled,
+                              ExaminationName = dic.Name,
+                              Code = dic.Code,
+                              Status = exam.Status,
+                              PatientFirstName = pat.FirstName,
+                              PatientLastName = pat.LastName,
+                              LabExaminationID = exam.LabExaminationID,
+                              DoctorComments = exam.DoctorComments,
+                              Result = exam.Result,
+                              LabManagerComments = exam.LabManagerComments
+                          }
+                          ).SingleOrDefault();
+            return result;
+        }
+
+        public static void BeginLabExamination(int labExaminationID)
+        {
+            //Get LabExamination from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var labExamination = (from exam in dc.LabExaminations
+                                  where exam.LabExaminationID == labExaminationID
+                                  select exam).SingleOrDefault();
+            //Change status.
+            labExamination.Status = "BEG";
+            dc.SubmitChanges();
+        }
+
+        public static void CancelLabExamination(int labExaminationID, string result)
+        {
+            //Get LabExamination from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var labExamination = (from exam in dc.LabExaminations
+                                  where exam.LabExaminationID == labExaminationID
+                                  select exam).SingleOrDefault();
+            //Change status.
+            labExamination.Status = "CANC_T";
+            if (result != null)
+                labExamination.Result = result;
+            labExamination.DateCompletedOrCanceled = DateTime.Now;
+            dc.SubmitChanges();
+        }
+
+        public static void CompleteLabExamination(int labExaminationID, string result)
+        {
+            //Get LabExamination from database.
+            DataClassesDataContext dc = new DataClassesDataContext();
+            var labExamination = (from exam in dc.LabExaminations
+                                  where exam.LabExaminationID == labExaminationID
+                                  select exam).SingleOrDefault();
+            //Change status.
+            labExamination.Status = "COMP";
+            labExamination.Result = result;
+            labExamination.DateCompletedOrCanceled = DateTime.Now;
+            dc.SubmitChanges();
         }
     }
 

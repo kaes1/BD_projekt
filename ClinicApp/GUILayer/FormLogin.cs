@@ -55,13 +55,13 @@ namespace GUILayer
                             break;
                         case "TEC":
                             this.Hide();
-                            var technicianForm = new FormLabTechnician();
+                            var technicianForm = new FormLabTechnician(userInfo.UserID);
                             technicianForm.FormClosed += (s, args) => this.Close();
                             technicianForm.Show();
                             break;
                         case "MAN":
                             this.Hide();
-                            var managerForm = new FormLabManager();
+                            var managerForm = new FormLabManager(userInfo.UserID);
                             managerForm.FormClosed += (s, args) => this.Close();
                             managerForm.Show();
                             break;

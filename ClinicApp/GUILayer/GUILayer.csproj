@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormsLabManager\FormLabManagerExamination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLabManager\FormLabManagerExamination.Designer.cs">
+      <DependentUpon>FormLabManagerExamination.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsLabTechnician\FormLabTechnicianExamination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLabTechnician\FormLabTechnicianExamination.Designer.cs">
+      <DependentUpon>FormLabTechnicianExamination.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsDoctor\FormDoctorAppCancelled.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,12 +136,6 @@
     </Compile>
     <Compile Include="FormsLabManager\FormLabManager.Designer.cs">
       <DependentUpon>FormLabManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormsLabTechnician\FormLabTechnicianExam.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormsLabTechnician\FormLabTechnicianExam.Designer.cs">
-      <DependentUpon>FormLabTechnicianExam.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsLabTechnician\FormLabTechnician.cs">
       <SubType>Form</SubType>
@@ -214,14 +220,17 @@
     <EmbeddedResource Include="FormsLabManager\FormLabManager.resx">
       <DependentUpon>FormLabManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormsLabTechnician\FormLabTechnicianExam.resx">
-      <DependentUpon>FormLabTechnicianExam.cs</DependentUpon>
+    <EmbeddedResource Include="FormsLabManager\FormLabManagerExamination.resx">
+      <DependentUpon>FormLabManagerExamination.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsLabTechnician\FormLabTechnician.resx">
       <DependentUpon>FormLabTechnician.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsLabTechnician\FormLabTechnicianExamination.resx">
+      <DependentUpon>FormLabTechnicianExamination.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsReceptionist\FormReceptionist.resx">
       <DependentUpon>FormReceptionist.cs</DependentUpon>
