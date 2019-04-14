@@ -77,7 +77,7 @@ namespace GUILayer
             dataGridViewPatients.Columns.Clear();
             dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
             dataGridViewPatients.AutoGenerateColumns = false;
-            dataGridViewPatients.Columns.Remove("AppointmentID");
+            dataGridViewPatients.Columns["AppointmentID"].Visible = false;
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)

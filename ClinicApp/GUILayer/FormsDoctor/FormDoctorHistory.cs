@@ -26,9 +26,19 @@ namespace GUILayer.FormsDoctor
             dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
             dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
             dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
-            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
-            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
-            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
+            dataGridViewAppoinmentsExaminations.Columns["AppointmentID"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["DoctorID"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["ReceptionistID"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["Description"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["Diagnosis"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["DateRegistered"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["DateCompletedOrCanceled"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["PatientID"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["DateOfAppointment"].DisplayIndex = 0;
+
+
+
+
 
             textBoxFirstName.Text = actPat.FirstName;
             textBoxLastName.Text = actPat.LastName;
@@ -43,7 +53,11 @@ namespace GUILayer.FormsDoctor
         private void buttonPreviousExaminations_Click(object sender, EventArgs e)
         {
             dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
-            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPreviousExaminations(actualPatient);
+            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevExams(actualPatient);
+            dataGridViewAppoinmentsExaminations.Columns["dateRegistered"].DisplayIndex = 0;
+            dataGridViewAppoinmentsExaminations.Columns["dateRegistered"].Visible = true;
+            dataGridViewAppoinmentsExaminations.Columns["Result"].Visible = false;
+           // dataGridViewAppoinmentsExaminations.Columns["Code"].Visible = true;
             dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
             showAppointments = false;
         }
@@ -58,8 +72,9 @@ namespace GUILayer.FormsDoctor
             }
             else
             {
-              //  String examResult = BusinessLayer.DoctorFacade.GetExamResultById(dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[0].Value);
-               // richTextBoxResultDescription.Text = app.Description;
+
+                string result = (string)dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[3].Value;
+                richTextBoxResultDescription.Text = result;
             }
         }
 
@@ -68,9 +83,15 @@ namespace GUILayer.FormsDoctor
             dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
             dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
             dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
-            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientFirstName");
-            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientLastName");
-            dataGridViewAppoinmentsExaminations.Columns.Remove("PatientPesel");
+            dataGridViewAppoinmentsExaminations.Columns["AppointmentID"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["DoctorID"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["ReceptionistID"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["Description"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["Diagnosis"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["DateRegistered"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["DateCompletedOrCanceled"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["PatientID"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["DateOfAppointment"].DisplayIndex = 0;
             showAppointments = true;
         }
     }

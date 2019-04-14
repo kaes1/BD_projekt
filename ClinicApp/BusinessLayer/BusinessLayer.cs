@@ -155,6 +155,21 @@ namespace BusinessLayer
         public string Status { get; set; }
     }
 
+    public class PreviousAppointment {
+        public int AppointmentID { get; set; }
+        public int DoctorID { get; set; }
+        public int PatientID { get; set; }
+        public int ReceptionistID { get; set; }
+        public string Description { get; set; }
+        public string Diagnosis { get; set; }
+        //Should Status be an enum?
+        public string Status { get; set; }
+        public DateTime DateRegistered { get; set; }
+        public DateTime DateOfAppointment { get; set; }
+        public DateTime? DateCompletedOrCanceled { get; set; }
+        public string DoctorLastName {get; set;}
+    }
+
     static public class DoctorFacade
     {
         public static DoctorInformation GetDoctor(int userID)
@@ -175,8 +190,7 @@ namespace BusinessLayer
                           join pt in dc.Patients on app.PatientID equals pt.PatientID
                           where
                           app.DoctorID == doctorID
-                          & app.DateOfAppointment.DayOfYear == DateTime.Now.DayOfYear
-                          & app.DateOfAppointment.Year == DateTime.Now.Year
+                          & app.DateOfAppointment.Date == DateTime.Now.Date
                           select new DoctorAppointment
                           {
                               DateOfAppointment = app.DateOfAppointment,
@@ -184,8 +198,9 @@ namespace BusinessLayer
                               PatientLastName = pt.LastName,
                               PatientPesel = pt.PESEL,
                               Status = app.Status,
+                              AppointmentID = app.AppointmentID
                           }
-                          ).ToList();
+                          ).OrderBy(x => x.DateOfAppointment).ToList();
             return result;
         }
 
@@ -200,18 +215,16 @@ namespace BusinessLayer
                           & pt.LastName.StartsWith(searchParams.PatientLastName)
                           & pt.PESEL.StartsWith(searchParams.PatientPesel)
                           & app.Status.StartsWith(searchParams.Status)
-                          & app.DateOfAppointment.Day == DateTime.Now.Day
-                          & app.DateOfAppointment.Year == DateTime.Now.Year
-                          & app.DateOfAppointment.Month == DateTime.Now.Month
+                          & app.DateOfAppointment.Date == DateTime.Now.Date
                           select new DoctorAppointment
                           {
-                              DateOfAppointment = app.DateRegistered,
+                              DateOfAppointment = app.DateOfAppointment,
                               PatientFirstName = pt.FirstName,
                               PatientLastName = pt.LastName,
                               PatientPesel = pt.PESEL,
-                              Status = app.Status,
+                              Status = app.Status
                           }
-                          ).OrderByDescending(x => x.DateOfAppointment).ToList();
+                          ).OrderBy(x => x.DateOfAppointment).ToList();
             return result;
         }
         public static List<DoctorAppointment> GetSearchWithoutDate(DoctorAppointment searchParams, int doctorID)
@@ -227,7 +240,7 @@ namespace BusinessLayer
                           & app.Status.StartsWith(searchParams.Status)
                           select new DoctorAppointment
                           {
-                              DateOfAppointment = app.DateRegistered,
+                              DateOfAppointment = app.DateOfAppointment,
                               PatientFirstName = pt.FirstName,
                               PatientLastName = pt.LastName,
                               PatientPesel = pt.PESEL,
@@ -306,6 +319,7 @@ namespace BusinessLayer
                           join dic in dc.ExaminationDictionaries on lab.Code equals dic.Code
                           where
                           app.AppointmentID == actApp.AppointmentID
+                          & lab.DateRegistered.Date == DateTime.Now.Date
                           select new OrderedExamination()
                           {
                               ExaminationID = lab.LabExaminationID,
@@ -333,42 +347,62 @@ namespace BusinessLayer
             return result;
         }
 
-        public static List< DoctorAppointment> GetPatientPrevApps(PatientInformation actPat)
+        public static List< PreviousAppointment> GetPatientPrevApps(PatientInformation actPat)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
             var result = (from app in dc.Appointments
                           join pt in dc.Patients on app.PatientID equals pt.PatientID
+                          join doc in dc.Doctors on app.DoctorID equals doc.DoctorID
                           where
-                          app.DateOfAppointment < DateTime.Now
+                          app.DateOfAppointment.Date < DateTime.Now.Date
                           & pt.PatientID == actPat.PatientID
-                          & app.Status != "REG"
-                          select new DoctorAppointment()
+                          select new PreviousAppointment()
                           {
-                              AppointmentID = app.AppointmentID,
-                              DateOfAppointment = app.DateOfAppointment,
-                              Status = app.Status
+                             AppointmentID = app.AppointmentID,
+                             DateOfAppointment = app.DateOfAppointment,
+                             Status = app.Status,
+                             Description = app.Description,
+                             Diagnosis = app.Diagnosis,
+                             DoctorLastName = doc.LastName
                           }).OrderByDescending(x => x.DateOfAppointment).ToList();
             return result;
         }
 
-        public static List<DoctorAppointment> GetPatientPrevExams(PatientInformation actPat)
+        public static List<Examination> GetPatientPrevExams(PatientInformation actPat)
         {
             DataClassesDataContext dc = new DataClassesDataContext();
-            var result = (from pt in dc.Patients
-                          join app in dc.Appointments on pt.PatientID equals app.PatientID
-                          join phys in dc.PhysicalExaminations on app.AppointmentID equals phys.AppointmentID
-                          join lab in dc.LabExaminations on app.AppointmentID equals lab.AppointmentID
-                          where
-                          app.DateOfAppointment < DateTime.Now
-                          & pt.PatientID == actPat.PatientID
-                          & app.Status != "REG"
-                          select new DoctorAppointment()
-                          {
-                              AppointmentID = app.AppointmentID,
-                              DateOfAppointment = app.DateOfAppointment,
-                              Status = app.Status
-                          }).OrderByDescending(x => x.DateOfAppointment).ToList();
-            return result;
+            var resultPhys = (from ph in dc.PhysicalExaminations
+                         join dic in dc.ExaminationDictionaries on ph.Code equals dic.Code
+                         join app in dc.Appointments on ph.AppointmentID equals app.AppointmentID
+                         join pat in dc.Patients on app.PatientID equals pat.PatientID
+                         where pat.PatientID == actPat.PatientID
+                         select new Examination
+                         {
+                             dateRegistered = app.DateOfAppointment,
+                             Status = "COMP",
+                             Result = ph.Result,
+                             Code = ph.Code,
+                             Name = dic.Name
+                         }).OrderByDescending(x => x.dateRegistered).ToList();
+            var resultLab = (from lab in dc.LabExaminations
+                         join dic in dc.ExaminationDictionaries on lab.Code equals dic.Code
+                         join app in dc.Appointments on lab.AppointmentID equals app.AppointmentID
+                         join pat in dc.Patients on app.PatientID equals pat.PatientID
+                         where pat.PatientID == actPat.PatientID
+                         select new Examination
+                         {
+                             dateRegistered = app.DateOfAppointment,
+                             Status = lab.Status,
+                             Result = lab.Result,
+                             Code = lab.Code,
+                             Name = dic.Name
+                         }).OrderByDescending(x => x.dateRegistered).ToList();
+            foreach(var s in resultLab)
+            {
+                resultPhys.Add(s);
+            }
+            resultPhys.Sort((x, y) => y.dateRegistered.CompareTo(x.dateRegistered));
+            return resultPhys;
         }
 
         public static AppointmentInformation GetActAppInfo(AppointmentInformation actApp)

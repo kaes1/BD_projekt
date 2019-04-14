@@ -44,11 +44,6 @@
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
-            this.TimeOfVisit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PESEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonBeginVisit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.labelPanelName = new System.Windows.Forms.Label();
@@ -215,12 +210,6 @@
             this.dataGridViewPatients.AllowUserToResizeColumns = false;
             this.dataGridViewPatients.AllowUserToResizeRows = false;
             this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPatients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TimeOfVisit,
-            this.FirstName,
-            this.LastName,
-            this.PESEL,
-            this.Status});
             this.dataGridViewPatients.Location = new System.Drawing.Point(16, 252);
             this.dataGridViewPatients.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewPatients.Name = "dataGridViewPatients";
@@ -228,38 +217,6 @@
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewPatients.Size = new System.Drawing.Size(789, 385);
             this.dataGridViewPatients.TabIndex = 9;
-            // 
-            // TimeOfVisit
-            // 
-            this.TimeOfVisit.HeaderText = "TimeOfVisit";
-            this.TimeOfVisit.Name = "TimeOfVisit";
-            this.TimeOfVisit.ReadOnly = true;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "FirstName";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            this.FirstName.Width = 124;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "LastName";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            this.LastName.Width = 124;
-            // 
-            // PESEL
-            // 
-            this.PESEL.HeaderText = "PESEL";
-            this.PESEL.Name = "PESEL";
-            this.PESEL.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
             // 
             // buttonBeginVisit
             // 
@@ -324,11 +281,6 @@
         private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label labelPanelName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimeOfVisit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PESEL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.DateTimePicker dateTimePicker;

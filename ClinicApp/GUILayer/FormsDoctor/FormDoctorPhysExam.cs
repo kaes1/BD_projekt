@@ -31,6 +31,7 @@ namespace GUILayer
                 else
                 {
                     BusinessLayer.DoctorFacade.AddPhysExamination(actApp.AppointmentID, selectedExam.Code, richTextBoxResult.Text);
+                    DialogResult = DialogResult.OK;
                     this.Close();
                 }
             }
