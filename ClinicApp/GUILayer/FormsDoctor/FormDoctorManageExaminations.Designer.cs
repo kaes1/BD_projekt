@@ -107,12 +107,14 @@
             this.dataGridPhysExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPhysExamList.Location = new System.Drawing.Point(7, 22);
             this.dataGridPhysExamList.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridPhysExamList.MultiSelect = false;
             this.dataGridPhysExamList.Name = "dataGridPhysExamList";
             this.dataGridPhysExamList.ReadOnly = true;
             this.dataGridPhysExamList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridPhysExamList.Size = new System.Drawing.Size(500, 289);
             this.dataGridPhysExamList.TabIndex = 16;
             this.dataGridPhysExamList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPhysExamList_CellContentClick);
+            this.dataGridPhysExamList.SelectionChanged += new System.EventHandler(this.dataGridPhysExamList_SelectionChanged);
             // 
             // groupBoxLabTestsList
             // 
@@ -168,12 +170,14 @@
             this.dataGridViewLabExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLabExamList.Location = new System.Drawing.Point(7, 22);
             this.dataGridViewLabExamList.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewLabExamList.MultiSelect = false;
             this.dataGridViewLabExamList.Name = "dataGridViewLabExamList";
             this.dataGridViewLabExamList.ReadOnly = true;
             this.dataGridViewLabExamList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewLabExamList.Size = new System.Drawing.Size(492, 289);
             this.dataGridViewLabExamList.TabIndex = 16;
             this.dataGridViewLabExamList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLabExamList_CellContentClick);
+            this.dataGridViewLabExamList.SelectionChanged += new System.EventHandler(this.dataGridViewLabExamList_SelectionChanged);
             // 
             // groupBoxPatient
             // 

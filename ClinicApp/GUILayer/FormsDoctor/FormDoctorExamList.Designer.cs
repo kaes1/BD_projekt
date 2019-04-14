@@ -78,10 +78,16 @@
             // 
             // dataGridViewExamList
             // 
+            this.dataGridViewExamList.AllowUserToAddRows = false;
+            this.dataGridViewExamList.AllowUserToDeleteRows = false;
+            this.dataGridViewExamList.AllowUserToOrderColumns = true;
+            this.dataGridViewExamList.AllowUserToResizeColumns = false;
+            this.dataGridViewExamList.AllowUserToResizeRows = false;
             this.dataGridViewExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewExamList.Location = new System.Drawing.Point(12, 71);
             this.dataGridViewExamList.MultiSelect = false;
             this.dataGridViewExamList.Name = "dataGridViewExamList";
+            this.dataGridViewExamList.ReadOnly = true;
             this.dataGridViewExamList.RowTemplate.Height = 24;
             this.dataGridViewExamList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewExamList.Size = new System.Drawing.Size(342, 414);

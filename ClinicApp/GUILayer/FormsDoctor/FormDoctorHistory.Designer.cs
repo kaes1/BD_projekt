@@ -132,15 +132,19 @@
             // 
             this.dataGridViewAppoinmentsExaminations.AllowUserToAddRows = false;
             this.dataGridViewAppoinmentsExaminations.AllowUserToDeleteRows = false;
+            this.dataGridViewAppoinmentsExaminations.AllowUserToResizeColumns = false;
+            this.dataGridViewAppoinmentsExaminations.AllowUserToResizeRows = false;
             this.dataGridViewAppoinmentsExaminations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAppoinmentsExaminations.Location = new System.Drawing.Point(17, 21);
             this.dataGridViewAppoinmentsExaminations.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewAppoinmentsExaminations.MultiSelect = false;
             this.dataGridViewAppoinmentsExaminations.Name = "dataGridViewAppoinmentsExaminations";
             this.dataGridViewAppoinmentsExaminations.ReadOnly = true;
             this.dataGridViewAppoinmentsExaminations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAppoinmentsExaminations.Size = new System.Drawing.Size(463, 520);
             this.dataGridViewAppoinmentsExaminations.TabIndex = 10;
             this.dataGridViewAppoinmentsExaminations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAppoinmentsExaminations_CellContentClick);
+            this.dataGridViewAppoinmentsExaminations.SelectionChanged += new System.EventHandler(this.dataGridViewAppoinmentsExaminations_SelectionChanged);
             // 
             // groupBoxPatient
             // 

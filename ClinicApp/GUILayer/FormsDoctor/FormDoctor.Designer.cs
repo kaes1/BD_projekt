@@ -212,6 +212,7 @@
             this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPatients.Location = new System.Drawing.Point(16, 252);
             this.dataGridViewPatients.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewPatients.MultiSelect = false;
             this.dataGridViewPatients.Name = "dataGridViewPatients";
             this.dataGridViewPatients.ReadOnly = true;
             this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -227,7 +228,7 @@
             this.buttonBeginVisit.TabIndex = 8;
             this.buttonBeginVisit.Text = "Begin appointment";
             this.buttonBeginVisit.UseVisualStyleBackColor = true;
-            this.buttonBeginVisit.Click += new System.EventHandler(this.buttonSelectPatient_Click);
+            this.buttonBeginVisit.Click += new System.EventHandler(this.buttonBeginAppointment_Click);
             // 
             // labelPanelName
             // 

@@ -44,30 +44,36 @@ namespace GUILayer
         }
 
         //Move to doctorVisitform.
-        private void buttonSelectPatient_Click(object sender, EventArgs e)
+        private void buttonBeginAppointment_Click(object sender, EventArgs e)
         {
-
-            string st = (string)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[4].Value);
-            if (st == "COMP" || st == "CANC")
+            if (dataGridViewPatients.SelectedRows.Count == 0)
             {
-                MessageBox.Show("You can't begin appointment that was already ended.");
+                MessageBox.Show("You did not select appointment.");
             }
             else
             {
-                String pesel = (String)dataGridViewPatients.SelectedRows[0].Cells[3].Value;
-                DateTime date = (DateTime)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[0].Value);
-                this.Hide();
-                var doctorAppointmentForm = new FormDoctorAppointment(BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date), BusinessLayer.DoctorFacade.getPatientByPesel(pesel));
-                doctorAppointmentForm.actualDoctor = activeDoctorInformation;
-                DialogResult res = doctorAppointmentForm.ShowDialog();
+                string st = (string)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[4].Value);
+                if (st == "COMP" || st == "CANC")
+                {
+                    MessageBox.Show("You can't begin appointment that was already ended.");
+                }
+                else
+                {
+                    String pesel = (String)dataGridViewPatients.SelectedRows[0].Cells[3].Value;
+                    DateTime date = (DateTime)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[0].Value);
+                    this.Hide();
+                    var doctorAppointmentForm = new FormDoctorAppointment(BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date), BusinessLayer.DoctorFacade.getPatientByPesel(pesel));
+                    doctorAppointmentForm.actualDoctor = activeDoctorInformation;
+                    DialogResult res = doctorAppointmentForm.ShowDialog();
 
-                dataGridViewPatients.AutoGenerateColumns = true;
-                dataGridViewPatients.Columns.Clear();
-                dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
-                dataGridViewPatients.AutoGenerateColumns = false;
-                dataGridViewPatients.Columns.Remove("AppointmentID");
+                    dataGridViewPatients.AutoGenerateColumns = true;
+                    dataGridViewPatients.Columns.Clear();
+                    dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
+                    dataGridViewPatients.AutoGenerateColumns = false;
+                    dataGridViewPatients.Columns.Remove("AppointmentID");
 
-                this.Show();
+                    this.Show();
+                }
             }
         }
 

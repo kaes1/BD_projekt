@@ -150,7 +150,7 @@
             this.groupBoxMenu.Controls.Add(this.buttonBeginAppointment);
             this.groupBoxMenu.Controls.Add(this.buttonBack);
             this.groupBoxMenu.Controls.Add(this.buttonCancelAppointment);
-            this.groupBoxMenu.Location = new System.Drawing.Point(458, 175);
+            this.groupBoxMenu.Location = new System.Drawing.Point(458, 183);
             this.groupBoxMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxMenu.Name = "groupBoxMenu";
             this.groupBoxMenu.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -214,7 +214,7 @@
             this.richTextBoxDiagnosis.Text = "";
             this.richTextBoxDiagnosis.TextChanged += new System.EventHandler(this.richTextBoxDiagnosis_TextChanged);
             // 
-            // FormDoctorVisit
+            // FormDoctorAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -226,7 +226,7 @@
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.richTextBoxDescription);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "FormDoctorVisit";
+            this.Name = "FormDoctorAppointment";
             this.Text = "FormDoctorVisit";
             this.groupBoxPatient.ResumeLayout(false);
             this.groupBoxPatient.PerformLayout();

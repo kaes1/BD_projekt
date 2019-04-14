@@ -37,6 +37,11 @@ namespace GUILayer
             richTextBoxDescription.Text = actualAppointment.Description;
             richTextBoxDiagnosis.Text = actualAppointment.Diagnosis;
 
+            if(actualAppointment.Status == "BEG")
+            {
+                buttonBeginAppointment.Text = "Continue appointment";
+            }
+
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
