@@ -36,8 +36,6 @@
             this.textBoxPESEL = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
-            this.labelLoggedInAs = new System.Windows.Forms.Label();
-            this.labelReceptionistName = new System.Windows.Forms.Label();
             this.labelPanelName = new System.Windows.Forms.Label();
             this.dataGridViewAppointments = new System.Windows.Forms.DataGridView();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -141,24 +139,6 @@
             this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
             this.textBoxFirstName.TabIndex = 3;
             // 
-            // labelLoggedInAs
-            // 
-            this.labelLoggedInAs.AutoSize = true;
-            this.labelLoggedInAs.Location = new System.Drawing.Point(588, 585);
-            this.labelLoggedInAs.Name = "labelLoggedInAs";
-            this.labelLoggedInAs.Size = new System.Drawing.Size(73, 13);
-            this.labelLoggedInAs.TabIndex = 5;
-            this.labelLoggedInAs.Text = "Logged In As:";
-            // 
-            // labelReceptionistName
-            // 
-            this.labelReceptionistName.Location = new System.Drawing.Point(527, 606);
-            this.labelReceptionistName.Name = "labelReceptionistName";
-            this.labelReceptionistName.Size = new System.Drawing.Size(195, 13);
-            this.labelReceptionistName.TabIndex = 6;
-            this.labelReceptionistName.Text = "Name Surname";
-            this.labelReceptionistName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelPanelName
             // 
             this.labelPanelName.AutoSize = true;
@@ -220,7 +200,7 @@
             // 
             // buttonNewPatient
             // 
-            this.buttonNewPatient.Location = new System.Drawing.Point(564, 195);
+            this.buttonNewPatient.Location = new System.Drawing.Point(564, 201);
             this.buttonNewPatient.Name = "buttonNewPatient";
             this.buttonNewPatient.Size = new System.Drawing.Size(120, 23);
             this.buttonNewPatient.TabIndex = 0;
@@ -230,7 +210,7 @@
             // 
             // buttonEditPatient
             // 
-            this.buttonEditPatient.Location = new System.Drawing.Point(564, 251);
+            this.buttonEditPatient.Location = new System.Drawing.Point(564, 257);
             this.buttonEditPatient.Name = "buttonEditPatient";
             this.buttonEditPatient.Size = new System.Drawing.Size(120, 23);
             this.buttonEditPatient.TabIndex = 14;
@@ -240,7 +220,7 @@
             // 
             // buttonNewAppointment
             // 
-            this.buttonNewAppointment.Location = new System.Drawing.Point(564, 479);
+            this.buttonNewAppointment.Location = new System.Drawing.Point(564, 489);
             this.buttonNewAppointment.Name = "buttonNewAppointment";
             this.buttonNewAppointment.Size = new System.Drawing.Size(120, 23);
             this.buttonNewAppointment.TabIndex = 12;
@@ -299,7 +279,7 @@
             // 
             // buttonCancelAppointment
             // 
-            this.buttonCancelAppointment.Location = new System.Drawing.Point(564, 536);
+            this.buttonCancelAppointment.Location = new System.Drawing.Point(564, 546);
             this.buttonCancelAppointment.Name = "buttonCancelAppointment";
             this.buttonCancelAppointment.Size = new System.Drawing.Size(120, 23);
             this.buttonCancelAppointment.TabIndex = 13;
@@ -321,7 +301,7 @@
             this.groupBoxSearchAppointments.Size = new System.Drawing.Size(705, 89);
             this.groupBoxSearchAppointments.TabIndex = 15;
             this.groupBoxSearchAppointments.TabStop = false;
-            this.groupBoxSearchAppointments.Text = "Search Patients\' Appointments";
+            this.groupBoxSearchAppointments.Text = "Search Patient\'s Appointments";
             // 
             // labelDoctorLastName
             // 
@@ -406,8 +386,6 @@
             this.Controls.Add(this.buttonEditPatient);
             this.Controls.Add(this.labelPanelName);
             this.Controls.Add(this.buttonNewPatient);
-            this.Controls.Add(this.labelReceptionistName);
-            this.Controls.Add(this.labelLoggedInAs);
             this.Controls.Add(this.groupBoxSearchPatients);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormReceptionist";
@@ -432,8 +410,6 @@
         private System.Windows.Forms.Label labelPESEL;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelFirstName;
-        private System.Windows.Forms.Label labelLoggedInAs;
-        private System.Windows.Forms.Label labelReceptionistName;
         private System.Windows.Forms.Label labelPanelName;
         private System.Windows.Forms.DataGridView dataGridViewAppointments;
         private System.Windows.Forms.Button buttonNewPatient;

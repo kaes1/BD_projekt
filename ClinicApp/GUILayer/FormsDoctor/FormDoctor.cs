@@ -14,103 +14,83 @@ namespace GUILayer
     {
         public BusinessLayer.DoctorInformation activeDoctorInformation { get; set; }
 
-        public FormDoctor()
-        {
-            InitializeComponent();
-        }
-
         public FormDoctor(int userID)
         {
-            InitializeComponent();
             activeDoctorInformation = BusinessLayer.DoctorFacade.GetDoctor(userID);
-            labelDoctorName.Text = activeDoctorInformation.FirstName + " " + activeDoctorInformation.LastName;
-            dataGridViewPatients.AutoGenerateColumns = true;
-            dataGridViewPatients.Columns.Clear();
-            dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
-            dataGridViewPatients.AutoGenerateColumns = false;
-            dataGridViewPatients.Columns.Remove("AppointmentID");
-        }
-
-        public FormDoctor(BusinessLayer.DoctorInformation doc)
-        {
             InitializeComponent();
-            activeDoctorInformation = doc;
-            labelDoctorName.Text = activeDoctorInformation.FirstName + " " + activeDoctorInformation.LastName;
-            dataGridViewPatients.AutoGenerateColumns = true;
-            dataGridViewPatients.Columns.Clear();
-            dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
-            dataGridViewPatients.AutoGenerateColumns = false;
-            dataGridViewPatients.Columns.Remove("AppointmentID");
+            //Set window title.
+            this.Text = "Doctor - " + activeDoctorInformation.FirstName + " " + activeDoctorInformation.LastName;
+            searchForAppointmentsForToday();
         }
 
-        //Move to doctorVisitform.
+        private void searchForAppointmentsForToday()
+        {
+            //Set date to today and mark date as checked.
+            dateTimePicker.Value = DateTime.Now;
+            dateTimePicker.Checked = true;
+            //Search for appointments.
+            searchForAppointments();
+        }
+
+        private void searchForAppointments()
+        {
+            //Get search criteria.
+            BusinessLayer.DoctorFacade.DoctorAppointment appointmentSearchCriteria = new BusinessLayer.DoctorFacade.DoctorAppointment();
+            appointmentSearchCriteria.PatientFirstName = textBoxFirstName.Text;
+            appointmentSearchCriteria.PatientLastName = textBoxLastName.Text;
+            appointmentSearchCriteria.PatientPESEL = textBoxPESEL.Text;
+            if (dateTimePicker.Checked)
+                appointmentSearchCriteria.DateOfAppointment = dateTimePicker.Value.Date;
+            if (!string.IsNullOrWhiteSpace(comboBoxStatus.Text))
+                appointmentSearchCriteria.Status = comboBoxStatus.Text;
+
+            //Search and display.
+            dataGridViewAppointments.Columns.Clear();
+            dataGridViewAppointments.AutoGenerateColumns = true;
+            dataGridViewAppointments.DataSource = BusinessLayer.DoctorFacade.GetAppointments(appointmentSearchCriteria, activeDoctorInformation.DoctorID);
+            dataGridViewAppointments.AutoGenerateColumns = false;
+            dataGridViewAppointments.Columns["AppointmentID"].Visible = false;
+            dataGridViewAppointments.Columns[1].Width = 120;
+            dataGridViewAppointments.Columns[2].Width = 110;
+            dataGridViewAppointments.Columns[3].Width = 110;
+            //Select first appointment if not empty.
+            if (dataGridViewAppointments.Rows.Count > 0)
+                dataGridViewAppointments.CurrentCell = dataGridViewAppointments[1, 0];
+        }
+
         private void buttonBeginAppointment_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPatients.SelectedRows.Count == 0)
+            if (dataGridViewAppointments.SelectedRows.Count <= 0)
             {
-                MessageBox.Show("You did not select appointment.");
+                MessageBox.Show("Please select an appointment first.");
             }
             else
             {
-                string st = (string)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[4].Value);
-                if (st == "COMP" || st == "CANC")
+                string st = (string)(dataGridViewAppointments.Rows[dataGridViewAppointments.CurrentCell.RowIndex].Cells[5].Value);
+                if (st == "CANC")
                 {
-                    MessageBox.Show("You can't begin appointment that was already ended.");
+                    MessageBox.Show("This appointment has been canceled.");
+                    return;
                 }
-                else
-                {
-                    String pesel = (String)dataGridViewPatients.SelectedRows[0].Cells[3].Value;
-                    DateTime date = (DateTime)(dataGridViewPatients.Rows[dataGridViewPatients.CurrentCell.RowIndex].Cells[0].Value);
-                    this.Hide();
-                    var doctorAppointmentForm = new FormDoctorAppointment(BusinessLayer.DoctorFacade.getAppointmentByPeselAndDate(pesel, date), BusinessLayer.DoctorFacade.getPatientByPesel(pesel));
-                    doctorAppointmentForm.actualDoctor = activeDoctorInformation;
-                    DialogResult res = doctorAppointmentForm.ShowDialog();
+                String pesel = (String)dataGridViewAppointments.SelectedRows[0].Cells[4].Value;
+                int appointmentID = (int)(dataGridViewAppointments.Rows[dataGridViewAppointments.CurrentCell.RowIndex].Cells[0].Value);
 
-                    dataGridViewPatients.AutoGenerateColumns = true;
-                    dataGridViewPatients.Columns.Clear();
-                    dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
-                    dataGridViewPatients.AutoGenerateColumns = false;
-                    dataGridViewPatients.Columns.Remove("AppointmentID");
+                var doctorAppointmentForm = new FormDoctorAppointment(BusinessLayer.DoctorFacade.GetAppointmentByID(appointmentID), BusinessLayer.DoctorFacade.GetPatientByPesel(pesel));
+                doctorAppointmentForm.activeDoctor = activeDoctorInformation;
+                DialogResult res = doctorAppointmentForm.ShowDialog();
 
-                    this.Show();
-                }
+                searchForAppointments();
             }
         }
 
         private void buttonViewAllForToday_Click(object sender, EventArgs e)
         {
-            dataGridViewPatients.AutoGenerateColumns = true;
-            dataGridViewPatients.Columns.Clear();
-            dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetAppointmentsForToday(activeDoctorInformation.DoctorID);
-            dataGridViewPatients.AutoGenerateColumns = false;
-            dataGridViewPatients.Columns["AppointmentID"].Visible = false;
+            searchForAppointmentsForToday();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            dataGridViewPatients.Columns.Clear();
-            BusinessLayer.DoctorAppointment searchParams = new BusinessLayer.DoctorAppointment()
-            {
-                DateOfAppointment = dateTimePicker.Value,
-                PatientFirstName = textBoxFirstName.Text,
-                PatientLastName = textBoxLastName.Text,
-                PatientPesel = textBoxPESEL.Text,
-                Status = textBoxStatus.Text
-            };
-            if(dateTimePicker.Checked == true)
-            {
-                dataGridViewPatients.AutoGenerateColumns = true;
-                dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetSearch(searchParams, activeDoctorInformation.DoctorID);
-                dataGridViewPatients.AutoGenerateColumns = false;
-                dataGridViewPatients.Columns.Remove("AppointmentID");
-            }
-            else
-            {
-                dataGridViewPatients.AutoGenerateColumns = true;
-                dataGridViewPatients.DataSource = BusinessLayer.DoctorFacade.GetSearchWithoutDate(searchParams, activeDoctorInformation.DoctorID);
-                dataGridViewPatients.AutoGenerateColumns = false;
-                dataGridViewPatients.Columns.Remove("AppointmentID");
-            }         
+            searchForAppointments();
         }
     }
 }

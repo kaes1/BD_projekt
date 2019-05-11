@@ -61,7 +61,7 @@
             this.buttonChangePassword.Location = new System.Drawing.Point(27, 215);
             this.buttonChangePassword.Name = "buttonChangePassword";
             this.buttonChangePassword.Size = new System.Drawing.Size(100, 23);
-            this.buttonChangePassword.TabIndex = 26;
+            this.buttonChangePassword.TabIndex = 30;
             this.buttonChangePassword.Text = "Change";
             this.buttonChangePassword.UseVisualStyleBackColor = true;
             this.buttonChangePassword.Click += new System.EventHandler(this.buttonChangePassword_Click);
@@ -72,7 +72,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(283, 215);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(100, 23);
-            this.buttonCancel.TabIndex = 27;
+            this.buttonCancel.TabIndex = 31;
             this.buttonCancel.Text = "Back";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -164,7 +164,7 @@
             this.textBoxConfirmPassword.Location = new System.Drawing.Point(223, 167);
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
             this.textBoxConfirmPassword.Size = new System.Drawing.Size(160, 20);
-            this.textBoxConfirmPassword.TabIndex = 31;
+            this.textBoxConfirmPassword.TabIndex = 29;
             // 
             // labelConfirmPassword
             // 

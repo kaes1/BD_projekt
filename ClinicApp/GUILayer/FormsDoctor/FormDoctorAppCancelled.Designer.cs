@@ -36,52 +36,58 @@
             // 
             // buttonAccept
             // 
-            this.buttonAccept.Location = new System.Drawing.Point(28, 209);
+            this.buttonAccept.Location = new System.Drawing.Point(11, 169);
+            this.buttonAccept.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(75, 23);
+            this.buttonAccept.Size = new System.Drawing.Size(85, 20);
             this.buttonAccept.TabIndex = 0;
-            this.buttonAccept.Text = "Accept";
+            this.buttonAccept.Text = "Confirm";
             this.buttonAccept.UseVisualStyleBackColor = true;
             this.buttonAccept.Click += new System.EventHandler(this.buttonAccept_Click);
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(109, 209);
+            this.buttonCancel.Location = new System.Drawing.Point(155, 169);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(85, 20);
             this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.Text = "Back";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // richTextBoxReason
             // 
-            this.richTextBoxReason.Location = new System.Drawing.Point(15, 29);
+            this.richTextBoxReason.Location = new System.Drawing.Point(11, 24);
+            this.richTextBoxReason.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.richTextBoxReason.Name = "richTextBoxReason";
-            this.richTextBoxReason.Size = new System.Drawing.Size(179, 161);
+            this.richTextBoxReason.Size = new System.Drawing.Size(229, 132);
             this.richTextBoxReason.TabIndex = 2;
             this.richTextBoxReason.Text = "";
             // 
             // labelCancellation
             // 
             this.labelCancellation.AutoSize = true;
-            this.labelCancellation.Location = new System.Drawing.Point(25, 9);
+            this.labelCancellation.Location = new System.Drawing.Point(67, 6);
+            this.labelCancellation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCancellation.Name = "labelCancellation";
-            this.labelCancellation.Size = new System.Drawing.Size(152, 17);
+            this.labelCancellation.Size = new System.Drawing.Size(119, 13);
             this.labelCancellation.TabIndex = 3;
-            this.labelCancellation.Text = "Reason of cancellation";
+            this.labelCancellation.Text = "Reason of cancellation:";
             // 
             // FormDoctorAppCancelled
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(225, 261);
+            this.ClientSize = new System.Drawing.Size(251, 200);
             this.Controls.Add(this.labelCancellation);
             this.Controls.Add(this.richTextBoxReason);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAccept);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormDoctorAppCancelled";
-            this.Text = "FormDoctorAppCancelled";
+            this.Text = "Cancel Appointment";
             this.ResumeLayout(false);
             this.PerformLayout();
 

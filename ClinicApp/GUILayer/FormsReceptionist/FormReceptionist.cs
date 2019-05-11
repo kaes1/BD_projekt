@@ -20,8 +20,6 @@ namespace GUILayer
             InitializeComponent();
             //Set window title.
             this.Text = "Receptionist - " + activeReceptionistInformation.FirstName + " " + activeReceptionistInformation.LastName;
-            //Display active receptionist.
-            labelReceptionistName.Text = activeReceptionistInformation.FirstName + " " + activeReceptionistInformation.LastName;
             //Initial search for patients.
             searchForPatients();
             //Select first patient.
@@ -162,12 +160,6 @@ namespace GUILayer
             {
                 MessageBox.Show("Please select a patient to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void dataGridViewPatients_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            resetAppointmentSearch();
-            searchForAppointments();
         }
 
         private void dataGridViewPatients_SelectionChanged(object sender, EventArgs e)

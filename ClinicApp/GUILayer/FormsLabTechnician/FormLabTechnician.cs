@@ -44,6 +44,8 @@ namespace GUILayer
             dataGridViewLabExaminations.DataSource = BusinessLayer.LabTechnicianFacade.GetLabExaminations(labExaminationSearchCriteria);
             dataGridViewLabExaminations.Columns[3].Width = 70;
             dataGridViewLabExaminations.Columns[6].Visible = false;
+            if (dataGridViewLabExaminations.Rows.Count > 0)
+                dataGridViewLabExaminations.CurrentCell = dataGridViewLabExaminations[0, 0];
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -77,5 +79,6 @@ namespace GUILayer
                 formExaminationDetails.Dispose();
             }
         }
+
     }
 }

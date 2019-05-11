@@ -12,36 +12,24 @@ namespace GUILayer.FormsDoctor
 {
     public partial class FormDoctorHistory : Form
     {
-        BusinessLayer.AppointmentInformation actualAppointment { get; set; }
-        BusinessLayer.PatientInformation actualPatient { get; set; }
-        BusinessLayer.DoctorInformation actualDoctor{ get; set; }
+        BusinessLayer.AppointmentInformation activeAppointment { get; set; }
+        BusinessLayer.PatientInformation activePatient { get; set; }
+        BusinessLayer.DoctorInformation activeDoctor{ get; set; }
         bool showAppointments = true;
 
         public FormDoctorHistory(BusinessLayer.AppointmentInformation actApp, BusinessLayer.PatientInformation actPat, BusinessLayer.DoctorInformation actDoc)
         {
             InitializeComponent();
-            actualAppointment = actApp;
-            actualDoctor = actDoc;
-            actualPatient = actPat;
-            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
-            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
-            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
-            dataGridViewAppoinmentsExaminations.Columns["AppointmentID"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["DoctorID"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["ReceptionistID"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["Description"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["Diagnosis"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["DateRegistered"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["DateCompletedOrCanceled"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["PatientID"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["DateOfAppointment"].DisplayIndex = 0;
-
-
-
-
+            //Set window title.
+            this.Text = "Patient History - " + actPat.FirstName + " " + actPat.LastName;
+            activeAppointment = actApp;
+            activeDoctor = actDoc;
+            activePatient = actPat;
 
             textBoxFirstName.Text = actPat.FirstName;
             textBoxLastName.Text = actPat.LastName;
+
+            searchForAppointments();
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)
@@ -50,41 +38,9 @@ namespace GUILayer.FormsDoctor
             this.Close();
         }
 
-        private void buttonPreviousExaminations_Click(object sender, EventArgs e)
+        private void searchForAppointments()
         {
-            showAppointments = false;
-            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
-            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevExams(actualPatient);
-            dataGridViewAppoinmentsExaminations.Columns["dateRegistered"].DisplayIndex = 0;
-            dataGridViewAppoinmentsExaminations.Columns["dateRegistered"].Visible = true;
-            dataGridViewAppoinmentsExaminations.Columns["Result"].Visible = false;
-            dataGridViewAppoinmentsExaminations.Columns["Code"].Visible = false;
-            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
-            
-        }
-
-        private void dataGridViewAppoinmentsExaminations_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (showAppointments == true)
-            {
-                int appID = (int)dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[0].Value;
-                BusinessLayer.AppointmentInformation app = BusinessLayer.DoctorFacade.GetAppointmentByID(appID);
-                richTextBoxResultDescription.Text = app.Description;
-            }
-            else
-            {
-
-                string result = (string)dataGridViewAppoinmentsExaminations.SelectedRows[0].Cells[3].Value;
-                richTextBoxResultDescription.Text = result;
-            }
-        }
-
-        private void buttonPreviousAppointments_Click(object sender, EventArgs e)
-        {
-            showAppointments = true;
-            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = true;
-            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(actualPatient);
-            dataGridViewAppoinmentsExaminations.AutoGenerateColumns = false;
+            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevApps(activePatient);
             dataGridViewAppoinmentsExaminations.Columns["AppointmentID"].Visible = false;
             dataGridViewAppoinmentsExaminations.Columns["DoctorID"].Visible = false;
             dataGridViewAppoinmentsExaminations.Columns["ReceptionistID"].Visible = false;
@@ -94,34 +50,84 @@ namespace GUILayer.FormsDoctor
             dataGridViewAppoinmentsExaminations.Columns["DateCompletedOrCanceled"].Visible = false;
             dataGridViewAppoinmentsExaminations.Columns["PatientID"].Visible = false;
             dataGridViewAppoinmentsExaminations.Columns["DateOfAppointment"].DisplayIndex = 0;
-            
+            dataGridViewAppoinmentsExaminations.Columns["DateOfAppointment"].HeaderText = "Date";
+            dataGridViewAppoinmentsExaminations.Columns["Status"].DisplayIndex = 1;
+            dataGridViewAppoinmentsExaminations.Columns["DoctorLastName"].DisplayIndex = 6;
+            //Select first appointment if not empty.
+            if (dataGridViewAppoinmentsExaminations.Rows.Count > 0)
+                dataGridViewAppoinmentsExaminations.CurrentCell = dataGridViewAppoinmentsExaminations[6, 0];
+        }
+
+        
+
+        private void buttonPreviousExaminations_Click(object sender, EventArgs e)
+        {
+
+
+            showAppointments = false;
+
+            groupBoxPreviousComments.Text = "Previous Examinations";
+
+            richTextBoxExaminationResult.Visible = true;
+            richTextBoxDiagnosis.Visible = false;
+            richTextBoxDescription.Visible = false;
+            labelResultDiagnosis.Text = "Result";
+            labelResultDiagnosis.Visible = true;
+            labelDescription.Visible = false;
+
+            dataGridViewAppoinmentsExaminations.DataSource = BusinessLayer.DoctorFacade.GetPatientPrevExams(activePatient);
+            dataGridViewAppoinmentsExaminations.Columns["dateRegistered"].DisplayIndex = 0;
+            dataGridViewAppoinmentsExaminations.Columns["dateRegistered"].Visible = true;
+            dataGridViewAppoinmentsExaminations.Columns["dateRegistered"].HeaderText = "Date";
+            dataGridViewAppoinmentsExaminations.Columns["Result"].Visible = false;
+            dataGridViewAppoinmentsExaminations.Columns["Code"].Visible = false;
+            //Select first examination if not empty.
+            if (dataGridViewAppoinmentsExaminations.Rows.Count > 0)
+                dataGridViewAppoinmentsExaminations.CurrentCell = dataGridViewAppoinmentsExaminations[0, 0];
+        }
+
+        private void buttonPreviousAppointments_Click(object sender, EventArgs e)
+        {
+            showAppointments = true;
+
+            groupBoxPreviousComments.Text = "Previous Appointments";
+
+            richTextBoxExaminationResult.Visible = false;
+            richTextBoxDiagnosis.Visible = true;
+            richTextBoxDescription.Visible = true;
+            labelResultDiagnosis.Text = "Diagnosis";
+            labelResultDiagnosis.Visible = true;
+            labelDescription.Visible = true;
+
+            searchForAppointments();
+        }
+
+        private void showAppointmentResult()
+        {
+            if (dataGridViewAppoinmentsExaminations.SelectedCells.Count > 0 && dataGridViewAppoinmentsExaminations.CurrentRow != null)
+            {
+                int appID = (int)dataGridViewAppoinmentsExaminations.CurrentRow.Cells["AppointmentID"].Value;
+                BusinessLayer.AppointmentInformation app = BusinessLayer.DoctorFacade.GetAppointmentByID(appID);
+                richTextBoxDiagnosis.Text = app.Diagnosis;
+                richTextBoxDescription.Text = app.Description;
+            }
+        }
+
+        private void showExaminationResult()
+        {
+            if (dataGridViewAppoinmentsExaminations.SelectedCells.Count > 0 && dataGridViewAppoinmentsExaminations.CurrentRow != null)
+            {
+                string result = (string)dataGridViewAppoinmentsExaminations.CurrentRow.Cells["Result"].Value;
+                richTextBoxExaminationResult.Text = result;
+            }
         }
 
         private void dataGridViewAppoinmentsExaminations_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridViewAppoinmentsExaminations.CurrentRow != null)
-            {
-                try
-                {
-                    if (showAppointments == true)
-                    {
-                        int appID = (int)dataGridViewAppoinmentsExaminations.CurrentRow.Cells["AppointmentID"].Value;
-                        BusinessLayer.AppointmentInformation app = BusinessLayer.DoctorFacade.GetAppointmentByID(appID);
-                        richTextBoxResultDescription.Text = app.Description;
-                    }
-                    else
-                    {
-
-                         string result = (string)dataGridViewAppoinmentsExaminations.CurrentRow.Cells["Result"].Value;
-                         richTextBoxResultDescription.Text = result;
-                    }
-                }
-                catch (Exception)
-                {
-                    //Event selection changed tries to read the columns before they are initialised
-                    //at this point it's not an error.
-                }
-            }
+            if (showAppointments == true)
+                showAppointmentResult();
+            else
+                showExaminationResult();
         }
     }
 }

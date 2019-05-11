@@ -72,7 +72,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(283, 215);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(100, 23);
-            this.buttonCancel.TabIndex = 33;
+            this.buttonCancel.TabIndex = 34;
             this.buttonCancel.Text = "Back";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -83,7 +83,7 @@
             this.datePicker.Location = new System.Drawing.Point(154, 167);
             this.datePicker.Name = "datePicker";
             this.datePicker.Size = new System.Drawing.Size(99, 20);
-            this.datePicker.TabIndex = 34;
+            this.datePicker.TabIndex = 30;
             this.datePicker.Value = new System.DateTime(2019, 4, 2, 0, 0, 0, 0);
             // 
             // timePicker
@@ -93,7 +93,7 @@
             this.timePicker.Name = "timePicker";
             this.timePicker.ShowUpDown = true;
             this.timePicker.Size = new System.Drawing.Size(72, 20);
-            this.timePicker.TabIndex = 36;
+            this.timePicker.TabIndex = 31;
             this.timePicker.Value = new System.DateTime(2019, 4, 6, 0, 0, 0, 0);
             // 
             // labelRetireDate
@@ -176,7 +176,7 @@
             this.buttonCancelRetirement.Location = new System.Drawing.Point(153, 215);
             this.buttonCancelRetirement.Name = "buttonCancelRetirement";
             this.buttonCancelRetirement.Size = new System.Drawing.Size(102, 23);
-            this.buttonCancelRetirement.TabIndex = 39;
+            this.buttonCancelRetirement.TabIndex = 33;
             this.buttonCancelRetirement.Text = "Cancel Retirement";
             this.buttonCancelRetirement.UseVisualStyleBackColor = true;
             this.buttonCancelRetirement.Click += new System.EventHandler(this.buttonCancelRetirement_Click);

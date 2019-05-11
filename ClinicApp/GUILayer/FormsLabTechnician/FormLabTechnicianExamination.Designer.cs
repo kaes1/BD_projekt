@@ -62,8 +62,8 @@
             this.buttonComplete.Location = new System.Drawing.Point(14, 546);
             this.buttonComplete.Name = "buttonComplete";
             this.buttonComplete.Size = new System.Drawing.Size(120, 23);
-            this.buttonComplete.TabIndex = 39;
-            this.buttonComplete.Text = "Begin";
+            this.buttonComplete.TabIndex = 1;
+            this.buttonComplete.Text = "Complete";
             this.buttonComplete.UseVisualStyleBackColor = true;
             this.buttonComplete.Click += new System.EventHandler(this.buttonComplete_Click);
             // 
@@ -73,7 +73,7 @@
             this.buttonCancelExamination.Location = new System.Drawing.Point(241, 546);
             this.buttonCancelExamination.Name = "buttonCancelExamination";
             this.buttonCancelExamination.Size = new System.Drawing.Size(120, 23);
-            this.buttonCancelExamination.TabIndex = 38;
+            this.buttonCancelExamination.TabIndex = 2;
             this.buttonCancelExamination.Text = "Cancel";
             this.buttonCancelExamination.UseVisualStyleBackColor = true;
             this.buttonCancelExamination.Click += new System.EventHandler(this.buttonCancelExamination_Click);
@@ -84,7 +84,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(458, 546);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(120, 23);
-            this.buttonCancel.TabIndex = 37;
+            this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Back";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);

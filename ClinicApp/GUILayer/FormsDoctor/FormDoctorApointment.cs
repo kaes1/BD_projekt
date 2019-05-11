@@ -12,36 +12,36 @@ namespace GUILayer
 {
     public partial class FormDoctorAppointment : Form
     {
-        public BusinessLayer.AppointmentInformation actualAppointment { get; set; }
-        public BusinessLayer.PatientInformation actualPatient { get; set; }
-        public BusinessLayer.DoctorInformation actualDoctor { get; set; }
-
-        public FormDoctorAppointment()
-        {
-            InitializeComponent();
-        }
+        public BusinessLayer.AppointmentInformation activeAppointment { get; set; }
+        public BusinessLayer.PatientInformation activePatient { get; set; }
+        public BusinessLayer.DoctorInformation activeDoctor { get; set; }
 
         public FormDoctorAppointment(BusinessLayer.AppointmentInformation app, BusinessLayer.PatientInformation pat)
         {
             InitializeComponent();
-            //set act app and patient
-            actualAppointment = app;
-            actualPatient = pat;
+            //Set window title.
+            this.Text = "Appointment - " + pat.FirstName + " " + pat.LastName;
+            //Set active appointment and patient.
+            activeAppointment = app;
+            activePatient = pat;
 
-            //set patient name i lastname
-            textBoxFirstName.Text = actualPatient.FirstName;
-            textBoxLastName.Text = actualPatient.LastName;
+            //Set patient name and lastname
+            textBoxFirstName.Text = activePatient.FirstName;
+            textBoxLastName.Text = activePatient.LastName;
 
-            //get new decsription if there was a change
-            actualAppointment = BusinessLayer.DoctorFacade.GetActAppInfo(app);
-            richTextBoxDescription.Text = actualAppointment.Description;
-            richTextBoxDiagnosis.Text = actualAppointment.Diagnosis;
+            //Get new description if there was a change
+            activeAppointment = BusinessLayer.DoctorFacade.GetActAppInfo(app);
+            richTextBoxDescription.Text = activeAppointment.Description;
+            richTextBoxDiagnosis.Text = activeAppointment.Diagnosis;
 
-            if(actualAppointment.Status == "BEG")
+            if(activeAppointment.Status == "BEG")
             {
                 buttonBeginAppointment.Text = "Continue appointment";
             }
-
+            else if (activeAppointment.Status == "COMP")
+            {
+                buttonBeginAppointment.Enabled = false;
+            }
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -49,47 +49,31 @@ namespace GUILayer
             this.Close();
         }
 
-        private void buttonAddPhysExamination_Click(object sender, EventArgs e)
-        {
-            var PhysExamForm = new FormDoctorPhysExam(actualAppointment);
-            PhysExamForm.Show();
-        }
-
-        private void buttonAddLabTest_Click(object sender, EventArgs e)
-        {
-            var LabTestForm = new FormsDoctor.FormDoctorLabTest(actualAppointment);
-            LabTestForm.Show();
-        }
-
         private void buttonPatientHistory_Click(object sender, EventArgs e)
         {
-            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory(actualAppointment, actualPatient, actualDoctor);
-            this.Hide();
+            var doctorHistoryForm = new FormsDoctor.FormDoctorHistory(activeAppointment, activePatient, activeDoctor);
             DialogResult res = doctorHistoryForm.ShowDialog(this);
             if (res == DialogResult.OK)
             {
 
             }
-            this.Show();
         }
 
         private void buttonManageExaminations_Click(object sender, EventArgs e)
         {
-            var doctorExaminationsForm = new FormsDoctor.FormDoctorManageExaminations(actualAppointment, actualPatient, actualDoctor);
-            this.Hide();
+            var doctorExaminationsForm = new FormsDoctor.FormDoctorManageExaminations(activeAppointment, activePatient, activeDoctor);
             DialogResult res = doctorExaminationsForm.ShowDialog(this);
             if (res == DialogResult.OK)
             {
 
             }
-            this.Show();
         }
 
         private void buttonBeginAppointment_Click(object sender, EventArgs e)
         {
             if (buttonBeginAppointment.Text != "End")
             {
-                //unlock buttons and change beginButton to endButton
+                //Unlock buttons and change beginButton to endButton
                 buttonBack.Enabled = false;
                 buttonCancelAppointment.Enabled = true;
                 richTextBoxDescription.Enabled = true;
@@ -98,12 +82,18 @@ namespace GUILayer
                 buttonManageExaminations.Enabled = true;
                 buttonBeginAppointment.Text = "End";
 
-                //set app status as BEG
-                BusinessLayer.DoctorFacade.SetAppStatus(actualAppointment, "BEG");
+                //Set appointment status as BEG
+                BusinessLayer.DoctorFacade.SetAppStatus(activeAppointment, "BEG");
             }
             else
             {
-                BusinessLayer.DoctorFacade.CompleteAppointment(actualAppointment);
+                if (string.IsNullOrWhiteSpace(richTextBoxDescription.Text))
+                {
+                    MessageBox.Show("Description cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                BusinessLayer.DoctorFacade.CompleteAppointment(activeAppointment);
                 this.Close();
             }
         }
@@ -114,8 +104,8 @@ namespace GUILayer
             DialogResult res = appCanc.ShowDialog(this);
             if (res == DialogResult.OK)
             {
-                actualAppointment.Description = appCanc.reason;
-                BusinessLayer.DoctorFacade.appointmentCanceled(actualAppointment);
+                activeAppointment.Description = appCanc.reason;
+                BusinessLayer.DoctorFacade.CancelAppointment(activeAppointment);
                 this.Close();
             }
             else
@@ -126,12 +116,12 @@ namespace GUILayer
 
         private void richTextBoxDescription_TextChanged(object sender, EventArgs e)
         {
-            BusinessLayer.DoctorFacade.updateDescription(actualAppointment, richTextBoxDescription.Text);
+            BusinessLayer.DoctorFacade.UpdateDescription(activeAppointment, richTextBoxDescription.Text);
         }
 
         private void richTextBoxDiagnosis_TextChanged(object sender, EventArgs e)
         {
-            BusinessLayer.DoctorFacade.updateDiagnosis(actualAppointment, richTextBoxDiagnosis.Text);
+            BusinessLayer.DoctorFacade.UpdateDiagnosis(activeAppointment, richTextBoxDiagnosis.Text);
         }
     }
 }

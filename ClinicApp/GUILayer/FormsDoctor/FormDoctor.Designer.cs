@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelDoctorName = new System.Windows.Forms.Label();
-            this.labelLoggedInAs = new System.Windows.Forms.Label();
             this.buttonViewAllForToday = new System.Windows.Forms.Button();
             this.groupBoxSearch = new System.Windows.Forms.GroupBox();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.labelStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelPESEL = new System.Windows.Forms.Label();
@@ -43,41 +41,24 @@
             this.textBoxPESEL = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
-            this.dataGridViewPatients = new System.Windows.Forms.DataGridView();
+            this.dataGridViewAppointments = new System.Windows.Forms.DataGridView();
+            this.DateOfAppointment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientPESEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonBeginVisit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.labelPanelName = new System.Windows.Forms.Label();
             this.groupBoxSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAppointments)).BeginInit();
             this.SuspendLayout();
-            // 
-            // labelDoctorName
-            // 
-            this.labelDoctorName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelDoctorName.Location = new System.Drawing.Point(815, 588);
-            this.labelDoctorName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDoctorName.Name = "labelDoctorName";
-            this.labelDoctorName.Size = new System.Drawing.Size(260, 16);
-            this.labelDoctorName.TabIndex = 13;
-            this.labelDoctorName.Text = "Name Surname";
-            this.labelDoctorName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelLoggedInAs
-            // 
-            this.labelLoggedInAs.AutoSize = true;
-            this.labelLoggedInAs.Location = new System.Drawing.Point(897, 542);
-            this.labelLoggedInAs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelLoggedInAs.Name = "labelLoggedInAs";
-            this.labelLoggedInAs.Size = new System.Drawing.Size(95, 17);
-            this.labelLoggedInAs.TabIndex = 12;
-            this.labelLoggedInAs.Text = "Logged In As:";
             // 
             // buttonViewAllForToday
             // 
-            this.buttonViewAllForToday.Location = new System.Drawing.Point(879, 282);
-            this.buttonViewAllForToday.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonViewAllForToday.Location = new System.Drawing.Point(651, 244);
             this.buttonViewAllForToday.Name = "buttonViewAllForToday";
-            this.buttonViewAllForToday.Size = new System.Drawing.Size(147, 28);
+            this.buttonViewAllForToday.Size = new System.Drawing.Size(120, 23);
             this.buttonViewAllForToday.TabIndex = 11;
             this.buttonViewAllForToday.Text = "View all for today";
             this.buttonViewAllForToday.UseVisualStyleBackColor = true;
@@ -85,9 +66,9 @@
             // 
             // groupBoxSearch
             // 
+            this.groupBoxSearch.Controls.Add(this.comboBoxStatus);
             this.groupBoxSearch.Controls.Add(this.buttonSearch);
             this.groupBoxSearch.Controls.Add(this.dateTimePicker);
-            this.groupBoxSearch.Controls.Add(this.textBoxStatus);
             this.groupBoxSearch.Controls.Add(this.labelStatus);
             this.groupBoxSearch.Controls.Add(this.label1);
             this.groupBoxSearch.Controls.Add(this.labelPESEL);
@@ -96,20 +77,34 @@
             this.groupBoxSearch.Controls.Add(this.textBoxPESEL);
             this.groupBoxSearch.Controls.Add(this.textBoxLastName);
             this.groupBoxSearch.Controls.Add(this.textBoxFirstName);
-            this.groupBoxSearch.Location = new System.Drawing.Point(16, 98);
-            this.groupBoxSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxSearch.Location = new System.Drawing.Point(12, 57);
             this.groupBoxSearch.Name = "groupBoxSearch";
-            this.groupBoxSearch.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxSearch.Size = new System.Drawing.Size(1052, 116);
+            this.groupBoxSearch.Size = new System.Drawing.Size(783, 89);
             this.groupBoxSearch.TabIndex = 10;
             this.groupBoxSearch.TabStop = false;
-            this.groupBoxSearch.Text = "Search";
+            this.groupBoxSearch.Text = "Search Appointments";
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            " ",
+            "REG",
+            "CANC",
+            "COMP",
+            "BEG"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(501, 43);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxStatus.TabIndex = 19;
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(923, 63);
+            this.buttonSearch.Location = new System.Drawing.Point(639, 40);
+            this.buttonSearch.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.Size = new System.Drawing.Size(120, 23);
             this.buttonSearch.TabIndex = 14;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -117,174 +112,201 @@
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(465, 63);
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker.Location = new System.Drawing.Point(383, 44);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.ShowCheckBox = true;
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker.TabIndex = 13;
-            // 
-            // textBoxStatus
-            // 
-            this.textBoxStatus.Location = new System.Drawing.Point(676, 63);
-            this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.Size = new System.Drawing.Size(132, 22);
-            this.textBoxStatus.TabIndex = 12;
             // 
             // labelStatus
             // 
             this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new System.Drawing.Point(673, 43);
+            this.labelStatus.Location = new System.Drawing.Point(498, 28);
+            this.labelStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(48, 17);
+            this.labelStatus.Size = new System.Drawing.Size(37, 13);
             this.labelStatus.TabIndex = 11;
             this.labelStatus.Text = "Status";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(462, 43);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(380, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 17);
+            this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Date";
             // 
             // labelPESEL
             // 
             this.labelPESEL.AutoSize = true;
-            this.labelPESEL.Location = new System.Drawing.Point(317, 43);
-            this.labelPESEL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPESEL.Location = new System.Drawing.Point(261, 29);
             this.labelPESEL.Name = "labelPESEL";
-            this.labelPESEL.Size = new System.Drawing.Size(52, 17);
+            this.labelPESEL.Size = new System.Drawing.Size(41, 13);
             this.labelPESEL.TabIndex = 8;
             this.labelPESEL.Text = "PESEL";
             // 
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(172, 43);
-            this.labelLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelLastName.Location = new System.Drawing.Point(142, 28);
             this.labelLastName.Name = "labelLastName";
-            this.labelLastName.Size = new System.Drawing.Size(76, 17);
+            this.labelLastName.Size = new System.Drawing.Size(58, 13);
             this.labelLastName.TabIndex = 7;
             this.labelLastName.Text = "Last Name";
             // 
             // labelFirstName
             // 
             this.labelFirstName.AutoSize = true;
-            this.labelFirstName.Location = new System.Drawing.Point(27, 43);
-            this.labelFirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFirstName.Location = new System.Drawing.Point(23, 29);
             this.labelFirstName.Name = "labelFirstName";
-            this.labelFirstName.Size = new System.Drawing.Size(76, 17);
+            this.labelFirstName.Size = new System.Drawing.Size(57, 13);
             this.labelFirstName.TabIndex = 6;
             this.labelFirstName.Text = "First Name";
             // 
             // textBoxPESEL
             // 
-            this.textBoxPESEL.Location = new System.Drawing.Point(321, 63);
-            this.textBoxPESEL.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxPESEL.Location = new System.Drawing.Point(264, 44);
             this.textBoxPESEL.Name = "textBoxPESEL";
-            this.textBoxPESEL.Size = new System.Drawing.Size(132, 22);
+            this.textBoxPESEL.Size = new System.Drawing.Size(100, 20);
             this.textBoxPESEL.TabIndex = 5;
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(176, 63);
-            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxLastName.Location = new System.Drawing.Point(145, 44);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(132, 22);
+            this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 4;
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(31, 63);
-            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxFirstName.Location = new System.Drawing.Point(26, 44);
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(132, 22);
+            this.textBoxFirstName.Size = new System.Drawing.Size(100, 20);
             this.textBoxFirstName.TabIndex = 3;
             // 
-            // dataGridViewPatients
+            // dataGridViewAppointments
             // 
-            this.dataGridViewPatients.AllowUserToAddRows = false;
-            this.dataGridViewPatients.AllowUserToDeleteRows = false;
-            this.dataGridViewPatients.AllowUserToResizeColumns = false;
-            this.dataGridViewPatients.AllowUserToResizeRows = false;
-            this.dataGridViewPatients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPatients.Location = new System.Drawing.Point(16, 252);
-            this.dataGridViewPatients.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridViewPatients.MultiSelect = false;
-            this.dataGridViewPatients.Name = "dataGridViewPatients";
-            this.dataGridViewPatients.ReadOnly = true;
-            this.dataGridViewPatients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPatients.Size = new System.Drawing.Size(789, 385);
-            this.dataGridViewPatients.TabIndex = 9;
+            this.dataGridViewAppointments.AllowUserToAddRows = false;
+            this.dataGridViewAppointments.AllowUserToDeleteRows = false;
+            this.dataGridViewAppointments.AllowUserToResizeColumns = false;
+            this.dataGridViewAppointments.AllowUserToResizeRows = false;
+            this.dataGridViewAppointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAppointments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DateOfAppointment,
+            this.PatientFirstName,
+            this.PatientLastName,
+            this.PatientPESEL,
+            this.Status});
+            this.dataGridViewAppointments.Location = new System.Drawing.Point(12, 152);
+            this.dataGridViewAppointments.MultiSelect = false;
+            this.dataGridViewAppointments.Name = "dataGridViewAppointments";
+            this.dataGridViewAppointments.ReadOnly = true;
+            this.dataGridViewAppointments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewAppointments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAppointments.Size = new System.Drawing.Size(601, 316);
+            this.dataGridViewAppointments.TabIndex = 9;
+            // 
+            // DateOfAppointment
+            // 
+            this.DateOfAppointment.HeaderText = "DateOfAppointment";
+            this.DateOfAppointment.Name = "DateOfAppointment";
+            this.DateOfAppointment.ReadOnly = true;
+            this.DateOfAppointment.Width = 120;
+            // 
+            // PatientFirstName
+            // 
+            this.PatientFirstName.HeaderText = "PatientFirstName";
+            this.PatientFirstName.Name = "PatientFirstName";
+            this.PatientFirstName.ReadOnly = true;
+            this.PatientFirstName.Width = 110;
+            // 
+            // PatientLastName
+            // 
+            this.PatientLastName.HeaderText = "PatientLastName";
+            this.PatientLastName.Name = "PatientLastName";
+            this.PatientLastName.ReadOnly = true;
+            this.PatientLastName.Width = 110;
+            // 
+            // PatientPESEL
+            // 
+            this.PatientPESEL.HeaderText = "PatientPESEL";
+            this.PatientPESEL.Name = "PatientPESEL";
+            this.PatientPESEL.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
             // 
             // buttonBeginVisit
             // 
-            this.buttonBeginVisit.Location = new System.Drawing.Point(879, 341);
-            this.buttonBeginVisit.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonBeginVisit.Location = new System.Drawing.Point(651, 339);
             this.buttonBeginVisit.Name = "buttonBeginVisit";
-            this.buttonBeginVisit.Size = new System.Drawing.Size(147, 28);
+            this.buttonBeginVisit.Size = new System.Drawing.Size(120, 23);
             this.buttonBeginVisit.TabIndex = 8;
-            this.buttonBeginVisit.Text = "Begin appointment";
+            this.buttonBeginVisit.Text = "View appointment";
             this.buttonBeginVisit.UseVisualStyleBackColor = true;
             this.buttonBeginVisit.Click += new System.EventHandler(this.buttonBeginAppointment_Click);
             // 
             // labelPanelName
             // 
             this.labelPanelName.AutoSize = true;
-            this.labelPanelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanelName.Font = new System.Drawing.Font("OpenSymbol", 36F);
             this.labelPanelName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labelPanelName.Location = new System.Drawing.Point(343, 11);
-            this.labelPanelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPanelName.Location = new System.Drawing.Point(276, 9);
             this.labelPanelName.Name = "labelPanelName";
-            this.labelPanelName.Size = new System.Drawing.Size(375, 69);
+            this.labelPanelName.Size = new System.Drawing.Size(261, 48);
             this.labelPanelName.TabIndex = 16;
             this.labelPanelName.Text = "Doctor Panel";
             // 
             // FormDoctor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AcceptButton = this.buttonBeginVisit;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 650);
+            this.ClientSize = new System.Drawing.Size(807, 480);
             this.Controls.Add(this.labelPanelName);
-            this.Controls.Add(this.labelDoctorName);
-            this.Controls.Add(this.labelLoggedInAs);
             this.Controls.Add(this.buttonViewAllForToday);
             this.Controls.Add(this.groupBoxSearch);
-            this.Controls.Add(this.dataGridViewPatients);
+            this.Controls.Add(this.dataGridViewAppointments);
             this.Controls.Add(this.buttonBeginVisit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDoctor";
             this.Text = "FormDoctor";
             this.groupBoxSearch.ResumeLayout(false);
             this.groupBoxSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatients)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAppointments)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label labelDoctorName;
-        private System.Windows.Forms.Label labelLoggedInAs;
         private System.Windows.Forms.Button buttonViewAllForToday;
         private System.Windows.Forms.GroupBox groupBoxSearch;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
-        private System.Windows.Forms.DataGridView dataGridViewPatients;
+        private System.Windows.Forms.DataGridView dataGridViewAppointments;
         private System.Windows.Forms.Button buttonBeginVisit;
         private System.Windows.Forms.Label labelPESEL;
         private System.Windows.Forms.TextBox textBoxPESEL;
         private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label labelPanelName;
-        private System.Windows.Forms.TextBox textBoxStatus;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateOfAppointment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PatientFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PatientLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PatientPESEL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

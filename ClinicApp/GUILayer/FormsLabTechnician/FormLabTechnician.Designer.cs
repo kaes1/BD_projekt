@@ -59,7 +59,7 @@
             this.buttonExaminationDisplay.Name = "buttonExaminationDisplay";
             this.buttonExaminationDisplay.Size = new System.Drawing.Size(120, 23);
             this.buttonExaminationDisplay.TabIndex = 22;
-            this.buttonExaminationDisplay.Text = "Display";
+            this.buttonExaminationDisplay.Text = "View";
             this.buttonExaminationDisplay.UseVisualStyleBackColor = true;
             this.buttonExaminationDisplay.Click += new System.EventHandler(this.buttonExaminationDisplay_Click);
             // 

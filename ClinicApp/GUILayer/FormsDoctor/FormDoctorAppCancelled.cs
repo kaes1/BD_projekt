@@ -16,11 +16,13 @@ namespace GUILayer.FormsDoctor
         public FormDoctorAppCancelled()
         {
             InitializeComponent();
+            //Set window title.
+            this.Text = "Cancel Appointment";
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
-            if(richTextBoxReason.Text == "")
+            if(string.IsNullOrWhiteSpace(richTextBoxReason.Text))
             {
                 MessageBox.Show("You need to give the reason of cancellation.");
             }

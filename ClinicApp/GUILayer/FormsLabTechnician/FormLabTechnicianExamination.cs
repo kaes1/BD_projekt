@@ -36,13 +36,7 @@ namespace GUILayer
             textBoxResult.Text = labExamination.Result;
             textBoxLabManagerComments.Text = labExamination.LabManagerComments;
             //Enable controls and set correct text.
-            if (labExamination.Status.StartsWith("REG"))
-            {
-                buttonComplete.Text = "Begin";
-                buttonComplete.Enabled = true;
-                buttonCancelExamination.Enabled = true;
-            }
-            else if (labExamination.Status.StartsWith("BEG"))
+            if (labExamination.Status.StartsWith("REG") || labExamination.Status.StartsWith("BEG"))
             {
                 buttonComplete.Text = "Complete";
                 textBoxResult.ReadOnly = false;
@@ -53,18 +47,8 @@ namespace GUILayer
 
         private void buttonComplete_Click(object sender, EventArgs e)
         {
-            //If begin was pressed, begin the examination.
-            if (labExamination.Status.StartsWith("REG"))
-            {
-                BusinessLayer.LabTechnicianFacade.BeginLabExamination(activeLabTechnician, labExamination.LabExaminationID);
-                //Refresh lab examination.
-                labExamination = BusinessLayer.LabTechnicianFacade.GetLabExaminationDetails(labExamination.LabExaminationID);
-                textBoxResult.ReadOnly = false;
-                textBoxStatus.Text = "BEG";
-                buttonComplete.Text = "Complete";
-            }
             //If complete was pressed, complete the examination.
-            else if (labExamination.Status.StartsWith("BEG"))
+            if (labExamination.Status.StartsWith("REG") || labExamination.Status.StartsWith("BEG"))
             {
                 //Check if result is empty.
                 if (string.IsNullOrWhiteSpace(textBoxResult.Text))
@@ -75,7 +59,8 @@ namespace GUILayer
                 //Complete the examination.
                 BusinessLayer.LabTechnicianFacade.CompleteLabExamination(activeLabTechnician, labExamination.LabExaminationID, textBoxResult.Text);
                 DialogResult = DialogResult.OK;
-            }        
+            }  
+            
         }
 
         private void buttonCancelExamination_Click(object sender, EventArgs e)
@@ -86,6 +71,14 @@ namespace GUILayer
                 MessageBox.Show("Can only cancel examinations which haven't been completed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            //Check if result is empty.
+            if (string.IsNullOrWhiteSpace(textBoxResult.Text))
+            {
+                MessageBox.Show("Cannot cancel lab examination without any results.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             //Cancel the examination
             BusinessLayer.LabTechnicianFacade.CancelLabExamination(activeLabTechnician, labExamination.LabExaminationID, textBoxResult.Text);
             DialogResult = DialogResult.OK;

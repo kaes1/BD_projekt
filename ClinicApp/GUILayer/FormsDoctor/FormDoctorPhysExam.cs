@@ -26,7 +26,7 @@ namespace GUILayer
             {
                 if (richTextBoxResult.Text == "")
                 {
-                    MessageBox.Show("You need to write down the examination result.");
+                    MessageBox.Show("Please input the examination result.");
                 }
                 else
                 {
@@ -37,7 +37,7 @@ namespace GUILayer
             }
             else
             {
-                MessageBox.Show("Select examination or cancel selection.");
+                MessageBox.Show("Please select examination or cancel selection.");
             }
         }
 

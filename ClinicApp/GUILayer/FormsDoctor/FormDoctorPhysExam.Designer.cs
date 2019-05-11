@@ -41,26 +41,29 @@
             // 
             // richTextBoxResult
             // 
-            this.richTextBoxResult.Location = new System.Drawing.Point(5, 154);
+            this.richTextBoxResult.Location = new System.Drawing.Point(4, 125);
+            this.richTextBoxResult.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxResult.Name = "richTextBoxResult";
-            this.richTextBoxResult.Size = new System.Drawing.Size(243, 207);
+            this.richTextBoxResult.Size = new System.Drawing.Size(183, 169);
             this.richTextBoxResult.TabIndex = 0;
             this.richTextBoxResult.Text = "";
             // 
             // labelResult
             // 
             this.labelResult.AutoSize = true;
-            this.labelResult.Location = new System.Drawing.Point(106, 134);
+            this.labelResult.Location = new System.Drawing.Point(75, 108);
+            this.labelResult.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(48, 17);
+            this.labelResult.Size = new System.Drawing.Size(40, 13);
             this.labelResult.TabIndex = 1;
-            this.labelResult.Text = "Result";
+            this.labelResult.Text = "Result:";
             // 
             // buttonConfirm
             // 
-            this.buttonConfirm.Location = new System.Drawing.Point(15, 367);
+            this.buttonConfirm.Location = new System.Drawing.Point(11, 298);
+            this.buttonConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.buttonConfirm.Name = "buttonConfirm";
-            this.buttonConfirm.Size = new System.Drawing.Size(105, 38);
+            this.buttonConfirm.Size = new System.Drawing.Size(79, 31);
             this.buttonConfirm.TabIndex = 2;
             this.buttonConfirm.Text = "Confirm";
             this.buttonConfirm.UseVisualStyleBackColor = true;
@@ -68,29 +71,32 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(131, 367);
+            this.buttonCancel.Location = new System.Drawing.Point(98, 298);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(105, 38);
+            this.buttonCancel.Size = new System.Drawing.Size(79, 31);
             this.buttonCancel.TabIndex = 3;
-            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.Text = "Back";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // labelChoosenExamination
             // 
             this.labelChoosenExamination.AutoSize = true;
-            this.labelChoosenExamination.Location = new System.Drawing.Point(59, 80);
+            this.labelChoosenExamination.Location = new System.Drawing.Point(44, 66);
+            this.labelChoosenExamination.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelChoosenExamination.Name = "labelChoosenExamination";
-            this.labelChoosenExamination.Size = new System.Drawing.Size(144, 17);
+            this.labelChoosenExamination.Size = new System.Drawing.Size(103, 13);
             this.labelChoosenExamination.TabIndex = 4;
-            this.labelChoosenExamination.Text = "Choosen Examination";
+            this.labelChoosenExamination.Text = "Chosen Examination";
             // 
             // textBoxChoosenExamination
             // 
-            this.textBoxChoosenExamination.Location = new System.Drawing.Point(62, 100);
+            this.textBoxChoosenExamination.Location = new System.Drawing.Point(4, 81);
+            this.textBoxChoosenExamination.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxChoosenExamination.Name = "textBoxChoosenExamination";
             this.textBoxChoosenExamination.ReadOnly = true;
-            this.textBoxChoosenExamination.Size = new System.Drawing.Size(141, 22);
+            this.textBoxChoosenExamination.Size = new System.Drawing.Size(182, 20);
             this.textBoxChoosenExamination.TabIndex = 5;
             // 
             // groupBoxPhysicalExaminations
@@ -102,32 +108,34 @@
             this.groupBoxPhysicalExaminations.Controls.Add(this.textBoxChoosenExamination);
             this.groupBoxPhysicalExaminations.Controls.Add(this.richTextBoxResult);
             this.groupBoxPhysicalExaminations.Controls.Add(this.labelChoosenExamination);
-            this.groupBoxPhysicalExaminations.Location = new System.Drawing.Point(12, 15);
-            this.groupBoxPhysicalExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxPhysicalExaminations.Location = new System.Drawing.Point(8, 2);
+            this.groupBoxPhysicalExaminations.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxPhysicalExaminations.Name = "groupBoxPhysicalExaminations";
-            this.groupBoxPhysicalExaminations.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPhysicalExaminations.Size = new System.Drawing.Size(254, 412);
+            this.groupBoxPhysicalExaminations.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxPhysicalExaminations.Size = new System.Drawing.Size(190, 335);
             this.groupBoxPhysicalExaminations.TabIndex = 24;
             this.groupBoxPhysicalExaminations.TabStop = false;
             // 
             // buttonChooseExam
             // 
-            this.buttonChooseExam.Location = new System.Drawing.Point(77, 20);
+            this.buttonChooseExam.Location = new System.Drawing.Point(56, 16);
+            this.buttonChooseExam.Margin = new System.Windows.Forms.Padding(2);
             this.buttonChooseExam.Name = "buttonChooseExam";
-            this.buttonChooseExam.Size = new System.Drawing.Size(105, 44);
+            this.buttonChooseExam.Size = new System.Drawing.Size(79, 36);
             this.buttonChooseExam.TabIndex = 6;
-            this.buttonChooseExam.Text = "Choose examination";
+            this.buttonChooseExam.Text = "Choose Examination";
             this.buttonChooseExam.UseVisualStyleBackColor = true;
             this.buttonChooseExam.Click += new System.EventHandler(this.buttonChooseExam_Click);
             // 
             // FormDoctorPhysExam
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(279, 438);
+            this.ClientSize = new System.Drawing.Size(206, 344);
             this.Controls.Add(this.groupBoxPhysicalExaminations);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormDoctorPhysExam";
-            this.Text = "FormDoctorPhysExam";
+            this.Text = "Phys";
             this.groupBoxPhysicalExaminations.ResumeLayout(false);
             this.groupBoxPhysicalExaminations.PerformLayout();
             this.ResumeLayout(false);

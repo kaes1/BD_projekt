@@ -12,24 +12,23 @@ namespace GUILayer.FormsDoctor
 {
     public partial class FormDoctorManageExaminations : Form
     {
-        public BusinessLayer.AppointmentInformation actualAppointment { get; set; }
-        public BusinessLayer.PatientInformation actualPatient { get; set; }
-        public BusinessLayer.DoctorInformation actualDoctor{ get; set; }
+        public BusinessLayer.AppointmentInformation activeAppointment { get; set; }
+        public BusinessLayer.PatientInformation activePatient { get; set; }
+        public BusinessLayer.DoctorInformation activeDoctor { get; set; }
 
         public FormDoctorManageExaminations(BusinessLayer.AppointmentInformation actApp, BusinessLayer.PatientInformation actPat, BusinessLayer.DoctorInformation actDoc)
-            {                                    
+        {                                    
             InitializeComponent();
-            actualAppointment = actApp;
-            actualDoctor = actDoc;
-            actualPatient = actPat;
-            textBoxFirstName.Text = actualPatient.FirstName;
-            textBoxLastName.Text = actualPatient.LastName;
-            dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysPhysExam(actualAppointment);
-            dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysLabExam(actualAppointment);
-            dataGridPhysExamList.Columns["ExaminationID"].Visible = false;
-            dataGridPhysExamList.Columns["Comment"].Visible = false;
-            dataGridViewLabExamList.Columns["ExaminationID"].Visible = false;
-            dataGridViewLabExamList.Columns["Comment"].Visible = false;
+            //Set window title.
+            this.Text = "Examinations - " + actPat.FirstName + " " + actPat.LastName;
+            activeAppointment = actApp;
+            activeDoctor = actDoc;
+            activePatient = actPat;
+            textBoxFirstName.Text = activePatient.FirstName;
+            textBoxLastName.Text = activePatient.LastName;
+            //Initial search.
+            searchForPhysExams();
+            searchForLabExams();
         }
 
         private void buttonBackToAppointment_Click(object sender, EventArgs e)
@@ -37,76 +36,65 @@ namespace GUILayer.FormsDoctor
             this.Close();
         }
 
-
-        //display selected PHISICAL examination's description
-        private void dataGridPhysExamList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void searchForPhysExams()
         {
-            int examID = (int)dataGridPhysExamList.SelectedRows[0].Cells["ExaminationID"].Value;
-            BusinessLayer.PhysicalExaminationInformation exam = BusinessLayer.DoctorFacade.GetPhysicalExamination(examID);
-            richTextBoxResult.Text = exam.Result;
+            dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.GetPhysExamsForAppointment(activeAppointment);
+            dataGridPhysExamList.Columns["ExaminationID"].Visible = false;
+            dataGridPhysExamList.Columns["Comment"].Visible = false;
+            //Select first exam if not empty.
+            if (dataGridPhysExamList.Rows.Count > 0)
+                dataGridPhysExamList.CurrentCell = dataGridPhysExamList[1, 0];
         }
 
-        //display selected LABORATORY examination's description
-        private void dataGridViewLabExamList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void searchForLabExams()
         {
-            int examID = (int)dataGridViewLabExamList.SelectedRows[0].Cells["ExaminationID"].Value;
-            BusinessLayer.LabExaminationInformation exam = BusinessLayer.DoctorFacade.GetLaboratoryExamination(examID);
-            richTextBoxCommentToLaborant.Text = exam.Result;
+            dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.GetLabExamsForAppointment(activeAppointment);
+            dataGridViewLabExamList.Columns["ExaminationID"].Visible = false;
+            dataGridViewLabExamList.Columns["Comment"].Visible = false;
+            //Select first exam if not empty.
+            if (dataGridViewLabExamList.Rows.Count > 0)
+                dataGridViewLabExamList.CurrentCell = dataGridViewLabExamList[1, 0];
+        }
+        
+        private void dataGridPhysExamList_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridPhysExamList.SelectedCells.Count > 0 && dataGridPhysExamList.CurrentRow != null)
+            {
+                int examID = (int)dataGridPhysExamList.CurrentRow.Cells["ExaminationID"].Value;
+                BusinessLayer.PhysicalExaminationInformation exam = BusinessLayer.DoctorFacade.GetPhysicalExamination(examID);
+                richTextBoxResult.Text = exam.Result;
+            }
+        }
+
+        private void dataGridViewLabExamList_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewLabExamList.SelectedCells.Count > 0 && dataGridViewLabExamList.CurrentRow != null)
+            {
+                int examID = (int)dataGridViewLabExamList.CurrentRow.Cells["ExaminationID"].Value;
+                BusinessLayer.LabExaminationInformation exam = BusinessLayer.DoctorFacade.GetLaboratoryExamination(examID);
+                richTextBoxCommentToLaborant.Text = exam.DoctorComments;
+            }
         }
 
         //open news window for respond
         private void buttonAddPhysExamination_Click(object sender, EventArgs e)
         {
-            FormDoctorPhysExam formNewPhysExam = new FormDoctorPhysExam(actualAppointment);
+            FormDoctorPhysExam formNewPhysExam = new FormDoctorPhysExam(activeAppointment);
             DialogResult res = formNewPhysExam.ShowDialog(this);
             if (res == DialogResult.OK)
             {
-                dataGridPhysExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysPhysExam(actualAppointment);
+                searchForPhysExams();
             }
         }
 
         //opens new window for respond
         private void buttonAddLabExamination_Click(object sender, EventArgs e)
         {
-            FormDoctorLabTest formNewLabExam = new FormDoctorLabTest(actualAppointment);
+            FormDoctorLabTest formNewLabExam = new FormDoctorLabTest(activeAppointment);
             DialogResult res = formNewLabExam.ShowDialog(this);
             if (res == DialogResult.OK)
             {
-                dataGridViewLabExamList.DataSource = BusinessLayer.DoctorFacade.GetTodaysLabExam(actualAppointment);
-            }
-        }
-
-        private void dataGridPhysExamList_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridPhysExamList.CurrentRow != null)
-            {
-                try
-                {
-                    int examID = (int)dataGridPhysExamList.CurrentRow.Cells["ExaminationID"].Value;
-                    BusinessLayer.PhysicalExaminationInformation exam = BusinessLayer.DoctorFacade.GetPhysicalExamination(examID);
-                    richTextBoxResult.Text = exam.Result;
-                }
-                catch(Exception)
-                {
-                    //It's not an error
-                }
-            }
-        }
-
-        private void dataGridViewLabExamList_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dataGridViewLabExamList.CurrentRow != null)
-            {
-                try
-                {
-                    int examID = (int)dataGridViewLabExamList.CurrentRow.Cells["ExaminationID"].Value;
-                    BusinessLayer.LabExaminationInformation exam = BusinessLayer.DoctorFacade.GetLaboratoryExamination(examID);
-                    richTextBoxCommentToLaborant.Text = exam.Result;
-                }
-                catch (Exception)
-                {
-                    //It's not an error
-                }
+                searchForLabExams();
             }
         }
     }

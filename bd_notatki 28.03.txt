@@ -1,11 +1,8 @@
-1. Zmieniæ nazwê tabeli Procedure na Dictionary.
-2. Tabela LabTest mo¿e nazywaæ siê LabExamination.
+Usun¹æ skomentowany konstruktor z FormDoctor.cs.
+
 3. Status w appointment powinien byæ typem wyliczeniowym (z opcj¹ check in – cokolwiek to znaczy)
 4. W tabeli rejestracji powinna byæ przechowywana data rejestracji i na kiedy ktoœ jest zarejestrowany, tak aby rozplanowaæ dzieñ lekarza z wykorzystaniem np. sta³ych ram czasowych.
-5. W tabeli Procedure (Dictionary) klucz powinien byæ z unikalnych wartoœci, a nie osobnego ID.
-6. Zmieniæ varchar(1) na char.
 7. Pola nazywaæ zgodnie z typami danych np. Date przechowuje tylko datê, zaœ DateTime datê i czas.
-8. W formatkach powinien byæ mo¿liwy wybór jedynie wiersza, bez pseudo-mo¿liwoœci edycji kolumny (której po prostu nie da siê zaznaczyæ).
 9. Przyciski powinny znajdowaæ siê przy w³aœciwych TextBox’ach – tj. w sekcji z TextBox’em (o ile go dotycz¹), a nie w osobnej sekcji z przyciskami.
 10. Nazwy przycisków powinny odnosiæ siê ju¿ do danego kontekstu – gdy jesteœmy w oknie Appointment, Create oznacza Create Appointment (drugie s³owo jest zbêdne).
 11. Pacjent mo¿e byæ edytowalny w oknie recepcjonistki.

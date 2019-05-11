@@ -40,9 +40,10 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(187, 491);
+            this.buttonBack.Location = new System.Drawing.Point(235, 396);
+            this.buttonBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(109, 35);
+            this.buttonBack.Size = new System.Drawing.Size(110, 28);
             this.buttonBack.TabIndex = 38;
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = true;
@@ -50,9 +51,10 @@
             // 
             // buttonAccept
             // 
-            this.buttonAccept.Location = new System.Drawing.Point(67, 491);
+            this.buttonAccept.Location = new System.Drawing.Point(9, 395);
+            this.buttonAccept.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(109, 35);
+            this.buttonAccept.Size = new System.Drawing.Size(110, 28);
             this.buttonAccept.TabIndex = 37;
             this.buttonAccept.Text = "Accept";
             this.buttonAccept.UseVisualStyleBackColor = true;
@@ -61,18 +63,19 @@
             // labelSearchByID
             // 
             this.labelSearchByID.AutoSize = true;
-            this.labelSearchByID.Location = new System.Drawing.Point(33, 9);
+            this.labelSearchByID.Location = new System.Drawing.Point(42, 9);
+            this.labelSearchByID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSearchByID.Name = "labelSearchByID";
-            this.labelSearchByID.Size = new System.Drawing.Size(89, 17);
+            this.labelSearchByID.Size = new System.Drawing.Size(83, 13);
             this.labelSearchByID.TabIndex = 36;
-            this.labelSearchByID.Text = "Search by ID";
+            this.labelSearchByID.Text = "Search by Code";
             // 
             // textBoxExamID
             // 
-            this.textBoxExamID.Location = new System.Drawing.Point(33, 31);
-            this.textBoxExamID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxExamID.Location = new System.Drawing.Point(47, 24);
+            this.textBoxExamID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxExamID.Name = "textBoxExamID";
-            this.textBoxExamID.Size = new System.Drawing.Size(133, 22);
+            this.textBoxExamID.Size = new System.Drawing.Size(108, 20);
             this.textBoxExamID.TabIndex = 35;
             this.textBoxExamID.TextChanged += new System.EventHandler(this.textBoxExamID_TextChanged);
             // 
@@ -84,38 +87,40 @@
             this.dataGridViewExamList.AllowUserToResizeColumns = false;
             this.dataGridViewExamList.AllowUserToResizeRows = false;
             this.dataGridViewExamList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewExamList.Location = new System.Drawing.Point(12, 71);
+            this.dataGridViewExamList.Location = new System.Drawing.Point(9, 58);
+            this.dataGridViewExamList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewExamList.MultiSelect = false;
             this.dataGridViewExamList.Name = "dataGridViewExamList";
             this.dataGridViewExamList.ReadOnly = true;
             this.dataGridViewExamList.RowTemplate.Height = 24;
             this.dataGridViewExamList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewExamList.Size = new System.Drawing.Size(342, 414);
+            this.dataGridViewExamList.Size = new System.Drawing.Size(336, 325);
             this.dataGridViewExamList.TabIndex = 34;
             // 
             // labelSearchByName
             // 
             this.labelSearchByName.AutoSize = true;
-            this.labelSearchByName.Location = new System.Drawing.Point(180, 9);
+            this.labelSearchByName.Location = new System.Drawing.Point(189, 9);
+            this.labelSearchByName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSearchByName.Name = "labelSearchByName";
-            this.labelSearchByName.Size = new System.Drawing.Size(113, 17);
+            this.labelSearchByName.Size = new System.Drawing.Size(86, 13);
             this.labelSearchByName.TabIndex = 33;
             this.labelSearchByName.Text = "Search by Name";
             // 
             // textBoxExamName
             // 
-            this.textBoxExamName.Location = new System.Drawing.Point(180, 31);
-            this.textBoxExamName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxExamName.Location = new System.Drawing.Point(192, 24);
+            this.textBoxExamName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxExamName.Name = "textBoxExamName";
-            this.textBoxExamName.Size = new System.Drawing.Size(141, 22);
+            this.textBoxExamName.Size = new System.Drawing.Size(120, 20);
             this.textBoxExamName.TabIndex = 32;
             this.textBoxExamName.TextChanged += new System.EventHandler(this.textBoxExamName_TextChanged);
             // 
             // FormDoctorExamList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 533);
+            this.ClientSize = new System.Drawing.Size(356, 433);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonAccept);
             this.Controls.Add(this.labelSearchByID);
@@ -123,8 +128,9 @@
             this.Controls.Add(this.dataGridViewExamList);
             this.Controls.Add(this.labelSearchByName);
             this.Controls.Add(this.textBoxExamName);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormDoctorExamList";
-            this.Text = "FormDoctorExamList";
+            this.Text = "ExamList";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewExamList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -57,6 +57,8 @@
             // 
             this.dataGridViewLabExaminations.AllowUserToAddRows = false;
             this.dataGridViewLabExaminations.AllowUserToDeleteRows = false;
+            this.dataGridViewLabExaminations.AllowUserToResizeColumns = false;
+            this.dataGridViewLabExaminations.AllowUserToResizeRows = false;
             this.dataGridViewLabExaminations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLabExaminations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DateRegistered,
@@ -66,6 +68,7 @@
             this.PatientFirstName,
             this.PatientLastName});
             this.dataGridViewLabExaminations.Location = new System.Drawing.Point(12, 152);
+            this.dataGridViewLabExaminations.MultiSelect = false;
             this.dataGridViewLabExaminations.Name = "dataGridViewLabExaminations";
             this.dataGridViewLabExaminations.ReadOnly = true;
             this.dataGridViewLabExaminations.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -251,7 +254,7 @@
             this.buttonExaminationDisplay.Name = "buttonExaminationDisplay";
             this.buttonExaminationDisplay.Size = new System.Drawing.Size(120, 23);
             this.buttonExaminationDisplay.TabIndex = 18;
-            this.buttonExaminationDisplay.Text = "Display";
+            this.buttonExaminationDisplay.Text = "View";
             this.buttonExaminationDisplay.UseVisualStyleBackColor = true;
             this.buttonExaminationDisplay.Click += new System.EventHandler(this.buttonExaminationDisplay_Click);
             // 

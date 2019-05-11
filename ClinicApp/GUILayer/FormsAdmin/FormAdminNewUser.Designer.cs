@@ -73,7 +73,7 @@
             this.buttonAddUser.Name = "buttonAddUser";
             this.buttonAddUser.Size = new System.Drawing.Size(100, 23);
             this.buttonAddUser.TabIndex = 11;
-            this.buttonAddUser.Text = "Add User";
+            this.buttonAddUser.Text = "Add";
             this.buttonAddUser.UseVisualStyleBackColor = true;
             this.buttonAddUser.Click += new System.EventHandler(this.buttonAddUser_Click);
             // 

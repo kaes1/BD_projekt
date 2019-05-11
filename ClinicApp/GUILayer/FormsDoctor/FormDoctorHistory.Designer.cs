@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBoxPreviousComments = new System.Windows.Forms.GroupBox();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.richTextBoxDescription = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxDiagnosis = new System.Windows.Forms.RichTextBox();
             this.groupBoxControls = new System.Windows.Forms.GroupBox();
             this.buttonPreviousExaminations = new System.Windows.Forms.Button();
             this.buttonBackToAppointment = new System.Windows.Forms.Button();
             this.buttonPreviousAppointments = new System.Windows.Forms.Button();
-            this.labelResultDescription = new System.Windows.Forms.Label();
-            this.richTextBoxResultDescription = new System.Windows.Forms.RichTextBox();
+            this.labelResultDiagnosis = new System.Windows.Forms.Label();
+            this.richTextBoxExaminationResult = new System.Windows.Forms.RichTextBox();
             this.dataGridViewAppoinmentsExaminations = new System.Windows.Forms.DataGridView();
             this.groupBoxPatient = new System.Windows.Forms.GroupBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
@@ -49,39 +52,72 @@
             // 
             // groupBoxPreviousComments
             // 
+            this.groupBoxPreviousComments.Controls.Add(this.labelDescription);
+            this.groupBoxPreviousComments.Controls.Add(this.richTextBoxDescription);
+            this.groupBoxPreviousComments.Controls.Add(this.richTextBoxDiagnosis);
             this.groupBoxPreviousComments.Controls.Add(this.groupBoxControls);
-            this.groupBoxPreviousComments.Controls.Add(this.labelResultDescription);
-            this.groupBoxPreviousComments.Controls.Add(this.richTextBoxResultDescription);
+            this.groupBoxPreviousComments.Controls.Add(this.labelResultDiagnosis);
+            this.groupBoxPreviousComments.Controls.Add(this.richTextBoxExaminationResult);
             this.groupBoxPreviousComments.Controls.Add(this.dataGridViewAppoinmentsExaminations);
-            this.groupBoxPreviousComments.Location = new System.Drawing.Point(12, 96);
-            this.groupBoxPreviousComments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxPreviousComments.Location = new System.Drawing.Point(9, 78);
+            this.groupBoxPreviousComments.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxPreviousComments.Name = "groupBoxPreviousComments";
-            this.groupBoxPreviousComments.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPreviousComments.Size = new System.Drawing.Size(911, 561);
+            this.groupBoxPreviousComments.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxPreviousComments.Size = new System.Drawing.Size(698, 456);
             this.groupBoxPreviousComments.TabIndex = 24;
             this.groupBoxPreviousComments.TabStop = false;
             this.groupBoxPreviousComments.Text = "Previous Appointments";
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new System.Drawing.Point(396, 258);
+            this.labelDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(60, 13);
+            this.labelDescription.TabIndex = 31;
+            this.labelDescription.Text = "Description";
+            // 
+            // richTextBoxDescription
+            // 
+            this.richTextBoxDescription.Location = new System.Drawing.Point(399, 273);
+            this.richTextBoxDescription.Margin = new System.Windows.Forms.Padding(2);
+            this.richTextBoxDescription.Name = "richTextBoxDescription";
+            this.richTextBoxDescription.ReadOnly = true;
+            this.richTextBoxDescription.Size = new System.Drawing.Size(284, 168);
+            this.richTextBoxDescription.TabIndex = 30;
+            this.richTextBoxDescription.Text = "";
+            // 
+            // richTextBoxDiagnosis
+            // 
+            this.richTextBoxDiagnosis.Location = new System.Drawing.Point(399, 182);
+            this.richTextBoxDiagnosis.Margin = new System.Windows.Forms.Padding(2);
+            this.richTextBoxDiagnosis.Name = "richTextBoxDiagnosis";
+            this.richTextBoxDiagnosis.ReadOnly = true;
+            this.richTextBoxDiagnosis.Size = new System.Drawing.Size(284, 66);
+            this.richTextBoxDiagnosis.TabIndex = 29;
+            this.richTextBoxDiagnosis.Text = "";
             // 
             // groupBoxControls
             // 
             this.groupBoxControls.Controls.Add(this.buttonPreviousExaminations);
             this.groupBoxControls.Controls.Add(this.buttonBackToAppointment);
             this.groupBoxControls.Controls.Add(this.buttonPreviousAppointments);
-            this.groupBoxControls.Location = new System.Drawing.Point(610, 46);
-            this.groupBoxControls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxControls.Location = new System.Drawing.Point(469, 17);
+            this.groupBoxControls.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxControls.Name = "groupBoxControls";
-            this.groupBoxControls.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxControls.Size = new System.Drawing.Size(196, 174);
+            this.groupBoxControls.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxControls.Size = new System.Drawing.Size(147, 141);
             this.groupBoxControls.TabIndex = 28;
             this.groupBoxControls.TabStop = false;
             this.groupBoxControls.Text = "Menu";
             // 
             // buttonPreviousExaminations
             // 
-            this.buttonPreviousExaminations.Location = new System.Drawing.Point(6, 71);
-            this.buttonPreviousExaminations.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonPreviousExaminations.Location = new System.Drawing.Point(4, 58);
+            this.buttonPreviousExaminations.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPreviousExaminations.Name = "buttonPreviousExaminations";
-            this.buttonPreviousExaminations.Size = new System.Drawing.Size(184, 41);
+            this.buttonPreviousExaminations.Size = new System.Drawing.Size(138, 33);
             this.buttonPreviousExaminations.TabIndex = 28;
             this.buttonPreviousExaminations.Text = "Examinations";
             this.buttonPreviousExaminations.UseVisualStyleBackColor = true;
@@ -89,10 +125,10 @@
             // 
             // buttonBackToAppointment
             // 
-            this.buttonBackToAppointment.Location = new System.Drawing.Point(6, 121);
-            this.buttonBackToAppointment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonBackToAppointment.Location = new System.Drawing.Point(4, 98);
+            this.buttonBackToAppointment.Margin = new System.Windows.Forms.Padding(2);
             this.buttonBackToAppointment.Name = "buttonBackToAppointment";
-            this.buttonBackToAppointment.Size = new System.Drawing.Size(184, 41);
+            this.buttonBackToAppointment.Size = new System.Drawing.Size(138, 33);
             this.buttonBackToAppointment.TabIndex = 1;
             this.buttonBackToAppointment.Text = "Back";
             this.buttonBackToAppointment.UseVisualStyleBackColor = true;
@@ -100,33 +136,35 @@
             // 
             // buttonPreviousAppointments
             // 
-            this.buttonPreviousAppointments.Location = new System.Drawing.Point(6, 21);
-            this.buttonPreviousAppointments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonPreviousAppointments.Location = new System.Drawing.Point(4, 17);
+            this.buttonPreviousAppointments.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPreviousAppointments.Name = "buttonPreviousAppointments";
-            this.buttonPreviousAppointments.Size = new System.Drawing.Size(184, 41);
+            this.buttonPreviousAppointments.Size = new System.Drawing.Size(138, 33);
             this.buttonPreviousAppointments.TabIndex = 27;
             this.buttonPreviousAppointments.Text = "Appointments";
             this.buttonPreviousAppointments.UseVisualStyleBackColor = true;
             this.buttonPreviousAppointments.Click += new System.EventHandler(this.buttonPreviousAppointments_Click);
             // 
-            // labelResultDescription
+            // labelResultDiagnosis
             // 
-            this.labelResultDescription.AutoSize = true;
-            this.labelResultDescription.Location = new System.Drawing.Point(509, 261);
-            this.labelResultDescription.Name = "labelResultDescription";
-            this.labelResultDescription.Size = new System.Drawing.Size(48, 17);
-            this.labelResultDescription.TabIndex = 12;
-            this.labelResultDescription.Text = "Result";
+            this.labelResultDiagnosis.AutoSize = true;
+            this.labelResultDiagnosis.Location = new System.Drawing.Point(396, 167);
+            this.labelResultDiagnosis.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelResultDiagnosis.Name = "labelResultDiagnosis";
+            this.labelResultDiagnosis.Size = new System.Drawing.Size(53, 13);
+            this.labelResultDiagnosis.TabIndex = 12;
+            this.labelResultDiagnosis.Text = "Diagnosis";
             // 
-            // richTextBoxResultDescription
+            // richTextBoxExaminationResult
             // 
-            this.richTextBoxResultDescription.Location = new System.Drawing.Point(512, 285);
-            this.richTextBoxResultDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.richTextBoxResultDescription.Name = "richTextBoxResultDescription";
-            this.richTextBoxResultDescription.ReadOnly = true;
-            this.richTextBoxResultDescription.Size = new System.Drawing.Size(377, 256);
-            this.richTextBoxResultDescription.TabIndex = 11;
-            this.richTextBoxResultDescription.Text = "";
+            this.richTextBoxExaminationResult.Location = new System.Drawing.Point(399, 182);
+            this.richTextBoxExaminationResult.Margin = new System.Windows.Forms.Padding(2);
+            this.richTextBoxExaminationResult.Name = "richTextBoxExaminationResult";
+            this.richTextBoxExaminationResult.ReadOnly = true;
+            this.richTextBoxExaminationResult.Size = new System.Drawing.Size(284, 259);
+            this.richTextBoxExaminationResult.TabIndex = 11;
+            this.richTextBoxExaminationResult.Text = "";
+            this.richTextBoxExaminationResult.Visible = false;
             // 
             // dataGridViewAppoinmentsExaminations
             // 
@@ -135,15 +173,13 @@
             this.dataGridViewAppoinmentsExaminations.AllowUserToResizeColumns = false;
             this.dataGridViewAppoinmentsExaminations.AllowUserToResizeRows = false;
             this.dataGridViewAppoinmentsExaminations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAppoinmentsExaminations.Location = new System.Drawing.Point(17, 21);
-            this.dataGridViewAppoinmentsExaminations.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewAppoinmentsExaminations.Location = new System.Drawing.Point(13, 17);
             this.dataGridViewAppoinmentsExaminations.MultiSelect = false;
             this.dataGridViewAppoinmentsExaminations.Name = "dataGridViewAppoinmentsExaminations";
             this.dataGridViewAppoinmentsExaminations.ReadOnly = true;
             this.dataGridViewAppoinmentsExaminations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAppoinmentsExaminations.Size = new System.Drawing.Size(463, 520);
+            this.dataGridViewAppoinmentsExaminations.Size = new System.Drawing.Size(370, 422);
             this.dataGridViewAppoinmentsExaminations.TabIndex = 10;
-            this.dataGridViewAppoinmentsExaminations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAppoinmentsExaminations_CellContentClick);
             this.dataGridViewAppoinmentsExaminations.SelectionChanged += new System.EventHandler(this.dataGridViewAppoinmentsExaminations_SelectionChanged);
             // 
             // groupBoxPatient
@@ -152,58 +188,61 @@
             this.groupBoxPatient.Controls.Add(this.textBoxFirstName);
             this.groupBoxPatient.Controls.Add(this.labelFisrtName);
             this.groupBoxPatient.Controls.Add(this.labelLastName);
-            this.groupBoxPatient.Location = new System.Drawing.Point(12, 11);
-            this.groupBoxPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxPatient.Location = new System.Drawing.Point(9, 9);
+            this.groupBoxPatient.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxPatient.Name = "groupBoxPatient";
-            this.groupBoxPatient.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxPatient.Size = new System.Drawing.Size(295, 81);
+            this.groupBoxPatient.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxPatient.Size = new System.Drawing.Size(221, 66);
             this.groupBoxPatient.TabIndex = 25;
             this.groupBoxPatient.TabStop = false;
             this.groupBoxPatient.Text = "Patient";
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(151, 46);
-            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxLastName.Location = new System.Drawing.Point(113, 37);
+            this.textBoxLastName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.ReadOnly = true;
-            this.textBoxLastName.Size = new System.Drawing.Size(133, 22);
+            this.textBoxLastName.Size = new System.Drawing.Size(101, 20);
             this.textBoxLastName.TabIndex = 1;
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(9, 46);
-            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxFirstName.Location = new System.Drawing.Point(7, 37);
+            this.textBoxFirstName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.ReadOnly = true;
-            this.textBoxFirstName.Size = new System.Drawing.Size(136, 22);
+            this.textBoxFirstName.Size = new System.Drawing.Size(103, 20);
             this.textBoxFirstName.TabIndex = 0;
             // 
             // labelFisrtName
             // 
             this.labelFisrtName.AutoSize = true;
-            this.labelFisrtName.Location = new System.Drawing.Point(5, 26);
+            this.labelFisrtName.Location = new System.Drawing.Point(4, 21);
+            this.labelFisrtName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFisrtName.Name = "labelFisrtName";
-            this.labelFisrtName.Size = new System.Drawing.Size(76, 17);
+            this.labelFisrtName.Size = new System.Drawing.Size(57, 13);
             this.labelFisrtName.TabIndex = 4;
             this.labelFisrtName.Text = "First Name";
             // 
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(148, 26);
+            this.labelLastName.Location = new System.Drawing.Point(111, 21);
+            this.labelLastName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelLastName.Name = "labelLastName";
-            this.labelLastName.Size = new System.Drawing.Size(76, 17);
+            this.labelLastName.Size = new System.Drawing.Size(58, 13);
             this.labelLastName.TabIndex = 5;
             this.labelLastName.Text = "Last Name";
             // 
             // FormDoctorHistory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 667);
+            this.ClientSize = new System.Drawing.Size(718, 542);
             this.Controls.Add(this.groupBoxPatient);
             this.Controls.Add(this.groupBoxPreviousComments);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormDoctorHistory";
             this.Text = "FormDoctorPrevExaminations";
             this.groupBoxPreviousComments.ResumeLayout(false);
@@ -219,8 +258,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxPreviousComments;
-        private System.Windows.Forms.Label labelResultDescription;
-        private System.Windows.Forms.RichTextBox richTextBoxResultDescription;
+        private System.Windows.Forms.Label labelResultDiagnosis;
+        private System.Windows.Forms.RichTextBox richTextBoxExaminationResult;
         private System.Windows.Forms.DataGridView dataGridViewAppoinmentsExaminations;
         private System.Windows.Forms.GroupBox groupBoxControls;
         private System.Windows.Forms.Button buttonPreviousAppointments;
@@ -231,5 +270,8 @@
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.Label labelFisrtName;
         private System.Windows.Forms.Label labelLastName;
+        private System.Windows.Forms.RichTextBox richTextBoxDiagnosis;
+        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.RichTextBox richTextBoxDescription;
     }
 }

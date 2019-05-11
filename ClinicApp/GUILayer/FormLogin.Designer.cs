@@ -46,7 +46,6 @@
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(165, 20);
             this.textBoxUsername.TabIndex = 0;
-            this.textBoxUsername.Text = "labtechnician";
             // 
             // labelPanelName
             // 
@@ -84,7 +83,6 @@
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(165, 20);
             this.textBoxPassword.TabIndex = 4;
-            this.textBoxPassword.Text = "test";
             // 
             // groupBoxLoginForm
             // 

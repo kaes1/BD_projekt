@@ -35,7 +35,7 @@ namespace GUILayer.FormsDoctor
             }
             else
             {
-                MessageBox.Show("Select examination or cancel selection.");
+                MessageBox.Show("Please select examination or cancel selection.");
             }
         }
 

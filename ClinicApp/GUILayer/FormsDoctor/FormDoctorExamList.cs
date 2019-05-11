@@ -29,6 +29,8 @@ namespace GUILayer.FormsDoctor
             }
             dataGridViewExamList.AutoGenerateColumns = false;
             dataGridViewExamList.Columns.Remove("Type");
+            dataGridViewExamList.Columns["Code"].Width = 90;
+            dataGridViewExamList.Columns["Name"].Width = 175;
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
@@ -56,6 +58,8 @@ namespace GUILayer.FormsDoctor
             }
             dataGridViewExamList.AutoGenerateColumns = false;
             dataGridViewExamList.Columns.Remove("Type");
+            dataGridViewExamList.Columns["Code"].Width = 90;
+            dataGridViewExamList.Columns["Name"].Width = 175;
         }
 
         private void textBoxExamID_TextChanged(object sender, EventArgs e)
@@ -74,6 +78,8 @@ namespace GUILayer.FormsDoctor
             }
             dataGridViewExamList.AutoGenerateColumns = false;
             dataGridViewExamList.Columns.Remove("Type");
+            dataGridViewExamList.Columns["Code"].Width = 90;
+            dataGridViewExamList.Columns["Name"].Width = 175;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
