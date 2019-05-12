@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1E584737-DDD4-4981-8858-E22BD8B779F5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GUILayer</RootNamespace>
+    <AssemblyName>GUILayer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormsLabManager\FormLabManagerExamination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLabManager\FormLabManagerExamination.Designer.cs">
+      <DependentUpon>FormLabManagerExamination.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsLabTechnician\FormLabTechnicianExamination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLabTechnician\FormLabTechnicianExamination.Designer.cs">
+      <DependentUpon>FormLabTechnicianExamination.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorAppCancelled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorAppCancelled.Designer.cs">
+      <DependentUpon>FormDoctorAppCancelled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorExamList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorExamList.Designer.cs">
+      <DependentUpon>FormDoctorExamList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorManageExaminations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorManageExaminations.Designer.cs">
+      <DependentUpon>FormDoctorManageExaminations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorLabTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorLabTest.Designer.cs">
+      <DependentUpon>FormDoctorLabTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorPhysExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorPhysExam.Designer.cs">
+      <DependentUpon>FormDoctorPhysExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminRetireUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminRetireUser.Designer.cs">
+      <DependentUpon>FormAdminRetireUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdmin.Designer.cs">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminChangePassword.Designer.cs">
+      <DependentUpon>FormAdminChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminNewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsAdmin\FormAdminNewUser.Designer.cs">
+      <DependentUpon>FormAdminNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctor.Designer.cs">
+      <DependentUpon>FormDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorApointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorApointment.Designer.cs">
+      <DependentUpon>FormDoctorApointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsDoctor\FormDoctorHistory.Designer.cs">
+      <DependentUpon>FormDoctorHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsLabManager\FormLabManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLabManager\FormLabManager.Designer.cs">
+      <DependentUpon>FormLabManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsLabTechnician\FormLabTechnician.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsLabTechnician\FormLabTechnician.Designer.cs">
+      <DependentUpon>FormLabTechnician.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionist.Designer.cs">
+      <DependentUpon>FormReceptionist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistCancelAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistCancelAppointment.Designer.cs">
+      <DependentUpon>FormReceptionistCancelAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistEditPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistEditPatient.Designer.cs">
+      <DependentUpon>FormReceptionistEditPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistNewAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistNewAppointment.Designer.cs">
+      <DependentUpon>FormReceptionistNewAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistNewPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsReceptionist\FormReceptionistNewPatient.Designer.cs">
+      <DependentUpon>FormReceptionistNewPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormsAdmin\FormAdminRetireUser.resx">
+      <DependentUpon>FormAdminRetireUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsAdmin\FormAdmin.resx">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsAdmin\FormAdminChangePassword.resx">
+      <DependentUpon>FormAdminChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsAdmin\FormAdminNewUser.resx">
+      <DependentUpon>FormAdminNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctor.resx">
+      <DependentUpon>FormDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorAppCancelled.resx">
+      <DependentUpon>FormDoctorAppCancelled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorExamList.resx">
+      <DependentUpon>FormDoctorExamList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorManageExaminations.resx">
+      <DependentUpon>FormDoctorManageExaminations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorLabTest.resx">
+      <DependentUpon>FormDoctorLabTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorPhysExam.resx">
+      <DependentUpon>FormDoctorPhysExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorApointment.resx">
+      <DependentUpon>FormDoctorApointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsDoctor\FormDoctorHistory.resx">
+      <DependentUpon>FormDoctorHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsLabManager\FormLabManager.resx">
+      <DependentUpon>FormLabManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsLabManager\FormLabManagerExamination.resx">
+      <DependentUpon>FormLabManagerExamination.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsLabTechnician\FormLabTechnician.resx">
+      <DependentUpon>FormLabTechnician.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsLabTechnician\FormLabTechnicianExamination.resx">
+      <DependentUpon>FormLabTechnicianExamination.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsReceptionist\FormReceptionist.resx">
+      <DependentUpon>FormReceptionist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsReceptionist\FormReceptionistCancelAppointment.resx">
+      <DependentUpon>FormReceptionistCancelAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsReceptionist\FormReceptionistEditPatient.resx">
+      <DependentUpon>FormReceptionistEditPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsReceptionist\FormReceptionistNewAppointment.resx">
+      <DependentUpon>FormReceptionistNewAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsReceptionist\FormReceptionistNewPatient.resx">
+      <DependentUpon>FormReceptionistNewPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{fbed72d5-d523-410f-9210-a6245c324955}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
